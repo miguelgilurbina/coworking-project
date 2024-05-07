@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header</title>
+  <style>
+    /* Estilos para el header */
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      background-color: #333; /* Cambia este color según el diseño de tu aplicación */
+      color: #fff; /* Cambia este color según el diseño de tu aplicación */
+      z-index: 1000;
+    }
+
+    /* Estilos para el bloque izquierdo */
+    .left-block {
+      float: left;
+    }
+
+    .left-block * {
+      display: inline-block; /* Colocar elementos en línea */
+      vertical-align: middle; /* Alinear verticalmente */
+    }
+
+    /* Estilos para el bloque derecho */
+    .right-block {
+      float: right;
+      text-align: center; /* Centrar contenido */
+    }
+
+    /* Estilos para el logo y el lema */
+    .logo, .lema, .coworking {
+      text-decoration: none;
+      color: #fff;
+      padding: 10px;
+    }
+
+    .logo img {
+      width: 50px; /* Ajusta el tamaño según tu diseño */
+      height: auto;
+      margin-right: 10px; /* Espacio entre el logo y el lema */
+    }
+
+    .lema {
+      font-size: 16px; /* Tamaño del lema de la empresa */
+    }
+
+    .coworking {
+      font-size: 14px; /* Tamaño del texto "Co-Working" */
+    }
+
+    /* Estilos para los botones */
+    .button {
+      background-color: transparent;
+      color: #fff;
+      border: 2px solid orange; /* Borde naranja */
+      border-radius: 30px; /* Bordes ovalados */
+      padding: 10px 20px;
+      margin: 0 10px; /* Espacio entre los botones */
+      cursor: pointer;
+      font-size: 16px; /* Ajusta el tamaño según tu diseño */
+      transition: background-color 0.3s; /* Transición suave */
+    }
+
+    /* Cambio de color al pasar el ratón */
+    .button:hover {
+      background-color: orange; /* Cambio de color a naranja */
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <!-- Bloque izquierdo con logo y lema -->
+    <div class="left-block">
+      <a href="/" class="logo">
+        <img src="ruta/para/logo.png" alt="Logo de la empresa">
+        <span class="coworking">Co-Working</span>
+        <span class="lema">Donde los sueños se codean</span>
+      </a>
+    </div>
+
+    <!-- Bloque derecho con botones -->
+    <div class="right-block">
+      <button class="button">Home</button>
+      <button class="button">Reserve a Place</button>
+      <button class="button">All Places</button>
+      <button class="button">Crear cuenta</button>
+      <button class="button">Iniciar sesión</button>
+    </div>
+  </header>
+
+  <!-- Contenido de la página -->
+  <div style="height: 2000px;">Contenido de la página</div>
+</body>
+</html>
