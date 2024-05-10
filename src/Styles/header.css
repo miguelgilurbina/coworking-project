@@ -1,3 +1,5 @@
+/* Header.css */
+
 .header {
   width: 100%;
   position: fixed;
@@ -25,7 +27,7 @@
 }
 
 .coworking {
-  font-size: 20px;
+  font-size: 14px;
   padding: 10px;
 }
 
@@ -56,4 +58,68 @@
 
 .button:hover {
   background-color: orange;
+}
+@media (max-width: 600px) {
+  .header {
+    justify-content: center; /* Centra el contenido */
+    padding: 0 1vw; /* Añade espacio a los lados */
+  }
+
+  .logo img {
+    width: 8vw;
+    margin-right: 1vw;
+  }
+
+  .coworking {
+    font-size: 3vw;
+    padding: 0.5vw;
+  }
+
+  .lema {
+    font-size: 3vw;
+    padding: 0.5vw;
+  }
+
+  .right-block {
+    justify-content: center; /* Centra los botones */
+  }
+
+  .button {
+    border: 0.5vw solid orange;
+    border-radius: 3vw;
+    padding: 1vw 2vw;
+    margin: 0.5vw;
+    font-size: 2vw;
+  }
+}
+
+/* Media query para 340x630 */
+@media (max-width: 340px) {
+  .header {
+    grid-template-columns: 1fr; /* Cambia a una sola columna */
+    width: 100vw; /* Reducido en un 40% */
+  }
+
+  .logo img {
+    width: 6vw;
+    margin-left: 35vw; /* Ajusta el tamaño del logo para adaptarse */
+    margin-right: 1vw; /* Ajusta el margen del logo para adaptarse */
+  }
+
+  .coworking {
+    font-size: 3vw; /* Ajusta el tamaño del texto para adaptarse */
+    padding: 0.5vw; /* Reduce el relleno */
+  }
+
+  .lema {
+    display: none;
+  }
+
+  .button {
+    border: 0.4vw solid orange; /* Ajusta el borde de los botones para adaptarse */
+    border-radius: 2vw; /* Ajusta el borde de los botones para adaptarse */
+    padding: 0.8vw 1.6vw; /* Ajusta el relleno de los botones para adaptarse */
+    margin: 0.5vw; /* Espacio uniforme entre los botones */
+    font-size: 2vw; /* Ajusta el tamaño del texto de los botones para adaptarse */
+  }
 }

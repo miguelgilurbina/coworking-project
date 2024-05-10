@@ -30,3 +30,17 @@
     color: #ff8c00;
     margin-left: 10px;
   }
+  @media only screen and (max-width: 340px) {
+    .footer-content {
+      padding: 0 10px; /* Reduce el padding */
+    }
+  
+    .company-logo {
+      width: 70px; /* Reducir el tamaño del logo */
+    }
+  
+    .social-icons img {
+      width: 20px; /* Reducir el tamaño de los íconos */
+      margin-left: 5px; /* Reducir el espacio entre los íconos */
+    }
+  }
