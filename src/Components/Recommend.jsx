@@ -1,6 +1,6 @@
 const Recommend = () => {
   return (
-    <div>Recommend</div>
+    <div className="recommend">Recommend</div>
   )
 }
 

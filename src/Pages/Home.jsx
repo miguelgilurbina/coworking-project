@@ -1,6 +1,13 @@
+import '../Styles/Home.css'
+import Explorer from '../Components/Explorer'
+import Recommend from '../Components/Recommend'
 const Home = () => {
   return (
-    <div>Home</div>
+    <div className="home">
+      <Explorer/>
+      <Recommend/>
+
+    </div>
   )
 }
 
