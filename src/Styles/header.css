@@ -1,5 +1,3 @@
-/* Header.css */
-
 .header {
   width: 100%;
   position: fixed;
@@ -34,20 +32,20 @@
 .lema {
   font-size: 16px;
   padding: 10px;
-  grid-column: 1 / span 2; /* Ocupar dos columnas */
+  grid-column: 1 / span 2; 
 }
 
 .right-block {
   text-align: right;
   display: flex;
-  justify-content: flex-end; /* Alinear a la derecha */
+  justify-content: flex-end; 
   align-items: center;
 }
 
 .button {
   background-color: transparent;
   color: #fff;
-  border: 2px solid orange;
+  border: 2px solid #DE8A05;
   border-radius: 30px;
   padding: 10px 20px;
   margin: 0 10px;
@@ -57,12 +55,12 @@
 }
 
 .button:hover {
-  background-color: orange;
+  background-color: #DE8A05;
 }
 @media (max-width: 600px) {
   .header {
-    justify-content: center; /* Centra el contenido */
-    padding: 0 1vw; /* Añade espacio a los lados */
+    justify-content: center; 
+    padding: 0 1vw; 
   }
 
   .logo img {
@@ -81,11 +79,11 @@
   }
 
   .right-block {
-    justify-content: center; /* Centra los botones */
+    justify-content: center; 
   }
 
   .button {
-    border: 0.5vw solid orange;
+    border: 0.5vw solid #DE8A05;
     border-radius: 3vw;
     padding: 1vw 2vw;
     margin: 0.5vw;
@@ -96,19 +94,19 @@
 /* Media query para 340x630 */
 @media (max-width: 340px) {
   .header {
-    grid-template-columns: 1fr; /* Cambia a una sola columna */
-    width: 100vw; /* Reducido en un 40% */
+    grid-template-columns: 1fr; 
+    width: 100vw; 
   }
 
   .logo img {
     width: 6vw;
-    margin-left: 35vw; /* Ajusta el tamaño del logo para adaptarse */
-    margin-right: 1vw; /* Ajusta el margen del logo para adaptarse */
+    margin-left: 35vw; 
+    margin-right: 1vw; 
   }
 
   .coworking {
-    font-size: 3vw; /* Ajusta el tamaño del texto para adaptarse */
-    padding: 0.5vw; /* Reduce el relleno */
+    font-size: 3vw; 
+    padding: 0.5vw; 
   }
 
   .lema {
@@ -116,10 +114,10 @@
   }
 
   .button {
-    border: 0.4vw solid orange; /* Ajusta el borde de los botones para adaptarse */
-    border-radius: 2vw; /* Ajusta el borde de los botones para adaptarse */
-    padding: 0.8vw 1.6vw; /* Ajusta el relleno de los botones para adaptarse */
-    margin: 0.5vw; /* Espacio uniforme entre los botones */
-    font-size: 2vw; /* Ajusta el tamaño del texto de los botones para adaptarse */
+    border: 0.4vw solid #DE8A05; 
+    border-radius: 2vw; 
+    padding: 0.8vw 1.6vw; 
+    margin: 0.5vw; 
+    font-size: 2vw; 
   }
 }
