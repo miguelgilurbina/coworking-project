@@ -5,17 +5,16 @@ import Explorer from '../Components/Explorer'
 import Recommend from '../Components/Recommend'
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <Header/>
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <a href= "./Detail.jsx">Detail</a>
-      <Footer/>
-    </div>
-    <div className="home">
       <Explorer/>
       <Recommend/>
-
+      <Footer/>
     </div>
+    
+      
   )
 }
 
