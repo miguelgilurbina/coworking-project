@@ -1,5 +1,5 @@
 import Header from "../Components/Header";
-import Footer from "../Components/footer";
+import Footer from "../Components/Footer";
 
 const Detail = () => {
     return (

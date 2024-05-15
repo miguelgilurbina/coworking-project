@@ -1,0 +1,64 @@
+{
+    "data":[
+        {
+          "srcImg":"/public/images/img_aleatory_1.png"  ,
+            "name":"Happy Work" ,
+        "Category":"Open Space",
+              "id":"1" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_2.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id":"2"  
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_3.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "3" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_4.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "4" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_1.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "5" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_2.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "6" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_3.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "7" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_4.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "8" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_1.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "9" 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_2.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "10" 
+        }
+    ] 
+}
