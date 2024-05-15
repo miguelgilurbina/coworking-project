@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="home">
       <Header/>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      
       <a href= "./Detail.jsx">Detail</a>
       <Explorer/>
       <Recommend/>
