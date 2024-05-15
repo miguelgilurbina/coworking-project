@@ -2,10 +2,11 @@
     width: 100%;
     background-color: #333;
     color: #fff;
-    padding: 20px 0;
+    /* padding: 20px 0; */
     position: fixed;
     bottom: 0;
     left: 0;
+    height: 60px;
   }
   
   .footer-content {
@@ -32,15 +33,15 @@
   }
   @media only screen and (max-width: 340px) {
     .footer-content {
-      padding: 0 10px; /* Reduce el padding */
+      padding: 0 10px; 
     }
   
     .company-logo {
-      width: 70px; /* Reducir el tamaño del logo */
+      width: 70px; 
     }
   
     .social-icons img {
-      width: 20px; /* Reducir el tamaño de los íconos */
-      margin-left: 5px; /* Reducir el espacio entre los íconos */
+      width: 20px; 
+      margin-left: 5px; 
     }
   }

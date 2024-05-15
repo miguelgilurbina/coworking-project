@@ -1,19 +1,20 @@
 .header {
   width: 100%;
   position: fixed;
-  top: 0;
+  /* top: 0; */
   background-color: #333;
-  color: #fff;
+  /* color: #fff; */
   z-index: 1000;
   display: grid;
   grid-template-columns: auto 1fr; /* Dividir en dos columnas, una para el logo y otra para el contenido */
-  align-items: center; /* Alinear verticalmente */
+ /* align-items: center;  Alinear verticalmente */
+ height: 60px;
 }
 
 .logo {
   text-decoration: none;
   color: #fff;
-  padding: 10px;
+  /* padding: 10px; */
   display: flex;
   align-items: center; /* Alinear verticalmente */
 }
@@ -25,13 +26,14 @@
 }
 
 .coworking {
-  font-size: 14px;
-  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  /* padding: 10px; */
 }
 
 .lema {
-  font-size: 16px;
-  padding: 10px;
+  font-size: 14px;
+  /* padding: 10px; */
   grid-column: 1 / span 2; 
 }
 
@@ -47,11 +49,13 @@
   color: #fff;
   border: 2px solid #DE8A05;
   border-radius: 30px;
-  padding: 10px 20px;
+  padding: 0px 10px;
   margin: 0 10px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  width: 170px; 
+  height:40px
 }
 
 .button:hover {
@@ -69,25 +73,28 @@
   }
 
   .coworking {
-    font-size: 3vw;
-    padding: 0.5vw;
+    font-size: 2.5vw;
+    /* padding: 0.5vw; */
   }
 
   .lema {
-    font-size: 3vw;
-    padding: 0.5vw;
+    font-size: 2.3vw;
+    /* padding: 0.5vw; */
   }
 
-  .right-block {
-    justify-content: center; 
+ /* .right-block {
+     justify-content: center;  
   }
+*/
 
   .button {
     border: 0.5vw solid #DE8A05;
-    border-radius: 3vw;
-    padding: 1vw 2vw;
+    border-radius: 4vw;
+    /* padding: 1vw 2vw; */
     margin: 0.5vw;
-    font-size: 2vw;
+    font-size: 2.3vw;
+    width: 100px;
+    height: 30px;
   }
 }
 
