@@ -1,5 +1,5 @@
 .home {
-    
-    width: 100%;
-    
+  flex-grow: 1;
+  padding-top: 60px;
+  z-index: 1;
 }

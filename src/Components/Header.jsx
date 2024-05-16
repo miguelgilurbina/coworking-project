@@ -5,7 +5,6 @@ class Header extends React.Component {
   render() {
     return (
       <header className="header">
-        {/* Bloque izquierdo con logo y lema */}
         <div className="d-flex p-2">
           <a href="../Pages/Home.jsx" className="logo">
             <img
@@ -14,13 +13,12 @@ class Header extends React.Component {
               className="logo-img"
             />
             <div class="d-grid">
-            <span className="coworking">Co-Working</span>
-            <span className="lema">Donde los sueños se codifican</span>
+              <span className="coworking">Co-Working</span>
+              <span className="lema">Donde los sueños se codifican</span>
             </div>
           </a>
         </div>
 
-        {/* Bloque derecho con botones */}
         <div className="right-block">
           {/* TODO: Se comentan botones por posible uso en proximo spring */}
           {/*<button className="button">Home</button>
