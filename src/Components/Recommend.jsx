@@ -9,13 +9,26 @@ const Recommend = () => {
 
   useEffect (() => {
 
-    console.log(data);
+    // const fetchData = async () => {
+    //     try {
+    //       const response = await axios.get("http://localhost:8080/salas");
+          
+    //       console.log(response.data);
+    //       const shuffledData = shuffleArray(response.data.data);
+    //       setRecommendData(shuffledData);
+    //       console.log(shuffledData);
+    //     } catch (error) {
+    //       console.error("Error fetching data:", error.response);
+    //     }
+    //   };
+  
+    //   fetchData();
 
-    const dataArray = Object.values(data);
+    const dataArray = Object.values(data.data);
+
 
     const shuffledData = shuffleArray(dataArray);
 
-    console.log(shuffledData);
 
     setRecommendData(shuffledData);
   },[])
