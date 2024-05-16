@@ -2,9 +2,33 @@
     justify-content: center;
     display: inline-flex;
     padding-left: 50px;
+    padding-top: 50px;
+    position: relative;
 }
 .card img{
-    height: 150px;
-    width: 100px;
+    height: 110px;
+    width: 110px;
+}
+
+.card-description {
+    height: 110px;
+    width: 140px;
+    background-color: #fff;
+    
+}
+
+.card-description h4 {
+    font-family: "Poppins";
+    position: absolute;
+    right: 16px;
+    top: 30px
+}
+
+.card-description p {
+    font-family: "Poppins";
+    font-size: 10px;
+    position: absolute;
+    bottom: 10px;
+    
     
 }

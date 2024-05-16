@@ -8,8 +8,27 @@ const Recommend = () => {
   const [recommendData, setRecommendData] = useState([]);
 
   useEffect (() => {
-    setRecommendData(data.data);
+
+    console.log(data);
+
+    const dataArray = Object.values(data);
+
+    const shuffledData = shuffleArray(dataArray);
+
+    console.log(shuffledData);
+
+    setRecommendData(shuffledData);
   },[])
+
+  const shuffleArray = (array) => {
+    const shuffledArray = [... array];
+    for (let i = shuffledArray.length -1 ; i > 0 ; i--) {
+      const j = Math.floor(Math.random()* (i+1));
+      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j],shuffledArray[i]];
+      
+    }
+    return shuffledArray;
+  }
 
 
   return (
