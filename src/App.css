@@ -1,1 +1,4 @@
 
+body{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(../../public/images/img_body.jpg);
+}

@@ -4,42 +4,89 @@
     box-sizing: border-box;
 }
 
-.containerDetail{
+.center {
     width: 100%;
-    height: 100vh;
-     
+    display: flex;
+    justify-content: center;
+}
+.cardTotal{
+    width: 70%;
+    display: flex;   
+    justify-content: center;
+}
+.containerDetail {
+    width: 100%;
+    height: 100%h;
+    box-sizing: border-box;
+    padding: 20px;
 }
 
-.cardDetail{   
+.cardDetail {
     width: 100%;
-    background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255, 0.75)), url(../../public/images/img_body.jpg);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(../../public/images/img_body.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size:cover; 
-}
-
-.buttonDetail{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;      
-}
-.containerImg{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:center;
-    width: 90%;
-   
-}
-
-.imgHero{
-    width: 600px;
+    background-size: cover;
+    padding: 20px;
     border-radius: 20px;
-    padding-right: 40px;
 }
 
-.gridDetail{
+.containerImg {
+    display: flex;
+    align-items: flex-start;
+}
+
+.imgHero {
+    width: 50%;
+    border-radius: 20px;
+}
+
+.gridDetail {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;  
-    flex-wrap: wrap; 
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.gridDetail img {
+    width: calc(50% - 5px);
+    height: 20%;
+    border-radius: 20px;
+    max-width: 100%;
+}
+
+.description {
+    text-align: center; /* Centra horizontalmente el contenido */
+  }
+
+.containerButton{
+    display: flex;
+    justify-content: center;
+}
+.buttonG {
+    background-color: gray;
+  color: #fff;
+  border: 2px solid orange;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  }
+  
+.buttonG:hover {
+    background-color: orange;
+  }
+
+.buttonSeeMore{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.carouselContainer{
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(../../public/images/img_body.jpg);
+}
+.slick-current {
+    transform: scale(1.3);
 }

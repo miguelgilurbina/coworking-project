@@ -1,6 +1,6 @@
-import Header from "./Components/Header"
-import Footer from "./Components/Footer"
-import Form from "./Components/Form"
+import Header from "../src/Components/Header"
+import Footer from "../src/Components/footer"
+import Form from "../src/Components/Form"
 import Home from './Pages/Home'
 import './App.css'
 import Detail from "./Pages/Detail"
@@ -12,7 +12,7 @@ function App() {
     <>
       <Header/>
       <Home/>
-      {/* <Detail/> */}
+      {<Detail/>}
       {/* <Form/> */}
       <Footer/>
      
