@@ -1,23 +1,18 @@
-/* Header.css */
-
 .header {
   width: 100%;
   position: fixed;
-  top: 0;
   background-color: #333;
-  color: #fff;
   z-index: 1000;
   display: grid;
-  grid-template-columns: auto 1fr; /* Dividir en dos columnas, una para el logo y otra para el contenido */
-  align-items: center; /* Alinear verticalmente */
+  grid-template-columns: auto 1fr;
+  height: 60px;
 }
 
 .logo {
   text-decoration: none;
   color: #fff;
-  padding: 10px;
   display: flex;
-  align-items: center; /* Alinear verticalmente */
+  align-items: center;
 }
 
 .logo img {
@@ -27,46 +22,79 @@
 }
 
 .coworking {
-  font-size: 14px;
-  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .lema {
-  font-size: 16px;
-  padding: 10px;
-  grid-column: 1 / span 2; /* Ocupar dos columnas */
+  font-size: 14px;
+  grid-column: 1 / span 2;
 }
 
 .right-block {
   text-align: right;
   display: flex;
-  justify-content: flex-end; /* Alinear a la derecha */
+  justify-content: flex-end;
   align-items: center;
 }
 
 .button {
   background-color: transparent;
   color: #fff;
-  border: 2px solid orange;
+  border: 2px solid #de8a05;
   border-radius: 30px;
-  padding: 10px 20px;
+  padding: 0px 10px;
   margin: 0 10px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s;
+  width: 170px;
+  height: 40px;
 }
 
 .button:hover {
-  background-color: orange;
+  background-color: #de8a05;
 }
+
 @media (max-width: 600px) {
   .header {
-    justify-content: center; /* Centra el contenido */
-    padding: 0 1vw; /* Añade espacio a los lados */
+    justify-content: center;
+    padding: 0 1vw;
   }
 
   .logo img {
     width: 8vw;
+    margin-right: 1vw;
+  }
+
+  .coworking {
+    font-size: 2.5vw;
+  }
+
+  .lema {
+    font-size: 2.3vw;
+  }
+
+  .button {
+    border: 0.5vw solid #de8a05;
+    border-radius: 4vw;
+    margin: 0.5vw;
+    font-size: 2.3vw;
+    width: 100px;
+    height: 30px;
+  }
+}
+
+/* Media query para 340x630 */
+@media (max-width: 340px) {
+  .header {
+    grid-template-columns: 1fr;
+    width: 100vw;
+  }
+
+  .logo img {
+    width: 6vw;
+    margin-left: 35vw;
     margin-right: 1vw;
   }
 
@@ -76,50 +104,14 @@
   }
 
   .lema {
-    font-size: 3vw;
-    padding: 0.5vw;
-  }
-
-  .right-block {
-    justify-content: center; /* Centra los botones */
-  }
-
-  .button {
-    border: 0.5vw solid orange;
-    border-radius: 3vw;
-    padding: 1vw 2vw;
-    margin: 0.5vw;
-    font-size: 2vw;
-  }
-}
-
-/* Media query para 340x630 */
-@media (max-width: 340px) {
-  .header {
-    grid-template-columns: 1fr; /* Cambia a una sola columna */
-    width: 100vw; /* Reducido en un 40% */
-  }
-
-  .logo img {
-    width: 6vw;
-    margin-left: 35vw; /* Ajusta el tamaño del logo para adaptarse */
-    margin-right: 1vw; /* Ajusta el margen del logo para adaptarse */
-  }
-
-  .coworking {
-    font-size: 3vw; /* Ajusta el tamaño del texto para adaptarse */
-    padding: 0.5vw; /* Reduce el relleno */
-  }
-
-  .lema {
     display: none;
   }
 
   .button {
-    border: 0.4vw solid orange; /* Ajusta el borde de los botones para adaptarse */
-    border-radius: 2vw; /* Ajusta el borde de los botones para adaptarse */
-    padding: 0.8vw 1.6vw; /* Ajusta el relleno de los botones para adaptarse */
-    margin: 0.5vw; /* Espacio uniforme entre los botones */
-    font-size: 2vw; /* Ajusta el tamaño del texto de los botones para adaptarse */
+    border: 0.4vw solid #de8a05;
+    border-radius: 2vw;
+    padding: 0.8vw 1.6vw;
+    margin: 0.5vw;
+    font-size: 2vw;
   }
 }

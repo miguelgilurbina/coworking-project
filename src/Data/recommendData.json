@@ -1,0 +1,75 @@
+{
+    "data":[
+        {
+          "srcImg":"/public/images/img_aleatory_1.png"  ,
+            "name":"Happy Work" ,
+        "Category":"Open Space",
+              "id":"1",
+              "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.." 
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_2.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id":"2",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."   
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_3.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "3",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_4.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "4",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.." 
+
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_1.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "5",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_2.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "6",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_3.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "7",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_4.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "8",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_1.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "9",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
+        },
+        {
+            "srcImg":"/public/images/img_aleatory_2.png"  ,
+              "name":"Happy Work" ,
+          "Category":"Open Space",
+                "id": "10",
+                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
+        }
+    ] 
+}
