@@ -10,12 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.6.8",
-<<<<<<< HEAD
-=======
     "@popperjs/core": "^2.11.8",
+    "axios": "^1.6.8",
     "bootstrap": "^5.3.3",
->>>>>>> a3c7aecafbf26a1e2393dfa7b79a2a9c6d2bde8a
     "react": "^18.2.0",
     "react-bootstrap": "1.5.2",
     "react-dom": "^18.2.0",

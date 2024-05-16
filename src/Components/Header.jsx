@@ -12,7 +12,7 @@ class Header extends React.Component {
               alt="Logo de la empresa"
               className="logo-img"
             />
-            <div class="d-grid">
+            <div className="d-grid">
               <span className="coworking">Co-Working</span>
               <span className="lema">Donde los sueños se codifican</span>
             </div>

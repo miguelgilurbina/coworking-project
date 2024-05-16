@@ -22,13 +22,13 @@
     position: absolute;
     right: 16px;
     top: 30px
-}
+} 
 
-.card-description p {
+ .card-description p {
     font-family: "Poppins";
     font-size: 10px;
     position: absolute;
     bottom: 10px;
     
     
-}
+} 
