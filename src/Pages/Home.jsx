@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import '../Styles/Home.css'
 import Explorer from '../Components/Explorer'
@@ -16,5 +17,20 @@ const Home = () => {
       
   )
 }
+=======
+import "../Styles/Home.css";
+import Explorer from "../Components/Explorer";
+import Recommend from "../Components/Recommend";
+const Home = () => {
+  return (
+    <div className="home">
+      {/* <div class="background-image"></div> */}
+>>>>>>> a3c7aecafbf26a1e2393dfa7b79a2a9c6d2bde8a
 
-export default Home
+      <Explorer />
+      <Recommend />
+    </div>
+  );
+};
+
+export default Home;
