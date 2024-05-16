@@ -1,3 +1,4 @@
+"useclient"
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -10,8 +11,8 @@ import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
 
 const Gallery = () => {
-  const imagery = [image, image1, image2, image3, image4];
   const [showCarousel, setShowCarousel] = useState(false);
+  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
 
   const settings = {
     dots: true,
@@ -42,15 +43,15 @@ const Gallery = () => {
     },
   };
 
-  const toggleCarousel = () => {
-    setShowCarousel(!showCarousel);
+  const showCarouselHandler = () => {
+    setShowCarousel(true);
+  };
+
+  const hideCarouselHandler = () => {
+    setShowCarousel(false);
   };
 
   return (
-    // <div className='center'>
-    // <div className='cardTotal'>
-    // <div className='containerDetail'>
-
     <div className="contenedorBody">
       <div className={`cardDetail ${showCarousel ? "hideContent" : ""}`}>
         <h1>Home Office</h1>
@@ -89,12 +90,21 @@ const Gallery = () => {
           </div>
         )}
         <div className="buttonSeeMore">
-          <button
-            className="button-generic-transition"
-            onClick={toggleCarousel}
-          >
-            {showCarousel ? "Hide Pictures" : "See More Pictures"}
-          </button>
+          {!showCarousel ? (
+            <button
+              className="button-generic-transition"
+              onClick={showCarouselHandler}
+            >
+              See More Pictures
+            </button>
+          ) : (
+            <button
+              className="button-generic-transition"
+              onClick={hideCarouselHandler}
+            >
+              Hide Pictures
+            </button>
+          )}
         </div>
         <div className="containerButton">
           {!showCarousel && <button className="genericButton">Book Now</button>}
@@ -117,9 +127,6 @@ const Gallery = () => {
       )}
       <div className="separador"></div>
     </div>
-
-    // </div>
-    // </div>
   );
 };
 
