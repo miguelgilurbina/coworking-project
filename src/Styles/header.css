@@ -55,6 +55,7 @@
 .button:hover {
   background-color: #de8a05;
 }
+
 @media (max-width: 600px) {
   .header {
     justify-content: center;
