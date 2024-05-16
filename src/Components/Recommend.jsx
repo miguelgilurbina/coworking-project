@@ -1,7 +1,18 @@
+import { Link } from 'react-router-dom';
+
+
+
 const Recommend = () => {
+
+ 
+
   return (
-    <div className="recommend">Recommend</div>
-  )
+    <div>
+      Recommended
+    </div>
+    );
+  
+  
 }
 
 export default Recommend
