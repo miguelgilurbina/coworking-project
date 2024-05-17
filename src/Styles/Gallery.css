@@ -1,4 +1,4 @@
-/* *{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -83,7 +83,7 @@
 }
 
 .description {
-  text-align: center; /* Centra horizontalmente el contenido */
+  text-align: center;
 }
 
 .containerButton {

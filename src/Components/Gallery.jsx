@@ -1,3 +1,4 @@
+"useclient"
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -10,8 +11,8 @@ import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
 
 const Gallery = () => {
-  const imagery = [image, image1, image2, image3, image4];
   const [showCarousel, setShowCarousel] = useState(false);
+  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
 
   const settings = {
     dots: true,
