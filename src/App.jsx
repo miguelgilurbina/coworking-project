@@ -8,7 +8,7 @@ import Home from "./Pages/Home";
 import Admin from "./Pages/Admin";
 import Detail from "./Pages/Detail";
 
-import { routes } from "./Utils/routes";
+import { routes } from "./utils/routes";
 import "./App.css";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     <>
       <div className="app ">
         <Header />
-        <div class="background-image"></div>
+        <div className="background-image"></div>
         <Routes>
           <Route path={routes.home} element={<Home />} />
           <Route path={routes.admin} element={<Admin />} />

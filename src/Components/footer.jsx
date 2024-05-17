@@ -15,8 +15,8 @@ class Footer extends React.Component {
             alt="Logo de la empresa"
             className="company-logo"
           />
-          <div class="d-grid">
-            <p class="mb-0">Co-Working &copy; {new Date().getFullYear()}</p>
+          <div className="d-grid">
+            <p className="mb-0">Co-Working &copy; {new Date().getFullYear()}</p>
           </div>
         </div>
 
