@@ -22,24 +22,6 @@ const Gallery = () => {
     centerMode: true,
     centerPadding: "0",
     focusOnSelect: true,
-    beforeChange: (current, next) => {
-      const diff = next - current;
-      if (Math.abs(diff) > 1) {
-        const imageryCopy = [...imagery];
-        if (diff > 0) {
-          for (let i = 0; i < diff; i++) {
-            const shifted = imageryCopy.shift();
-            imageryCopy.push(shifted);
-          }
-        } else {
-          for (let i = 0; i < Math.abs(diff); i++) {
-            const popped = imageryCopy.pop();
-            imageryCopy.unshift(popped);
-          }
-        }
-        setImagery(imageryCopy);
-      }
-    },
   };
 
   const toggleCarousel = () => {
@@ -47,79 +29,98 @@ const Gallery = () => {
   };
 
   return (
-    // <div className='center'>
-    // <div className='cardTotal'>
-    // <div className='containerDetail'>
-
-    <div className="contenedorBody">
-      <div className={`cardDetail ${showCarousel ? "hideContent" : ""}`}>
-        <h1>Home Office</h1>
+    <div className="center">
+      {/* <div className='cardTotal'> */}
+      <div className="containerDetail">
         <div className="buttonDetail">
-          <button className="genericButton">⬅️ Back</button>
-        </div>
-        <div className="separador"></div>
-
-        {!showCarousel && (
-          <div className="containerImg">
-            <img src={image} alt="" className="imgHero" />
-            <div className="gridDetail">
-              {imagery.slice(1).map((image, index) => (
-                <img
-                  key={index + 1}
-                  src={image}
-                  alt={`Image of room`}
-                  style={{ width: "200px", height: "300px", borderRadius: 20 }}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-        {!showCarousel && (
-          <div>
-            <span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Blanditiis vel nobis recusandae cupiditate consectetur iste
-              quaerat explicabo. Eius, quaerat exercitationem placeat,
-              distinctio doloremque hic sit unde inventore possimus, rem eos!
-              Perferendis voluptatibus ducimus sed aperiam impedit officiis, sit
-              suscipit exercitationem ratione, natus ad adipisci eveniet saepe
-              voluptatum eum provident voluptates, nemo quaerat iste. Vitae
-              laboriosam, dicta minus nihil officiis ipsam?
-            </span>
-          </div>
-        )}
-        <div className="buttonSeeMore">
-          <button
-            className="button-generic-transition"
-            onClick={toggleCarousel}
-          >
-            {showCarousel ? "Hide Pictures" : "See More Pictures"}
+          <button className="button-generic-transition">
+            {" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-arrow-left"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+              />
+            </svg>{" "}
+            Back
           </button>
         </div>
-        <div className="containerButton">
-          {!showCarousel && <button className="genericButton">Book Now</button>}
+        {/* <div className={`cardDetail ${showCarousel ? "hideContent" : ""}`}> */}
+        <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
+          <h3 class="titleCard">Home Office</h3>
+          <h5 class="subtileCard">Harmony</h5>
+
+          {!showCarousel && (
+            <div className="containerImg">
+              <img src={image} alt="" className="imgHero" />
+              <div className="gridDetail">
+                {imagery.slice(1).map((image, index) => (
+                  <img
+                    key={index + 1}
+                    src={image}
+                    alt={`Image of room`}
+                    style={{
+                      width: "200px",
+                      height: "300px",
+                      borderRadius: 20,
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+          {!showCarousel && (
+            <div>
+              <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis vel nobis recusandae cupiditate consectetur iste
+                quaerat explicabo. Eius, quaerat exercitationem placeat,
+                distinctio doloremque hic sit unde inventore possimus, rem eos!
+                Perferendis voluptatibus ducimus sed aperiam impedit officiis,
+                sit suscipit exercitationem ratione, natus ad adipisci eveniet
+                saepe voluptatum eum provident voluptates, nemo quaerat iste.
+                Vitae laboriosam, dicta minus nihil officiis ipsam?
+              </span>
+            </div>
+          )}
+          <div className="buttonSeeMore">
+            <div className="containerButton">
+              {!showCarousel && (
+                <button className="genericButton">Book Now</button>
+              )}
+            </div>
+            <button
+              className="button-generic-transition"
+              onClick={toggleCarousel}
+            >
+              {showCarousel ? "Hide Pictures" : "See More Pictures"}
+            </button>
+          </div>
         </div>
-      </div>
-      {showCarousel && (
-        <div className="cardDetail carouselContainer">
+        {showCarousel && (
+          // <div >
           <Slider {...settings}>
             {imagery.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Image of room`}
-                className={index === 0 ? "slick-current" : ""}
-                style={{ borderRadius: "10px" }}
-              />
+              <div key={index}>
+                <img
+                  src={image}
+                  alt={`Image of room`}
+                  className="carouselImage"
+                />
+              </div>
             ))}
           </Slider>
-        </div>
-      )}
-      <div className="separador"></div>
+          // </div>
+        )}
+        {/* </div> */}
+      </div>
     </div>
-
-    // </div>
-    // </div>
   );
 };
 

@@ -5,7 +5,7 @@ import "../Styles/Detail.css";
 
 const Detail = () => {
   return (
-    <div class="d-flex">
+    <div>
       <Gallery />
     </div>
   );
