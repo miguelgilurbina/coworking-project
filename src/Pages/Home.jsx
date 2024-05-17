@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="home">
       <Explorer />
-      <Category/>
+      <Category />
       <Recommend />
     </div>
   );

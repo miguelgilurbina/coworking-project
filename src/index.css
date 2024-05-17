@@ -7,7 +7,7 @@ body {
 .contenedorBody {
   flex-grow: 1;
   padding-top: 80px;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
   padding-left: calc((100% - 1060px) / 2);
   padding-right: calc((100% - 1060px) / 2);
   z-index: 1;
