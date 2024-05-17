@@ -1,4 +1,4 @@
-"useclient"
+"useclient";
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -12,7 +12,13 @@ import image from "../../public/images/img_aleatory.png";
 
 const Gallery = () => {
   const [showCarousel, setShowCarousel] = useState(false);
-  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
+  const [imagery, setImagery] = useState([
+    image,
+    image1,
+    image2,
+    image3,
+    image4,
+  ]);
 
   const settings = {
     dots: true,
@@ -31,7 +37,6 @@ const Gallery = () => {
 
   return (
     <div className="center">
-      {/* <div className='cardTotal'> */}
       <div className="containerDetail">
         <div className="buttonDetail">
           <button className="button-generic-transition">
@@ -52,7 +57,6 @@ const Gallery = () => {
             Back
           </button>
         </div>
-        {/* <div className={`cardDetail ${showCarousel ? "hideContent" : ""}`}> */}
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
           <h3 class="titleCard">Home Office</h3>
           <h5 class="subtileCard">Harmony</h5>
@@ -61,6 +65,7 @@ const Gallery = () => {
             <div className="containerImg">
               <img src={image} alt="" className="imgHero" />
               <div className="gridDetail">
+                {/* TODO: REVISAR EL STYLE */}
                 {imagery.slice(1).map((image, index) => (
                   <img
                     key={index + 1}
@@ -68,9 +73,9 @@ const Gallery = () => {
                     alt={`Image of room`}
                     style={{
                       width: "200px",
-                      height: "300px",
+                      height: "280px",
                       borderRadius: 20,
-                    }}
+                   }}
                   />
                 ))}
               </div>
@@ -105,7 +110,6 @@ const Gallery = () => {
           </div>
         </div>
         {showCarousel && (
-          // <div >
           <Slider {...settings}>
             {imagery.map((image, index) => (
               <div key={index}>
@@ -117,9 +121,7 @@ const Gallery = () => {
               </div>
             ))}
           </Slider>
-          // </div>
         )}
-        {/* </div> */}
       </div>
     </div>
   );
