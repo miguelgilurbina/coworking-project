@@ -1,5 +1,5 @@
 import React from "react";
-import "../Styles/header.css";
+import "../Styles/Header.css";
 
 class Header extends React.Component {
   render() {
@@ -20,7 +20,7 @@ class Header extends React.Component {
         </div>
 
         <div className="right-block">
-          {/* TODO: Se comentan botones por posible uso en proximo spring */}
+          {/* TODO: Se comentan botones por posible uso en proximo spring, hay que realizar menu hamburguesa */}
           {/*<button className="button">Home</button>
           <button className="button">Reserve a Place</button>
           <button className="button">All Places</button>*/}

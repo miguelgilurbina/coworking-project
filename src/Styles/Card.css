@@ -1,34 +1,33 @@
-.card {
-    justify-content: center;
-    display: inline-flex;
-    padding-left: 50px;
-    padding-top: 50px;
-    position: relative;
+/* TODO: cuidado con los nombres, ya que card es propio de boostrap */
+
+.card img {
+  height: 110px;
+  width: 110px;
 }
-.card img{
-    height: 110px;
-    width: 110px;
+
+@media (max-width: 600px) {
+  .card img {
+    height: auto;
+    width: auto;
+  }
 }
 
 .card-description {
-    height: 110px;
-    width: 140px;
-    background-color: #fff;
-    
+  height: 110px;
+  width: 140px;
+  background-color: #fff;
 }
 
 .card-description h4 {
-    font-family: "Poppins";
-    position: absolute;
-    right: 16px;
-    top: 30px
-} 
+  font-family: "Poppins";
+  position: absolute;
+  right: 16px;
+  top: 30px;
+}
 
- .card-description p {
-    font-family: "Poppins";
-    font-size: 10px;
-    position: absolute;
-    bottom: 10px;
-    
-    
-} 
+.card-description p {
+  font-family: "Poppins";
+  font-size: 10px;
+  position: absolute;
+  bottom: 10px;
+}

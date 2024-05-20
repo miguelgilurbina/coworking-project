@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 
 import Header from "../src/Components/Header";
-import Footer from "../src/Components/footer";
+import Footer from "./Components/Footer";
 import Form from "../src/Components/Form";
 
 import Home from "./Pages/Home";
@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <div className="app ">
+      <div className="d-flex">
         <Header />
         <div className="background-image"></div>
         <Routes>
