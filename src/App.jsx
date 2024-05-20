@@ -8,7 +8,7 @@ import Home from "./Pages/Home";
 import Admin from "./Pages/Admin";
 import Detail from "./Pages/Detail";
 
-import { routes } from "./utils/routes";
+import { routes } from "./Utils/routes";
 import "./App.css";
 
 function App() {

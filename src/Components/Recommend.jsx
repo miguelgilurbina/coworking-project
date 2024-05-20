@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-// import axios from "axios"
+import axios from "axios"
 import { useEffect , useState } from "react"
 import data from "../Data/recommendData.json"
 import Card from "./Card.jsx"
@@ -10,28 +10,28 @@ const Recommend = () => {
 
   useEffect (() => {
 
-    // const fetchData = async () => {
-    //     try {
-    //       const response = await axios.get("http://localhost:8080/salas");
+    const fetchData = async () => {
+        try {
+          const response = await axios.get("http://localhost:8090/salas");
           
-    //       console.log(response.data);
-    //       const shuffledData = shuffleArray(response.data.data);
-    //       setRecommendData(shuffledData);
-    //       console.log(shuffledData);
-    //     } catch (error) {
-    //       console.error("Error fetching data:", error.response);
-    //     }
-    //   };
+          console.log(response.data);
+          const shuffledData = shuffleArray(response.data.data);
+          setRecommendData(shuffledData);
+          console.log(shuffledData);
+        } catch (error) {
+          console.error("Error fetching data:", error.response);
+        }
+      };
   
-    //   fetchData();
+      fetchData();
 
-    const dataArray = Object.values(data.data);
-
-
-    const shuffledData = shuffleArray(dataArray);
+    // const dataArray = Object.values(data.data);
 
 
-    setRecommendData(shuffledData);
+    // const shuffledData = shuffleArray(dataArray);
+
+
+    // setRecommendData(shuffledData);
   },[])
 
   const shuffleArray = (array) => {
