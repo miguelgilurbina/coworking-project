@@ -4,6 +4,7 @@ import Form from "./Components/Form"
 import Home from './Pages/Home'
 import './App.css'
 import Detail from "./Pages/Detail"
+import LoginForm from "./Components/LoginForm"
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Header/>
       <Home/>
       {/* <Detail/> */}
+      <LoginForm/>
       {/* <Form/> */}
       <Footer/>
      

@@ -1,18 +1,43 @@
 import { useState } from "react";
 import '../Styles/Form.css'
+
+
 const Form = () => {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
-  const [image, setImage] = useState(null);
+  /* const [image, setImage] = useState([]); */
+  
+
+  const [selectedImages, setSelectedImages] = useState([]);
+
+  const handleImageUpload = (e) => {
+    const files = e.target.files;
+    if (files.length > 0) {
+      // Convierte la lista de archivos en un array
+      const newImages = Array.from(files);
+      setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    }
+  };
+
+
+
+  /* const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
+    }
+  }; */
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Aquí se envian los datos al servidor (hacer logica )
-    console.log({ name, description, quantity, price, image });
+    console.log({ name, description, quantity, price, selectedImages});
   };
+
+  
 
   return (
     <>
@@ -21,24 +46,54 @@ const Form = () => {
           <h2>Welcome administrator </h2>
           <p>Enter the details of the new salon</p>
           <form onSubmit={handleSubmit}>
-            <div className="formGroup">
+              <label htmlFor="name">Name </label>
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
-              <div className="formContent">
-                  <label for="quantity">Number of people </label>        
-                  <input type="number" id="quatity" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Number of people" />
-              </div>                  
-            </div>
-            <div className="formGroup">
-              <div className="formContent">
-                  <label for="price">Price </label>
-                  <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" /> 
-              </div>
-                  <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-            </div>
-            <textarea type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
-            <button type="submit">Enviar</button>
+
+              <label htmlFor="description">Description </label>
+              <textarea type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
+
+              <label htmlFor="price">Price </label>
+              <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
+
+              <label htmlFor="quantity">Number of people </label>        
+              <input type="number" id="quatity" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Number of people" />
+              
+
+              <div className="containerButton">
+                <button type="submit" >Send</button>
+              </div> 
+
+              
+                <label htmlFor="images">Upload images</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleImageUpload}
+                  id="images"
+                />
+                {selectedImages.length > 0 && (
+                  <div >
+                    <p>Selected images</p>
+                    {selectedImages.map((image, index) => (
+                      <img
+                        key={index}
+                        src={URL.createObjectURL(image)}
+                        alt={`Imagen ${index + 1}`}
+                        style={{
+                          width:250, height:250,padding:"0px 5px"
+                          
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+              
+
           </form>
+
       </div>
+      
     </>
     
     
