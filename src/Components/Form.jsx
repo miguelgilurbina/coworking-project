@@ -43,9 +43,10 @@ const Form = () => {
     <>
 
       <div className="containerForm">
+          
+          <form onSubmit={handleSubmit}>
           <h2>Welcome administrator </h2>
           <p>Enter the details of the new salon</p>
-          <form onSubmit={handleSubmit}>
               <label htmlFor="name">Name </label>
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
 
@@ -58,13 +59,12 @@ const Form = () => {
               <label htmlFor="quantity">Number of people </label>        
               <input type="number" id="quatity" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Number of people" />
               
-
               <div className="containerButton">
                 <button type="submit" >Send</button>
               </div> 
-
-              
-                <label htmlFor="images">Upload images</label>
+          </form>
+          <div className="image-preview">
+              <label htmlFor="images">Upload images</label>
                 <input
                   type="file"
                   accept="image/*"
@@ -72,7 +72,7 @@ const Form = () => {
                   onChange={handleImageUpload}
                   id="images"
                 />
-                {selectedImages.length > 0 && (
+                {selectedImages.length > 0 && selectedImages.length < 6  &&  (
                   <div >
                     <p>Selected images</p>
                     {selectedImages.map((image, index) => (
@@ -81,17 +81,14 @@ const Form = () => {
                         src={URL.createObjectURL(image)}
                         alt={`Imagen ${index + 1}`}
                         style={{
-                          width:250, height:250,padding:"0px 5px"
+                          width:250, height:190,padding:"0px 5px"
                           
                         }}
                       />
                     ))}
                   </div>
                 )}
-              
-
-          </form>
-
+              </div>             
       </div>
       
     </>
