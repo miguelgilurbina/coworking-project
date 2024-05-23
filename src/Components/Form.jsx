@@ -1,6 +1,6 @@
 import { useState } from "react";
-import '../Styles/Form.css'
-
+import '../Styles/Form.css';
+import axios from 'axios'
 
 const Form = () => {
 
@@ -8,33 +8,41 @@ const Form = () => {
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
-  /* const [image, setImage] = useState([]); */
-  
-
   const [selectedImages, setSelectedImages] = useState([]);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    quantity:'',
+    price:'',
+    selectedImages:[]
+  });
 
   const handleImageUpload = (e) => {
     const files = e.target.files;
-    if (files.length > 0) {
-      // Convierte la lista de archivos en un array
+    if (files.length > 0 ) {
+      // Aqui convierte la lista de archivos en un array
       const newImages = Array.from(files);
       setSelectedImages((prevImages) => [...prevImages, ...newImages]);
     }
   };
 
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
-
-  /* const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/api/login', formData);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
     }
-  }; */
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aquí se envian los datos al servidor (hacer logica )
-    console.log({ name, description, quantity, price, selectedImages});
+    console.log(name,description,quantity,price,selectedImages);
   };
 
   
@@ -42,9 +50,9 @@ const Form = () => {
   return (
     <>
 
-      <div className="containerForm">
+      <div className="containerForm" onSubmit={handleSubmit}>
           
-          <form onSubmit={handleSubmit}>
+          <form >
           <h2>Welcome administrator </h2>
           <p>Enter the details of the new salon</p>
               <label htmlFor="name">Name </label>
@@ -88,7 +96,7 @@ const Form = () => {
                     ))}
                   </div>
                 )}
-              </div>             
+          </div>             
       </div>
       
     </>
