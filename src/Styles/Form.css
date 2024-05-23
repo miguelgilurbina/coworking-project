@@ -108,5 +108,9 @@ h2{
   
  }
 
+ .containerCheckbox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+ }
 
 

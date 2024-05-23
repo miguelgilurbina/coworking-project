@@ -17,13 +17,14 @@ function App() {
   return (
     <>
       <Header/>
-      <Home/>
       {/* <Detail/> */}
       {/* <LoginForm/> */}
       <Routes>
           <Route path={routes.login} element={<Login></Login>} />
           <Route path={routes.register} element={<Register></Register>}/> 
           <Route path={routes.admin} element={<Admin/>}/>    
+          <Route path={routes.detail} element={<Detail/>}/>
+          <Route path={routes.home} element={<Home/>}/>
 
       </Routes>
       
