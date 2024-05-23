@@ -6,17 +6,20 @@
 }
 
 .containerForm{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     align-items: center;
     justify-content: center;  
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    height: 90%;
+    padding: 0 30px;
     background-image: linear-gradient(rgba(255,255,255,0.75),rgba(255,255,255, 0.75)), url(../../public/images/img_body.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size:cover; 
-    
+    margin-bottom: 1rem;
 }
 h2{
     font-size:40px ;
@@ -27,6 +30,11 @@ h2{
     font-size: 20px;
 }
 
+.containerForm h2{
+    font-size:40px ;
+    margin-bottom: 10px;
+}
+
 .containerForm form{
     display: flex;
     flex-direction: column;
@@ -34,48 +42,71 @@ h2{
     padding: 50px;
     background: linear-gradient(
         50deg,
-        rgba(43,54,108,.7),
-        rgba(43,73,125,.1),
-        rgba(40,90,140,.4));
+        rgba(222,138,5,.7),
+        rgba(148, 98, 23, 0.3),
+        rgba(185, 161, 55, 0.4));
     border-radius:15px ; 
     box-shadow: 0 0 20px rgba(0,0,0, .9);   
     text-align: left;
 
 }
 
-.formGroup{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    margin-bottom: 40px;
-}
 
-.formContent{
-    display: flex;
-    flex-direction: column;
-    
-}
+
 .containerForm input, textarea{
     padding:20px 15px;
-    background-color: #283b64;
+    margin-bottom: 1rem;
+    background-color: #fff;
     border: 0;
     outline: none;
-    border-radius: 25px;
-    color: aliceblue;
+    border-radius: 15px;
     font-size: 16px;
 }
 
 .containerForm textarea{
     margin-bottom: 15px;
 }
+/* 
+#file{
+    display: none;
+} */
 
 .containerForm button{
-    width: 200px;
-    height: 50px;
-    border-radius: 25px;
-   
-    
+     width: 200px;
+     height: 50px;
+     border-radius: 25px;
+     background-color: #DE8A05;
+     color: #fff;    
+ }
+
+ .containerButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+.image-preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    height: 100%;
+    background: linear-gradient(
+        50deg,
+        rgba(222,138,5,.7),
+        rgba(148, 98, 23, 0.3),
+        rgba(185, 161, 55, 0.4));
+    border-radius:15px ; 
+    box-shadow: 0 0 20px rgba(0,0,0, .9);
 }
+
+ .image-preview img{
+     width:250;
+     height:190;
+     padding:0px 5px;
+     margin: 5px;
+  
+ }
 
 
 

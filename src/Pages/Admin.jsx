@@ -1,6 +1,12 @@
+import React from "react"
+import Form from "../Components/Form"
+
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div>Admin
+      <Form></Form>
+    </div>
+    
   )
 }
 
