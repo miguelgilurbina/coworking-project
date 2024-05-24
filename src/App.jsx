@@ -1,10 +1,8 @@
 import Header from "./Components/Header"
 import Footer from "./Components/Footer"
-import Form from "./Components/Form"
 import Home from './Pages/Home'
 import './App.css'
 import Detail from "./Pages/Detail"
-import LoginForm from "./Components/LoginForm"
 import { routes } from "./Components/utils/routes"
 import { Route, Routes  } from 'react-router-dom';
 import Login from "./Pages/Login"
@@ -15,14 +13,14 @@ function App() {
   return (
     <>
       <Header/>
-      <Home/>
       {/* <Detail/> */}
       {/* <LoginForm/> */}
       <Routes>
-          <Route path={routes.login} element={<Login></Login>} />
-          <Route path={routes.register} element={<Register></Register>}/> 
+          <Route path={routes.home} element= {<Home/>}/>
+          <Route path={routes.detail} element={<Detail/>}/>
+          <Route path={routes.login} element={<Login/>}/>
+          <Route path={routes.register} element={<Register/>}/> 
           <Route path={routes.admin} element={<Admin/>}/>    
-
       </Routes>
       
       <Footer/>
