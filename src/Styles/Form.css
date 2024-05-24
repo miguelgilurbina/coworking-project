@@ -70,6 +70,10 @@ textarea {
 .containerForm textarea {
   margin-bottom: 15px;
 }
+/* 
+#file{
+    display: none;
+} */
 
 .containerForm button {
   width: 200px;
