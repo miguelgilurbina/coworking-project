@@ -1,0 +1,5 @@
+@media (max-Width: 340px){
+    .AdminPage{
+        display: none;
+    }
+}

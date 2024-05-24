@@ -1,5 +1,6 @@
 import React from 'react';
 import "../Styles/header.css"
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
     render() {
@@ -19,8 +20,9 @@ class Header extends React.Component {
           {/*<button className="button">Home</button>
           <button className="button">Reserve a Place</button>
           <button className="button">All Places</button>*/} 
-          <button className="button">Create Account</button>
-          <button className="button">Login</button>
+          <Link to="/register" className='button'>Create Account</Link>
+          <Link to="/login" className='button'>Login</Link>
+          <Link to="/admin" className='button'>Admin</Link>
         </div>
         
       </header>

@@ -1,6 +1,13 @@
+import React from "react"
+import Form from "../Components/Form"
+import "../Styles/admin.css"
+
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div className="AdminPage">Admin
+      <Form></Form>
+    </div>
+    
   )
 }
 
