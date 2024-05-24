@@ -52,6 +52,7 @@
   transition: background-color 0.3s;
   width: 170px;
   height: 40px;
+  text-decoration: none;
 }
 
 .button:hover {

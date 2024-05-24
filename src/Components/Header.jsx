@@ -1,5 +1,6 @@
-import React from "react";
-import "../Styles/Header.css";
+import React from 'react';
+import "../Styles/header.css"
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
   render() {
@@ -23,9 +24,10 @@ class Header extends React.Component {
           {/* TODO: Se comentan botones por posible uso en proximo spring, hay que realizar menu hamburguesa */}
           {/*<button className="button">Home</button>
           <button className="button">Reserve a Place</button>
-          <button className="button">All Places</button>*/}
-          <button className="button">Create Account</button>
-          <button className="button">Login</button>
+          <button className="button">All Places</button>*/} 
+          <Link to="/register" className='button'>Create Account</Link>
+          <Link to="/login" className='button'>Login</Link>
+          <Link to="/admin" className='button'>Admin</Link>
         </div>
       </header>
     );

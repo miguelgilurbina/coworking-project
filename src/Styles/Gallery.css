@@ -45,7 +45,13 @@
 }
 
 .description {
-  text-align: center;
+    text-align: center;
+   
+  }
+
+.containerButton{
+    display: flex;
+    justify-content: center;
 }
 
 .containerButton {
