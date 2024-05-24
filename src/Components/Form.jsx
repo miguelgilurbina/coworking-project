@@ -68,7 +68,7 @@ const Form = () => {
               <input type="number" id="quatity" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Number of people" />
               
               <div className="containerButton">
-                <button type="submit" >Send</button>
+                <button type="submit" >Send </button>
               </div> 
           </form>
           <div className="image-preview">
