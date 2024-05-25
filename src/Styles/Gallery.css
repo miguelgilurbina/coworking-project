@@ -93,3 +93,8 @@
   border-radius: 10px;
   padding-top: 20px;
 }
+
+.features ul{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+}

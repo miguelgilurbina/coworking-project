@@ -1,5 +1,5 @@
-.category {
-  background-color: grey;
-  height: 100px;
-  width: 100%;
+.category{
+  display: flex;
+  justify-content: space-around;
+  background-color: gray;
 }

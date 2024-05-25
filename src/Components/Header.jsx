@@ -7,7 +7,7 @@ class Header extends React.Component {
     return (
       <header className="header">
         <div className="d-flex p-2">
-          <a href="../Pages/Home.jsx" className="logo">
+          <a href="/home" className="logo">
             <img
               src="../../public/icons/cw_logo_app.png"
               alt="Logo de la empresa"

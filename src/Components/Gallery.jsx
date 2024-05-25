@@ -9,16 +9,22 @@ import image2 from "../../public/images/img_aleatory_2.png";
 import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
+import characteristics from "../Data/characteristics.json"
 
 const Gallery = () => {
+  const renderCharacteristics = (data) => {
+    console.log(data);
+    const characteristicsArray = Object.values(characteristics);
+    return characteristicsArray.map((characteristic, index) => (
+      <li key={index}>
+        
+        <span>{characteristic.name}</span>
+      </li>
+    ));
+  };
+
   const [showCarousel, setShowCarousel] = useState(false);
-  const [imagery, setImagery] = useState([
-    image,
-    image1,
-    image2,
-    image3,
-    image4,
-  ]);
+  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
 
   const settings = {
     dots: true,
@@ -39,33 +45,33 @@ const Gallery = () => {
     <div className="center">
       <div className="containerDetail">
         <div className="buttonDetail">
-          <button className="button-generic-transition">
+          <button className="button-generic-transition" >
             {" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-arrow-left"
+              className="bi bi-arrow-left"
               viewBox="0 0 16 16"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
               />
             </svg>{" "}
-            Back
+              
+              Back
           </button>
         </div>
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
-          <h3 class="titleCard">Home Office</h3>
-          <h5 class="subtileCard">Harmony</h5>
+          <h3 className="titleCard">Home Office</h3>
+          <h5 className="subtileCard">Harmony</h5>
 
           {!showCarousel && (
             <div className="containerImg">
               <img src={image} alt="" className="imgHero" />
               <div className="gridDetail">
-                {/* TODO: REVISAR EL STYLE */}
                 {imagery.slice(1).map((image, index) => (
                   <img
                     key={index + 1}
@@ -75,7 +81,7 @@ const Gallery = () => {
                       width: "200px",
                       height: "280px",
                       borderRadius: 20,
-                   }}
+                    }}
                   />
                 ))}
               </div>
@@ -84,14 +90,11 @@ const Gallery = () => {
           {!showCarousel && (
             <div>
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis vel nobis recusandae cupiditate consectetur iste
-                quaerat explicabo. Eius, quaerat exercitationem placeat,
-                distinctio doloremque hic sit unde inventore possimus, rem eos!
-                Perferendis voluptatibus ducimus sed aperiam impedit officiis,
-                sit suscipit exercitationem ratione, natus ad adipisci eveniet
-                saepe voluptatum eum provident voluptates, nemo quaerat iste.
-                Vitae laboriosam, dicta minus nihil officiis ipsam?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis vel nobis recusandae cupiditate consectetur
+                iste quaerat explicabo. Eius, quaerat exercitationem placeat,
+                distinctio doloremque hic sit unde inventore possimus, rem eos! Perferendis voluptatibus ducimus sed aperiam
+                impedit officiis, sit suscipit exercitationem ratione, natus ad adipisci eveniet saepe voluptatum eum provident
+                voluptates, nemo quaerat iste. Vitae laboriosam, dicta minus nihil officiis ipsam?
               </span>
             </div>
           )}
@@ -107,6 +110,20 @@ const Gallery = () => {
             >
               {showCarousel ? "Hide Pictures" : "See More Pictures"}
             </button>
+          </div>
+          {/* Bloque de características */}
+          <div className="features">
+            <h4>Características:</h4>
+            <ul>
+            <li>Aire Libre</li>
+            <li>Aire Acondicionado</li>
+            <li>Pizarra</li>
+            <li>Proyector</li>
+            <li>Sillas Ergonomicas</li>
+            <li>Sala Recreativa</li>
+            <li>Cafeteria</li>
+            <li>Wifi</li>
+            </ul>
           </div>
         </div>
         {showCarousel && (
