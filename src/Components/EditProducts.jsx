@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import MuiDataTables from 'mui-datatables';
+import muiDataTables from 'mui-datatables';
 import { Table, TableBody, TableCell, TableContainer, TableRow, TextField, Button } from '@mui/material';
 
 
@@ -65,7 +65,7 @@ const EditProducts = () => {
     setData(newData);
 
     try {
-      const response = await axios.delete(`https://mi-api.com/rooms/${itemToDelete.id}`);
+      const response = await axios.delete(`http://localhost:8080/${itemToDelete.id}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -77,6 +77,7 @@ const EditProducts = () => {
   };
 
   return (
+   
     <TableContainer>
       <Table>
         <TableBody>
@@ -144,8 +145,9 @@ const EditProducts = () => {
         </TableBody>
       </Table>
     </TableContainer>
+    
   );
-
+  
 
     /* const columns = ["name","description","quantity","price"]
     const url = ''
