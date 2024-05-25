@@ -3,5 +3,8 @@ export const routes ={
     register:'/register',
     admin:'/admin',
     home:"/home",
-    detail:"/detail"
+    detail:"/detail",
+    productForm: "/form",
+    characteristicForm: "/addCharacteristic",
+    editProduct: "/editProduct"
 }

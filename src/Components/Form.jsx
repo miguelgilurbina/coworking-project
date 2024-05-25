@@ -118,7 +118,7 @@ const Form = () => {
               </label>
               <label htmlFor="">
                 <input type="checkBox"/>
-                Cafetera
+                Cafeteria
               </label>
               </div>
               <div className="containerButton">
