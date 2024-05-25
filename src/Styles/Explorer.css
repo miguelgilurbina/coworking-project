@@ -4,39 +4,45 @@
     background-color: #303231;
 }
 
-.explorer h3 {
-    padding-top: 15px;
-    font-family: Poppins;
-    text-align: center;
-    color: #fff;
-    margin: 0 0 0 0;
+.explorer h4 {
+  font-family: Poppins;
+  text-align: center;
+  color: #fff;
+  margin: 0 0 0 0;
 }
 
 .explorer form {
-    position: relative;
-    display: flex;
-    justify-content: space-evenly;
-    padding-top: 25px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
 }
 
 .explorer form input {
-    
-    height: 30px;
-    width: 200px;
-    border-radius: 6px;
-    border-style: inset;
-    border-color: #72635D;
+  height: 35px;
+  width: 250px;
+  border-radius: 6px;
+  border-style: inset;
+  border-color: #72635d;
 }
 
-.explorer form button {
-   position: absolute;
-   margin-top: 43px;
-   margin-left: 871px;
-   background-color: #DE8A05;
-   width: 150px;
-   height: 30px;
-   border-style: none;
-   border-radius: 15px;
-   color: #ffff;
+.buttonSearchExplorer {
+  background-color: #de8a05;
+  width: 150px;
+  height: 30px;
+  border-style: none;
+  border-radius: 15px;
+  color: #ffff;
+}
 
+@media (max-width: 600px) {
+  .explorer form input {
+    width: 130px;
+    font-size: 2.3vw;
+  }
+
+  .buttonSearchExplorer {
+    width: 130px;
+    font-size: 2.3vw;
+  }
 }

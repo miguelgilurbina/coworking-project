@@ -1,8 +1,7 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .containerForm{
@@ -21,18 +20,52 @@
     background-size:cover; 
     margin-bottom: 1rem;
 }
-h2{
-    font-size:40px ;
-    margin-bottom: 10px;
+h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
-.containerForm p{
-    font-size: 20px;
+.containerForm p {
+  font-size: 20px;
 }
 
-.containerForm h2{
-    font-size:40px ;
-    margin-bottom: 10px;
+.containerForm form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  background: linear-gradient(
+    50deg,
+    rgba(43, 54, 108, 0.7),
+    rgba(43, 73, 125, 0.1),
+    rgba(40, 90, 140, 0.4)
+  );
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+  text-align: left;
+}
+
+.formGroup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+}
+.containerForm input,
+textarea {
+  padding: 20px 15px;
+  background-color: #283b64;
+  border: 0;
+  outline: none;
+  border-radius: 25px;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+
 }
 
 .containerForm form{
@@ -63,14 +96,19 @@ h2{
     font-size: 16px;
 }
 
-.containerForm textarea{
-    margin-bottom: 15px;
+.containerForm textarea {
+  margin-bottom: 15px;
 }
 /* 
 #file{
     display: none;
 } */
 
+.containerForm button {
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+}
 .containerForm button{
      width: 200px;
      height: 50px;

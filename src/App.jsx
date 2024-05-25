@@ -16,8 +16,6 @@ import ProductForm from './Components/ProductForm';
 
 
 function App() {
-
-
   return (
     <>
       <div className='app-container'>
@@ -36,7 +34,7 @@ function App() {
         <Footer/>
         </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
