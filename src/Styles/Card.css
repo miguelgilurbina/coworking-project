@@ -1,9 +1,9 @@
 /* TODO: cuidado con los nombres, ya que card es propio de boostrap */
 
-.card img {
+/* .card img {
   height: 110px;
   width: 110px;
-}
+} */
 
 @media (max-width: 600px) {
   .card img {

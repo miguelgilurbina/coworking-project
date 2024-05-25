@@ -9,7 +9,6 @@
 }
 
 .titleCard {
-  padding-left: 25px;
   padding-top: 10px;
   margin-bottom: 0px;
 }
@@ -92,4 +91,50 @@
   width: 80%;
   border-radius: 10px;
   padding-top: 20px;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-size: 35px;
+  color: #bebebe;
+}
+
+.slick-slider {
+  padding-left: 18px;
+}
+
+@media (max-width: 600px) {
+  .gridDetail {
+    display: none;
+  }
+
+  .containerImg {
+    justify-content: center;
+  }
+
+  .imgHero {
+    width: 90%;
+    padding-bottom: 10px;
+  }
+
+  .cardDetail {
+    padding: 20px 25px 20px;
+  }
+
+  .containerDetail{
+    padding: 0px 10px;
+  }
+
+  .slick-prev:before, .slick-next:before {
+    font-size: 20px;
+    color: #bebebe;
+    padding: 0px 0px 0px 28px;
+  }
+  
+  .slick-slider {
+    padding-left: 30px;
+  }
+
+  .titleCard, .subtitleCard {
+    text-align: center;
+  }
 }

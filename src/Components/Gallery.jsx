@@ -1,4 +1,3 @@
-"useclient";
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -24,11 +23,20 @@ const Gallery = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0",
     focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 600, 
+        settings: {
+          slidesToShow: 3, 
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const toggleCarousel = () => {
@@ -38,34 +46,14 @@ const Gallery = () => {
   return (
     <div className="center">
       <div className="containerDetail">
-        <div className="buttonDetail">
-          <button className="button-generic-transition">
-            {" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-arrow-left"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
-              />
-            </svg>{" "}
-            Back
-          </button>
-        </div>
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
-          <h3 class="titleCard">Home Office</h3>
-          <h5 class="subtileCard">Harmony</h5>
+          <h3 className="titleCard">Home Office</h3>
+          <h5 className="subtitleCard">Harmony</h5>
 
           {!showCarousel && (
             <div className="containerImg">
               <img src={image} alt="" className="imgHero" />
               <div className="gridDetail">
-                {/* TODO: REVISAR EL STYLE */}
                 {imagery.slice(1).map((image, index) => (
                   <img
                     key={index + 1}
@@ -75,7 +63,7 @@ const Gallery = () => {
                       width: "200px",
                       height: "280px",
                       borderRadius: 20,
-                   }}
+                    }}
                   />
                 ))}
               </div>
@@ -102,10 +90,25 @@ const Gallery = () => {
               )}
             </div>
             <button
-              className="button-generic-transition"
+              className="button-generic-transition mb-2"
               onClick={toggleCarousel}
             >
-              {showCarousel ? "Hide Pictures" : "See More Pictures"}
+              {showCarousel && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-arrow-left"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+                  />
+                </svg>
+              )}
+              {showCarousel ? " Back" : " More Pictures"}
             </button>
           </div>
         </div>

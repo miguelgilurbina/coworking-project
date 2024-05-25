@@ -15,7 +15,7 @@ class Header extends React.Component {
             />
             <div className="d-grid">
               <span className="coworking">Co-Working</span>
-              <span className="lema">Donde los sueños se codifican</span>
+              <span className="lema">Where Dreams Are Codified</span>
             </div>
           </a>
         </div>
@@ -25,9 +25,9 @@ class Header extends React.Component {
           {/*<button className="button">Home</button>
           <button className="button">Reserve a Place</button>
           <button className="button">All Places</button>*/} 
-          <Link to="/register" className='button'>Create Account</Link>
-          <Link to="/login" className='button'>Login</Link>
-          <Link to="/admin" className='button'>Admin</Link>
+          <Link to="/register" className='button link-flex'>Create Account</Link>
+          <Link to="/login" className='button link-flex'>Login</Link>
+          <Link to="/admin" className='button link-flex'>Admin</Link>
         </div>
       </header>
     );
