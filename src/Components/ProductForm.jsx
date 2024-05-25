@@ -2,7 +2,7 @@ import { useState } from "react";
 import '../Styles/Form.css';
 import axios from 'axios'
 
-const Form = () => {
+const ProductForm = () => {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -160,7 +160,7 @@ const Form = () => {
   );
 }
 
-export default Form;
+export default ProductForm;
 
 /*
 ******************************************************************* 

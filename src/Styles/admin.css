@@ -1,3 +1,8 @@
+.AdminPage{
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), url(../../public/images/img_body.jpg);
+}
 @media (max-Width: 340px){
     .AdminPage{
         display: none;

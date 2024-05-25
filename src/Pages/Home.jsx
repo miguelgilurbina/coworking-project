@@ -7,7 +7,7 @@ const Home = () => {
     <div className="home">
       
       <Explorer/>
-      {/* <Recommend/> */}
+      <Recommend/>
       
     </div>
     

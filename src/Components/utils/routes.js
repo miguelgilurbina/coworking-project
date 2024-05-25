@@ -7,5 +7,4 @@ export const routes ={
     detail:"/detail",
     productForm: "/form",
     characteristicForm: "/addCharacteristic",
-    editProduct: "/editProduct"
 }
