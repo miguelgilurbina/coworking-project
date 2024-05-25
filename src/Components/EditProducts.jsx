@@ -58,6 +58,20 @@ const EditProducts = () => {
     }
   };
 
+  const handleDelete = async (index) => {
+    const newData = [...data];
+    const itemToDelete = newData.splice(index, 1)[0];
+
+    setData(newData);
+
+    try {
+      const response = await axios.delete(`https://mi-api.com/rooms/${itemToDelete.id}`);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleEdit = (event) => {
     setDraftData({ ...draftData, [event.target.name]: event.target.value });
   };
@@ -118,8 +132,11 @@ const EditProducts = () => {
                     <Button onClick={() => saveEdit(index)}>Guardar</Button>
                     <Button onClick={cancelEdit}>Cancelar</Button>
                   </>
-                ) : (
-                  <Button onClick={() => startEdit(index, row)}>Editar</Button>
+                 ) : (
+                  <>
+                    <Button onClick={() => startEdit(index, row)}>Editar</Button>
+                    <Button onClick={() => handleDelete(index)}>Borrar</Button>
+                  </>
                 )}
               </TableCell>
             </TableRow>
