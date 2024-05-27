@@ -1,8 +1,8 @@
 .explorer {
-    height: 150px;
-    width: 100%;
-    margin-top: 5rem ;
-    background-color: #303231;
+  height: 150px;
+  width: 100%;
+  background-color: hsl(150, 2%, 19%, 0.78);
+  padding: 20px;
 }
 
 .explorer h4 {

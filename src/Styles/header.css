@@ -1,8 +1,6 @@
 .header {
   width: 100%;
   position: fixed;
-  top: 0;
-  
   background-color: #333;
   z-index: 1000;
   display: grid;
@@ -52,7 +50,6 @@
   transition: background-color 0.3s;
   width: 170px;
   height: 40px;
-  text-decoration: none;
 }
 
 .button:hover {
@@ -117,4 +114,38 @@
     margin: 0.5vw;
     font-size: 2vw;
   }
+}
+
+.link-flex {
+  display: flex;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-initials-container {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%; 
+  background-color: #d8a353; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white; 
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.logged-in-section {
+  display: flex;
+  align-items: center;
+}
+
+.logout-link {
+  color: white;
+  text-decoration: none;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px;
 }

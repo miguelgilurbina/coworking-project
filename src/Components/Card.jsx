@@ -7,7 +7,7 @@ import { routes } from "../Utils/routes";
 const Card = ({ data }) => {
   return (
     <div className="col-md-6 d-md-inline-block p-3">
-    <div className="card" style={{ maxWidth: "540px" }} key={data.id}>
+    <div className="cardHome" style={{ maxWidth: "540px" }} key={data.id}>
       <div className="row g-0">
         <div className="col-md-4 p-2">
           <img
