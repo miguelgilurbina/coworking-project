@@ -138,3 +138,7 @@
     text-align: center;
   }
 }
+.features ul{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr ;
+}

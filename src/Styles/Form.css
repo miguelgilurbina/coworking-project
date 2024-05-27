@@ -64,7 +64,7 @@ textarea {
   border: 0;
   outline: none;
   border-radius: 25px;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   font-size: 16px;
 }
 
@@ -81,3 +81,50 @@ textarea {
   height: 50px;
   border-radius: 25px;
 }
+.containerForm button{
+     width: 200px;
+     height: 50px;
+     border-radius: 25px;
+     background-color: #DE8A05;
+     color: #fff;    
+ }
+
+ .containerButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+.image-preview{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    height: 100%;
+    background: linear-gradient(
+        50deg,
+        rgba(222,138,5,.7),
+        rgba(148, 98, 23, 0.3),
+        rgba(185, 161, 55, 0.4));
+    border-radius:15px ; 
+    box-shadow: 0 0 20px rgba(0,0,0, .9);
+}
+
+ .image-preview img{
+     width:250;
+     height:190;
+     padding:0px 5px;
+     margin: 5px;
+  
+ }
+
+ .containerCheckbox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+ }
+
+ .characteristicsForm{
+    display: flex;
+ }
+
+

@@ -1,0 +1,36 @@
+{
+    "characteristics": [
+        {
+            "name":"Aire Acondicionado",
+            "img":"/public/images/aireAcondicionadoCharacteristic.jpg"
+        },
+        {
+            "name":"Wifi",
+            "img":"/public/images/wifiCharacteristic.jpg"
+        },
+        {
+            "name":"Sillas Ergonomicas",
+            "img":"/public/images/sillasErgonomicasCharacteristic.jpg"
+        },
+        {
+            "name":"Aire Libre",
+            "img":"/public/images/aireLibreCharacteristic.jpg"
+        },
+        {
+            "name":"Proyector",
+            "img":"/public/images/proyectorCharacteristic.jpg"
+        },
+        {
+            "name":"Pizarra",
+            "img":"/public/images/pizarraCharacteristic.jpg"
+        },
+        {
+            "name":"Sala Recreativa",
+            "img":"/public/images/salaRecreativaCharacteristic.jpg"
+        },
+        {
+            "name":"Cafeteria",
+            "img":"/public/images/cafeteriaCharacteristic.jpg"
+        }
+    ]
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import "../Styles/Card.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { routes } from "../Utils/routes";
 
 const Card = ({ data }) => {
   return (
@@ -18,6 +20,7 @@ const Card = ({ data }) => {
           <div className="card-body">
             <h5 className="card-title">{data.name}</h5>
             <p className="card-text">{data.description}</p>
+            <Link to={routes.detail}><h6>Ver más</h6></Link>
           </div>
         </div>
       </div>

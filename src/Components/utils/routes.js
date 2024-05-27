@@ -2,6 +2,9 @@ export const routes ={
     login : '/login',
     register:'/register',
     admin:'/admin',
+    editRoom:'/editRoom',
     home:"/home",
-    detail:"/detail"
+    detail:"/detail",
+    productForm: "/form",
+    characteristicForm: "/addCharacteristic",
 }
