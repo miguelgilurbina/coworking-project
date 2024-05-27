@@ -10,7 +10,17 @@ import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
 import characteristics from "../Data/characteristics.json"
 
+
 const Gallery = () => {
+  const [showCarousel, setShowCarousel] = useState(false);
+  const [imagery, setImagery] = useState([
+    image,
+    image1,
+    image2,
+    image3,
+    image4,
+  ]);
+
   const renderCharacteristics = (data) => {
     console.log(data);
     const characteristicsArray = Object.values(characteristics);
@@ -21,9 +31,6 @@ const Gallery = () => {
       </li>
     ));
   };
-
-  const [showCarousel, setShowCarousel] = useState(false);
-  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
 
   const settings = {
     dots: true,
@@ -36,9 +43,9 @@ const Gallery = () => {
     focusOnSelect: true,
     responsive: [
       {
-        breakpoint: 600, 
+        breakpoint: 600,
         settings: {
-          slidesToShow: 3, 
+          slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
@@ -58,7 +65,7 @@ const Gallery = () => {
 
           {!showCarousel && (
             <div className="containerImg">
-              <img src={image} alt="" className="imgHero" />
+              <img src={image} alt="Main" className="imgHero" />
               <div className="gridDetail">
                 {imagery.slice(1).map((image, index) => (
                   <img
@@ -68,8 +75,7 @@ const Gallery = () => {
                     style={{
                       width: "200px",
                       height: "280px",
-                      borderRadius: 20,
-                    }}
+                      borderRadius: "20px",
                     }}
                   />
                 ))}
@@ -79,11 +85,14 @@ const Gallery = () => {
           {!showCarousel && (
             <div>
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis vel nobis recusandae cupiditate consectetur
-                iste quaerat explicabo. Eius, quaerat exercitationem placeat,
-                distinctio doloremque hic sit unde inventore possimus, rem eos! Perferendis voluptatibus ducimus sed aperiam
-                impedit officiis, sit suscipit exercitationem ratione, natus ad adipisci eveniet saepe voluptatum eum provident
-                voluptates, nemo quaerat iste. Vitae laboriosam, dicta minus nihil officiis ipsam?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis vel nobis recusandae cupiditate consectetur iste
+                quaerat explicabo. Eius, quaerat exercitationem placeat,
+                distinctio doloremque hic sit unde inventore possimus, rem eos!
+                Perferendis voluptatibus ducimus sed aperiam impedit officiis,
+                sit suscipit exercitationem ratione, natus ad adipisci eveniet
+                saepe voluptatum eum provident voluptates, nemo quaerat iste.
+                Vitae laboriosam, dicta minus nihil officiis ipsam?
               </span>
             </div>
           )}
@@ -94,31 +103,35 @@ const Gallery = () => {
               )}
             </div>
             <button
-              className="button-generic-transition mb-2"
+              className="button-generic-transition"
               onClick={toggleCarousel}
             >
-              {showCarousel && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-arrow-left"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
-                  />
-                </svg>
+              {showCarousel ? (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-arrow-left"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+                    />
+                  </svg>
+                  Back
+                </>
+              ) : (
+                "More Pictures"
               )}
-              {showCarousel ? " Back" : " More Pictures"}
             </button>
           </div>
-          {/* Bloque de características */}
-          <div className="features">
-            <h4>Características:</h4>
-            <ul>
+        </div>
+        <div className="features">
+          <h4>Características:</h4>
+          <ul>
             <li>Aire Libre</li>
             <li>Aire Acondicionado</li>
             <li>Pizarra</li>
@@ -127,23 +140,19 @@ const Gallery = () => {
             <li>Sala Recreativa</li>
             <li>Cafeteria</li>
             <li>Wifi</li>
-            </ul>
-          </div>
+          </ul>
         </div>
-        {showCarousel && (
-          <Slider {...settings}>
-            {imagery.map((image, index) => (
-              <div key={index}>
-                <img
-                  src={image}
-                  alt={`Image of room`}
-                  className="carouselImage"
-                />
-              </div>
-            ))}
-          </Slider>
-        )}
       </div>
+
+      {showCarousel && (
+        <Slider {...settings}>
+          {imagery.map((img, index) => (
+            <div key={index}>
+              <img src={img} alt={`Room ${index}`} className="carouselImage" />
+            </div>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 };
