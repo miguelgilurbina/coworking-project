@@ -1,49 +1,49 @@
-
 .footer {
-  display: none;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    bottom: 0;
-    
-   
-  }
-  
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  z-index: 2;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.company-logo {
+  width: 50px;
+  height: auto;
+}
+
+.social-icons {
+  font-size: 24px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.social-icons a {
+  color: #ff8c00;
+  margin-left: 10px;
+}
+@media only screen and (max-width: 340px) {
   .footer-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    padding: 0 10px;
   }
-  
+
   .company-logo {
     width: 70px;
-    height: auto;
   }
-  
-  .social-icons {
-    font-size: 24px;
+
+  .social-icons img {
+    width: 20px;
+    margin-left: 5px;
   }
-  
-  .social-icons a {
-    color: #ff8c00;
-    margin-left: 10px;
-  }
-  @media only screen and (max-width: 340px) {
-    .footer-content {
-      padding: 0 10px; /* Reduce el padding */
-    }
-  
-    .company-logo {
-      width: 70px; /* Reducir el tamaño del logo */
-    }
-  
-    .social-icons img {
-      width: 20px; /* Reducir el tamaño de los íconos */
-      margin-left: 5px; /* Reducir el espacio entre los íconos */
-    }
-  }
-  
+}

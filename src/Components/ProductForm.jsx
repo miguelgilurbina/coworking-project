@@ -2,7 +2,7 @@ import { useState } from "react";
 import '../Styles/Form.css';
 import axios from 'axios'
 
-const Form = () => {
+const ProductForm = () => {
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -37,7 +37,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/login', formData);
+      const response = await axios.post('http://localhost:8080/sala', formData);
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -118,7 +118,7 @@ const Form = () => {
               </label>
               <label htmlFor="">
                 <input type="checkBox"/>
-                Cafetera
+                Cafeteria
               </label>
               </div>
               <div className="containerButton">
@@ -160,7 +160,7 @@ const Form = () => {
   );
 }
 
-export default Form;
+export default ProductForm;
 
 /*
 ******************************************************************* 

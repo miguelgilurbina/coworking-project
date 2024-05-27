@@ -101,6 +101,7 @@ const RegisterForm = () => {
       <button type="submit" className='submit-container'>Register</button>
     </form>
   );
+ 
 };
 
 export default RegisterForm;

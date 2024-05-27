@@ -1,0 +1,14 @@
+.card-content{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 200px;
+}
+.cardC{
+    background-color: white;
+    width: 15%;
+    border-radius: 10px;
+}
+.cardC img{
+    width: 100%;
+    height: 100px;
+}
