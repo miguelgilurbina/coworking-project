@@ -67,9 +67,63 @@ const Form = () => {
               <label htmlFor="quantity">Number of people </label>        
               <input type="number" id="quatity" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Number of people" />
               
+              <h4>Categories</h4>
+              <div className="containerCheckbox">
+                <label htmlFor="">
+                <input type="checkBox"/>
+                  Private Office
+                </label>
+                <label htmlFor="">
+                <input type="checkBox"/>
+                Meeting Room
+                </label>
+                <label htmlFor="">
+                  <input type="checkBox"/>
+                Full Time
+                </label>
+                <label htmlFor="">
+                <input type="checkBox"/>
+                Lounge
+                </label>
+              </div>
+              <h4>Characteristics</h4>
+              <div className="containerCheckbox">
+              <label htmlFor="">
+                <input type="checkBox"/>
+                Wifi
+              </label>
+              <label htmlFor="">
+                <input type="checkBox"/>
+                Sillas Ergonomicas
+              </label>
+              <label htmlFor="">
+                <input type="checkBox"/>
+                Aire Libre
+              </label>
+              <label htmlFor="">
+                <input type="checkBox"/>  
+                Aire Acondicionado
+              </label>
+              <label htmlFor="">
+                <input type="checkBox"/>
+                Proyector
+              </label>
+              <label htmlFor="">
+                <input type="checkBox"/>
+                Pizarra
+              </label>
+              <label htmlFor="">
+                <input type="checkBox"/>
+                Sala Recreativa
+              </label>
+              <label htmlFor="">
+                <input type="checkBox"/>
+                Cafetera
+              </label>
+              </div>
               <div className="containerButton">
                 <button type="submit" >Send</button>
-              </div> 
+              </div>
           </form>
           <div className="image-preview">
               <label htmlFor="images">Upload images</label>
