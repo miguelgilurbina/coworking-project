@@ -28,25 +28,41 @@ const RegisterForm = () => {
 
     if (name === "password") {
       validatePassword(value);
+    } else if (name === "email") {
+      const errorMessage = validateEmail(value);
+      setErrors({
+        ...errors,
+        email: errorMessage ? [errorMessage] : [],
+      });
     }
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+
+    if (!emailRegex.test(email)) {
+      return "Invalid email format.";
+    }
+
+    return null;
+  };
+
   const validatePassword = (password) => {
-    let errorMessages = [];
+    const validationCriteria = [
+      {
+        condition: /[A-Z]/,
+        message: "Password must have at least one uppercase letter.",
+      },
+      {
+        condition: /[a-z]/,
+        message: "Password must have at least one lowercase letter.",
+      },
+      { condition: /\d/, message: "Password must have at least one number." },
+    ];
 
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasLowerCase = /[a-z]/.test(password);
-    const hasNumber = /\d/.test(password);
-
-    if (!hasUpperCase) {
-      errorMessages.push("Password must have at least one uppercase letter.");
-    }
-    if (!hasLowerCase) {
-      errorMessages.push("Password must have at least one lowercase letter.");
-    }
-    if (!hasNumber) {
-      errorMessages.push("Password must have at least one number.");
-    }
+    const errorMessages = validationCriteria
+      .filter(({ condition }) => !condition.test(password))
+      .map(({ message }) => message);
 
     setErrors({
       ...errors,
@@ -92,7 +108,6 @@ const RegisterForm = () => {
   return (
     <div className="card" style={{ borderRadius: "1rem" }}>
       <div className="d-flex">
-        {/* imagen */}
         <div className="col-md-6 col-lg-5 d-none d-md-block">
           <img
             src="/public/images/img-category_2.jpg"
@@ -103,6 +118,9 @@ const RegisterForm = () => {
         </div>
         <div className="p-3 container">
           <div className="mt-5">
+
+
+
             <form onSubmit={handleSubmit}>
               <div className="d-flex align-items-center mb-3 pb-1">
                 <img
@@ -116,7 +134,7 @@ const RegisterForm = () => {
                 className="fw-normal mb-3 pb-3"
                 style={{ letterSpacing: "1px" }}
               >
-                Sign into your account
+                The Co-Working experience start here
               </h5>
 
               <div data-mdb-input-init className="form-outline mb-4">
@@ -130,6 +148,7 @@ const RegisterForm = () => {
                   className="form-control form-control-lg"
                   value={formData.username}
                   onChange={handleChange}
+                  placeholder="Ex: Juan Perez"
                 />
               </div>
 
@@ -144,7 +163,17 @@ const RegisterForm = () => {
                   className="form-control form-control-lg"
                   value={formData.email}
                   onChange={handleChange}
+                  placeholder="Ex: example@email.com"
                 />
+              </div>
+              
+              <div className="error-container">
+                {errors.email.length > 0 && (
+                  <div className="email-errors">
+                    <strong>Email Errors:</strong>
+                    {renderErrors(errors.email)}
+                  </div>
+                )}
               </div>
 
               <div data-mdb-input-init className="form-outline mb-4">
@@ -158,6 +187,7 @@ const RegisterForm = () => {
                   className="form-control form-control-lg"
                   value={formData.password}
                   onChange={handleChange}
+                  placeholder="At least: 1 uppercase letter, 1 lowercase letter, 1 number"
                 />
               </div>
 

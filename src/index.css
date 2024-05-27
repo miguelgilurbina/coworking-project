@@ -81,3 +81,7 @@ h2 {
     width: 100%;
   }
 }
+
+.form-control-lg {
+  font-size: 1rem !important;
+}

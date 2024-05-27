@@ -1,12 +1,15 @@
 /* TODO: cuidado con los nombres, ya que card es propio de boostrap */
+.cardHome {
+  background-color: #fff;
+}
 
-/* .card img {
+.cardHome img {
   height: 110px;
   width: 110px;
-} */
+}
 
 @media (max-width: 600px) {
-  .card img {
+  .cardHome img {
     height: auto;
     width: auto;
   }
