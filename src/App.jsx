@@ -1,12 +1,10 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-
 import Header from "../src/Components/Header";
-import Footer from "./Components/footer";
+import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import Admin from "./Pages/Admin";
 import Detail from "./Pages/Detail";
 import { AuthProvider } from "./Components/Context/AuthContext";
-
 import "./App.css";
 import LoginForm from "./Components/LoginForm";
 import { routes } from "./Components/utils/routes";
