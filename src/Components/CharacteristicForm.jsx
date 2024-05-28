@@ -35,7 +35,9 @@ const CharacteristicForm = () => {
         console.log(name,selectedImages);
       };
       return (
-        <>
+        <>  
+        <div className="containerForm characteristicsForm" onSubmit={handleSubmit}>
+            <form action="">
             <label htmlFor="name">Characteristic Name</label>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
             <div className="image-preview">
@@ -64,8 +66,15 @@ const CharacteristicForm = () => {
                     </div>
                 )}
             </div>
+            <div className="containerButton">
+                <button type="submit" >Send</button>
+            </div>
+            </form>
+            </div>
         </>
+        
       )
+      
 }
 
 export default CharacteristicForm

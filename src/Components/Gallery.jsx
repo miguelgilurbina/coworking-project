@@ -8,16 +8,22 @@ import image2 from "../../public/images/img_aleatory_2.png";
 import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
+import characteristics from "../Data/characteristics.json"
 
 const Gallery = () => {
+  const renderCharacteristics = (data) => {
+    console.log(data);
+    const characteristicsArray = Object.values(characteristics);
+    return characteristicsArray.map((characteristic, index) => (
+      <li key={index}>
+        
+        <span>{characteristic.name}</span>
+      </li>
+    ));
+  };
+
   const [showCarousel, setShowCarousel] = useState(false);
-  const [imagery, setImagery] = useState([
-    image,
-    image1,
-    image2,
-    image3,
-    image4,
-  ]);
+  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
 
   const settings = {
     dots: true,
@@ -72,14 +78,11 @@ const Gallery = () => {
           {!showCarousel && (
             <div>
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis vel nobis recusandae cupiditate consectetur iste
-                quaerat explicabo. Eius, quaerat exercitationem placeat,
-                distinctio doloremque hic sit unde inventore possimus, rem eos!
-                Perferendis voluptatibus ducimus sed aperiam impedit officiis,
-                sit suscipit exercitationem ratione, natus ad adipisci eveniet
-                saepe voluptatum eum provident voluptates, nemo quaerat iste.
-                Vitae laboriosam, dicta minus nihil officiis ipsam?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis vel nobis recusandae cupiditate consectetur
+                iste quaerat explicabo. Eius, quaerat exercitationem placeat,
+                distinctio doloremque hic sit unde inventore possimus, rem eos! Perferendis voluptatibus ducimus sed aperiam
+                impedit officiis, sit suscipit exercitationem ratione, natus ad adipisci eveniet saepe voluptatum eum provident
+                voluptates, nemo quaerat iste. Vitae laboriosam, dicta minus nihil officiis ipsam?
               </span>
             </div>
           )}
@@ -110,6 +113,20 @@ const Gallery = () => {
               )}
               {showCarousel ? " Back" : " More Pictures"}
             </button>
+          </div>
+          {/* Bloque de características */}
+          <div className="features">
+            <h4>Características:</h4>
+            <ul>
+            <li>Aire Libre</li>
+            <li>Aire Acondicionado</li>
+            <li>Pizarra</li>
+            <li>Proyector</li>
+            <li>Sillas Ergonomicas</li>
+            <li>Sala Recreativa</li>
+            <li>Cafeteria</li>
+            <li>Wifi</li>
+            </ul>
           </div>
         </div>
         {showCarousel && (

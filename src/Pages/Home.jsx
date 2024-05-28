@@ -5,9 +5,11 @@ import Category from "../Components/Category";
 const Home = () => {
   return (
     <div className="home">
-      <Explorer />
-      <Category />
-      <Recommend />
+      
+      <Explorer/>
+      <Category/>
+      <Recommend/>
+      
     </div>
   );
 };
