@@ -1,4 +1,3 @@
-/* TODO: cuidado con los nombres, ya que card es propio de boostrap */
 .cardHome {
   background-color: #fff;
 }
@@ -8,20 +7,21 @@
   width: 110px;
 }
 
-.cardBody{
+.cardBody {
   margin: 17px;
 }
 
 .cardHome {
   max-width: 540px;
-}
-@media (max-width: 600px) {
+} 
+
+ @media (max-width: 600px) {
   .cardHome img {
     height: 250px;
     width: auto;
   }
 
-  .cardWith{
+  .cardWith {
     display: flex;
     justify-content: center;
   }
