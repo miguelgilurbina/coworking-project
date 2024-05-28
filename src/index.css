@@ -60,6 +60,11 @@ h2 {
   text-align: center;
 }
 
+h4{
+  font-family: "DM Serif Text", serif;
+  text-align: center;
+}
+
 .separador {
   height: 20px;
 }

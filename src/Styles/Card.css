@@ -1,59 +1,12 @@
-/* .cardHome {
-  background-color: #fff;
-}
-
-.cardHome img {
-  height: 170px;
-  width: 110px;
-}
-
-.cardBody {
-  margin: 17px;
-}
-
-.cardHome {
-  max-width: 540px;
-} 
-
- @media (max-width: 600px) {
-  .cardHome img {
-    height: 250px;
-    width: auto;
-  }
-
-  .cardWith {
-    display: flex;
-    justify-content: center;
-  }
-
-  .cardHome {
-    max-width: 400px;
-  }
-}
-
-.card-description {
-  height: 110px;
-  width: 140px;
-  background-color: #fff;
-}
-
-.card-description h4 {
-  font-family: "Poppins";
-  position: absolute;
-  right: 16px;
-  top: 30px;
-}
-
-.card-description p {
-  font-family: "Poppins";
-  font-size: 10px;
-  position: absolute;
-  bottom: 10px;
-} */
 
 .card img {
   height: 100%;
-  width: 110px;
+
+}
+
+.cardHome{
+  width: 100%;
+  max-height: 175px;
 }
 
 .card-description {
@@ -79,5 +32,10 @@
   .card img {
     height: auto;
     width: auto;
+  }
+
+  .cardHome{
+    max-height: none;
+
   }
 }

@@ -1,14 +1,14 @@
-import React from 'react';
-import '../Styles/CategoryCard.css';
+import React from "react";
+import "../Styles/CategoryCard.css";
 
 const CategoryCard = ({ title, description, srcImg }) => {
   return (
     <div className="cardC">
       <img src={srcImg} alt={title} className="card-image" />
       <div className="card-content">
-        <h2 className="card-title">{title}</h2>
-        <p className="card-description">{description}</p>
-        <button className='button-generic-transition'>Filter By</button>
+        <h4 className="card-title text-center">{title}</h4>
+        <p className="cardDescription">{description}</p>
+        <button className="button-generic-transition mb-2">Filter By</button>
       </div>
     </div>
   );

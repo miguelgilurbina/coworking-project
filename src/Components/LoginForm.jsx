@@ -5,6 +5,8 @@ import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
+import { FaExclamationCircle } from "react-icons/fa";
+
 
 // import axios from "axios";
 
@@ -53,7 +55,12 @@ const LoginForm = () => {
       setError("");
       navigate("/home");
     } else {
-      setError("Invalid email or password.");
+      setError(
+        <>
+          <FaExclamationCircle style={{ marginRight: "8px", marginBottom: "4px" }} />
+          Invalid email or password.
+        </>
+      );
     }
   };
 

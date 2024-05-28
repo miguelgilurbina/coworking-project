@@ -187,7 +187,7 @@ const RegisterForm = () => {
                   className="form-control form-control-lg"
                   value={formData.password}
                   onChange={handleChange}
-                  placeholder="At least: 1 uppercase letter, 1 lowercase letter, 1 number"
+                  placeholder="1 uppercase letter, 1 lowercase letter, 1 number"
                 />
               </div>
 

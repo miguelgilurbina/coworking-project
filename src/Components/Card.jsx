@@ -13,7 +13,7 @@ const Card = ({ data }) => {
           <img
             src={data.srcImg}
             alt="Imagen del Espacio"
-            className="img-fluid rounded-start"
+            className="img-fluid rounded-start cardHome"
           />
         </div>
         <div className="col-md-8">
