@@ -34,23 +34,15 @@ const ProductForm = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:8080/sala', formData);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-    console.log(name,description,quantity,price,selectedImages);
-  };
+ 
 
   
 
   return (
     <>
 
-      <div className="containerForm" onSubmit={handleSubmit}>
+      {/* <div className="containerForm" onSubmit={handleSubmit}>
+
           
           <form >
           <h2>Welcome administrator </h2>
@@ -62,7 +54,7 @@ const ProductForm = () => {
               <textarea 
               type="text" 
               value={description} 
-              onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
+              onChange={(e) => setDescription(e.target.value)} hplaceholder="Description" />
 
               <label htmlFor="price">Price </label>
               <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
@@ -154,7 +146,7 @@ const ProductForm = () => {
                   </div>
                 )}
           </div>             
-      </div>
+      </div> */}
       
     </>
     
@@ -165,43 +157,3 @@ const ProductForm = () => {
 
 export default ProductForm;
 
-/*
-******************************************************************* 
-codigo java (migue y aldo estan al tanto de mi problema con el pc)
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-
-public class Servidor {
-  public static void main(String[] args) {
-    try {
-      Class.forName("com.mysql.jdbc.Driver");
-      Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/laBaseDeDatos", "user", "password");
-      
-
-      ******Aqui irian los datos que se reciben del formulario ******
-
-      String nombre = "nombre del producto"; ***EJEMPLO****
-      String descripcion = "descripción del producto"; ***EJEMPLO****
-      int cantidad = 10; ***EJEMPLO****
-      double precio = 99.99; ***EJEMPLO****
-
-      String query = " insert into productos (name, description, quantity, price)"
-        + " values (?, ?, ?, ?)";
-
-      PreparedStatement preparedStmt = con.prepareStatement(query);
-      preparedStmt.setString (1, name);
-      preparedStmt.setString (2, description);
-      preparedStmt.setInt    (3, quantity);
-      preparedStmt.setDouble (4, price);
-
-      preparedStmt.execute();
-
-      con.close();
-    } catch (Exception e) {
-      System.err.println("¡Error! ");
-      System.err.println(e.getMessage());
-    }
-  }
-} */
