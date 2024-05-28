@@ -1,38 +1,12 @@
 .password-errors {
-    margin-top: 10px;
-  }
-  
-  .error {
-    color: black;
-    margin-top: 5px;
-  }
-
-  .input {
-    width: 100%;
-  }
-  
-  .input label {
-    width: 30%;
-  }
-  
-  .input input {
-    width: 70%;
-  }
-  
-@media (max-width:600px){
-  .container{
-    width: 100%;
-  }
+  margin-top: 10px;
 }
 
-@media (max-width:340px){
-  @media (max-width: 340px) {
-    .input label {
-      width: 30%;
-    }
-  
-    .input input {
-      width: 70%;
-    }
-  }
+.error {
+  color: #e91e63;
+  margin-top: 5px;
+}
+
+.img-fluid {
+  max-width: 85% !important;
 }

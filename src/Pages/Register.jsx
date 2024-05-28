@@ -2,7 +2,7 @@ import React from 'react'
 import RegisterForm from '../Components/RegisterForm'
 const Register = () => {
   return (
-    <div>
+    <div className="containerRegister">
       <RegisterForm></RegisterForm>
     </div>
   )

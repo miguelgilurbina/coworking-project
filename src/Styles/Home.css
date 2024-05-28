@@ -1,9 +1,10 @@
-.home {
+ .home {
     background-image:  url(../../public/images/img_body.jpg);
     background-size: cover;
     background-repeat: no-repeat;
   background-position: center center;
-}
+} 
+
 @media (max-width:600px){
   .home{
     background: linear-gradient(to bottom, rgb(140, 92, 3), brown);

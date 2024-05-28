@@ -11,7 +11,6 @@
   display: none;
 }
 .titleCard {
-  padding-left: 25px;
   padding-top: 10px;
   margin-bottom: 0px;
 }
@@ -47,8 +46,8 @@
 }
 
 .description {
-    text-align: center; 
-  }
+  text-align: center;
+}
 
 .containerButton {
   display: flex;
@@ -96,50 +95,68 @@
   padding-top: 20px;
 }
 
-.features ul{
+.slick-prev:before,
+.slick-next:before {
+  font-size: 35px;
+  color: #bebebe;
+}
+
+.slick-slider {
+  padding-left: 18px;
+}
+
+.features ul {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-@media (max-width: 600px){
-  .gridDetail img {
-    display: none; /* Oculta las imágenes pequeñas */
-  }
-  .imgHero {
-    width: 100%; /* Ajusta el tamaño de la imagen principal para ocupar todo el ancho disponible */
-  }
-  .containerDetail {
-    padding: 10px; /* Reduce el padding del contenedor */
-    margin: 0 10px; /* Ajusta los márgenes para evitar el desplazamiento horizontal */
-    width: calc(100% - 20px); /* Asegura que el contenedor ocupe el 100% del ancho disponible menos los márgenes */
-  }
-  .cardDetail {
-    margin: 20px 10px 50px; /* Ajusta los márgenes del cardDetail */
-    padding: 20px; /* Reduce el padding interno del cardDetail */
-  } 
-  .features ul {
-  grid-template-columns: 1fr 1fr; /* Ajusta la grilla a dos columnas */
+.icon-space {
+  margin-right: 5px;
+}
+
+@media (max-width: 950px) {
+  .slick-slider {
+    width: 95%;
+    padding-left: 0px;
   }
 }
 
-@media (max-width: 340px){
-  .containerDetail {
-    padding: 10px; /* Reduce el padding del contenedor */
-    margin: 0 5px; /* Ajusta los márgenes para evitar el desplazamiento horizontal */
-    width: calc(100% - 10px); /* Asegura que el contenedor ocupe el 100% del ancho disponible menos los márgenes */
+@media (max-width: 600px) {
+  .gridDetail {
+    display: none;
   }
-  .cardDetail {
-    margin: 20px 5px 50px; /* Ajusta los márgenes del cardDetail */
-    padding: 15px; /* Reduce el padding interno del cardDetail */
-  }
-  .features ul {
-    grid-template-columns: 1fr; /* Ajusta la grilla a una columna para pantallas muy pequeñas */
-  }
-  .buttonSeeMore button {
-    font-size: 12px; /* Reduce el tamaño de la fuente del botón */
-    padding: 8px 12px; /* Ajusta el padding del botón */
-    display: flex;
+
+  .containerImg {
     justify-content: center;
+  }
+
+  .imgHero {
+    width: 90%;
+    padding-bottom: 10px;
+  }
+
+  .cardDetail {
+    padding: 20px 25px 20px;
+  }
+
+  .containerDetail {
+    padding: 0px 10px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 20px;
+    color: #bebebe;
+    padding: 0px 0px 0px 28px;
+  }
+
+  .slick-slider {
+    padding-left: 30px;
+    width: 85%;
+  }
+
+  .titleCard,
+  .subtitleCard {
     text-align: center;
-    }
+  }
 }

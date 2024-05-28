@@ -8,6 +8,7 @@ const Recommend = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
+  useEffect(() => {
     const dataArray = Object.values(data.data);
     const shuffledData = shuffleArray(dataArray);
     setRecommendData(shuffledData);
@@ -47,6 +48,7 @@ const Recommend = () => {
       </div>
     </div>
   );
-};
-
+}
+);
+}
 export default Recommend;

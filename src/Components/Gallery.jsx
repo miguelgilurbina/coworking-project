@@ -1,4 +1,3 @@
-"useclient";
 import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,32 +8,53 @@ import image2 from "../../public/images/img_aleatory_2.png";
 import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
-import characteristics from "../Data/characteristics.json"
+import characteristics from "../Data/characteristics.json";
 
 const Gallery = () => {
+  const [showCarousel, setShowCarousel] = useState(false);
+  const [imagery, setImagery] = useState([
+    image,
+    image1,
+    image2,
+    image3,
+    image4,
+  ]);
+
   const renderCharacteristics = (data) => {
     console.log(data);
     const characteristicsArray = Object.values(characteristics);
     return characteristicsArray.map((characteristic, index) => (
       <li key={index}>
-        
         <span>{characteristic.name}</span>
       </li>
     ));
   };
 
-  const [showCarousel, setShowCarousel] = useState(false);
-  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
-
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0",
     focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 950,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const toggleCarousel = () => {
@@ -72,7 +92,7 @@ const Gallery = () => {
 
           {!showCarousel && (
             <div className="containerImg">
-              <img src={image} alt="" className="imgHero" />
+              <img src={image} alt="Main" className="imgHero" />
               <div className="gridDetail">
                 {imagery.slice(1).map((image, index) => (
                   <img
@@ -82,7 +102,7 @@ const Gallery = () => {
                     style={{
                       width: "200px",
                       height: "280px",
-                      borderRadius: 20,
+                      borderRadius: "20px",
                     }}
                   />
                 ))}
@@ -92,11 +112,14 @@ const Gallery = () => {
           {!showCarousel && (
             <div>
               <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis vel nobis recusandae cupiditate consectetur
-                iste quaerat explicabo. Eius, quaerat exercitationem placeat,
-                distinctio doloremque hic sit unde inventore possimus, rem eos! Perferendis voluptatibus ducimus sed aperiam
-                impedit officiis, sit suscipit exercitationem ratione, natus ad adipisci eveniet saepe voluptatum eum provident
-                voluptates, nemo quaerat iste. Vitae laboriosam, dicta minus nihil officiis ipsam?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Blanditiis vel nobis recusandae cupiditate consectetur iste
+                quaerat explicabo. Eius, quaerat exercitationem placeat,
+                distinctio doloremque hic sit unde inventore possimus, rem eos!
+                Perferendis voluptatibus ducimus sed aperiam impedit officiis,
+                sit suscipit exercitationem ratione, natus ad adipisci eveniet
+                saepe voluptatum eum provident voluptates, nemo quaerat iste.
+                Vitae laboriosam, dicta minus nihil officiis ipsam?
               </span>
             </div>
           )}
@@ -125,23 +148,20 @@ const Gallery = () => {
             <li>Sala Recreativa</li>
             <li>Cafeteria</li>
             <li>Wifi</li>
-            </ul>
-          </div>
+          </ul>
         </div>
-        {showCarousel && (
-          <Slider {...settings}>
-            {imagery.map((image, index) => (
-              <div key={index}>
-                <img
-                  src={image}
-                  alt={`Image of room`}
-                  className="carouselImage"
-                />
-              </div>
-            ))}
-          </Slider>
-        )}
       </div>
+
+      {showCarousel && (
+        <Slider {...settings}>
+          {imagery.map((img, index) => (
+            <div key={index}>
+              <img src={img} alt={`Room ${index}`} className="carouselImage" />
+            </div>
+          ))}
+        </Slider>
+      )}
+    </div>
     </div>
   );
 };
