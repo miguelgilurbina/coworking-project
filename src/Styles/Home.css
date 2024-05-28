@@ -4,3 +4,9 @@
     background-repeat: no-repeat;
   background-position: center center;
 }
+@media (max-width:600px){
+  .home{
+    background: linear-gradient(to bottom, rgb(140, 92, 3), brown);
+  
+  }
+}

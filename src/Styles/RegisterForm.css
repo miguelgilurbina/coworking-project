@@ -6,3 +6,33 @@
     color: black;
     margin-top: 5px;
   }
+
+  .input {
+    width: 100%;
+  }
+  
+  .input label {
+    width: 30%;
+  }
+  
+  .input input {
+    width: 70%;
+  }
+  
+@media (max-width:600px){
+  .container{
+    width: 100%;
+  }
+}
+
+@media (max-width:340px){
+  @media (max-width: 340px) {
+    .input label {
+      width: 30%;
+    }
+  
+    .input input {
+      width: 70%;
+    }
+  }
+}

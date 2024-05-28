@@ -36,13 +36,18 @@
 }
 
 @media (max-width: 600px) {
-  .explorer form input {
-    width: 130px;
-    font-size: 2.3vw;
+  .explorer {
+    height: max-content;
+  }
+  .explorer form {
+    flex-direction: row;
+    align-items: center;
   }
 
+  .explorer form input,
   .buttonSearchExplorer {
-    width: 130px;
-    font-size: 2.3vw;
+    width: calc(100% - 20px); /* Restar 20px para tener en cuenta el padding o margen */
+    margin-bottom: 10px; /* Agregar un margen inferior para separar los elementos */
   }
+
 }

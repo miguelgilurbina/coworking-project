@@ -1,5 +1,5 @@
 .category{
   display: flex;
   justify-content: space-around;
-  background-color: gray;
+  background-color: rgba(240, 248, 255, 0.3);
 }

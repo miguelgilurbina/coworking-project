@@ -13,10 +13,14 @@
 }
 .option{
     width: 250px;
+    background-color: transparent;
+    color: black;
+}
+.option:hover{
     background-color: orange;
 }
 @media (max-Width: 340px){
-    .AdminPage{
+    .AdminOptions{
         display: none;
     }
 }

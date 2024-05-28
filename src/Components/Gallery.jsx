@@ -61,12 +61,14 @@ const Gallery = () => {
               />
             </svg>{" "}
               
-              Back
+            <a href="/home">  
+              Back 
+            </a>
           </button>
         </div>
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
-          <h3 className="titleCard">Home Office</h3>
-          <h5 className="subtileCard">Harmony</h5>
+          <h3 className={`titleCard ${showCarousel ? "hidden" : ""}`}>Home Office</h3>
+          <h5 className={`subtitleCard ${showCarousel ? "hidden" : ""}`}>Harmony</h5>
 
           {!showCarousel && (
             <div className="containerImg">
@@ -108,11 +110,11 @@ const Gallery = () => {
               className="button-generic-transition"
               onClick={toggleCarousel}
             >
-              {showCarousel ? "Hide Pictures" : "See More Pictures"}
+              {showCarousel ? "Hide Pictures" : "More Img"}
             </button>
           </div>
           {/* Bloque de características */}
-          <div className="features">
+          <div className={`features ${showCarousel ? "hidden" : ""}`}>
             <h4>Características:</h4>
             <ul>
             <li>Aire Libre</li>
