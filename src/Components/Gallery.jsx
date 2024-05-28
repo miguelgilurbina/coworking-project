@@ -8,8 +8,7 @@ import image2 from "../../public/images/img_aleatory_2.png";
 import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
-import characteristics from "../Data/characteristics.json"
-
+import characteristics from "../Data/characteristics.json";
 
 const Gallery = () => {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -26,7 +25,6 @@ const Gallery = () => {
     const characteristicsArray = Object.values(characteristics);
     return characteristicsArray.map((characteristic, index) => (
       <li key={index}>
-        
         <span>{characteristic.name}</span>
       </li>
     ));
@@ -42,6 +40,13 @@ const Gallery = () => {
     centerPadding: "0",
     focusOnSelect: true,
     responsive: [
+      {
+        breakpoint: 950,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
       {
         breakpoint: 600,
         settings: {
@@ -113,7 +118,7 @@ const Gallery = () => {
                     width="16"
                     height="16"
                     fill="currentColor"
-                    className="bi bi-arrow-left"
+                    className="bi bi-arrow-left icon-space"
                     viewBox="0 0 16 16"
                   >
                     <path
@@ -121,7 +126,7 @@ const Gallery = () => {
                       d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
                     />
                   </svg>
-                  Back
+                  &nbsp;Back
                 </>
               ) : (
                 "More Pictures"

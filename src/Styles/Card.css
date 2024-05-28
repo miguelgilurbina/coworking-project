@@ -4,14 +4,30 @@
 }
 
 .cardHome img {
-  height: 110px;
+  height: 170px;
   width: 110px;
 }
 
+.cardBody{
+  margin: 17px;
+}
+
+.cardHome {
+  max-width: 540px;
+}
 @media (max-width: 600px) {
   .cardHome img {
-    height: auto;
+    height: 250px;
     width: auto;
+  }
+
+  .cardWith{
+    display: flex;
+    justify-content: center;
+  }
+
+  .cardHome {
+    max-width: 400px;
   }
 }
 

@@ -43,7 +43,6 @@ function App() {
               element={<ProductForm></ProductForm>}
             ></Route>
             <Route path={routes.editRoom} element={<TableEditRooms />} />
-
             <Route path="*" element={<Navigate to={routes.home} />} />
           </Routes>
         </div>
