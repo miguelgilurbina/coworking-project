@@ -33,7 +33,7 @@ const Recommend = () => {
   };
 
   return (
-    <div className="containerRecommend">
+    <div className="container containerRecommend">
       <div className="recommend">
         {windowWidth <= 340 && recommendData.slice(0, 2).map((item) => (
           <Card data={item} key={item.id} />
