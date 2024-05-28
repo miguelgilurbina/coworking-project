@@ -59,7 +59,10 @@ const ProductForm = () => {
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
 
               <label htmlFor="description">Description </label>
-              <textarea type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
+              <textarea 
+              type="text" 
+              value={description} 
+              onChange={(e) => setDescription(e.target.value)} placeholder="Description" />
 
               <label htmlFor="price">Price </label>
               <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
