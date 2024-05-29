@@ -1,80 +1,115 @@
-import React, {useState} from 'react'
-import "../Styles/Form.css"
-import axios from 'axios';
+import React, { useState } from "react";
+import "../Styles/Form.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "../Styles/header.css";
+import { FaArrowLeft } from "react-icons/fa";
+
 const CharacteristicForm = () => {
-    const [name, setName] = useState('');
-    const [selectedImages, setSelectedImages] = useState([]);
-    const [formData, setFormData] = useState({
-        name: '',
-        selectedImages:[]
-      });
-      const handleImageUpload = (e) => {
-        const files = e.target.files;
-        if (files.length > 0 ) {
-          // Aqui convierte la lista de archivos en un array
-          const newImages = Array.from(files);
-          setSelectedImages((prevImages) => [...prevImages, ...newImages]);
-        }
-      };
-    
-      const handleChange = (e) => {
-        setFormData({
-          ...formData,
-          [e.target.name]: e.target.value
-        });
-      };
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-          const response = await axios.post('http://localhost:8080/api/login', formData);
-          console.log(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-        console.log(name,selectedImages);
-      };
-      return (
-        <>  
-        <div className="containerForm characteristicsForm" onSubmit={handleSubmit}>
-            <form action="">
+  const [name, setName] = useState("");
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    selectedImages: [],
+  });
+
+  const handleImageUpload = (e) => {
+    const files = e.target.files;
+    if (files.length > 0) {
+      const newImages = Array.from(files);
+      setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRemoveImage = (index) => {
+    setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/login",
+        formData
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(name, selectedImages);
+  };
+
+  return (
+    <div className="contenedorBody">
+      <div className="containerButton">
+        <Link to="/admin" className="genericButton link-flex">
+          <FaArrowLeft className="iconSpace" /> Go back
+        </Link>
+      </div>
+      <h2 className="mb-4">New characteristic</h2>
+      <div className="containerForm justify-content-center">
+        <form onSubmit={handleSubmit}>
+          <div className="form-column">
+            <h4>Characteristic Form</h4>
             <label htmlFor="name">Characteristic Name</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              className="mb-3"
+            />
+
             <div className="image-preview">
-              <label htmlFor="images">Upload images</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImageUpload}
-                  id="images"
-                />
-                {selectedImages.length > 0 && selectedImages.length < 6  &&  (
-                  <div >
-                    <p>Selected images</p>
-                    {selectedImages.map((image, index) => (
+              <label htmlFor="images" style={{ marginRight: "6px" }}>
+                Upload Images
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={handleImageUpload}
+                id="images"
+              />
+              {selectedImages.length > 0 && selectedImages.length < 6 && (
+                <div>
+                  <p>Selected Images</p>
+                  {selectedImages.map((image, index) => (
+                    <div key={index} className="image-preview-item">
                       <img
-                        key={index}
                         src={URL.createObjectURL(image)}
-                        alt={`Imagen ${index + 1}`}
-                        style={{
-                          width:250, height:190,padding:"0px 5px"
-                          
-                        }}
+                        alt={`Image ${index + 1}`}
+                        className="preview-image"
                       />
-                    ))}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveImage(index)}
+                        className="btn btn-danger"
+                      >
+                        Delete
+                      </button>
                     </div>
-                )}
+                  ))}
+                </div>
+              )}
             </div>
             <div className="containerButton">
-                <button type="submit" >Send</button>
+              <button type="submit" className="genericButton">
+                Send
+              </button>
             </div>
-            </form>
-            </div>
-        </>
-        
-      )
-      
-}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default CharacteristicForm
+export default CharacteristicForm;

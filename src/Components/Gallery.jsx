@@ -9,6 +9,7 @@ import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
 import characteristics from "../Data/characteristics.json";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Gallery = () => {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -20,13 +21,9 @@ const Gallery = () => {
     image4,
   ]);
 
-  const renderCharacteristics = (data) => {
-    console.log(data);
-    const characteristicsArray = Object.values(characteristics);
-    return characteristicsArray.map((characteristic, index) => (
-      <li key={index}>
-        <span>{characteristic.name}</span>
-      </li>
+  const renderCharacteristics = () => {
+    return characteristics.map((characteristic, index) => (
+      <li key={index}>{characteristic.name}</li>
     ));
   };
 
@@ -69,40 +66,42 @@ const Gallery = () => {
           <h5 className="subtitleCard">Harmony</h5>
 
           {!showCarousel && (
-            <div className="containerImg">
-              <img src={image} alt="Main" className="imgHero" />
-              <div className="gridDetail">
-                {imagery.slice(1).map((image, index) => (
-                  <img
-                    key={index + 1}
-                    src={image}
-                    alt={`Image of room`}
-                    style={{
-                      width: "200px",
-                      height: "280px",
-                      borderRadius: "20px",
-                    }}
-                  />
-                ))}
+            <>
+              <div className="containerImg">
+                <img src={image} alt="Main" className="imgHero" />
+                <div className="gridDetail">
+                  {imagery.slice(1).map((image, index) => (
+                    <img
+                      key={index + 1}
+                      src={image}
+                      alt={`Image of room`}
+                      style={{
+                        width: "200px",
+                        height: "280px",
+                        borderRadius: "20px",
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
+              <div>
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Blanditiis vel nobis recusandae cupiditate consectetur iste
+                  quaerat explicabo. Eius, quaerat exercitationem placeat,
+                  distinctio doloremque hic sit unde inventore possimus, rem
+                  eos! Perferendis voluptatibus ducimus sed aperiam impedit
+                  officiis, sit suscipit exercitationem ratione, natus ad
+                  adipisci eveniet saepe voluptatum eum provident voluptates,
+                  nemo quaerat iste. Vitae laboriosam, dicta minus nihil
+                  officiis ipsam?
+                </span>
+              </div>
+            </>
           )}
-          {!showCarousel && (
-            <div>
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Blanditiis vel nobis recusandae cupiditate consectetur iste
-                quaerat explicabo. Eius, quaerat exercitationem placeat,
-                distinctio doloremque hic sit unde inventore possimus, rem eos!
-                Perferendis voluptatibus ducimus sed aperiam impedit officiis,
-                sit suscipit exercitationem ratione, natus ad adipisci eveniet
-                saepe voluptatum eum provident voluptates, nemo quaerat iste.
-                Vitae laboriosam, dicta minus nihil officiis ipsam?
-              </span>
-            </div>
-          )}
+
           <div className="buttonSeeMore">
-            <div className="containerButton">
+            <div className="containerButtonGallery">
               {!showCarousel && (
                 <button className="genericButton">Book Now</button>
               )}
@@ -113,39 +112,21 @@ const Gallery = () => {
             >
               {showCarousel ? (
                 <>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-arrow-left icon-space"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
-                    />
-                  </svg>
-                  &nbsp;Back
+                  <FaArrowLeft className="iconSpace" />
+                  &nbsp;Go Back
                 </>
               ) : (
                 "More Pictures"
               )}
             </button>
           </div>
-        </div>
-        <div className="features">
-          <h4>Características:</h4>
-          <ul>
-            <li>Aire Libre</li>
-            <li>Aire Acondicionado</li>
-            <li>Pizarra</li>
-            <li>Proyector</li>
-            <li>Sillas Ergonomicas</li>
-            <li>Sala Recreativa</li>
-            <li>Cafeteria</li>
-            <li>Wifi</li>
-          </ul>
+
+          {!showCarousel && (
+            <div className="features">
+              <h4>Características:</h4>
+              <ul>{renderCharacteristics()}</ul>
+            </div>
+          )}
         </div>
       </div>
 

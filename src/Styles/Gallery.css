@@ -47,7 +47,7 @@
   text-align: center;
 }
 
-.containerButton {
+.containerButtonGallery {
   display: flex;
   justify-content: center;
 }
@@ -103,6 +103,9 @@
   padding-left: 18px;
 }
 
+.features {
+  padding: 15px;
+}
 .features ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -116,6 +119,7 @@
   .slick-slider {
     width: 95%;
     padding-left: 0px;
+    padding-top: 10px;
   }
 }
 
@@ -156,5 +160,11 @@
   .titleCard,
   .subtitleCard {
     text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .features ul {
+    display: block;
   }
 }

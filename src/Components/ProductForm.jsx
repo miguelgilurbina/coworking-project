@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "../Styles/Form.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import "../Styles/header.css";
+import { FaArrowLeft } from "react-icons/fa";
 
 const ProductForm = () => {
   const [name, setName] = useState("");
@@ -38,7 +41,6 @@ const ProductForm = () => {
       prevImages.filter((image, i) => i !== index)
     );
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +56,13 @@ const ProductForm = () => {
   return (
     <>
       <div className="contenedorBody">
+        <div className="containerButton">
+          <Link to="/admin" className="genericButton link-flex">
+            <FaArrowLeft className="iconSpace" /> Go back
+          </Link>
+        </div>
         <h2 className="mb-4">Add new product</h2>
+
         <div className="containerForm">
           <form className="formProduct" onSubmit={handleSubmit}>
             <div className="form-column">
@@ -120,11 +128,11 @@ const ProductForm = () => {
               <div className="containerCheckbox characteristics">
                 <label>
                   <input type="checkBox" />
-                  Wifi
+                  Wi-Fi
                 </label>
                 <label>
                   <input type="checkBox" />
-                  Sillas Ergonomicas
+                  Sillas Ergonómicas
                 </label>
                 <label>
                   <input type="checkBox" />
@@ -148,7 +156,7 @@ const ProductForm = () => {
                 </label>
                 <label>
                   <input type="checkBox" />
-                  Cafeteria
+                  Cafetería
                 </label>
               </div>
 

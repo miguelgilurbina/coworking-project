@@ -2,9 +2,12 @@ import React from "react";
 import "../Styles/admin.css";
 import { Link } from "react-router-dom";
 import { FaPlus, FaList, FaEdit, FaExclamationTriangle } from "react-icons/fa";
+import { useAuth } from "../Components/Context/AuthContext";
 
 const Admin = () => {
   const isMobile = window.innerWidth <= 950;
+  // TODO: implementar cuando este logueado
+  const { user } = useAuth();
 
   return (
     <div className="contenedorBody contenedorMobile">
@@ -17,8 +20,17 @@ const Admin = () => {
         </div>
       ) : (
         <div className="AdminPage">
-          <h1>Hi Administrator!</h1>
-          <h3>What do you want to do today?</h3>
+          {user ? (
+            <>
+              <h2>Hi {user.name}!</h2>
+              <h4>What do you want to do today?</h4>
+            </>
+          ) : (
+            <>
+              <h2>Hi Administrator!</h2>
+              <h4>What do you want to do today?</h4>
+            </>
+          )}
           <div className="AdminOptions pt-5">
             <Link to="/form" className="admin-option-card">
               <div className="card-icon">

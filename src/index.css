@@ -7,7 +7,7 @@ body {
 .contenedorBody {
   flex-grow: 1;
   padding-top: 80px;
-  padding-bottom: 50px;
+  padding-bottom: 75px;
   padding-left: calc((100% - 1060px) / 2);
   padding-right: calc((100% - 1060px) / 2);
   z-index: 1;
@@ -60,7 +60,7 @@ h2 {
   text-align: center;
 }
 
-h4{
+h4 {
   font-family: "DM Serif Text", serif;
   text-align: center;
 }
@@ -89,4 +89,8 @@ h4{
 
 .form-control-lg {
   font-size: 1rem !important;
+}
+
+.iconSpace {
+  margin-right: 8px;
 }
