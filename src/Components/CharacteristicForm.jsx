@@ -3,7 +3,9 @@ import "../Styles/Form.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../Styles/header.css";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
+import IsMobile from "./IsMobile";
+
 
 const CharacteristicForm = () => {
   const [name, setName] = useState("");
@@ -12,6 +14,8 @@ const CharacteristicForm = () => {
     name: "",
     selectedImages: [],
   });
+
+  const isMobile = IsMobile();
 
   const handleImageUpload = (e) => {
     const files = e.target.files;
@@ -54,60 +58,70 @@ const CharacteristicForm = () => {
         </Link>
       </div>
       <h2 className="mb-4">New characteristic</h2>
-      <div className="containerForm justify-content-center">
-        <form onSubmit={handleSubmit}>
-          <div className="form-column">
-            <h4>Characteristic Form</h4>
-            <label htmlFor="name">Characteristic Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              className="mb-3"
-            />
-
-            <div className="image-preview">
-              <label htmlFor="images" style={{ marginRight: "6px" }}>
-                Upload Images
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handleImageUpload}
-                id="images"
-              />
-              {selectedImages.length > 0 && selectedImages.length < 6 && (
-                <div>
-                  <p>Selected Images</p>
-                  {selectedImages.map((image, index) => (
-                    <div key={index} className="image-preview-item">
-                      <img
-                        src={URL.createObjectURL(image)}
-                        alt={`Image ${index + 1}`}
-                        className="preview-image"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveImage(index)}
-                        className="btn btn-danger"
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className="containerButton">
-              <button type="submit" className="genericButton">
-                Send
-              </button>
-            </div>
+      
+      {isMobile ? (
+        <div className="mobile-message-card">
+          <div className="mobile-message-icon">
+            <FaExclamationTriangle />
           </div>
-        </form>
-      </div>
+          <h2>This view is not available on mobile devices.</h2>
+        </div>
+      ) : (
+        <div className="containerForm justify-content-center">
+          <form onSubmit={handleSubmit}>
+            <div className="form-column">
+              <h4>Characteristic Form</h4>
+              <label htmlFor="name">Characteristic Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+                className="mb-3"
+              />
+
+              <div className="image-preview">
+                <label htmlFor="images" style={{ marginRight: "6px" }}>
+                  Upload Images
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleImageUpload}
+                  id="images"
+                />
+                {selectedImages.length > 0 && selectedImages.length < 6 && (
+                  <div>
+                    <p>Selected Images</p>
+                    {selectedImages.map((image, index) => (
+                      <div key={index} className="image-preview-item">
+                        <img
+                          src={URL.createObjectURL(image)}
+                          alt={`Image ${index + 1}`}
+                          className="preview-image"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveImage(index)}
+                          className="btn btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="containerButton">
+                <button type="submit" className="genericButton">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

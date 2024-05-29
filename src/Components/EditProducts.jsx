@@ -10,8 +10,10 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import "../Styles/admin.css";
+import IsMobile from "./IsMobile";
+
 
 const EditProducts = () => {
   const [data, setData] = useState([
@@ -142,6 +144,7 @@ const EditProducts = () => {
       price: 100,
     },
   ]);
+  const isMobile = IsMobile();
 
   const [editIdx, setEditIdx] = useState(-1);
   const [draftData, setDraftData] = useState({});
@@ -197,75 +200,86 @@ const EditProducts = () => {
       </div>
       <h2 className="mb-4">Edit product</h2>
 
-      <TableContainer>
-        <Table>
-          <TableBody>
-            {data.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  {editIdx === index ? (
-                    <TextField
-                      name="name"
-                      value={draftData.name}
-                      onChange={handleEdit}
-                    />
-                  ) : (
-                    row.name
-                  )}
-                </TableCell>
-                <TableCell>
-                  {editIdx === index ? (
-                    <TextField
-                      name="description"
-                      value={draftData.description}
-                      onChange={handleEdit}
-                    />
-                  ) : (
-                    row.description
-                  )}
-                </TableCell>
-                <TableCell>
-                  {editIdx === index ? (
-                    <TextField
-                      name="quantity"
-                      value={draftData.quantity}
-                      onChange={handleEdit}
-                    />
-                  ) : (
-                    row.quantity
-                  )}
-                </TableCell>
-                <TableCell>
-                  {editIdx === index ? (
-                    <TextField
-                      name="price"
-                      value={draftData.price}
-                      onChange={handleEdit}
-                    />
-                  ) : (
-                    row.price
-                  )}
-                </TableCell>
-                <TableCell>
-                  {editIdx === index ? (
-                    <>
-                      <Button onClick={() => saveEdit(index)}>Guardar</Button>
-                      <Button onClick={cancelEdit}>Cancelar</Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button onClick={() => startEdit(index, row)}>
-                        Editar
-                      </Button>
-                      <Button onClick={() => deleteRow(index)}>Eliminar</Button>
-                    </>
-                  )}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      {isMobile ? (
+        <div className="mobile-message-card">
+          <div className="mobile-message-icon">
+            <FaExclamationTriangle />
+          </div>
+          <h2>This view is not available on mobile devices.</h2>
+        </div>
+      ) : (
+        <TableContainer>
+          <Table>
+            <TableBody>
+              {data.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    {editIdx === index ? (
+                      <TextField
+                        name="name"
+                        value={draftData.name}
+                        onChange={handleEdit}
+                      />
+                    ) : (
+                      row.name
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {editIdx === index ? (
+                      <TextField
+                        name="description"
+                        value={draftData.description}
+                        onChange={handleEdit}
+                      />
+                    ) : (
+                      row.description
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {editIdx === index ? (
+                      <TextField
+                        name="quantity"
+                        value={draftData.quantity}
+                        onChange={handleEdit}
+                      />
+                    ) : (
+                      row.quantity
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {editIdx === index ? (
+                      <TextField
+                        name="price"
+                        value={draftData.price}
+                        onChange={handleEdit}
+                      />
+                    ) : (
+                      row.price
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {editIdx === index ? (
+                      <>
+                        <Button onClick={() => saveEdit(index)}>Guardar</Button>
+                        <Button onClick={cancelEdit}>Cancelar</Button>
+                      </>
+                    ) : (
+                      <>
+                        <Button onClick={() => startEdit(index, row)}>
+                          Editar
+                        </Button>
+                        <Button onClick={() => deleteRow(index)}>
+                          Eliminar
+                        </Button>
+                      </>
+                    )}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      )}
     </div>
   );
 };
