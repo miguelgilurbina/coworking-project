@@ -28,15 +28,18 @@ const Category = () => {
   };
 
   return (
-    <div className="category">
-      {recommendData.map((category, index) => (
-        <CategoryCard
-          key={index}
-          title={category.title}
-          description={category.description}
-          srcImg={category.srcImg}
-        />
-      ))}
+    <div className="container containerRecommend"> 
+      <h2  className="mb-4">Categories</h2> 
+      <div className="category">
+        {recommendData.map((category, index) => (
+          <CategoryCard
+            key={index}
+            title={category.title}
+            description={category.description}
+            srcImg={category.srcImg}
+          />
+        ))}
+      </div>
     </div>
   );
 };

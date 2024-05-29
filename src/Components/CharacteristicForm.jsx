@@ -1,47 +1,89 @@
-import React, {useState} from 'react'
-import "../Styles/Form.css"
-import axios from 'axios';
+import React, { useState } from "react";
+import "../Styles/Form.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "../Styles/header.css";
+import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
+import IsMobile from "./IsMobile";
+
+
 const CharacteristicForm = () => {
-    const [name, setName] = useState('');
-    const [selectedImages, setSelectedImages] = useState([]);
-    const [formData, setFormData] = useState({
-        name: '',
-        selectedImages:[]
-      });
-      const handleImageUpload = (e) => {
-        const files = e.target.files;
-        if (files.length > 0 ) {
-          // Aqui convierte la lista de archivos en un array
-          const newImages = Array.from(files);
-          setSelectedImages((prevImages) => [...prevImages, ...newImages]);
-        }
-      };
-    
-      const handleChange = (e) => {
-        setFormData({
-          ...formData,
-          [e.target.name]: e.target.value
-        });
-      };
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-          const response = await axios.post('http://localhost:8080/api/login', formData);
-          console.log(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-        console.log(name,selectedImages);
-      };
-      return (
-        <>  
-        <div className="containerForm characteristicsForm" onSubmit={handleSubmit}>
-            <form action="">
-            <label htmlFor="name">Characteristic Name</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
-            <div className="image-preview">
-              <label htmlFor="images">Upload images</label>
+  const [name, setName] = useState("");
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    selectedImages: [],
+  });
+
+  const isMobile = IsMobile();
+
+  const handleImageUpload = (e) => {
+    const files = e.target.files;
+    if (files.length > 0) {
+      const newImages = Array.from(files);
+      setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleRemoveImage = (index) => {
+    setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/login",
+        formData
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(name, selectedImages);
+  };
+
+  return (
+    <div className="contenedorBody">
+      <div className="containerButton">
+        <Link to="/admin" className="genericButton link-flex">
+          <FaArrowLeft className="iconSpace" /> Go back
+        </Link>
+      </div>
+      <h2 className="mb-4">New characteristic</h2>
+      
+      {isMobile ? (
+        <div className="mobile-message-card">
+          <div className="mobile-message-icon">
+            <FaExclamationTriangle />
+          </div>
+          <h2>This view is not available on mobile devices.</h2>
+        </div>
+      ) : (
+        <div className="containerForm justify-content-center">
+          <form onSubmit={handleSubmit}>
+            <div className="form-column">
+              <h4>Characteristic Form</h4>
+              <label htmlFor="name">Characteristic Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+                className="mb-3"
+              />
+
+              <div className="image-preview">
+                <label htmlFor="images" style={{ marginRight: "6px" }}>
+                  Upload Images
+                </label>
                 <input
                   type="file"
                   accept="image/*"
@@ -49,32 +91,39 @@ const CharacteristicForm = () => {
                   onChange={handleImageUpload}
                   id="images"
                 />
-                {selectedImages.length > 0 && selectedImages.length < 6  &&  (
-                  <div >
-                    <p>Selected images</p>
+                {selectedImages.length > 0 && selectedImages.length < 6 && (
+                  <div>
+                    <p>Selected Images</p>
                     {selectedImages.map((image, index) => (
-                      <img
-                        key={index}
-                        src={URL.createObjectURL(image)}
-                        alt={`Imagen ${index + 1}`}
-                        style={{
-                          width:250, height:190,padding:"0px 5px"
-                          
-                        }}
-                      />
+                      <div key={index} className="image-preview-item">
+                        <img
+                          src={URL.createObjectURL(image)}
+                          alt={`Image ${index + 1}`}
+                          className="preview-image"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveImage(index)}
+                          className="btn btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </div>
                     ))}
-                    </div>
+                  </div>
                 )}
+              </div>
+              <div className="containerButton">
+                <button type="submit" className="genericButton">
+                  Send
+                </button>
+              </div>
             </div>
-            <div className="containerButton">
-                <button type="submit" >Send</button>
-            </div>
-            </form>
-            </div>
-        </>
-        
-      )
-      
-}
+          </form>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default CharacteristicForm
+export default CharacteristicForm;

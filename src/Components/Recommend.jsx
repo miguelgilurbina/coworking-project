@@ -4,8 +4,20 @@ import { useEffect , useState } from "react"
 import data from "../Data/recommendData.json"
 import Card from "./Card.jsx"
 import "../Styles/Recommend.css"
+
 const Recommend = () => {
+  const getItemsPerPage = (width) => {
+    if (width <= 340) return 2;
+    if (width <= 600) return 5;
+    return 10;
+  };
+
   const [recommendData, setRecommendData] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(
+    getItemsPerPage(window.innerWidth)
+  );
 
   useEffect (() => {
 
@@ -32,6 +44,21 @@ const Recommend = () => {
 
     // setRecommendData(shuffledData);
   },[])
+  useEffect(() => {
+    
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setItemsPerPage(getItemsPerPage(window.innerWidth));
+      setCurrentPage(1);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const shuffleArray = (array) => {
     const shuffledArray = [...array];
@@ -45,16 +72,42 @@ const Recommend = () => {
     return shuffledArray;
   };
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const getTotalPages = () => {
+    return Math.ceil(recommendData.length / itemsPerPage);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedData = recommendData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
   return (
-    <div className="contenedorBody">
+    <div className="container containerRecommend">
+      <h2 className="mb-4">Recommended rooms</h2>
+        <div className="recommend">
       {recommendData.map((item) => (
         <Card data={item} key={item.id} />
       ))}
+
+      {paginatedData.map((item) => (
+          <Card data={item} key={item.id} />
+        ))}
+      </div>
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={getTotalPages()}
+        onPageChange={handlePageChange}
+      />
       
     </div>
   );
 };
 
 export default Recommend;
-
 

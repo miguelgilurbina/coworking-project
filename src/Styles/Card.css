@@ -1,8 +1,12 @@
-/* TODO: cuidado con los nombres, ya que card es propio de boostrap */
 
 .card img {
-  height: 110px;
-  width: 110px;
+  height: 100%;
+
+}
+
+.cardHome{
+  width: 100%;
+  max-height: 175px;
 }
 
 .card-description {
@@ -28,5 +32,10 @@
   .card img {
     height: auto;
     width: auto;
+  }
+
+  .cardHome{
+    max-height: none;
+
   }
 }

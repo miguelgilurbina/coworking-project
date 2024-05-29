@@ -51,6 +51,13 @@ const ProductForm = () => {
           break;
       }
     }
+  const isMobile = IsMobile();
+  };
+
+  const handleImageDelete = (index) => {
+    setSelectedImages((prevImages) =>
+      prevImages.filter((image, i) => i !== index)
+    );
   };
 
   const handleSubmit = async (e) => {
@@ -77,184 +84,170 @@ const ProductForm = () => {
     } catch (error) {
       console.error("Error sending data:", error);
     }
+    console.log(name, description, quantity, price, selectedImages);
   };
 
   return (
-    <div className="containerForm">
-      <form onSubmit={handleSubmit}>
-        <h2>Welcome administrator</h2>
-        <p>Enter the details of the new salon</p>
-
-        <label htmlFor="name">Name</label>
-        <input 
-          type="text" 
-          name="name"
-          value={name} 
-          onChange={handleChange} 
-          placeholder="Name" 
-        />
-
-        <label htmlFor="description">Description</label>
-        <textarea 
-          name="description"
-          value={description} 
-          onChange={handleChange} 
-          placeholder="Description" 
-        />
-
-        <label htmlFor="price">Price</label>
-        <input 
-          type="number" 
-          name="price"
-          value={price} 
-          onChange={handleChange} 
-          placeholder="Price" 
-        />
-
-        <label htmlFor="quantity">Number of people</label>
-        <input 
-          type="number" 
-          name="quantity"
-          value={quantity} 
-          onChange={handleChange} 
-          placeholder="Number of people" 
-        />
-
-        <h4>Categories</h4>
-        <div className="containerCheckbox">
-          <label>
-            <input 
-            type="checkbox" 
-            name="category" 
-            value="Private Office" 
-            onChange={handleChange} />
-            Private Office
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="category" 
-            value="Meeting Room" 
-            onChange={handleChange} />
-            Meeting Room
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="category" 
-            value="Full Time" 
-            onChange={handleChange} />
-            Full Time
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="category" 
-            value="Lounge" 
-            onChange={handleChange} />
-            Lounge
-          </label>
-        </div>
-
-        <h4>Characteristics</h4>
-        <div className="containerCheckbox">
-          <label>
-            <input 
-            type="checkbox" 
-            name="characteristics" 
-            value="Wifi" 
-            onChange={handleChange} />
-            Wifi
-          </label>
-          <label>
-            <input 
-            type="checkbox"
-            name="characteristics" 
-            value="Sillas Ergonomicas" 
-            onChange={handleChange} />
-            Sillas Ergonomicas
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="characteristics" 
-            value="Aire Libre" 
-            onChange={handleChange} />
-            Aire Libre
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="characteristics" 
-            value="Aire Acondicionado" 
-            onChange={handleChange} />
-            Aire Acondicionado
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="characteristics" 
-            value="Proyector" 
-            onChange={handleChange} />
-            Proyector
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="characteristics" 
-            value="Pizarra" 
-            onChange={handleChange} />
-            Pizarra
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="characteristics" 
-            value="Sala Recreativa" 
-            onChange={handleChange} />
-            Sala Recreativa
-          </label>
-          <label>
-            <input 
-            type="checkbox" 
-            name="characteristics" 
-            value="Cafeteria" 
-            onChange={handleChange} />
-            Cafeteria
-          </label>
-        </div>
-
+    <>
+      <div className="contenedorBody">
         <div className="containerButton">
-          <button type="submit">Send</button>
+          <Link to="/admin" className="genericButton link-flex">
+            <FaArrowLeft className="iconSpace" /> Go back
+          </Link>
         </div>
-      </form>
+        <h2 className="mb-4">Add new product</h2>
 
-      <div className="image-preview">
-        <label htmlFor="images">Upload images</label>
-        <input
-          type="file"
-          accept="image/*"
-          multiple
-          onChange={handleImageUpload}
-          id="images"
-        />
-        {selectedImages.length > 0 && (
-          <div>
-            <p>Selected images</p>
-            {selectedImages.map((image, index) => (
-              <img
-                key={index}
-                src={URL.createObjectURL(image)}
-                alt={`Imagen ${index + 1}`}
-                style={{ width: 250, height: 190, padding: "0px 5px" }}
-              />
-            ))}
+        {isMobile ? (
+          <div className="mobile-message-card">
+            <div className="mobile-message-icon">
+              <FaExclamationTriangle />
+            </div>
+            <h2>This view is not available on mobile devices.</h2>
+          </div>
+        ) : (
+          <div className="containerForm">
+            <form className="formProduct" onSubmit={handleSubmit}>
+              <div className="form-column">
+                <h4>Enter the details of the new salon</h4>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Name"
+                  name="name"
+                />
+
+                <label htmlFor="description">Description</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Description"
+                  name="description"
+                />
+
+                <label htmlFor="price">Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder="Price"
+                  name="price"
+                />
+
+                <label htmlFor="quantity">Number of people</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  placeholder="Number of people"
+                  name="quantity"
+                />
+
+                <h4>Categories</h4>
+                <div className="containerCheckbox">
+                  <label>
+                    <input type="checkBox" />
+                    Private Office
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Meeting Room
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Full Time
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Lounge
+                  </label>
+                </div>
+
+                <h4>Characteristics</h4>
+                <div className="containerCheckbox characteristics">
+                  <label>
+                    <input type="checkBox" />
+                    Wi-Fi
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Sillas Ergonómicas
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Aire Libre
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Aire Acondicionado
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Proyector
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Pizarra
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Sala Recreativa
+                  </label>
+                  <label>
+                    <input type="checkBox" />
+                    Cafetería
+                  </label>
+                </div>
+
+                <div className="containerButton">
+                  <button className="genericButton" type="submit">
+                    Send
+                  </button>
+                </div>
+              </div>
+
+              <div className="form-column">
+                <div className="image-upload">
+                  <label htmlFor="images">Upload images</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageUpload}
+                    id="images"
+                  />
+                  {selectedImages.length > 0 && selectedImages.length < 6 && (
+                    <div>
+                      <p>Selected images</p>
+                      {selectedImages.map((image, index) => (
+                        <div key={index} className="image-preview-container">
+                          <img
+                            src={URL.createObjectURL(image)}
+                            alt={`Imagen ${index + 1}`}
+                            className="preview-image"
+                          />
+                          <button
+                            onClick={() => handleImageDelete(index)}
+                            className="btn btn-danger"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </form>
           </div>
         )}
       </div>
-    </div>
+    </>
   );
-}
+};
 
 export default ProductForm;
 
