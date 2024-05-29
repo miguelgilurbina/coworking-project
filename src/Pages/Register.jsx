@@ -3,7 +3,7 @@ import RegisterForm from '../Components/RegisterForm'
 const Register = () => {
   return (
     <div>
-      <RegisterForm></RegisterForm>
+      <RegisterForm/>
     </div>
   )
 }

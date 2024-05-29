@@ -57,12 +57,17 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     validatePassword(formData.password);
+
     if (Object.keys(errors).every(key => errors[key].length === 0)) {
       try {
-        const response = await axios.post('http://localhost:8080/api/register', formData);
+        const response = await axios.post('https://reqres.in/api/users', formData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
         console.log(response.data);
       } catch (error) {
-        console.error(error);
+        console.error("Error sending data:", error);
       }
     }
   };
@@ -101,7 +106,6 @@ const RegisterForm = () => {
       <button type="submit" className='submit-container'>Register</button>
     </form>
   );
- 
 };
 
 export default RegisterForm;
