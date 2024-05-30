@@ -2,7 +2,6 @@ import { useState } from "react";
 import "../Styles/Form.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../Styles/header.css";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
 
@@ -82,7 +81,6 @@ const ProductForm = () => {
       setError("An error occurred while submitting the form.");
     }
   };
-
   return (
     <>
       <div className="contenedorBody">
