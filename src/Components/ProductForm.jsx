@@ -35,7 +35,7 @@ const ProductForm = () => {
     setSelectedImages((prevImages) =>
       prevImages.filter((image, i) => i !== index)
     );
-    setImageError(""); // Clear the error message if any image is deleted
+    setImageError("");
   };
 
   const handleSubmit = async (e) => {
@@ -44,7 +44,9 @@ const ProductForm = () => {
 
     // Check if the product name already exists
     try {
-      const existingProductResponse = await axios.get(`http://localhost:8080/products?name=${name}`);
+      const existingProductResponse = await axios.get(
+        `http://localhost:8080/products?name=${name}`
+      );
       if (existingProductResponse.data.length > 0) {
         setError("Product with this name already exists.");
         return;
@@ -55,7 +57,6 @@ const ProductForm = () => {
       return;
     }
 
-    // Proceed with form submission
     try {
       const formData = new FormData();
       formData.append("name", name);
@@ -66,11 +67,15 @@ const ProductForm = () => {
         formData.append(`image${index}`, image);
       });
 
-      const response = await axios.post("http://localhost:8080/sala", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      const response = await axios.post(
+        "http://localhost:8080/sala",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -114,8 +119,9 @@ const ProductForm = () => {
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Description"
+                  placeholder="Description maximum of 250 characters"
                   name="description"
+                  maxLength="250"
                   required
                 />
 
@@ -124,9 +130,10 @@ const ProductForm = () => {
                   type="number"
                   id="price"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => setPrice(Math.max(0, e.target.value))}
                   placeholder="Price"
                   name="price"
+                  min="0"
                   required
                 />
 
@@ -135,9 +142,10 @@ const ProductForm = () => {
                   type="number"
                   id="quantity"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => setQuantity(Math.max(0, e.target.value))}
                   placeholder="Number of people"
                   name="quantity"
+                  min="0"
                   required
                 />
 
