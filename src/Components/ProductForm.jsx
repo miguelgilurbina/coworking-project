@@ -2,10 +2,8 @@ import { useState } from "react";
 import "../Styles/Form.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../Styles/header.css";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
-
 
 const ProductForm = () => {
   const [name, setName] = useState("");
@@ -13,42 +11,34 @@ const ProductForm = () => {
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
-
   const isMobile = IsMobile();
 
   const handleImageUpload = (e) => {
     const files = e.target.files;
     if (files.length > 0) {
-      // Aqui convierte la lista de archivos en un array
       const newImages = Array.from(files);
       setSelectedImages((prevImages) => [...prevImages, ...newImages]);
     }
   };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleImageDelete = (index) => {
-    setSelectedImages((prevImages) =>
-      prevImages.filter((image, i) => i !== index)
-    );
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = {
+      name,
+      description,
+      quantity: parseInt(quantity),
+      price: parseFloat(price),
+      images: selectedImages.map((image) => image.name), // assuming images have 'name' property
+    };
+    console.log("Form Data:", formData); // Logging the form data before sending
+
     try {
-      const response = await axios.post("http://localhost:8080/sala", formData);
+      const response = await axios.post("http://localhost:3003/data", formData);
       console.log(response.data);
     } catch (error) {
       console.error(error);
     }
-    console.log(name, description, quantity, price, selectedImages);
   };
-
   return (
     <>
       <div className="contenedorBody">

@@ -1,14 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import "../Styles/LoginSignUp.css";
-import user_icon from "../Assets/person.png";
-import password_icon from "../Assets/password.png";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
 import { FaExclamationCircle } from "react-icons/fa";
-
-
-// import axios from "axios";
+import user_icon from "../Assets/person.png";
+import password_icon from "../Assets/password.png";
 
 const LoginForm = () => {
   const { login } = useAuth();
@@ -16,7 +11,6 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -27,40 +21,17 @@ const LoginForm = () => {
     });
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:8080/api/login",
-  //       formData
-  //     );
-  //     login(response.data.user);
-  //     navigate("/home");
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     setError("Incorrect email or password. Please try again");
-  //     console.error(error);
-  //   }
-  // };
-
-  // TODO: codigo temporal para probar el login
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (
-      formData.email === "example@email.com" &&
-      formData.password === "password"
-    ) {
-      login(formData.email);
-      setError("");
+    setError("");
+    try {
+      // Llamar a la función de inicio de sesión del contexto de autenticación
+      await login(formData);
+      // Redirigir al usuario después de iniciar sesión
       navigate("/home");
-    } else {
-      setError(
-        <>
-          <FaExclamationCircle style={{ marginRight: "8px", marginBottom: "4px" }} />
-          Invalid email or password.
-        </>
-      );
+    } catch (error) {
+      // Manejar errores de inicio de sesión
+      setError("Invalid email or password.");
     }
   };
 
@@ -125,6 +96,9 @@ const LoginForm = () => {
 
               {error && (
                 <div className="error-message" style={{ color: "red" }}>
+                  <FaExclamationCircle
+                    style={{ marginRight: "8px", marginBottom: "4px" }}
+                  />
                   {error}
                 </div>
               )}
@@ -154,3 +128,21 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+// const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   try {
+  //     const response = await axios.post(
+  //       "http://localhost:8080/api/login",
+  //       formData
+  //     );
+  //     login(response.data.user);
+  //     navigate("/home");
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     setError("Incorrect email or password. Please try again");
+  //     console.error(error);
+  //   }
+  // };
+
+  // TODO: codigo temporal para probar el login

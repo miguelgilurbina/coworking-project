@@ -7,13 +7,15 @@ import "../Styles/RegisterForm.css";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
   });
 
   const [errors, setErrors] = useState({
-    username: [],
+    firstName: [],
+    lastName: [],
     email: [],
     password: [],
   });
@@ -75,15 +77,39 @@ const RegisterForm = () => {
     validatePassword(formData.password);
     if (Object.keys(errors).every((key) => errors[key].length === 0)) {
       try {
+        console.log("Submitting Form Data:", formData); // Log the form data
+  
+        // Fetch the last user ID from the database or server
+        const lastUserIdResponse = await axios.get("http://localhost:3001/usuarios");
+        const lastUserId = lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
+  
+        // Generate a new ID by incrementing the last ID
+        const newUserId = lastUserId + 1;
+  
+        // Send the user data with the new ID
         const response = await axios.post(
-          "http://localhost:8080/api/register",
-          formData
+          "http://localhost:3001/usuarios",
+          {
+            id: newUserId,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            password: formData.password,
+            isAdmin: false
+          }
         );
-        console.log(response.data);
+        console.log("Response from Server:", response.data); // Log the server response
       } catch (error) {
         console.error(error);
       }
     }
+  };
+
+  const generateId = () => {
+    // Logic to generate ID (for example, adding 1 to the last ID in the API)
+    // You may need to fetch the last ID from the API or maintain it in your React state
+    // For simplicity, let's assume the last ID is 100
+    return 100 + 1;
   };
 
   const renderErrors = (errorMessages) => {
@@ -118,9 +144,6 @@ const RegisterForm = () => {
         </div>
         <div className="p-3 container">
           <div className="mt-5">
-
-
-
             <form onSubmit={handleSubmit}>
               <div className="d-flex align-items-center mb-3 pb-1">
                 <img
@@ -139,16 +162,31 @@ const RegisterForm = () => {
 
               <div data-mdb-input-init className="form-outline mb-4">
                 <label className="form-label">
-                  <img src={user_icon} alt="user_icon" /> Username
+                  <img src={user_icon} alt="user_icon" /> First Name
                 </label>
                 <input
                   type="text"
-                  name="username"
-                  id="formUserName"
+                  name="firstName"
+                  id="formFirstName"
                   className="form-control form-control-lg"
-                  value={formData.username}
+                  value={formData.firstName}
                   onChange={handleChange}
-                  placeholder="Ex: Juan Perez"
+                  placeholder="Ex: Juan"
+                />
+              </div>
+
+              <div data-mdb-input-init className="form-outline mb-4">
+                <label className="form-label">
+                  <img src={user_icon} alt="user_icon" /> Last Name
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  id="formLastName"
+                  className="form-control form-control-lg"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Ex: Perez"
                 />
               </div>
 
@@ -166,7 +204,7 @@ const RegisterForm = () => {
                   placeholder="Ex: example@email.com"
                 />
               </div>
-              
+
               <div className="error-container">
                 {errors.email.length > 0 && (
                   <div className="email-errors">
@@ -204,7 +242,7 @@ const RegisterForm = () => {
                   data-mdb-button-init
                   data-mdb-ripple-init
                   className="btn btn-warning btn-lg btn-block mt-2"
-                  type="button"
+                  type="submit" // Changed type to submit
                 >
                   Register
                 </button>
@@ -215,7 +253,6 @@ const RegisterForm = () => {
       </div>
     </div>
   );
- 
 };
 
 export default RegisterForm;
