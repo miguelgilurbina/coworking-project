@@ -29,11 +29,17 @@ const RegisterForm = () => {
       [name]: value,
     });
 
-    if (name === "username") {
-      const errorMessage = validateUsername(value);
+    if (name === "firstName") {
+      const errorMessage = validateName(value, "First");
       setErrors({
         ...errors,
-        username: errorMessage ? [errorMessage] : [],
+        firstName: errorMessage ? [errorMessage] : [],
+      });
+    } else if (name === "lastName") {
+      const errorMessage = validateName(value, "Last");
+      setErrors({
+        ...errors,
+        lastName: errorMessage ? [errorMessage] : [],
       });
     } else if (name === "email") {
       const errorMessage = validateEmail(value);
@@ -46,14 +52,14 @@ const RegisterForm = () => {
     }
   };
 
-  const validateUsername = (username) => {
-    const usernameRegex = /^[a-zA-Z]+$/;
+  const validateName = (name, fieldName) => {
+    const nameRegex = /^[a-zA-Z]+$/;
 
-    if (username.length < 2) {
-      return "Username must have at least 2 characters.";
+    if (name.length < 2) {
+      return `${fieldName} name must have at least 2 characters.`;
     }
-    if (!usernameRegex.test(username)) {
-      return "Username can only contain letters.";
+    if (!nameRegex.test(name)) {
+      return `${fieldName} name can only contain letters.`;
     }
 
     return null;
@@ -98,44 +104,39 @@ const RegisterForm = () => {
     if (Object.keys(errors).every((key) => errors[key].length === 0)) {
       try {
         console.log("Submitting Form Data:", formData); // Log the form data
-  
+
         // Fetch the last user ID from the database or server
-        const lastUserIdResponse = await axios.get("http://localhost:3001/usuarios");
-        const lastUserId = lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
-  
+        const lastUserIdResponse = await axios.get(
+          "http://localhost:3001/usuarios"
+        );
+        const lastUserId =
+          lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
+
         // Generate a new ID by incrementing the last ID
         const newUserId = lastUserId + 1;
-  
+
         // Send the user data with the new ID
-        const response = await axios.post(
-          "http://localhost:3001/usuarios",
-          {
-            id: newUserId,
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            email: formData.email,
-            password: formData.password,
-            isAdmin: false
-          }
-        );
+        const response = await axios.post("http://localhost:3001/usuarios", {
+          id: newUserId,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          isAdmin: false,
+        });
         console.log("Response from Server:", response.data); // Log the server response
       } catch (error) {
         console.error(error);
       }
     } else {
+      console.log("Form submission halted due to errors.");
       setErrors({
-        username: usernameError ? [usernameError] : [],
-        email: emailError ? [emailError] : [],
-        password: passwordError,
+        firstName: errors.firstName,
+        lastName: errors.lastName,
+        email: errors.email ? [errors.email] : [],
+        password: errors.password,
       });
     }
-  };
-
-  const generateId = () => {
-    // Logic to generate ID (for example, adding 1 to the last ID in the API)
-    // You may need to fetch the last ID from the API or maintain it in your React state
-    // For simplicity, let's assume the last ID is 100
-    return 100 + 1;
   };
 
   const renderErrors = (errorMessages) => {
@@ -199,6 +200,15 @@ const RegisterForm = () => {
                 />
               </div>
 
+              <div className="error-container">
+                {errors.firstName.length > 0 && (
+                  <div>
+                    <strong>First Name Errors:</strong>
+                    {renderErrors(errors.firstName)}
+                  </div>
+                )}
+              </div>
+
               <div data-mdb-input-init className="form-outline mb-4">
                 <label className="form-label">
                   <img src={user_icon} alt="user_icon" /> Last Name
@@ -213,6 +223,15 @@ const RegisterForm = () => {
                   placeholder="Ex: Perez"
                   required
                 />
+              </div>
+
+              <div className="error-container">
+                {errors.lastName.length > 0 && (
+                  <div>
+                    <strong>Last Name Errors:</strong>
+                    {renderErrors(errors.lastName)}
+                  </div>
+                )}
               </div>
 
               <div data-mdb-input-init className="form-outline mb-3">
@@ -233,7 +252,7 @@ const RegisterForm = () => {
 
               <div className="error-container">
                 {errors.email.length > 0 && (
-                  <div className="email-errors">
+                  <div>
                     <strong>Email Errors:</strong>
                     {renderErrors(errors.email)}
                   </div>
@@ -258,7 +277,7 @@ const RegisterForm = () => {
 
               <div className="error-container">
                 {errors.password.length > 0 && (
-                  <div className="password-errors">
+                  <div>
                     <strong>Password Errors:</strong>
                     {renderErrors(errors.password)}
                   </div>
