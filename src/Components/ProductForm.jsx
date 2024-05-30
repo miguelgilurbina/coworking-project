@@ -39,42 +39,8 @@ const ProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-
-    // Check if the product name already exists
     try {
-      const existingProductResponse = await axios.get(
-        `http://localhost:8080/products?name=${name}`
-      );
-      if (existingProductResponse.data.length > 0) {
-        setError("Product with this name already exists.");
-        return;
-      }
-    } catch (err) {
-      console.error(err);
-      setError("An error occurred while checking for existing products.");
-      return;
-    }
-
-    try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("description", description);
-      formData.append("quantity", quantity);
-      formData.append("price", price);
-      selectedImages.forEach((image, index) => {
-        formData.append(`image${index}`, image);
-      });
-
-      const response = await axios.post(
-        "http://localhost:8080/sala",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("http://localhost:8080/sala", formData);
       console.log(response.data);
     } catch (error) {
       console.error(error);

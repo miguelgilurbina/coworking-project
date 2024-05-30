@@ -1,14 +1,14 @@
 {
   "usuarios": [
     {
-      "id": 1,
+      "id": "1",
       "first_name": "Twila",
       "last_name": "Saben",
       "email": "tsaben0@jalbum.net",
       "isAdmin": false
     },
     {
-      "id": 2,
+      "id": "2",
       "first_name": "Haleigh",
       "last_name": "Dow",
       "email": "hdow1@csmonitor.com",
@@ -16,7 +16,7 @@
       "isAdmin": false
     },
     {
-      "id": 3,
+      "id": "3",
       "first_name": "Dannie",
       "last_name": "Dunan",
       "email": "ddunan2@webnode.com",
@@ -24,7 +24,7 @@
       "isAdmin": false
     },
     {
-      "id": 4,
+      "id": "4",
       "first_name": "Bendicty",
       "last_name": "Papworth",
       "email": "bpapworth3@geocities.com",
@@ -32,7 +32,7 @@
       "isAdmin": false
     },
     {
-      "id": 5,
+      "id": "5",
       "first_name": "Melany",
       "last_name": "Martinon",
       "email": "mmartinon4@soundcloud.com",
@@ -40,7 +40,7 @@
       "isAdmin": false
     },
     {
-      "id": 6,
+      "id": "6",
       "first_name": "Bethany",
       "last_name": "Orum",
       "email": "borum5@networksolutions.com",
@@ -48,7 +48,7 @@
       "isAdmin": false
     },
     {
-      "id": 7,
+      "id": "7",
       "first_name": "Betteann",
       "last_name": "Casley",
       "email": "bcasley6@newyorker.com",
@@ -56,7 +56,7 @@
       "isAdmin": false
     },
     {
-      "id": 8,
+      "id": "8",
       "first_name": "Lyndsie",
       "last_name": "McWhan",
       "email": "lmcwhan7@ihg.com",
@@ -64,7 +64,7 @@
       "isAdmin": false
     },
     {
-      "id": 9,
+      "id": "9",
       "first_name": "Pamella",
       "last_name": "Nizet",
       "email": "pnizet8@cpanel.net",
@@ -72,7 +72,7 @@
       "isAdmin": false
     },
     {
-      "id": 10,
+      "id": "10",
       "first_name": "Janette",
       "last_name": "Southcott",
       "email": "jsouthcott9@indiegogo.com",
@@ -80,7 +80,7 @@
       "isAdmin": false
     },
     {
-      "id": 11,
+      "id": "11",
       "first_name": "Randene",
       "last_name": "Mandres",
       "email": "rmandresa@altervista.org",
@@ -88,7 +88,7 @@
       "isAdmin": false
     },
     {
-      "id": 12,
+      "id": "12",
       "first_name": "Evangelin",
       "last_name": "Plak",
       "email": "eplakb@samsung.com",
@@ -96,7 +96,7 @@
       "isAdmin": false
     },
     {
-      "id": 13,
+      "id": "13",
       "first_name": "Jacklyn",
       "last_name": "Sacco",
       "email": "jsaccoc@over-blog.com",
@@ -104,7 +104,7 @@
       "isAdmin": false
     },
     {
-      "id": 14,
+      "id": "14",
       "first_name": "Mirilla",
       "last_name": "Eadmead",
       "email": "meadmeadd@walmart.com",
@@ -112,7 +112,7 @@
       "isAdmin": false
     },
     {
-      "id": 15,
+      "id": "15",
       "first_name": "Lanita",
       "last_name": "Landers",
       "email": "llanderse@mapy.cz",
@@ -120,14 +120,14 @@
       "isAdmin": false
     },
     {
-      "id": 16,
+      "id": "16",
       "first_name": "Enzo",
       "last_name": "Fernandez",
       "email": "enzitofernandez287@gmail.com",
       "password": "Password123"
     },
     {
-      "id": 17,
+      "id": "17",
       "first_name": "Enzo",
       "last_name": "Fernandez",
       "email": "enzitofernandez288@gmail.com",
@@ -135,12 +135,28 @@
       "isAdmin": true
     },
     {
-      "id": 18,
+      "id": "18",
       "first_name": "Miguel",
       "last_name": "Gil",
       "email": "miguegil@gmail.com",
       "password": "Password1234",
       "isAdmin": false
+    },
+    {
+      "id": "181",
+      "first_name": "Karina",
+      "last_name": "Lopez",
+      "email": "example@email.com",
+      "password": "Password1",
+      "isAdmin": false
+    },
+    {
+      "id": "1811",
+      "first_name": "Karina",
+      "last_name": "Lopez",
+      "email": "example@email.com",
+      "password": "Password1",
+      "isAdmin": true
     }
   ]
 }
