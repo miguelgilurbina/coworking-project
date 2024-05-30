@@ -3,6 +3,7 @@ import axios from "axios"
 import { useEffect , useState } from "react"
 import data from "../Data/recommendData.json"
 import Card from "./Card.jsx"
+import Pagination from "./Pagination.jsx"
 import "../Styles/Recommend.css"
 
 const Recommend = () => {

@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa"; 
+import IsMobile from "./IsMobile";
 import '../Styles/Form.css';
 import axios from 'axios'
 
@@ -51,9 +54,9 @@ const ProductForm = () => {
           break;
       }
     }
-  const isMobile = IsMobile();
+ 
   };
-
+  const isMobile = IsMobile();
   const handleImageDelete = (index) => {
     setSelectedImages((prevImages) =>
       prevImages.filter((image, i) => i !== index)
@@ -203,7 +206,7 @@ const ProductForm = () => {
                 </div>
 
                 <div className="containerButton">
-                  <button className="genericButton" type="submit">
+                  <button className="genericButton" type="submit" onClick={handleSubmit}>
                     Send
                   </button>
                 </div>

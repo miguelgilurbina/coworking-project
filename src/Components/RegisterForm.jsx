@@ -203,6 +203,7 @@ const RegisterForm = () => {
               </div>
               <div className="pt-1 mb-4">
                 <button
+                  onClick={handleSubmit}
                   data-mdb-button-init
                   data-mdb-ripple-init
                   className="btn btn-warning btn-lg btn-block mt-2"
