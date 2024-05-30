@@ -41,21 +41,6 @@ const ProductForm = () => {
     e.preventDefault();
     setError("");
 
-    // Check if the product name already exists
-    try {
-      const existingProductResponse = await axios.get(
-        `http://localhost:8080/products?name=${name}`
-      );
-      if (existingProductResponse.data.length > 0) {
-        setError("Product with this name already exists.");
-        return;
-      }
-    } catch (err) {
-      console.error(err);
-      setError("An error occurred while checking for existing products.");
-      return;
-    }
-
     try {
       const formData = new FormData();
       formData.append("name", name);
@@ -67,7 +52,7 @@ const ProductForm = () => {
       });
 
       const response = await axios.post(
-        "http://localhost:8080/sala",
+        "http://localhost:3003/data",
         formData,
         {
           headers: {
@@ -80,8 +65,7 @@ const ProductForm = () => {
       console.error(error);
       setError("An error occurred while submitting the form.");
     }
-  };
-  return (
+  };  return (
     <>
       <div className="contenedorBody">
         <div className="containerButton">

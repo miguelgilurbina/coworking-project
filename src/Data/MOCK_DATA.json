@@ -1,69 +1,6 @@
 {
   "usuarios": [
     {
-      "id": "1",
-      "first_name": "Twila",
-      "last_name": "Saben",
-      "email": "tsaben0@jalbum.net",
-      "isAdmin": false
-    },
-    {
-      "id": "2",
-      "first_name": "Haleigh",
-      "last_name": "Dow",
-      "email": "hdow1@csmonitor.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "3",
-      "first_name": "Dannie",
-      "last_name": "Dunan",
-      "email": "ddunan2@webnode.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "4",
-      "first_name": "Bendicty",
-      "last_name": "Papworth",
-      "email": "bpapworth3@geocities.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "5",
-      "first_name": "Melany",
-      "last_name": "Martinon",
-      "email": "mmartinon4@soundcloud.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "6",
-      "first_name": "Bethany",
-      "last_name": "Orum",
-      "email": "borum5@networksolutions.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "7",
-      "first_name": "Betteann",
-      "last_name": "Casley",
-      "email": "bcasley6@newyorker.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "8",
-      "first_name": "Lyndsie",
-      "last_name": "McWhan",
-      "email": "lmcwhan7@ihg.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
       "id": "9",
       "first_name": "Pamella",
       "last_name": "Nizet",
@@ -120,19 +57,28 @@
       "isAdmin": false
     },
     {
-      "id": "16",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez287@gmail.com",
-      "password": "Password123"
+      "id": "6",
+      "first_name": "Bethany",
+      "last_name": "Orum",
+      "email": "borum5@networksolutions.com",
+      "password": "password",
+      "isAdmin": false
     },
     {
-      "id": "17",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez288@gmail.com",
-      "password": "Password123",
+      "id": "8",
+      "first_name": "Lyndsie",
+      "last_name": "McWhan",
+      "email": "lmcwhan7@ihg.com",
+      "password": "password",
       "isAdmin": true
+    },
+    {
+      "id": "7",
+      "first_name": "Betteann",
+      "last_name": "Casley",
+      "email": "bcasley6@newyorker.com",
+      "password": "password",
+      "isAdmin": false
     },
     {
       "id": "18",
@@ -148,7 +94,23 @@
       "last_name": "Salandro",
       "email": "juanisalandro@gmail.com",
       "password": "Password123",
+      "isAdmin": true
+    },
+    {
+      "id": "17",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez288@gmail.com",
+      "password": "Password123",
       "isAdmin": false
+    },
+    {
+      "id": "16",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez287@gmail.com",
+      "password": "Password123",
+      "isAdmin": true
     }
   ]
 }
