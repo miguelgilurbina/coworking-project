@@ -138,13 +138,6 @@ const RegisterForm = () => {
     return 100 + 1;
   };
 
-  const generateId = () => {
-    // Logic to generate ID (for example, adding 1 to the last ID in the API)
-    // You may need to fetch the last ID from the API or maintain it in your React state
-    // For simplicity, let's assume the last ID is 100
-    return 100 + 1;
-  };
-
   const renderErrors = (errorMessages) => {
     return errorMessages.map((message, index) => (
       <div key={index} className="error">
@@ -202,6 +195,7 @@ const RegisterForm = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="Ex: Juan"
+                  required
                 />
               </div>
 
@@ -217,16 +211,8 @@ const RegisterForm = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   placeholder="Ex: Perez"
+                  required
                 />
-              </div>
-
-              <div className="error-container">
-                {errors.username.length > 0 && (
-                  <div className="username-errors">
-                    <strong>Username Errors:</strong>
-                    {renderErrors(errors.username)}
-                  </div>
-                )}
               </div>
 
               <div data-mdb-input-init className="form-outline mb-3">
@@ -241,6 +227,7 @@ const RegisterForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Ex: example@email.com"
+                  required
                 />
               </div>
 
@@ -265,6 +252,7 @@ const RegisterForm = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="1 uppercase letter, 1 lowercase letter, 1 number"
+                  required
                 />
               </div>
 
