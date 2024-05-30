@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { FaExclamationCircle } from "react-icons/fa";
 import user_icon from "../Assets/person.png";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
@@ -26,15 +27,34 @@ const RegisterForm = () => {
       [name]: value,
     });
 
-    if (name === "password") {
-      validatePassword(value);
+    if (name === "username") {
+      const errorMessage = validateUsername(value);
+      setErrors({
+        ...errors,
+        username: errorMessage ? [errorMessage] : [],
+      });
     } else if (name === "email") {
       const errorMessage = validateEmail(value);
       setErrors({
         ...errors,
         email: errorMessage ? [errorMessage] : [],
       });
+    } else if (name === "password") {
+      validatePassword(value);
     }
+  };
+
+  const validateUsername = (username) => {
+    const usernameRegex = /^[a-zA-Z]+$/;
+
+    if (username.length < 2) {
+      return "Username must have at least 2 characters.";
+    }
+    if (!usernameRegex.test(username)) {
+      return "Username can only contain letters.";
+    }
+
+    return null;
   };
 
   const validateEmail = (email) => {
@@ -72,8 +92,11 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    validatePassword(formData.password);
-    if (Object.keys(errors).every((key) => errors[key].length === 0)) {
+    const usernameError = validateUsername(formData.username);
+    const emailError = validateEmail(formData.email);
+    const passwordError = validatePassword(formData.password);
+
+    if (!usernameError && !emailError && passwordError.length === 0) {
       try {
         const response = await axios.post(
           "http://localhost:8080/api/register",
@@ -83,27 +106,30 @@ const RegisterForm = () => {
       } catch (error) {
         console.error(error);
       }
+    } else {
+      setErrors({
+        username: usernameError ? [usernameError] : [],
+        email: emailError ? [emailError] : [],
+        password: passwordError,
+      });
     }
   };
 
   const renderErrors = (errorMessages) => {
     return errorMessages.map((message, index) => (
       <div key={index} className="error">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="bi bi-exclamation-lg"
-          viewBox="0 0 16 16"
-          style={{ marginRight: "5px" }}
-        >
-          <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0zM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0" />
-        </svg>
+        <FaExclamationCircle
+          size={16}
+          style={{ marginRight: "5px", color: "red" }}
+        />
         {message}
       </div>
     ));
   };
+
+  const hasErrors = Object.values(errors).some(
+    (errorArray) => errorArray.length > 0
+  );
 
   return (
     <div className="card" style={{ borderRadius: "1rem" }}>
@@ -118,9 +144,6 @@ const RegisterForm = () => {
         </div>
         <div className="p-3 container">
           <div className="mt-5">
-
-
-
             <form onSubmit={handleSubmit}>
               <div className="d-flex align-items-center mb-3 pb-1">
                 <img
@@ -137,7 +160,7 @@ const RegisterForm = () => {
                 The Co-Working experience start here
               </h5>
 
-              <div data-mdb-input-init className="form-outline mb-4">
+              <div data-mdb-input-init className="form-outline mb-3">
                 <label className="form-label">
                   <img src={user_icon} alt="user_icon" /> Username
                 </label>
@@ -152,7 +175,16 @@ const RegisterForm = () => {
                 />
               </div>
 
-              <div data-mdb-input-init className="form-outline mb-4">
+              <div className="error-container">
+                {errors.username.length > 0 && (
+                  <div className="username-errors">
+                    <strong>Username Errors:</strong>
+                    {renderErrors(errors.username)}
+                  </div>
+                )}
+              </div>
+
+              <div data-mdb-input-init className="form-outline mb-3">
                 <label className="form-label">
                   <img src={email_icon} alt="email_icon" /> Email address
                 </label>
@@ -176,7 +208,7 @@ const RegisterForm = () => {
                 )}
               </div>
 
-              <div data-mdb-input-init className="form-outline mb-4">
+              <div data-mdb-input-init className="form-outline mb-3">
                 <label className="form-label">
                   <img src={password_icon} alt="password_icon" /> Password
                 </label>
@@ -204,7 +236,8 @@ const RegisterForm = () => {
                   data-mdb-button-init
                   data-mdb-ripple-init
                   className="btn btn-warning btn-lg btn-block mt-2"
-                  type="button"
+                  type="submit"
+                  disabled={hasErrors}
                 >
                   Register
                 </button>
@@ -215,7 +248,6 @@ const RegisterForm = () => {
       </div>
     </div>
   );
- 
 };
 
 export default RegisterForm;
