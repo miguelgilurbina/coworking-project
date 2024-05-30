@@ -1,4 +1,4 @@
-import { useState } from "react";
+/* import { useState } from "react";
 import "../Styles/Form.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -239,6 +239,212 @@ const ProductForm = () => {
                 {error}
               </div>
             )}
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export default ProductForm;
+ */
+import { useState, useEffect } from "react";
+import "../Styles/Form.css";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
+import IsMobile from "./IsMobile";
+
+const ProductForm = () => {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [selectedImages, setSelectedImages] = useState([]);
+  const isMobile = IsMobile();
+  const [characteristics, setCharacteristics] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("http://localhost:3002/categories");
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+  useEffect(() => {
+    const fetchCharacteristics = async () => {
+      try {
+        const response = await fetch("http://localhost:3004/caracteristicas");
+        if (!response.ok) {
+          throw new Error('Failed to fetch characteristics');
+        }
+        const data = await response.json();
+        setCharacteristics(data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching characteristics:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchCharacteristics();
+  }, []);
+  const handleImageUpload = (e) => {
+    const files = e.target.files;
+    if (files.length > 0) {
+      const newImages = Array.from(files);
+      setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = {
+      name,
+      description,
+      quantity: parseInt(quantity),
+      price: parseFloat(price),
+      images: selectedImages.map((image) => image.name), // assuming images have 'name' property
+    };
+    console.log("Form Data:", formData); // Logging the form data before sending
+
+    try {
+      const response = await axios.post("http://localhost:3003/data", formData);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  return (
+    <>
+      <div className="contenedorBody">
+        <div className="containerButton">
+          <Link to="/admin" className="genericButton link-flex">
+            <FaArrowLeft className="iconSpace" /> Go back
+          </Link>
+        </div>
+        <h2 className="mb-4">Add new product</h2>
+
+        {isMobile ? (
+          <div className="mobile-message-card">
+            <div className="mobile-message-icon">
+              <FaExclamationTriangle />
+            </div>
+            <h2>This view is not available on mobile devices.</h2>
+          </div>
+        ) : (
+          <div className="containerForm">
+            <form className="formProduct" onSubmit={handleSubmit}>
+              <div className="form-column">
+                <h4>Enter the details of the new salon</h4>
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Name"
+                  name="name"
+                />
+
+                <label htmlFor="description">Description</label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  placeholder="Description"
+                  name="description"
+                />
+
+                <label htmlFor="price">Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                  placeholder="Price"
+                  name="price"
+                />
+
+                <label htmlFor="quantity">Number of people</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
+                  placeholder="Number of people"
+                  name="quantity"
+                />
+
+                <h4>Categories</h4>
+                <div className="containerCheckbox">
+                  {categories.map((category) => (
+                    <label key={category.id}>
+                      <input type="checkbox" />
+                      {category.title}
+                    </label>
+                  ))}
+                </div>
+
+                <h4>Characteristics</h4>
+                <div className="containerCheckbox characteristics">
+                  {loading ? (
+                    <p>Loading characteristics...</p>
+                  ) : (
+                    characteristics.map((characteristic) => (
+                      <label key={characteristic.id}>
+                        <input type="checkbox" />
+                        {characteristic.name}
+                      </label>
+                    ))
+                  )}
+                </div>
+
+                <div className="containerButton">
+                  <button className="genericButton" type="submit">
+                    Send
+                  </button>
+                </div>
+              </div>
+
+              <div className="form-column">
+                <div className="image-upload">
+                  <label htmlFor="images">Upload images</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={handleImageUpload}
+                    id="images"
+                  />
+                  {selectedImages.length > 0 && selectedImages.length < 6 && (
+                    <div>
+                      <p>Selected images</p>
+                      {selectedImages.map((image, index) => (
+                        <div key={index} className="image-preview-container">
+                          <img
+                            src={URL.createObjectURL(image)}
+                            alt={`Imagen ${index + 1}`}
+                            className="preview-image"
+                          />
+                          <button
+                            onClick={() => handleImageDelete(index)}
+                            className="btn btn-danger"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </form>
           </div>
         )}
       </div>

@@ -56,6 +56,12 @@ const Admin = () => {
               </div>
               <div className="card-title">Users List </div>
             </Link>
+            <Link to="/addCategory" className="admin-option-card">
+              <div className="card-icon">
+                <FaEdit />
+              </div>
+              <div className="card-title">Add Product Category</div>
+            </Link>
           </div>
         </div>
       )}

@@ -111,6 +111,14 @@
       "email": "enzitofernandez287@gmail.com",
       "password": "Password123",
       "isAdmin": true
+    },
+    {
+      "id": "161",
+      "first_name": "Sabrina",
+      "last_name": "Farabolini",
+      "email": "juanisalandro@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
     }
   ]
 }

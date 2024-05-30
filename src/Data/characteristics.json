@@ -1,34 +1,40 @@
-[
-  {
-    "name": "Aire Acondicionado",
-    "img": "/public/images/aireAcondicionadoCharacteristic.jpg"
-  },
-  {
-    "name": "Wifi",
-    "img": "/public/images/wifiCharacteristic.jpg"
-  },
-  {
-    "name": "Sillas Ergonomicas",
-    "img": "/public/images/sillasErgonomicasCharacteristic.jpg"
-  },
-  {
-    "name": "Aire Libre",
-    "img": "/public/images/aireLibreCharacteristic.jpg"
-  },
-  {
-    "name": "Proyector",
-    "img": "/public/images/proyectorCharacteristic.jpg"
-  },
-  {
-    "name": "Pizarra",
-    "img": "/public/images/pizarraCharacteristic.jpg"
-  },
-  {
-    "name": "Sala Recreativa",
-    "img": "/public/images/salaRecreativaCharacteristic.jpg"
-  },
-  {
-    "name": "Cafeteria",
-    "img": "/public/images/cafeteriaCharacteristic.jpg"
-  }
-]
+{
+  "caracteristicas": [
+    {
+      "name": "Aire Acondicionado",
+      "id": "cd92"
+    },
+    {
+      "name": "Wifi",
+      "id": "5f4a"
+    },
+    {
+      "name": "Sillas Ergonomicas",
+      "id": "adda"
+    },
+    {
+      "name": "Aire Libre",
+      "id": "afd4"
+    },
+    {
+      "name": "Proyector",
+      "id": "b6c8"
+    },
+    {
+      "name": "Pizarra",
+      "id": "b915"
+    },
+    {
+      "name": "Sala Recreativa",
+      "id": "eb0c"
+    },
+    {
+      "name": "Cafeteria",
+      "id": "3479"
+    },
+    {
+      "id": "d815",
+      "name": "Ventanas grandes"
+    }
+  ]
+}
