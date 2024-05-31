@@ -22,7 +22,7 @@ const Admin = () => {
         <div className="AdminPage">
           {user ? (
             <>
-              <h2>Hi {user.name}!</h2>
+              <h2>Hi {user.first_name}!</h2>
               <h4>What do you want to do today?</h4>
             </>
           ) : (

@@ -69,6 +69,54 @@
       "Category": "Full Time",
       "id": "10",
       "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "id": "9f14",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
+    },
+    {
+      "id": "ec5f",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
+    },
+    {
+      "id": "c835",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
+    },
+    {
+      "id": "605d",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
     }
   ]
 }

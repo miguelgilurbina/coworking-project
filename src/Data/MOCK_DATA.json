@@ -65,18 +65,26 @@
       "isAdmin": false
     },
     {
-      "id": "8",
-      "first_name": "Lyndsie",
-      "last_name": "McWhan",
-      "email": "lmcwhan7@ihg.com",
-      "password": "password",
-      "isAdmin": true
-    },
-    {
       "id": "7",
       "first_name": "Betteann",
       "last_name": "Casley",
       "email": "bcasley6@newyorker.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "16",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez287@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "8",
+      "first_name": "Lyndsie",
+      "last_name": "McWhan",
+      "email": "lmcwhan7@ihg.com",
       "password": "password",
       "isAdmin": false
     },
@@ -86,14 +94,6 @@
       "last_name": "Gil",
       "email": "miguegil@gmail.com",
       "password": "Password1234",
-      "isAdmin": false
-    },
-    {
-      "id": "181",
-      "first_name": "Juan",
-      "last_name": "Salandro",
-      "email": "juanisalandro@gmail.com",
-      "password": "Password123",
       "isAdmin": true
     },
     {
@@ -105,17 +105,25 @@
       "isAdmin": false
     },
     {
-      "id": "16",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez287@gmail.com",
+      "id": "171",
+      "first_name": "Jose",
+      "last_name": "Antonio",
+      "email": "josejose@gmail.com",
       "password": "Password123",
-      "isAdmin": true
+      "isAdmin": false
     },
     {
-      "id": "161",
-      "first_name": "Sabrina",
-      "last_name": "Farabolini",
+      "id": "1711",
+      "first_name": "Dorian",
+      "last_name": "Batti",
+      "email": "dorianbatti@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "181",
+      "first_name": "Juan",
+      "last_name": "Salandro",
       "email": "juanisalandro@gmail.com",
       "password": "Password123",
       "isAdmin": false
