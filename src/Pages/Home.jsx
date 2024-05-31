@@ -5,9 +5,8 @@ import Category from "../Components/Category";
 const Home = () => {
   return (
     <div className="home">
-      {/* <div class="background-image"></div> */}
       <Explorer />
-      <Category/>
+      <Category />
       <Recommend />
     </div>
   );

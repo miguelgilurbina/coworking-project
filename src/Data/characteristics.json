@@ -1,0 +1,40 @@
+{
+  "caracteristicas": [
+    {
+      "name": "Aire Acondicionado",
+      "id": "cd92"
+    },
+    {
+      "name": "Wifi",
+      "id": "5f4a"
+    },
+    {
+      "name": "Sillas Ergonomicas",
+      "id": "adda"
+    },
+    {
+      "name": "Aire Libre",
+      "id": "afd4"
+    },
+    {
+      "name": "Proyector",
+      "id": "b6c8"
+    },
+    {
+      "name": "Pizarra",
+      "id": "b915"
+    },
+    {
+      "name": "Sala Recreativa",
+      "id": "eb0c"
+    },
+    {
+      "name": "Cafeteria",
+      "id": "3479"
+    },
+    {
+      "id": "0b14",
+      "name": "Caracteristica Generica"
+    }
+  ]
+}

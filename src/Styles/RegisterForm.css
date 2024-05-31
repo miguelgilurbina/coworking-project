@@ -1,0 +1,14 @@
+.password-errors {
+  margin-top: 10px;
+}
+
+.error {
+  color: #e91e63;
+  margin-bottom: 5px;
+
+}
+
+.img-fluid {
+  max-width: 85% !important;
+}
+

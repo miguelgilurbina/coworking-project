@@ -1,5 +1,4 @@
-"useclient"
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,123 +8,148 @@ import image2 from "../../public/images/img_aleatory_2.png";
 import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Gallery = () => {
   const [showCarousel, setShowCarousel] = useState(false);
   const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
+  const [characteristics, setCharacteristics] = useState([]);
+
+  useEffect(() => {
+    const fetchCharacteristics = async () => {
+      try {
+        const response = await fetch("http://localhost:3004/caracteristicas");
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+        const data = await response.json();
+        setCharacteristics(data);
+      } catch (error) {
+        console.error("Error fetching characteristics:", error);
+      }
+    };
+
+    fetchCharacteristics();
+  }, []);
+
+  const renderCharacteristics = () => {
+    return characteristics.map((characteristic, index) => (
+      <li key={index}>{characteristic.name}</li>
+    ));
+  };
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 5,
     slidesToScroll: 1,
     centerMode: true,
     centerPadding: "0",
     focusOnSelect: true,
-    beforeChange: (current, next) => {
-      const diff = next - current;
-      if (Math.abs(diff) > 1) {
-        const imageryCopy = [...imagery];
-        if (diff > 0) {
-          for (let i = 0; i < diff; i++) {
-            const shifted = imageryCopy.shift();
-            imageryCopy.push(shifted);
-          }
-        } else {
-          for (let i = 0; i < Math.abs(diff); i++) {
-            const popped = imageryCopy.pop();
-            imageryCopy.unshift(popped);
-          }
-        }
-        setImagery(imageryCopy);
-      }
-    },
+    responsive: [
+      {
+        breakpoint: 950,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
-  const showCarouselHandler = () => {
-    setShowCarousel(true);
-  };
-
-  const hideCarouselHandler = () => {
-    setShowCarousel(false);
+  const toggleCarousel = () => {
+    setShowCarousel(!showCarousel);
   };
 
   return (
-    <div className="contenedorBody">
-      <div className={`cardDetail ${showCarousel ? "hideContent" : ""}`}>
-        <h1>Home Office</h1>
-        <div className="buttonDetail">
-          <button className="genericButton">⬅️ Back</button>
-        </div>
-        <div className="separador"></div>
+    <div className="center">
+      <div className="containerDetail">
+        <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
+          <h3 className="titleCard">Home Office</h3>
+          <h5 className="subtitleCard">Harmony</h5>
 
-        {!showCarousel && (
-          <div className="containerImg">
-            <img src={image} alt="" className="imgHero" />
-            <div className="gridDetail">
-              {imagery.slice(1).map((image, index) => (
-                <img
-                  key={index + 1}
-                  src={image}
-                  alt={`Image of room`}
-                  style={{ width: "200px", height: "300px", borderRadius: 20 }}
-                />
-              ))}
+          {!showCarousel && (
+            <>
+              <div className="containerImg">
+                <img src={image} alt="Main" className="imgHero" />
+                <div className="gridDetail">
+                  {imagery.slice(1).map((image, index) => (
+                    <img
+                      key={index + 1}
+                      src={image}
+                      alt={`Image of room`}
+                      style={{
+                        width: "200px",
+                        height: "280px",
+                        borderRadius: "20px",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <span>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Blanditiis vel nobis recusandae cupiditate consectetur iste
+                  quaerat explicabo. Eius, quaerat exercitationem placeat,
+                  distinctio doloremque hic sit unde inventore possimus, rem
+                  eos! Perferendis voluptatibus ducimus sed aperiam impedit
+                  officiis, sit suscipit exercitationem ratione, natus ad
+                  adipisci eveniet saepe voluptatum eum provident voluptates,
+                  nemo quaerat iste. Vitae laboriosam, dicta minus nihil
+                  officiis ipsam?
+                </span>
+              </div>
+            </>
+          )}
+
+          <div className="buttonSeeMore">
+            <div className="containerButtonGallery">
+              {!showCarousel && (
+                <button className="genericButton">Book Now</button>
+              )}
             </div>
-          </div>
-        )}
-        {!showCarousel && (
-          <div>
-            <span>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Blanditiis vel nobis recusandae cupiditate consectetur iste
-              quaerat explicabo. Eius, quaerat exercitationem placeat,
-              distinctio doloremque hic sit unde inventore possimus, rem eos!
-              Perferendis voluptatibus ducimus sed aperiam impedit officiis, sit
-              suscipit exercitationem ratione, natus ad adipisci eveniet saepe
-              voluptatum eum provident voluptates, nemo quaerat iste. Vitae
-              laboriosam, dicta minus nihil officiis ipsam?
-            </span>
-          </div>
-        )}
-        <div className="buttonSeeMore">
-          {!showCarousel ? (
             <button
               className="button-generic-transition"
-              onClick={showCarouselHandler}
+              onClick={toggleCarousel}
             >
-              See More Pictures
+              {showCarousel ? (
+                <>
+                  <FaArrowLeft className="iconSpace" />
+                  &nbsp;Go Back
+                </>
+              ) : (
+                "More Pictures"
+              )}
             </button>
-          ) : (
-            <button
-              className="button-generic-transition"
-              onClick={hideCarouselHandler}
-            >
-              Hide Pictures
-            </button>
+          </div>
+
+          {!showCarousel && (
+            <div className="features">
+              <h4>Características:</h4>
+              <ul>{renderCharacteristics()}</ul>
+            </div>
           )}
         </div>
-        <div className="containerButton">
-          {!showCarousel && <button className="genericButton">Book Now</button>}
-        </div>
       </div>
+
       {showCarousel && (
-        <div className="cardDetail carouselContainer">
-          <Slider {...settings}>
-            {imagery.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Image of room`}
-                className={index === 0 ? "slick-current" : ""}
-                style={{ borderRadius: "10px" }}
-              />
-            ))}
-          </Slider>
-        </div>
+        <Slider {...settings}>
+          {imagery.map((img, index) => (
+            <div key={index}>
+              <img src={img} alt={`Room ${index}`} className="carouselImage" />
+            </div>
+          ))}
+        </Slider>
       )}
-      <div className="separador"></div>
     </div>
   );
 };

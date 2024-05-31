@@ -1,3 +1,10 @@
+/* .home {
+    background-image:  url(../../public/images/img_body.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  background-position: center center;
+} */
+
 .home {
   flex-grow: 1;
   padding-top: 60px;

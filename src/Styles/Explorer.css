@@ -1,5 +1,5 @@
 .explorer {
-  height: 150px;
+  height: 155px;
   width: 100%;
   background-color: hsl(150, 2%, 19%, 0.78);
   padding: 20px;
@@ -29,8 +29,8 @@
 
 .buttonSearchExplorer {
   background-color: #de8a05;
-  width: 150px;
-  height: 30px;
+  width: 250px;
+  height: 35px;
   border-style: none;
   border-radius: 15px;
   color: #ffff;
