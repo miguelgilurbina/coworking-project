@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,18 +8,29 @@ import image2 from "../../public/images/img_aleatory_2.png";
 import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
-import characteristics from "../Data/characteristics.json";
 import { FaArrowLeft } from "react-icons/fa";
 
 const Gallery = () => {
   const [showCarousel, setShowCarousel] = useState(false);
-  const [imagery, setImagery] = useState([
-    image,
-    image1,
-    image2,
-    image3,
-    image4,
-  ]);
+  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
+  const [characteristics, setCharacteristics] = useState([]);
+
+  useEffect(() => {
+    const fetchCharacteristics = async () => {
+      try {
+        const response = await fetch("http://localhost:3004/caracteristicas");
+        if (!response.ok) {
+          throw new Error("Network response was not ok.");
+        }
+        const data = await response.json();
+        setCharacteristics(data);
+      } catch (error) {
+        console.error("Error fetching characteristics:", error);
+      }
+    };
+
+    fetchCharacteristics();
+  }, []);
 
   const renderCharacteristics = () => {
     return characteristics.map((characteristic, index) => (

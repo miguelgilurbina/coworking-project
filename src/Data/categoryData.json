@@ -1,24 +1,33 @@
 {
-    "categories": [
-        {
-            "title":"Private Office",
-            "description": "Office designed for few people who need to concentrate",
-            "srcImg":"/public/images/privateOfficeCategory.jpg"
-        },
-        {
-            "title":"Meet Room",
-            "description":"Rooms designed for large groups of people",
-            "srcImg":"/public/images/meetingRoomCategory.jpg"
-        },
-        {
-            "title":"Full Time",
-            "description":"Comfortable rooms where you can spend a lot of time without getting overwhelmed",
-            "srcImg":"/public/images/fullTimeCategory.jpg"
-        },
-        {
-            "title":"Lounge",
-            "description":"Large rooms more designed for recreational company events",
-            "srcImg":"/public/images/loungeCategory.jpg"
-        }
-    ]
+  "categories": [
+    {
+      "title": "Private Office",
+      "description": "Office designed for few people who need to concentrate",
+      "srcImg": "/public/images/privateOfficeCategory.jpg",
+      "id": "6af8"
+    },
+    {
+      "title": "Meet Room",
+      "description": "Rooms designed for large groups of people",
+      "srcImg": "/public/images/meetingRoomCategory.jpg",
+      "id": "614e"
+    },
+    {
+      "title": "Full Time",
+      "description": "Comfortable rooms where you can spend a lot of time without getting overwhelmed",
+      "srcImg": "/public/images/fullTimeCategory.jpg",
+      "id": "4e14"
+    },
+    {
+      "title": "Lounge",
+      "description": "Large rooms more designed for recreational company events",
+      "srcImg": "/public/images/loungeCategory.jpg",
+      "id": "0aa2"
+    },
+    {
+      "id": "1370",
+      "title": "Categoria generica",
+      "description": "Una categoria para ejemplificar"
+    }
+  ]
 }

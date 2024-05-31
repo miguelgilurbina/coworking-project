@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { FaExclamationCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import user_icon from "../Assets/person.png";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
@@ -20,6 +21,8 @@ const RegisterForm = () => {
     email: [],
     password: [],
   });
+
+  const navigate = useNavigate(); // Hook para la redirección
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -125,6 +128,9 @@ const RegisterForm = () => {
           isAdmin: false,
         });
         console.log("Response from Server:", response.data); // Log the server response
+
+        // Redirigir a la página de inicio
+        navigate("/home");
       } catch (error) {
         console.error(error);
       }

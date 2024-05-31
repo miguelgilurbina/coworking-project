@@ -22,11 +22,21 @@ const UsersList = () => {
 
   const toggleAdminStatus = async (userId, isAdmin) => {
     try {
-      // Send a PUT request to update isAdmin status
-      await axios.put(`http://localhost:3001/usuarios/${userId}`, {
-        isAdmin: !isAdmin,
+      // Send a DELETE request to remove the user
+      await axios.delete(`http://localhost:3001/usuarios/${userId}`);
+  
+      // Create a new user object with updated isAdmin status
+      const newUser = { ...users.find(user => user.id === userId), isAdmin: !isAdmin };
+  
+      // Send a POST request to add the new user with updated isAdmin status
+      const response = await axios.post('http://localhost:3001/usuarios', newUser, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-
+  
+      console.log('Update response:', response.data);
+  
       // Update local state to reflect the change
       setUsers((prevUsers) =>
         prevUsers.map((user) => {
