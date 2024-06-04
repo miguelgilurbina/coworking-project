@@ -127,6 +127,22 @@
       "email": "juanisalandro@gmail.com",
       "password": "Password123",
       "isAdmin": false
+    },
+    {
+      "id": "181",
+      "first_name": "Karina",
+      "last_name": "Lopez",
+      "email": "example@email.com",
+      "password": "Password1",
+      "isAdmin": false
+    },
+    {
+      "id": "1811",
+      "first_name": "Karina",
+      "last_name": "Lopez",
+      "email": "example@email.com",
+      "password": "Password1",
+      "isAdmin": true
     }
   ]
 }
