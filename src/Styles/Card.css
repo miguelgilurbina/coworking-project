@@ -1,0 +1,47 @@
+
+.card img {
+  height: 100%;
+
+}
+
+.cardHome{
+  width: 100%;
+  max-height: 192px;
+}
+
+.subtitleCardHome {
+  color: #9395a0;
+  margin: 0px;
+  font-size: 14px;
+}
+
+.card-description {
+  height: 110px;
+  width: 140px;
+  background-color: #fff;
+}
+
+.card-description h4 {
+  font-family: "Poppins";
+  position: absolute;
+  right: 16px;
+  top: 30px;
+}
+
+.card-description p {
+  font-family: "Poppins";
+  font-size: 10px;
+  position: absolute;
+  bottom: 10px;
+}
+@media (max-width: 600px) {
+  .card img {
+    height: auto;
+    width: auto;
+  }
+
+  .cardHome{
+    max-height: none;
+
+  }
+}

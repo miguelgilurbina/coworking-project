@@ -1,0 +1,148 @@
+{
+  "usuarios": [
+    {
+      "id": "9",
+      "first_name": "Pamella",
+      "last_name": "Nizet",
+      "email": "pnizet8@cpanel.net",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "10",
+      "first_name": "Janette",
+      "last_name": "Southcott",
+      "email": "jsouthcott9@indiegogo.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "11",
+      "first_name": "Randene",
+      "last_name": "Mandres",
+      "email": "rmandresa@altervista.org",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "12",
+      "first_name": "Evangelin",
+      "last_name": "Plak",
+      "email": "eplakb@samsung.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "13",
+      "first_name": "Jacklyn",
+      "last_name": "Sacco",
+      "email": "jsaccoc@over-blog.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "14",
+      "first_name": "Mirilla",
+      "last_name": "Eadmead",
+      "email": "meadmeadd@walmart.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "15",
+      "first_name": "Lanita",
+      "last_name": "Landers",
+      "email": "llanderse@mapy.cz",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "6",
+      "first_name": "Bethany",
+      "last_name": "Orum",
+      "email": "borum5@networksolutions.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "7",
+      "first_name": "Betteann",
+      "last_name": "Casley",
+      "email": "bcasley6@newyorker.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "16",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez287@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "8",
+      "first_name": "Lyndsie",
+      "last_name": "McWhan",
+      "email": "lmcwhan7@ihg.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "18",
+      "first_name": "Miguel",
+      "last_name": "Gil",
+      "email": "miguegil@gmail.com",
+      "password": "Password1234",
+      "isAdmin": true
+    },
+    {
+      "id": "17",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez288@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "171",
+      "first_name": "Jose",
+      "last_name": "Antonio",
+      "email": "josejose@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "1711",
+      "first_name": "Dorian",
+      "last_name": "Batti",
+      "email": "dorianbatti@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "181",
+      "first_name": "Juan",
+      "last_name": "Salandro",
+      "email": "juanisalandro@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "181",
+      "first_name": "Karina",
+      "last_name": "Lopez",
+      "email": "example@email.com",
+      "password": "Password1",
+      "isAdmin": false
+    },
+    {
+      "id": "1811",
+      "first_name": "Karina",
+      "last_name": "Lopez",
+      "email": "example@email.com",
+      "password": "Password1",
+      "isAdmin": true
+    }
+  ]
+}
