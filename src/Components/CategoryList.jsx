@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CategoryList = () => {
   const [categories, setCategories] = useState([]);
@@ -56,6 +57,11 @@ const CategoryList = () => {
             </li>
                 ))}
             </ul>
+            <div className='justify-content-center align-items-center d-flex'>
+            <Link to="/admin" className="genericButton link-flex">
+                Go Back
+            </Link>
+            </div>
         </div>
       </div>
     </div>
