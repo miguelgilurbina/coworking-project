@@ -7,4 +7,7 @@ export const routes ={
     detail:"/detail",
     productForm: "/form",
     characteristicForm: "/addCharacteristic",
+    usersList: "/userList",
+    profile: "/profile",
+    addCategory: "/addCategory"
 }

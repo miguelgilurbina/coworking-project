@@ -61,6 +61,7 @@ const ProductForm = () => {
     setSelectedImages((prevImages) =>
       prevImages.filter((image, i) => i !== index)
     );
+    setImageError("");
   };
 
   const handleSubmit = async (e) => {
@@ -87,10 +88,7 @@ const ProductForm = () => {
     } catch (error) {
       console.error("Error sending data:", error);
     }
-    console.log(name, description, quantity, price, selectedImages);
-  };
-
-  return (
+  };  return (
     <>
       <div className="contenedorBody">
         <div className="containerButton">
@@ -111,7 +109,7 @@ const ProductForm = () => {
           <div className="containerForm">
             <form className="formProduct" onSubmit={handleSubmit}>
               <div className="form-column">
-                <h4>Enter the details of the new salon</h4>
+                <h4>Enter the details of the new product</h4>
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
@@ -119,14 +117,17 @@ const ProductForm = () => {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Name"
                   name="name"
+                  required
                 />
 
                 <label htmlFor="description">Description</label>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Description"
+                  placeholder="Description maximum of 250 characters"
                   name="description"
+                  maxLength="250"
+                  required
                 />
 
                 <label htmlFor="price">Price</label>
@@ -134,9 +135,11 @@ const ProductForm = () => {
                   type="number"
                   id="price"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => setPrice(Math.max(0, e.target.value))}
                   placeholder="Price"
                   name="price"
+                  min="0"
+                  required
                 />
 
                 <label htmlFor="quantity">Number of people</label>
@@ -144,9 +147,11 @@ const ProductForm = () => {
                   type="number"
                   id="quantity"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => setQuantity(Math.max(0, e.target.value))}
                   placeholder="Number of people"
                   name="quantity"
+                  min="0"
+                  required
                 />
 
                 <h4>Categories</h4>
@@ -222,14 +227,20 @@ const ProductForm = () => {
                     onChange={handleImageUpload}
                     id="images"
                   />
-                  {selectedImages.length > 0 && selectedImages.length < 6 && (
+                  {imageError && (
+                    <div className="error-message">
+                      <FaExclamationTriangle style={{ marginRight: "8px" }} />
+                      {imageError}
+                    </div>
+                  )}
+                  {selectedImages.length > 0 && (
                     <div>
-                      <p>Selected images</p>
+                      <p>Selected images: {selectedImages.length}/5</p>
                       {selectedImages.map((image, index) => (
                         <div key={index} className="image-preview-container">
                           <img
                             src={URL.createObjectURL(image)}
-                            alt={`Imagen ${index + 1}`}
+                            alt={`Image ${index + 1}`}
                             className="preview-image"
                           />
                           <button

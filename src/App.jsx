@@ -18,6 +18,9 @@ import ProductForm from "./Components/ProductForm";
 import { routes } from "./Components/utils/routes";
 
 import "./App.css";
+import UsersList from "./Components/UsersList";
+import Profile from "./Pages/Profile";
+import CategoryForm from "./Components/CategoryForm";
 
 function App() {
   return (
@@ -43,7 +46,10 @@ function App() {
               element={<ProductForm></ProductForm>}
             ></Route>
             <Route path={routes.editRoom} element={<TableEditRooms />} />
+            <Route path={routes.usersList} element={<UsersList />} />
             <Route path="*" element={<Navigate to={routes.home} />} />
+            <Route path={routes.profile} element={<Profile />} />
+            <Route path={routes.addCategory} element={<CategoryForm />}></Route>
           </Routes>
         </div>
         <Footer />

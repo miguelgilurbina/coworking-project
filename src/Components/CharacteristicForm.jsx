@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/* import React, { useState } from "react";
 import "../Styles/Form.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -120,6 +120,93 @@ const CharacteristicForm = () => {
               </div>
             </div>
           </form>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CharacteristicForm; */
+
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
+import IsMobile from "./IsMobile";
+import "../Styles/Form.css";
+
+const CharacteristicForm = () => {
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const isMobile = IsMobile();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:3004/caracteristicas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add characteristic");
+      }
+
+      console.log("Characteristic added successfully");
+    } catch (error) {
+      console.error(error);
+      setError("An error occurred while submitting the form.");
+    }
+  };
+
+  return (
+    <div className="contenedorBody">
+      <div className="containerButton">
+        <Link to="/admin" className="genericButton link-flex">
+          <FaArrowLeft className="iconSpace" /> Go back
+        </Link>
+      </div>
+      <h2 className="mb-4">New characteristic</h2>
+
+      {isMobile ? (
+        <div className="mobile-message-card">
+          <div className="mobile-message-icon">
+            <FaExclamationTriangle />
+          </div>
+          <h2>This view is not available on mobile devices.</h2>
+        </div>
+      ) : (
+        <div className="containerForm justify-content-center">
+          <form onSubmit={handleSubmit}>
+            <div className="form-column">
+              <h4>Characteristic Form</h4>
+              <label htmlFor="name">Characteristic Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Name"
+                className="mb-3"
+                required
+              />
+
+              <div className="containerButton">
+                <button type="submit" className="genericButton">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+          {error && (
+            <div className="error-message">
+              <FaExclamationTriangle style={{ marginRight: "8px" }} />
+              {error}
+            </div>
+          )}
         </div>
       )}
     </div>

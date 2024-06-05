@@ -1,30 +1,29 @@
 import React from "react";
 import "../Styles/header.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "./Context/AuthContext";
+import { useAuth } from "./Context/AuthContext"; // Importa useAuth
 import Avatar from "./Avatar";
 import { useState } from "react";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth(); // Obtén la función logout del contexto de autenticación
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const getInitials = (name) => {
-    const initials = name
-      .split(" ")
-      .map((word) => word[0])
-      .join("");
-    return initials.toUpperCase();
+  const getInitials = (user) => {
+    if (!user || !user.first_name || !user.last_name) return ''; // Verifica si el usuario, el nombre o el apellido son undefined o null y retorna un string vacío en ese caso
+    const firstInitial = user.first_name[0];
+    const lastInitial = user.last_name[0];
+    return (firstInitial + lastInitial).toUpperCase();
   };
 
   return (
     <header className="header">
       <div className="d-flex p-2">
-        <a href="../Pages/Home.jsx" className="logo">
+        <Link to="/home" className="logo">
           <img
             src="../../public/icons/cw_logo_app.png"
             alt="Logo de la empresa"
@@ -34,28 +33,28 @@ const Header = () => {
             <span className="coworking">Co-Working</span>
             <span className="lema">Where Dreams Are Codified</span>
           </div>
-        </a>
+        </Link>
       </div>
 
       <div className="right-block">
-        {/* TODO: Se comentan botones por posible uso en proximo spring, hay que realizar menu hamburguesa */}
-        {/*<button className="button">Home</button>
-          <button className="button">Reserve a Place</button>
-          <button className="button">All Places</button>*/}
         {user ? (
           <div className="logged-in-section">
-            <Link to="/admin" className="button link-flex">
-              Admin
-            </Link>
+            {user.isAdmin && ( // Verifica si el usuario es administrador
+              <Link to="/admin" className="button link-flex">
+                Admin
+              </Link>
+            )}
             <div>
-              <div
-                className="user-initials-container"
-                onClick={toggleSidebar}
-                style={{ cursor: "pointer" }}
-              >
-                {getInitials(user.name)}
-              </div>
-              <Link to="/" className="logout-link">
+              <Link to="/profile" className="user-profile-link">
+                <div
+                  className="user-initials-container"
+                  onClick={toggleSidebar}
+                  style={{ cursor: "pointer" }}
+                >
+                  {getInitials(user)}
+                </div>
+              </Link>
+              <Link to="/" className="logout-link" onClick={logout}>
                 Log out
               </Link>
             </div>

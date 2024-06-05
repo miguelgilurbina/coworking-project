@@ -1,75 +1,122 @@
 {
-    "data":[
-        {
-          "srcImg":"/public/images/img_aleatory_1.png"  ,
-            "name":"Meet Room 1" ,
-        "Category":"Meet Room",
-              "id":"1",
-              "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.." 
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_2.png"  ,
-              "name":"Meet Room 2" ,
-          "Category":"Meet Room",
-                "id":"2",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."   
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_3.png"  ,
-              "name":"Private Office 1" ,
-          "Category":"Private Office",
-                "id": "3",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_4.png"  ,
-              "name":"Meet Room 3" ,
-          "Category":"Meet Room",
-                "id": "4",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.." 
-
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_1.png"  ,
-              "name":"Lounge Room 1" ,
-          "Category":"Lounge",
-                "id": "5",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_2.png"  ,
-              "name":"Lounge Room 2" ,
-          "Category":"Lounge",
-                "id": "6",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_3.png"  ,
-              "name":"Meet Room 4" ,
-          "Category":"Meet Room",
-                "id": "7",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_4.png"  ,
-              "name":"Private Office 2" ,
-          "Category":"Private Office",
-                "id": "8",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_1.png"  ,
-              "name":"Full Time 1" ,
-          "Category":"Full Time",
-                "id": "9",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
-        },
-        {
-            "srcImg":"/public/images/img_aleatory_2.png"  ,
-              "name":"Meet Room 5" ,
-          "Category":"Meet Room",
-                "id": "10",
-                "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."  
-        }
-    ] 
+  "data": [
+    {
+      "srcImg": "/public/images/img_aleatory_1.png",
+      "name": "Destiny",
+      "Category": "Meeting Room",
+      "id": "1",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_2.png",
+      "name": "Happy Work",
+      "Category": "Private Office",
+      "id": "2",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_3.png",
+      "name": "Harmony",
+      "Category": "Full Time",
+      "id": "3",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_4.png",
+      "name": "Available to the public",
+      "Category": "Louge",
+      "id": "4",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_1.png",
+      "name": "Destiny",
+      "Category": "Meeting Room",
+      "id": "5",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_2.png",
+      "name": "Happy Work",
+      "Category": "Private Office",
+      "id": "6",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_3.png",
+      "name": "Harmony",
+      "Category": "Full Time",
+      "id": "7",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_4.png",
+      "name": "Destiny",
+      "Category": "Meeting Room",
+      "id": "8",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_1.png",
+      "name": "Happy Work",
+      "Category": "Private Office",
+      "id": "9",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "srcImg": "/public/images/img_aleatory_2.png",
+      "name": "Harmony",
+      "Category": "Full Time",
+      "id": "10",
+      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero.."
+    },
+    {
+      "id": "9f14",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
+    },
+    {
+      "id": "ec5f",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
+    },
+    {
+      "id": "c835",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
+    },
+    {
+      "id": "605d",
+      "name": "Sala Ejemplo",
+      "description": "Descripcion generica",
+      "quantity": 999,
+      "price": 100,
+      "images": [
+        "Valorant Screenshot 2024.04.10 - 22.09.24.62.png",
+        "Valorant Screenshot 2024.04.10 - 22.09.32.47.png",
+        "Valorant Screenshot 2024.05.22 - 21.26.00.32.png"
+      ]
+    }
+  ]
 }

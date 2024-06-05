@@ -22,7 +22,7 @@ const Admin = () => {
         <div className="AdminPage">
           {user ? (
             <>
-              <h2>Hi {user.name}!</h2>
+              <h2>Hi {user.first_name}!</h2>
               <h4>What do you want to do today?</h4>
             </>
           ) : (
@@ -30,7 +30,7 @@ const Admin = () => {
               <h2>Hi Administrator!</h2>
               <h4>What do you want to do today?</h4>
             </>
-          )}
+          )} 
           <div className="AdminOptions pt-5">
             <Link to="/form" className="admin-option-card">
               <div className="card-icon">
@@ -49,6 +49,18 @@ const Admin = () => {
                 <FaEdit />
               </div>
               <div className="card-title">Edit Existing Room</div>
+            </Link>
+            <Link to="/userList" className="admin-option-card">
+              <div className="card-icon">
+                <FaEdit />
+              </div>
+              <div className="card-title">Users List </div>
+            </Link>
+            <Link to="/addCategory" className="admin-option-card">
+              <div className="card-icon">
+                <FaEdit />
+              </div>
+              <div className="card-title">Add Product Category</div>
             </Link>
           </div>
         </div>

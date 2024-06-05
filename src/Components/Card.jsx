@@ -18,7 +18,9 @@ const Card = ({ data }) => {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">{data.name}</h5>
+              <h5 className="card-title">{data.Category}</h5>
+              <h5 className="subtitleCardHome">{data.name}</h5>
+              
               <p className="card-text">{data.description}</p>
               <Link
                 to="/detail"

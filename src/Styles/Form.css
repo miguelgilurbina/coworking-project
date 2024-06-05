@@ -66,6 +66,7 @@ textarea {
 .containerButton {
   text-align: center;
   margin-top: 20px;
+  
 }
 
 .image-upload {
@@ -86,4 +87,8 @@ textarea {
   margin: 5px;
   border: 1px solid #ccc;
   border-radius: 8px;
+}
+
+.zIndex{
+  z-index: 100000;
 }
