@@ -73,14 +73,6 @@
       "isAdmin": false
     },
     {
-      "id": "16",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez287@gmail.com",
-      "password": "Password123",
-      "isAdmin": false
-    },
-    {
       "id": "8",
       "first_name": "Lyndsie",
       "last_name": "McWhan",
@@ -95,14 +87,6 @@
       "email": "miguegil@gmail.com",
       "password": "Password1234",
       "isAdmin": true
-    },
-    {
-      "id": "17",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez288@gmail.com",
-      "password": "Password123",
-      "isAdmin": false
     },
     {
       "id": "171",
@@ -121,12 +105,20 @@
       "isAdmin": false
     },
     {
-      "id": "181",
-      "first_name": "Juan",
-      "last_name": "Salandro",
-      "email": "juanisalandro@gmail.com",
+      "id": "16",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez287@gmail.com",
       "password": "Password123",
-      "isAdmin": false
+      "isAdmin": true
+    },
+    {
+      "id": "17",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez288@gmail.com",
+      "password": "Password123",
+      "isAdmin": true
     }
   ]
 }

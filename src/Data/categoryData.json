@@ -23,11 +23,6 @@
       "description": "Large rooms more designed for recreational company events",
       "srcImg": "/public/images/loungeCategory.jpg",
       "id": "0aa2"
-    },
-    {
-      "id": "1370",
-      "title": "Categoria generica",
-      "description": "Una categoria para ejemplificar"
     }
   ]
 }

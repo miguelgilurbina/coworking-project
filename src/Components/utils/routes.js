@@ -9,5 +9,6 @@ export const routes ={
     characteristicForm: "/addCharacteristic",
     usersList: "/userList",
     profile: "/profile",
-    addCategory: "/addCategory"
+    addCategory: "/addCategory",
+    categoryList: "/categoryList"
 }

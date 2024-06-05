@@ -21,6 +21,7 @@ import "./App.css";
 import UsersList from "./Components/UsersList";
 import Profile from "./Pages/Profile";
 import CategoryForm from "./Components/CategoryForm";
+import CategoryList from "./Components/CategoryList";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route path="*" element={<Navigate to={routes.home} />} />
             <Route path={routes.profile} element={<Profile />} />
             <Route path={routes.addCategory} element={<CategoryForm />}></Route>
+            <Route path={routes.categoryList} element={<CategoryList/>}></Route>
           </Routes>
         </div>
         <Footer />
