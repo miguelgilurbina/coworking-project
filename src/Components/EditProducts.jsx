@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import MuiDataTables from 'mui-datatables';
 import { Table, TableBody, TableCell, TableContainer, TableRow, TextField, Button } from '@mui/material';
 
 
@@ -262,38 +261,6 @@ const EditProducts = () => {
       </Table>
     </TableContainer>
   );
-
-
-    /* const columns = ["name","description","quantity","price"]
-    const url = ''
-    const options = {
-      responsive:"standard",
-      pagination:true
-    }
-    const data = [
-        ["full room"," room full equipment","11","100"],
-        ["medium room"," room full equipment","5","100"],
-        ["small room"," room full equipment","3","100"],
-        ["medium room"," room full equipment","8","100"],
-        ["small room"," room full equipment","3","100"],
-        ["full room"," room full equipment","12","100"],
-        ["full room"," room full equipment","12","100"],
-        ["medium room"," room full equipment","8","100"],
-        ["medium room"," room full equipment","5","100"],
-        ["medium room"," room full equipment","7","100"],
-        ["small room"," room full equipment","1","100"],
-        ["small room"," room full equipment","1","100"],
-        ["small room"," room full equipment","3","100"],
-        ["small room"," room full equipment","3","100"],
-        ["full room"," room full equipment","11","100"],
-        ["full room"," room full equipment","15","100"],
-
-    ]
-  return (
-    <div>
-      <MuiDataTables title="Rooms List" columns = {columns} data={data} options={options}/>
-    </div>
-  );
-};
+}
 
 export default EditProducts;

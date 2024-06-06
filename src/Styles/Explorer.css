@@ -15,7 +15,7 @@
 .explorer form {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-top: 15px;
 }
 
