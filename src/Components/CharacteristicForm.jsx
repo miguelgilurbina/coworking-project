@@ -144,6 +144,7 @@ const CharacteristicForm = () => {
     setError("");
 
     try {
+      //TODO: INTEGRAR CON BACK
       const response = await fetch("http://localhost:3004/caracteristicas", {
         method: "POST",
         headers: {
