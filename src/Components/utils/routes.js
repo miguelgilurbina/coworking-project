@@ -10,5 +10,7 @@ export const routes ={
     usersList: "/userList",
     profile: "/profile",
     addCategory: "/addCategory",
-    categoryList: "/categoryList"
+    categoryList: "/categoryList",
+    favoriteList: "/favorites",
+    productList: "/producto"
 }

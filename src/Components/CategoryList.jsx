@@ -44,7 +44,7 @@ const CategoryList = () => {
     <div className="container d-flex flex-column justify-content-center align-items-center vh-100 listStyles" >
       <div className="card w-50">
         <div className="card-body">
-          <h1 className="card-title text-center">Users List</h1>
+          <h1 className="card-title text-center">Category List</h1>
             <ul className="list-group">
             {categories.map((category) => (
             <li key={category.id} className="list-group-item d-flex justify-content-between align-items-center">

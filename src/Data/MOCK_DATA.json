@@ -1,14 +1,6 @@
 {
   "usuarios": [
     {
-      "id": "9",
-      "first_name": "Pamella",
-      "last_name": "Nizet",
-      "email": "pnizet8@cpanel.net",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
       "id": "10",
       "first_name": "Janette",
       "last_name": "Southcott",
@@ -57,26 +49,10 @@
       "isAdmin": false
     },
     {
-      "id": "6",
-      "first_name": "Bethany",
-      "last_name": "Orum",
-      "email": "borum5@networksolutions.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
       "id": "7",
       "first_name": "Betteann",
       "last_name": "Casley",
       "email": "bcasley6@newyorker.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "8",
-      "first_name": "Lyndsie",
-      "last_name": "McWhan",
-      "email": "lmcwhan7@ihg.com",
       "password": "password",
       "isAdmin": false
     },
@@ -105,18 +81,42 @@
       "isAdmin": false
     },
     {
-      "id": "16",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez287@gmail.com",
-      "password": "Password123",
-      "isAdmin": true
-    },
-    {
       "id": "17",
       "first_name": "Enzo",
       "last_name": "Fernandez",
       "email": "enzitofernandez288@gmail.com",
+      "password": "Password123",
+      "isAdmin": true
+    },
+    {
+      "id": "6",
+      "first_name": "Bethany",
+      "last_name": "Orum",
+      "email": "borum5@networksolutions.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "8",
+      "first_name": "Lyndsie",
+      "last_name": "McWhan",
+      "email": "lmcwhan7@ihg.com",
+      "password": "password",
+      "isAdmin": false
+    },
+    {
+      "id": "9",
+      "first_name": "Pamella",
+      "last_name": "Nizet",
+      "email": "pnizet8@cpanel.net",
+      "password": "password",
+      "isAdmin": true
+    },
+    {
+      "id": "16",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez287@gmail.com",
       "password": "Password123",
       "isAdmin": true
     }
