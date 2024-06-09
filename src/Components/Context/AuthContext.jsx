@@ -9,20 +9,18 @@ export const AuthProvider = ({ children }) => {
   const login = async (formData) => {
     try {
       console.log("Datos del formulario:", formData);
-      
+      //TODO: INTEGRAR CON BACK
       const response = await axios.get("http://localhost:3001/usuarios", {
         params: formData, // Envía el formulario como parámetros de consulta
       });
-      
+
       console.log("Respuesta de la API:", response.data);
-      
+
       // Busca un usuario que coincida con el correo electrónico
-      const foundUser = response.data.find(
-        (u) => u.email === formData.email
-      );
-      
+      const foundUser = response.data.find((u) => u.email === formData.email);
+
       console.log("Usuario encontrado:", foundUser);
-      
+
       if (foundUser && foundUser.password === formData.password) {
         setUser(foundUser); // Establece el usuario encontrado como usuario actual
       } else {
