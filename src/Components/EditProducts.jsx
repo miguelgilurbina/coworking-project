@@ -1,19 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  TextField,
-  Button,
-} from "@mui/material";
-import { Link } from "react-router-dom";
-import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
-import "../Styles/admin.css";
-import IsMobile from "./IsMobile";
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+import { Table, TableBody, TableCell, TableContainer, TableRow, TextField, Button } from '@mui/material';
 
+
+import React from 'react'
 
 const EditProducts = () => {
   const [data, setData] = useState([
@@ -176,6 +166,20 @@ const EditProducts = () => {
     }
   };
 
+  const handleDelete = async (index) => {
+    const newData = [...data];
+    const itemToDelete = newData.splice(index, 1)[0];
+
+    setData(newData);
+
+    try {
+      const response = await axios.delete(`http://localhost:8080/${itemToDelete.id}`);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleEdit = (event) => {
     setDraftData({ ...draftData, [event.target.name]: event.target.value });
   };
@@ -192,96 +196,71 @@ const EditProducts = () => {
   };
 
   return (
-    <div className="contenedorBody">
-      <div className="containerButton">
-        <Link to="/admin" className="genericButton link-flex">
-          <FaArrowLeft className="iconSpace" /> Go back
-        </Link>
-      </div>
-      <h2 className="mb-4">Edit product</h2>
-
-      {isMobile ? (
-        <div className="mobile-message-card">
-          <div className="mobile-message-icon">
-            <FaExclamationTriangle />
-          </div>
-          <h2>This view is not available on mobile devices.</h2>
-        </div>
-      ) : (
-        <TableContainer>
-          <Table>
-            <TableBody>
-              {data.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell>
-                    {editIdx === index ? (
-                      <TextField
-                        name="name"
-                        value={draftData.name}
-                        onChange={handleEdit}
-                      />
-                    ) : (
-                      row.name
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    {editIdx === index ? (
-                      <TextField
-                        name="description"
-                        value={draftData.description}
-                        onChange={handleEdit}
-                      />
-                    ) : (
-                      row.description
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    {editIdx === index ? (
-                      <TextField
-                        name="quantity"
-                        value={draftData.quantity}
-                        onChange={handleEdit}
-                      />
-                    ) : (
-                      row.quantity
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    {editIdx === index ? (
-                      <TextField
-                        name="price"
-                        value={draftData.price}
-                        onChange={handleEdit}
-                      />
-                    ) : (
-                      row.price
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    {editIdx === index ? (
-                      <>
-                        <Button onClick={() => saveEdit(index)}>Guardar</Button>
-                        <Button onClick={cancelEdit}>Cancelar</Button>
-                      </>
-                    ) : (
-                      <>
-                        <Button onClick={() => startEdit(index, row)}>
-                          Editar
-                        </Button>
-                        <Button onClick={() => deleteRow(index)}>
-                          Eliminar
-                        </Button>
-                      </>
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-    </div>
+    <TableContainer>
+      <Table>
+        <TableBody>
+          {data.map((row, index) => (
+            <TableRow key={index}>
+              <TableCell>
+                {editIdx === index ? (
+                  <TextField
+                    name="name"
+                    value={draftData.name}
+                    onChange={handleEdit}
+                  />
+                ) : (
+                  row.name
+                )}
+              </TableCell>
+              <TableCell>
+                {editIdx === index ? (
+                  <TextField
+                    name="description"
+                    value={draftData.description}
+                    onChange={handleEdit}
+                  />
+                ) : (
+                  row.description
+                )}
+              </TableCell>
+              <TableCell>
+                {editIdx === index ? (
+                  <TextField
+                    name="quantity"
+                    value={draftData.quantity}
+                    onChange={handleEdit}
+                  />
+                ) : (
+                  row.quantity
+                )}
+              </TableCell>
+              <TableCell>
+                {editIdx === index ? (
+                  <TextField
+                    name="price"
+                    value={draftData.price}
+                    onChange={handleEdit}
+                  />
+                ) : (
+                  row.price
+                )}
+              </TableCell>
+              <TableCell>
+                {editIdx === index ? (
+                  <>
+                    <Button onClick={() => saveEdit(index)}>Guardar</Button>
+                    <Button onClick={cancelEdit}>Cancelar</Button>
+                  </>
+                ) : (
+                  <Button onClick={() => startEdit(index, row)}>Editar</Button>
+                )}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
-};
+}
 
 export default EditProducts;

@@ -261,6 +261,9 @@ const ProductForm = () => {
   const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
   const [selectedImages, setSelectedImages] = useState([]);
+  const [error, setError] = useState("");
+  const [imageError, setImageError] = useState("");
+
   const isMobile = IsMobile();
   const [characteristics, setCharacteristics] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -278,6 +281,7 @@ const ProductForm = () => {
 
     fetchCategories();
   }, []);
+
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
@@ -296,32 +300,73 @@ const ProductForm = () => {
 
     fetchCharacteristics();
   }, []);
+
   const handleImageUpload = (e) => {
     const files = e.target.files;
-    if (files.length > 0) {
-      const newImages = Array.from(files);
-      setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    const newImages = Array.from(files);
+
+    if (selectedImages.length + newImages.length > 5) {
+      setImageError("You can upload a maximum of 5 images.");
+      return;
+    } else {
+      setImageError("");
     }
+
+    setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+  };
+
+  const handleImageDelete = (index) => {
+    setSelectedImages((prevImages) =>
+      prevImages.filter((image, i) => i !== index)
+    );
+    setImageError("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      name,
-      description,
-      quantity: parseInt(quantity),
-      price: parseFloat(price),
-      images: selectedImages.map((image) => image.name), // assuming images have 'name' property
-    };
-    console.log("Form Data:", formData); // Logging the form data before sending
+    setError("");
+
+    // Check if the product name already exists
+    /* try {
+      const existingProductResponse = await axios.get(
+        `http://localhost:8080/products?name=${name}`
+      );
+      if (existingProductResponse.data.length > 0) {
+        setError("Product with this name already exists.");
+        return;
+      }
+    } catch (err) {
+      console.error(err);
+      setError("An error occurred while checking for existing products.");
+      return;
+    } */
 
     try {
-      const response = await axios.post("http://localhost:3003/data", formData);
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("quantity", quantity);
+      formData.append("price", price);
+      selectedImages.forEach((image, index) => {
+        formData.append(`image${index}`, image);
+      });
+
+      const response = await axios.post(
+        "http://localhost:3003/data",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(response.data);
     } catch (error) {
       console.error(error);
+      setError("An error occurred while submitting the form.");
     }
   };
+
   return (
     <>
       <div className="contenedorBody">
@@ -341,6 +386,7 @@ const ProductForm = () => {
           </div>
         ) : (
           <div className="containerForm">
+            {error && <p className="error">{error}</p>}
             <form className="formProduct" onSubmit={handleSubmit}>
               <div className="form-column">
                 <h4>Enter the details of the new salon</h4>
@@ -422,9 +468,12 @@ const ProductForm = () => {
                     onChange={handleImageUpload}
                     id="images"
                   />
-                  {selectedImages.length > 0 && selectedImages.length < 6 && (
+                  {selectedImages.length > 0 && (
                     <div>
-                      <p>Selected images</p>
+                      <p>
+                        {selectedImages.length} image
+                        {selectedImages.length > 1 ? "s" : ""} selected
+                      </p>
                       {selectedImages.map((image, index) => (
                         <div key={index} className="image-preview-container">
                           <img
@@ -433,6 +482,7 @@ const ProductForm = () => {
                             className="preview-image"
                           />
                           <button
+                            type="button"
                             onClick={() => handleImageDelete(index)}
                             className="btn btn-danger"
                           >
@@ -440,6 +490,12 @@ const ProductForm = () => {
                           </button>
                         </div>
                       ))}
+                    </div>
+                  )}
+                  {imageError && (
+                    <div className="image-error">
+                      <FaExclamationTriangle className="iconSpace" />
+                      {imageError}
                     </div>
                   )}
                 </div>
