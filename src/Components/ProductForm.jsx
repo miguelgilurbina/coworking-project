@@ -356,10 +356,13 @@ const ProductForm = () => {
       selectedImages.forEach((image, index) => {
         formData.append(`image${index}`, image);
       });
+      for (const pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+      }
 
       const response = await axios.post(
         //TODO: INTEGRAR CON BACK
-        "http://localhost:8080/sala",
+        "http://localhost:3003/data",
         formData,
         {
           headers: {

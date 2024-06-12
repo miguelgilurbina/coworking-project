@@ -105,14 +105,6 @@
       "isAdmin": true
     },
     {
-      "id": "18",
-      "first_name": "Miguel",
-      "last_name": "Gil",
-      "email": "miguegil@gmail.com",
-      "password": "Password1234",
-      "isAdmin": true
-    },
-    {
       "id": "171",
       "first_name": "Jose",
       "last_name": "Antonio",
@@ -127,6 +119,14 @@
       "email": "example@email.com",
       "password": "Hola123",
       "isAdmin": false
+    },
+    {
+      "id": "18",
+      "first_name": "Miguel",
+      "last_name": "Gil",
+      "email": "miguegil@gmail.com",
+      "password": "Password1234",
+      "isAdmin": true
     }
   ]
 }
