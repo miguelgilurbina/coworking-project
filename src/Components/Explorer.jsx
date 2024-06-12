@@ -29,7 +29,6 @@ const Explorer = () => {
           (product) => product.toLowerCase().slice(0, inputLength) === inputValue
         );
   };
-
   const onSuggestionsFetchRequested = ({ value }) => {
     setSuggestions(getSuggestions(value));
   };
