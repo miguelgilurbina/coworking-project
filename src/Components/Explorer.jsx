@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "../Styles/Explorer.css";
 import DatePicker from "react-datepicker";
 import Autosuggest from "react-autosuggest";
@@ -11,7 +12,23 @@ const Explorer = () => {
   const [quantity, setQuantity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const placeholder = "Number of people...";
-  const productList = ["Full time", "Lounge", "Meeting room", "Private office"];
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+  try {
+    const response = await axios.get("http://localhost:3003/data");
+    const data = response.data;
+    console.log("Data received from API:", data); // Agregar un log para verificar los datos recibidos
+    const productNames = data.map((product) => product.name);
+    setProducts(productNames);
+  } catch (error) {
+    console.error("Error fetching products:", error); // Manejar errores de la solicitud
+  }
+};
+
 
   const searchProducts = () => {
     console.log(
@@ -25,10 +42,11 @@ const Explorer = () => {
 
     return inputLength === 0
       ? []
-      : productList.filter(
+      : products.filter(
           (product) => product.toLowerCase().slice(0, inputLength) === inputValue
         );
   };
+
   const onSuggestionsFetchRequested = ({ value }) => {
     setSuggestions(getSuggestions(value));
   };
@@ -88,12 +106,7 @@ const Explorer = () => {
           Search
         </button>
       </div>
-      {products.map((product) => (
-        <div key={product.id}>
-          <h2>{product.name}</h2>
-          <p>{product.description}</p>
-        </div>
-      ))}
+      {/* Aquí no necesitas mostrar los productos */}
     </div>
   );
 };
