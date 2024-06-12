@@ -12,13 +12,20 @@ import { FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Gallery = () => {
   const [showCarousel, setShowCarousel] = useState(false);
-  const [imagery, setImagery] = useState([image, image1, image2, image3, image4]);
+  const [imagery, setImagery] = useState([
+    image,
+    image1,
+    image2,
+    image3,
+    image4,
+  ]);
   const [characteristics, setCharacteristics] = useState([]);
   const [termsCollapsed, setTermsCollapsed] = useState(true);
 
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
+        //TODO: INTEGRAR CON BACK
         const response = await fetch("http://localhost:3004/caracteristicas");
         if (!response.ok) {
           throw new Error("Network response was not ok.");

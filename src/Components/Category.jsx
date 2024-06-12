@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import CategoryCard from './CategoryCard';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import CategoryCard from "./CategoryCard";
 import "../Styles/Category.css";
 
 const Category = () => {
@@ -10,19 +10,20 @@ const Category = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/categories');
-        console.log('API Response:', response.data);
+        //TODO: INTEGRAR CON BACK
+        const response = await axios.get("http://localhost:3002/categories");
+        console.log("API Response:", response.data);
 
         const categoriesArray = response.data || [];
-        console.log('Categories Array:', categoriesArray);
+        console.log("Categories Array:", categoriesArray);
 
         const shuffledData = shuffleArray(categoriesArray);
-        console.log('Shuffled Data:', shuffledData);
+        console.log("Shuffled Data:", shuffledData);
 
         setRecommendData(shuffledData);
       } catch (error) {
         setError(error.message);
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -33,7 +34,10 @@ const Category = () => {
     const shuffledArray = [...array];
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
     }
     return shuffledArray;
   };
@@ -50,10 +54,10 @@ const Category = () => {
           <p>No categories available</p>
         ) : (
           recommendData.map((category) => {
-            console.log('Rendering CategoryCard with:', category);
+            console.log("Rendering CategoryCard with:", category);
             return (
               <CategoryCard
-                key={category.id}  // Using category.id as key
+                key={category.id} // Using category.id as key
                 title={category.title}
                 description={category.description}
                 srcImg={category.srcImg}

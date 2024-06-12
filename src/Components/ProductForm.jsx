@@ -254,6 +254,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
+import Alert from "./Alert";
 
 const ProductForm = () => {
   const [name, setName] = useState("");
@@ -263,6 +264,7 @@ const ProductForm = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [error, setError] = useState("");
   const [imageError, setImageError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const isMobile = IsMobile();
   const [characteristics, setCharacteristics] = useState([]);
@@ -272,6 +274,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        //TODO: INTEGRAR CON BACK
         const response = await axios.get("http://localhost:3002/categories");
         setCategories(response.data);
       } catch (error) {
@@ -285,9 +288,10 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
+        //TODO: INTEGRAR CON BACK
         const response = await fetch("http://localhost:3004/caracteristicas");
         if (!response.ok) {
-          throw new Error('Failed to fetch characteristics');
+          throw new Error("Failed to fetch characteristics");
         }
         const data = await response.json();
         setCharacteristics(data);
@@ -325,10 +329,12 @@ const ProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccessMessage("");
 
     // Check if the product name already exists
     /* try {
       const existingProductResponse = await axios.get(
+        //TODO: INTEGRAR CON BACK
         `http://localhost:8080/products?name=${name}`
       );
       if (existingProductResponse.data.length > 0) {
@@ -352,7 +358,8 @@ const ProductForm = () => {
       });
 
       const response = await axios.post(
-        "http://localhost:3003/data",
+        //TODO: INTEGRAR CON BACK
+        "http://localhost:8080/sala",
         formData,
         {
           headers: {
@@ -361,6 +368,7 @@ const ProductForm = () => {
         }
       );
       console.log(response.data);
+      setSuccessMessage("Product successfully added!");
     } catch (error) {
       console.error(error);
       setError("An error occurred while submitting the form.");
@@ -386,7 +394,6 @@ const ProductForm = () => {
           </div>
         ) : (
           <div className="containerForm">
-            {error && <p className="error">{error}</p>}
             <form className="formProduct" onSubmit={handleSubmit}>
               <div className="form-column">
                 <h4>Enter the details of the new salon</h4>
@@ -504,6 +511,8 @@ const ProductForm = () => {
           </div>
         )}
       </div>
+      {error && <Alert type="error" message={error} />}
+      {successMessage && <Alert type="success" message={successMessage} />}{" "}
     </>
   );
 };

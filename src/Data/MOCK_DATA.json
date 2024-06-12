@@ -57,6 +57,54 @@
       "isAdmin": false
     },
     {
+      "id": "1811",
+      "first_name": "Karina",
+      "last_name": "Lopez",
+      "email": "example@email.com",
+      "password": "Password1",
+      "isAdmin": false
+    },
+    {
+      "id": "17",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez288@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "181",
+      "first_name": "Juan",
+      "last_name": "Salandro",
+      "email": "juanisalandro@gmail.com",
+      "password": "Password123",
+      "isAdmin": false
+    },
+    {
+      "id": "181",
+      "first_name": "Juan",
+      "last_name": "Salandro",
+      "email": "juanisalandro@gmail.com",
+      "password": "Password123",
+      "isAdmin": true
+    },
+    {
+      "id": "16",
+      "first_name": "Enzo",
+      "last_name": "Fernandez",
+      "email": "enzitofernandez287@gmail.com",
+      "password": "Password123",
+      "isAdmin": true
+    },
+    {
+      "id": "1711",
+      "first_name": "Dorian",
+      "last_name": "Batti",
+      "email": "dorianbatti@gmail.com",
+      "password": "Password123",
+      "isAdmin": true
+    },
+    {
       "id": "18",
       "first_name": "Miguel",
       "last_name": "Gil",
@@ -74,51 +122,11 @@
     },
     {
       "id": "1711",
-      "first_name": "Dorian",
-      "last_name": "Batti",
-      "email": "dorianbatti@gmail.com",
-      "password": "Password123",
+      "first_name": "Karina",
+      "last_name": "Perez",
+      "email": "example@email.com",
+      "password": "Hola123",
       "isAdmin": false
-    },
-    {
-      "id": "17",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez288@gmail.com",
-      "password": "Password123",
-      "isAdmin": true
-    },
-    {
-      "id": "6",
-      "first_name": "Bethany",
-      "last_name": "Orum",
-      "email": "borum5@networksolutions.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "8",
-      "first_name": "Lyndsie",
-      "last_name": "McWhan",
-      "email": "lmcwhan7@ihg.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
-      "id": "9",
-      "first_name": "Pamella",
-      "last_name": "Nizet",
-      "email": "pnizet8@cpanel.net",
-      "password": "password",
-      "isAdmin": true
-    },
-    {
-      "id": "16",
-      "first_name": "Enzo",
-      "last_name": "Fernandez",
-      "email": "enzitofernandez287@gmail.com",
-      "password": "Password123",
-      "isAdmin": true
     }
   ]
 }

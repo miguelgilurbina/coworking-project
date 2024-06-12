@@ -14,12 +14,16 @@ const CategoryForm = () => {
     e.preventDefault();
     const formData = {
       title, // Cambiar el nombre del campo de "name" a "title"
-      description
+      description,
     };
     console.log("Form Data:", formData); // Logging the form data before sending
 
     try {
-      const response = await axios.post("http://localhost:3002/categories", formData);
+      //TODO: INTEGRAR CON BACK
+      const response = await axios.post(
+        "http://localhost:3002/categories",
+        formData
+      );
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -70,7 +74,7 @@ const CategoryForm = () => {
                   </button>
                 </div>
               </div>
-              </form>
+            </form>
           </div>
         )}
       </div>
