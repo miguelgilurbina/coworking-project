@@ -9,7 +9,7 @@ const LoginForm = () => {
   const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    contraseña: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -25,15 +25,31 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
     try {
-      // Llamar a la función de inicio de sesión del contexto de autenticación
-      await login(formData);
-      // Redirigir al usuario después de iniciar sesión
+      const response = await axios.post(
+        "http://localhost:8080//login",
+        formData
+      );
+      login(response.data.user);
       navigate("/home");
+      console.log(response.data);
     } catch (error) {
-      // Manejar errores de inicio de sesión
-      setError("Invalid email or password.");
+      setError("Incorrect email or password. Please try again");
+      console.error(error);
     }
   };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setError("");
+  //   try {
+  //     // Llamar a la función de inicio de sesión del contexto de autenticación
+  //     await login(formData);
+  //     // Redirigir al usuario después de iniciar sesión
+  //     navigate("/home");
+  //   } catch (error) {
+  //     // Manejar errores de inicio de sesión
+  //     setError("Invalid email or password.");
+  //   }
+  // };
 
   return (
     <div className="card" style={{ borderRadius: "1rem" }}>
@@ -129,20 +145,20 @@ const LoginForm = () => {
 
 export default LoginForm;
 // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:8080/api/login",
-  //       formData
-  //     );
-  //     login(response.data.user);
-  //     navigate("/home");
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     setError("Incorrect email or password. Please try again");
-  //     console.error(error);
-  //   }
-  // };
+//     e.preventDefault();
+//     setError("");
+//     try {
+//       const response = await axios.post(
+//         "http://localhost:8080/api/login",
+//         formData
+//       );
+//       login(response.data.user);
+//       navigate("/home");
+//       console.log(response.data);
+//     } catch (error) {
+//       setError("Incorrect email or password. Please try again");
+//       console.error(error);
+//     }
+//   };
 
   // TODO: codigo temporal para probar el login

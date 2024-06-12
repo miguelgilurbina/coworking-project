@@ -78,7 +78,7 @@ const ProductForm = () => {
     };
 
     try {
-      const response = await axios.post("https://reqres.in/api/users", dataToSend, {
+      const response = await axios.post("http://localhost:8080/salas/registrar", dataToSend, {
         headers: {
           'Content-Type': 'application/json'
         }

@@ -113,7 +113,7 @@ const RegisterForm = () => {
           contraseña: formData.password
         };
 
-        const response = await axios.post('https://reqres.in/api/users', payload, {
+        const response = await axios.post('http://localhost:8080/usuarios/registrar', payload, {
           headers: {
             'Content-Type': 'application/json'
           }

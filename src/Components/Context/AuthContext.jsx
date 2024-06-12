@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("Datos del formulario:", formData);
       
-      const response = await axios.get("http://localhost:3001/usuarios", {
+      const response = await axios.get("http://localhost:8080/usuarios", {
         params: formData, // Envía el formulario como parámetros de consulta
       });
       
