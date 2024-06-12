@@ -63,7 +63,7 @@ const Recommend = () => {
   );
 
   return (
-    <div className="container containerRecommend">
+    <div className="container containerRecommend" style={{marginBottom:"100px"}}>
       <h2 className="mb-4">Recommended rooms</h2>
 
       <div className="recommend">

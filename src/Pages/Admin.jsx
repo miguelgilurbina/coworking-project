@@ -22,7 +22,7 @@ const Admin = () => {
         <div className="AdminPage">
           {user ? (
             <>
-              <h2>Hi {user.name}!</h2>
+              <h2>Hi {user.first_name}!</h2>
               <h4>What do you want to do today?</h4>
             </>
           ) : (
@@ -48,13 +48,31 @@ const Admin = () => {
               <div className="card-icon">
                 <FaEdit />
               </div>
-              <div className="card-title">Edit Existing Room</div>
+              <div className="card-title">Edit Product</div>
             </Link>
             <Link to="/userList" className="admin-option-card">
               <div className="card-icon">
-                <FaEdit />
+                <FaList />
               </div>
               <div className="card-title">Users List </div>
+            </Link>
+            <Link to="/addCategory" className="admin-option-card">
+              <div className="card-icon">
+                <FaEdit />
+              </div>
+              <div className="card-title">Add Product Category</div>
+            </Link>
+            <Link to="/categoryList" className="admin-option-card">
+              <div className="card-icon">
+                <FaList />
+              </div>
+              <div className="card-title">Category List</div>
+            </Link>
+            <Link to="/producto" className="admin-option-card">
+              <div className="card-icon">
+                <FaList />
+              </div>
+              <div className="card-title">Product List</div>
             </Link>
           </div>
         </div>

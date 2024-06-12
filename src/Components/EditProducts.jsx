@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Table,
@@ -8,150 +8,28 @@ import {
   TableRow,
   TextField,
   Button,
+  TableHead,
+  Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
-import "../Styles/admin.css";
 import IsMobile from "./IsMobile";
-
+import data from "../Data/recommendData.json";
+import "../Styles/Form.css";
 
 const EditProducts = () => {
-  const [data, setData] = useState([
-    {
-      name: "full room",
-      description: "Fully equipped room",
-      quantity: 10,
-      price: 100,
-    },
-    {
-      name: "medium room",
-      description: "Fully equipped room",
-      quantity: 7,
-      price: 50,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 4,
-      price: 30,
-    },
-    {
-      name: "medium room",
-      description: "Fully equipped room",
-      quantity: 8,
-      price: 60,
-    },
-    {
-      name: "medium room",
-      description: "Fully equipped room",
-      quantity: 7,
-      price: 45,
-    },
-    {
-      name: "medium room",
-      description: "Fully equipped room",
-      quantity: 7,
-      price: 40,
-    },
-    {
-      name: "medium room",
-      description: "Fully equipped room",
-      quantity: 6,
-      price: 50,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 2,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 1,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 2,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 3,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 1,
-      price: 100,
-    },
-    {
-      name: "full room",
-      description: "Fully equipped room",
-      quantity: 15,
-      price: 100,
-    },
-    {
-      name: "full room",
-      description: "Fully equipped room",
-      quantity: 12,
-      price: 100,
-    },
-    {
-      name: "full room",
-      description: "Fully equipped room",
-      quantity: 15,
-      price: 100,
-    },
-    {
-      name: "medium room",
-      description: "Fully equipped room",
-      quantity: 6,
-      price: 100,
-    },
-    {
-      name: "medium room",
-      description: "Fully equipped room",
-      quantity: 7,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 4,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 4,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 3,
-      price: 100,
-    },
-    {
-      name: "small room",
-      description: "Fully equipped room",
-      quantity: 2,
-      price: 100,
-    },
-  ]);
-  const isMobile = IsMobile();
-
+  const [productData, setProductData] = useState([]);
   const [editIdx, setEditIdx] = useState(-1);
   const [draftData, setDraftData] = useState({});
+  const isMobile = IsMobile();
+
+  useEffect(() => {
+    setProductData(data.data);
+  }, []);
 
   const startEdit = (index, row) => {
     setEditIdx(index);
-    setDraftData(row);
+    setDraftData({ ...row });
   };
 
   const cancelEdit = () => {
@@ -160,16 +38,30 @@ const EditProducts = () => {
   };
 
   const saveEdit = (index) => {
-    const newData = [...data];
+    const newData = [...productData];
     newData[index] = draftData;
-    setData(newData);
+    setProductData(newData);
     setEditIdx(-1);
     setDraftData({});
     try {
       const response = axios.put(
-        `http://localhost:8080/${draftData.id}`,
+        `http://localhost:8080/products/${draftData.id}`,
         draftData
       );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async (index) => {
+    const newData = [...data];
+    const itemToDelete = newData.splice(index, 1)[0];
+
+    setData(newData);
+
+    try {
+      const response = await axios.delete(`http://localhost:8080/${itemToDelete.id}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -181,10 +73,12 @@ const EditProducts = () => {
   };
 
   const deleteRow = (index) => {
-    const newData = data.filter((_, idx) => idx !== index);
-    setData(newData);
+    const newData = productData.filter((_, idx) => idx !== index);
+    setProductData(newData);
     try {
-      const response = axios.delete(`http://localhost:8080/${data[index].id}`);
+      const response = axios.delete(
+        `http://localhost:8080/products/${productData[index].id}`
+      );
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -208,11 +102,73 @@ const EditProducts = () => {
           <h2>This view is not available on mobile devices.</h2>
         </div>
       ) : (
-        <TableContainer>
+        <TableContainer className="form-column">
           <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    ID
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    CATEGORY
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    NAME
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    DESCRIPTION
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    PEOPLE
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    PRICE
+                  </Typography>
+                </TableCell>
+
+                <TableCell>
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    ACTIONS
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
             <TableBody>
-              {data.map((row, index) => (
+              {productData.map((row, index) => (
                 <TableRow key={index}>
+                  <TableCell>
+                    {editIdx === index ? (
+                      <TextField
+                        name="id"
+                        value={draftData.id}
+                        onChange={handleEdit}
+                      />
+                    ) : (
+                      row.id
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {editIdx === index ? (
+                      <TextField
+                        name="category"
+                        value={draftData.Category}
+                        onChange={handleEdit}
+                      />
+                    ) : (
+                      row.Category
+                    )}
+                  </TableCell>
                   <TableCell>
                     {editIdx === index ? (
                       <TextField
@@ -238,12 +194,12 @@ const EditProducts = () => {
                   <TableCell>
                     {editIdx === index ? (
                       <TextField
-                        name="quantity"
-                        value={draftData.quantity}
+                        name="people"
+                        value={draftData.people}
                         onChange={handleEdit}
                       />
                     ) : (
-                      row.quantity
+                      row.people
                     )}
                   </TableCell>
                   <TableCell>
@@ -257,20 +213,19 @@ const EditProducts = () => {
                       row.price
                     )}
                   </TableCell>
+
                   <TableCell>
                     {editIdx === index ? (
                       <>
-                        <Button onClick={() => saveEdit(index)}>Guardar</Button>
-                        <Button onClick={cancelEdit}>Cancelar</Button>
+                        <Button onClick={() => saveEdit(index)}>Save</Button>
+                        <Button onClick={cancelEdit}>Cancel</Button>
                       </>
                     ) : (
                       <>
                         <Button onClick={() => startEdit(index, row)}>
-                          Editar
+                          Edit
                         </Button>
-                        <Button onClick={() => deleteRow(index)}>
-                          Eliminar
-                        </Button>
+                        <Button onClick={() => deleteRow(index)}>Delete</Button>
                       </>
                     )}
                   </TableCell>
@@ -282,6 +237,6 @@ const EditProducts = () => {
       )}
     </div>
   );
-};
+}
 
 export default EditProducts;

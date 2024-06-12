@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { FaExclamationCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import user_icon from "../Assets/person.png";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
@@ -20,6 +22,8 @@ const RegisterForm = () => {
     password: [],
   });
 
+  const navigate = useNavigate(); // Hook para la redirección
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -28,15 +32,40 @@ const RegisterForm = () => {
       [name]: value,
     });
 
-    if (name === "password") {
-      validatePassword(value);
+    if (name === "firstName") {
+      const errorMessage = validateName(value, "First");
+      setErrors({
+        ...errors,
+        firstName: errorMessage ? [errorMessage] : [],
+      });
+    } else if (name === "lastName") {
+      const errorMessage = validateName(value, "Last");
+      setErrors({
+        ...errors,
+        lastName: errorMessage ? [errorMessage] : [],
+      });
     } else if (name === "email") {
       const errorMessage = validateEmail(value);
       setErrors({
         ...errors,
         email: errorMessage ? [errorMessage] : [],
       });
+    } else if (name === "password") {
+      validatePassword(value);
     }
+  };
+
+  const validateName = (name, fieldName) => {
+    const nameRegex = /^[a-zA-Z]+$/;
+
+    if (name.length < 2) {
+      return `${fieldName} name must have at least 2 characters.`;
+    }
+    if (!nameRegex.test(name)) {
+      return `${fieldName} name can only contain letters.`;
+    }
+
+    return null;
   };
 
   const validateEmail = (email) => {
@@ -78,58 +107,59 @@ const RegisterForm = () => {
     if (Object.keys(errors).every((key) => errors[key].length === 0)) {
       try {
         console.log("Submitting Form Data:", formData); // Log the form data
-  
+
         // Fetch the last user ID from the database or server
-        const lastUserIdResponse = await axios.get("http://localhost:3001/usuarios");
-        const lastUserId = lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
-  
+        const lastUserIdResponse = await axios.get(
+          "http://localhost:3001/usuarios"
+        );
+        const lastUserId =
+          lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
+
         // Generate a new ID by incrementing the last ID
         const newUserId = lastUserId + 1;
-  
+
         // Send the user data with the new ID
-        const response = await axios.post(
-          "http://localhost:3001/usuarios",
-          {
-            id: newUserId,
-            first_name: formData.firstName,
-            last_name: formData.lastName,
-            email: formData.email,
-            password: formData.password,
-            isAdmin: false
-          }
-        );
+        const response = await axios.post("http://localhost:3001/usuarios", {
+          id: newUserId,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          isAdmin: false,
+        });
         console.log("Response from Server:", response.data); // Log the server response
+
+        // Redirigir a la página de inicio
+        navigate("/home");
       } catch (error) {
         console.error(error);
       }
+    } else {
+      console.log("Form submission halted due to errors.");
+      setErrors({
+        firstName: errors.firstName,
+        lastName: errors.lastName,
+        email: errors.email ? [errors.email] : [],
+        password: errors.password,
+      });
     }
-  };
-
-  const generateId = () => {
-    // Logic to generate ID (for example, adding 1 to the last ID in the API)
-    // You may need to fetch the last ID from the API or maintain it in your React state
-    // For simplicity, let's assume the last ID is 100
-    return 100 + 1;
   };
 
   const renderErrors = (errorMessages) => {
     return errorMessages.map((message, index) => (
       <div key={index} className="error">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="bi bi-exclamation-lg"
-          viewBox="0 0 16 16"
-          style={{ marginRight: "5px" }}
-        >
-          <path d="M7.005 3.1a1 1 0 1 1 1.99 0l-.388 6.35a.61.61 0 0 1-1.214 0zM7 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0" />
-        </svg>
+        <FaExclamationCircle
+          size={16}
+          style={{ marginRight: "5px", color: "red" }}
+        />
         {message}
       </div>
     ));
   };
+
+  const hasErrors = Object.values(errors).some(
+    (errorArray) => errorArray.length > 0
+  );
 
   return (
     <div className="card" style={{ borderRadius: "1rem" }}>
@@ -160,7 +190,7 @@ const RegisterForm = () => {
                 The Co-Working experience start here
               </h5>
 
-              <div data-mdb-input-init className="form-outline mb-4">
+              <div data-mdb-input-init className="form-outline mb-3">
                 <label className="form-label">
                   <img src={user_icon} alt="user_icon" /> First Name
                 </label>
@@ -172,7 +202,17 @@ const RegisterForm = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   placeholder="Ex: Juan"
+                  required
                 />
+              </div>
+
+              <div className="error-container">
+                {errors.firstName.length > 0 && (
+                  <div>
+                    <strong>First Name Errors:</strong>
+                    {renderErrors(errors.firstName)}
+                  </div>
+                )}
               </div>
 
               <div data-mdb-input-init className="form-outline mb-4">
@@ -187,10 +227,20 @@ const RegisterForm = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   placeholder="Ex: Perez"
+                  required
                 />
               </div>
 
-              <div data-mdb-input-init className="form-outline mb-4">
+              <div className="error-container">
+                {errors.lastName.length > 0 && (
+                  <div>
+                    <strong>Last Name Errors:</strong>
+                    {renderErrors(errors.lastName)}
+                  </div>
+                )}
+              </div>
+
+              <div data-mdb-input-init className="form-outline mb-3">
                 <label className="form-label">
                   <img src={email_icon} alt="email_icon" /> Email address
                 </label>
@@ -202,19 +252,20 @@ const RegisterForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Ex: example@email.com"
+                  required
                 />
               </div>
 
               <div className="error-container">
                 {errors.email.length > 0 && (
-                  <div className="email-errors">
+                  <div>
                     <strong>Email Errors:</strong>
                     {renderErrors(errors.email)}
                   </div>
                 )}
               </div>
 
-              <div data-mdb-input-init className="form-outline mb-4">
+              <div data-mdb-input-init className="form-outline mb-3">
                 <label className="form-label">
                   <img src={password_icon} alt="password_icon" /> Password
                 </label>
@@ -226,12 +277,13 @@ const RegisterForm = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="1 uppercase letter, 1 lowercase letter, 1 number"
+                  required
                 />
               </div>
 
               <div className="error-container">
                 {errors.password.length > 0 && (
-                  <div className="password-errors">
+                  <div>
                     <strong>Password Errors:</strong>
                     {renderErrors(errors.password)}
                   </div>
@@ -242,7 +294,8 @@ const RegisterForm = () => {
                   data-mdb-button-init
                   data-mdb-ripple-init
                   className="btn btn-warning btn-lg btn-block mt-2"
-                  type="submit" // Changed type to submit
+                  type="submit"
+                  disabled={hasErrors}
                 >
                   Register
                 </button>

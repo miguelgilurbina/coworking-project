@@ -1,12 +1,12 @@
 import React from "react";
 import "../Styles/header.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "./Context/AuthContext";
+import { useAuth } from "./Context/AuthContext"; // Importa useAuth
 import Avatar from "./Avatar";
 import { useState } from "react";
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth(); // Obtén la función logout del contexto de autenticación
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -23,20 +23,26 @@ const Header = () => {
   return (
     <header className="header">
       <div className="d-flex p-2">
-      <Link to="/home" className="logo">
-        <img
-          src="../../public/icons/cw_logo_app.png"
-          alt="Logo de la empresa"
-          className="logo-img"
-        />
-        <div className="d-grid">
-          <span className="coworking">Co-Working</span>
-          <span className="lema">Where Dreams Are Codified</span>
-        </div>
-      </Link>
+        <Link to="/home" className="logo">
+          <img
+            src="../../public/icons/cw_logo_app.png"
+            alt="Logo de la empresa"
+            className="logo-img"
+          />
+          <div className="d-grid">
+            <span className="coworking">Co-Working</span>
+            <span className="lema">Where Dreams Are Codified</span>
+          </div>
+        </Link>
       </div>
 
       <div className="right-block">
+        {user && (
+        <Link to={"/favorites"} className="button link-flex">
+          Favorites
+        </Link>
+        )
+        }
         {user ? (
           <div className="logged-in-section">
             {user.isAdmin && ( // Verifica si el usuario es administrador
@@ -54,7 +60,7 @@ const Header = () => {
                   {getInitials(user)}
                 </div>
               </Link>
-              <Link to="/" className="logout-link">
+              <Link to="/" className="logout-link" onClick={logout}>
                 Log out
               </Link>
             </div>
