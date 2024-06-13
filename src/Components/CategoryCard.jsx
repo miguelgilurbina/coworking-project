@@ -7,8 +7,8 @@ const CategoryCard = ({ title, description, srcImg }) => {
       <img src={srcImg} alt={title} className="card-image" />
       <div className="card-content">
         <h4 className="card-title text-center">{title}</h4>
-        <p className="cardDescription">{description}</p>
-        <button className="button-generic-transition mb-2">Filter By</button>
+        <p className="cardDescription mb-4">{description}</p>
+        {/* <button className="button-generic-transition mb-2">Filter By</button> */}
       </div>
     </div>
   );

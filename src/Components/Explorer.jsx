@@ -18,17 +18,16 @@ const Explorer = () => {
   }, []);
 
   const fetchProducts = async () => {
-  try {
-    const response = await axios.get("http://localhost:3003/data");
-    const data = response.data;
-    console.log("Data received from API:", data); // Agregar un log para verificar los datos recibidos
-    const productNames = data.map((product) => product.name);
-    setProducts(productNames);
-  } catch (error) {
-    console.error("Error fetching products:", error); // Manejar errores de la solicitud
-  }
-};
-
+    try {
+      const response = await axios.get("http://localhost:3003/data");
+      const data = response.data;
+      console.log("Data received from API:", data); // Agregar un log para verificar los datos recibidos
+      const productNames = data.map((product) => product.name);
+      setProducts(productNames);
+    } catch (error) {
+      console.error("Error fetching products:", error); // Manejar errores de la solicitud
+    }
+  };
 
   const searchProducts = () => {
     console.log(
@@ -43,7 +42,8 @@ const Explorer = () => {
     return inputLength === 0
       ? []
       : products.filter(
-          (product) => product.toLowerCase().slice(0, inputLength) === inputValue
+          (product) =>
+            product.toLowerCase().slice(0, inputLength) === inputValue
         );
   };
 
@@ -82,11 +82,14 @@ const Explorer = () => {
           }}
         />
 
-        <DatePicker
-          selected={date}
-          onChange={(date) => setDate(date)}
-          minDate={new Date()}
-        />
+        <div className="date-picker-wrapper">
+          <DatePicker
+            selected={date}
+            onChange={(date) => setDate(date)}
+            minDate={new Date()}
+            dateFormat="dd/MM/yyyy"
+          />
+        </div>
 
         <input
           type="number"
