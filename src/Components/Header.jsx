@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styles/header.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "./Context/AuthContext"; // Importa useAuth
+import { useAuth } from "./Context/AuthContext";
 import Avatar from "./Avatar";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ const Header = () => {
   };
 
   const getInitials = (user) => {
-    if (!user || !user.first_name || !user.last_name) return ''; // Verifica si el usuario, el nombre o el apellido son undefined o null y retorna un string vacío en ese caso
+    if (!user || !user.first_name || !user.last_name) return "";
     const firstInitial = user.first_name[0];
     const lastInitial = user.last_name[0];
     return (firstInitial + lastInitial).toUpperCase();

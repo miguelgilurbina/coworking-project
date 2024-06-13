@@ -1,3 +1,5 @@
+// EditProducts.jsx
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
@@ -16,12 +18,15 @@ import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
 import data from "../Data/recommendData.json";
 import "../Styles/Form.css";
+import Modal from "./Modal";
 
 const EditProducts = () => {
   const [productData, setProductData] = useState([]);
   const [editIdx, setEditIdx] = useState(-1);
   const [draftData, setDraftData] = useState({});
   const isMobile = IsMobile();
+  const [showModal, setShowModal] = useState(false);
+  const [currentRow, setCurrentRow] = useState(null);
 
   useEffect(() => {
     setProductData(data.data);
@@ -56,6 +61,21 @@ const EditProducts = () => {
 
   const handleEdit = (event) => {
     setDraftData({ ...draftData, [event.target.name]: event.target.value });
+  };
+
+  const openModal = (index) => {
+    setCurrentRow(index);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setCurrentRow(null);
+  };
+
+  const confirmDelete = () => {
+    deleteRow(currentRow);
+    closeModal();
   };
 
   const deleteRow = (index) => {
@@ -122,7 +142,6 @@ const EditProducts = () => {
                     PRICE
                   </Typography>
                 </TableCell>
-
                 <TableCell>
                   <Typography variant="subtitle1" fontWeight="bold">
                     ACTIONS
@@ -199,7 +218,6 @@ const EditProducts = () => {
                       row.price
                     )}
                   </TableCell>
-
                   <TableCell>
                     {editIdx === index ? (
                       <>
@@ -211,7 +229,7 @@ const EditProducts = () => {
                         <Button onClick={() => startEdit(index, row)}>
                           Edit
                         </Button>
-                        <Button onClick={() => deleteRow(index)}>Delete</Button>
+                        <Button onClick={() => openModal(index)}>Delete</Button>
                       </>
                     )}
                   </TableCell>
@@ -220,6 +238,18 @@ const EditProducts = () => {
             </TableBody>
           </Table>
         </TableContainer>
+      )}
+      {showModal && (
+        <Modal
+          title="Confirm Delete"
+          body={
+            <p>
+              You are about to delete a room. Are you sure you want to continue?
+            </p>
+          }
+          onClose={closeModal}
+          onConfirm={confirmDelete}
+        />
       )}
     </div>
   );
