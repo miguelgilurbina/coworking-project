@@ -6,7 +6,6 @@ import { FaExclamationCircle } from "react-icons/fa";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 import { doSignInWithEmailAndPassword } from "../firebase/auth";
-import routes from './utils/routes';
 
 const LoginForm = () => {
     const { userLoggedIn } = useAuth();
@@ -30,7 +29,7 @@ const LoginForm = () => {
 
     return (
         <div className="card" style={{ borderRadius: "1rem" }}>
-            {userLoggedIn && (<Navigate to={routes.home} replace={true} />)}
+            {userLoggedIn && (<Navigate to={'/home'} replace={true} />)}
             <div className="d-flex">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                     <img
