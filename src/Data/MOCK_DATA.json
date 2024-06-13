@@ -1,14 +1,6 @@
 {
   "usuarios": [
     {
-      "id": "9",
-      "first_name": "Pamella",
-      "last_name": "Nizet",
-      "email": "pnizet8@cpanel.net",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
       "id": "10",
       "first_name": "Janette",
       "last_name": "Southcott",
@@ -57,14 +49,6 @@
       "isAdmin": false
     },
     {
-      "id": "6",
-      "first_name": "Bethany",
-      "last_name": "Orum",
-      "email": "borum5@networksolutions.com",
-      "password": "password",
-      "isAdmin": false
-    },
-    {
       "id": "7",
       "first_name": "Betteann",
       "last_name": "Casley",
@@ -105,14 +89,6 @@
       "isAdmin": true
     },
     {
-      "id": "18",
-      "first_name": "Miguel",
-      "last_name": "Gil",
-      "email": "miguegil@gmail.com",
-      "password": "Password1234",
-      "isAdmin": true
-    },
-    {
       "id": "171",
       "first_name": "Jose",
       "last_name": "Antonio",
@@ -129,19 +105,11 @@
       "isAdmin": false
     },
     {
-      "id": "181",
-      "first_name": "Juan",
-      "last_name": "Salandro",
-      "email": "juanisalandro@gmail.com",
-      "password": "Password123",
-      "isAdmin": false
-    },
-    {
-      "id": "181",
-      "first_name": "Juan",
-      "last_name": "Salandro",
-      "email": "juanisalandro@gmail.com",
-      "password": "Password123",
+      "id": "18",
+      "first_name": "Miguel",
+      "last_name": "Gil",
+      "email": "miguegil@gmail.com",
+      "password": "Password1234",
       "isAdmin": true
     }
   ]

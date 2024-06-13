@@ -48,11 +48,11 @@ const Admin = () => {
               <div className="card-icon">
                 <FaEdit />
               </div>
-              <div className="card-title">Edit Existing Room</div>
+              <div className="card-title">Edit Product</div>
             </Link>
             <Link to="/userList" className="admin-option-card">
               <div className="card-icon">
-                <FaEdit />
+                <FaList />
               </div>
               <div className="card-title">Users List </div>
             </Link>
@@ -61,6 +61,18 @@ const Admin = () => {
                 <FaEdit />
               </div>
               <div className="card-title">Add Product Category</div>
+            </Link>
+            <Link to="/categoryList" className="admin-option-card">
+              <div className="card-icon">
+                <FaList />
+              </div>
+              <div className="card-title">Category List</div>
+            </Link>
+            <Link to="/producto" className="admin-option-card">
+              <div className="card-icon">
+                <FaList />
+              </div>
+              <div className="card-title">Product List</div>
             </Link>
           </div>
         </div>

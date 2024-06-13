@@ -2,6 +2,8 @@ import { Route, Routes, Navigate } from "react-router-dom";
 
 import { AuthProvider } from "./Components/Context/AuthContext";
 
+import { FavoriteProvider } from "./Components/Context/FavoriteContext";
+
 import Header from "../src/Components/Header";
 import Footer from "./Components/footer";
 import Home from "./Pages/Home";
@@ -21,11 +23,15 @@ import "./App.css";
 import UsersList from "./Components/UsersList";
 import Profile from "./Pages/Profile";
 import CategoryForm from "./Components/CategoryForm";
+import CategoryList from "./Components/CategoryList";
+import FavoriteList from "./Components/FavoriteList";
+import ProductList from "./Components/ProductList";
 
 function App() {
   return (
     <>
       <AuthProvider>
+        <FavoriteProvider>
         <div className="d-flex">
           <Header />
           <div className="background-image"></div>
@@ -50,9 +56,13 @@ function App() {
             <Route path="*" element={<Navigate to={routes.home} />} />
             <Route path={routes.profile} element={<Profile />} />
             <Route path={routes.addCategory} element={<CategoryForm />}></Route>
+            <Route path={routes.categoryList} element={<CategoryList/>}></Route>
+            <Route path={routes.favoriteList} element={<FavoriteList/>}></Route>
+            <Route path={routes.productList} element={<ProductList/>}></Route>
           </Routes>
         </div>
         <Footer />
+        </FavoriteProvider>
       </AuthProvider>
     </>
   );

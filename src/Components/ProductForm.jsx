@@ -332,7 +332,7 @@ const ProductForm = () => {
     setSuccessMessage("");
 
     // Check if the product name already exists
-    try {
+    /* try {
       const existingProductResponse = await axios.get(
         //TODO: INTEGRAR CON BACK
         `http://localhost:8080/products?name=${name}`
@@ -345,7 +345,7 @@ const ProductForm = () => {
       console.error(err);
       setError("An error occurred while checking for existing products.");
       return;
-    }
+    } */
 
     try {
       const formData = new FormData();
@@ -356,10 +356,13 @@ const ProductForm = () => {
       selectedImages.forEach((image, index) => {
         formData.append(`image${index}`, image);
       });
+      for (const pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+      }
 
       const response = await axios.post(
         //TODO: INTEGRAR CON BACK
-        "http://localhost:8080/sala",
+        "http://localhost:3003/data",
         formData,
         {
           headers: {

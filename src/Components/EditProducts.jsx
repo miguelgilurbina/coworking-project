@@ -59,6 +59,20 @@ const EditProducts = () => {
     }
   };
 
+  const handleDelete = async (index) => {
+    const newData = [...data];
+    const itemToDelete = newData.splice(index, 1)[0];
+
+    setData(newData);
+
+    try {
+      const response = await axios.delete(`http://localhost:8080/${itemToDelete.id}`);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleEdit = (event) => {
     setDraftData({ ...draftData, [event.target.name]: event.target.value });
   };
@@ -253,6 +267,6 @@ const EditProducts = () => {
       )}
     </div>
   );
-};
+}
 
 export default EditProducts;
