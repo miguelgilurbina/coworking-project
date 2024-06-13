@@ -21,15 +21,104 @@ import "../Styles/Form.css";
 import Modal from "./Modal";
 
 const EditProducts = () => {
-  const [productData, setProductData] = useState([]);
+  const [products, setProducts] = useState([]);
   const [editIdx, setEditIdx] = useState(-1);
   const [draftData, setDraftData] = useState({});
   const isMobile = IsMobile();
   const [showModal, setShowModal] = useState(false);
   const [currentRow, setCurrentRow] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  // useEffect(() => {
+  //   setProductData(data.data);
+  // }, []);
+
+  // const startEdit = (index, row) => {
+  //   setEditIdx(index);
+  //   setDraftData({ ...row });
+  // };
+
+  // const cancelEdit = () => {
+  //   setEditIdx(-1);
+  //   setDraftData({});
+  // };
+
+  // const saveEdit = (index) => {
+  //   const newData = [...productData];
+  //   newData[index] = draftData;
+  //   setProductData(newData);
+  //   setEditIdx(-1);
+  //   setDraftData({});
+  //   try {
+  //     const response = axios.put(
+  //       `http://localhost:8080/products/${draftData.id}`,
+  //       draftData
+  //     );
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const handleDelete = async (index) => {
+  //   const newData = [...data];
+  //   const itemToDelete = newData.splice(index, 1)[0];
+
+  //   setData(newData);
+
+  //   try {
+  //     const response = await axios.delete(`http://localhost:8080/${itemToDelete.id}`);
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // const handleEdit = (event) => {
+  //   setDraftData({ ...draftData, [event.target.name]: event.target.value });
+  // };
+
+  // const openModal = (index) => {
+  //   setCurrentRow(index);
+  //   setShowModal(true);
+  // };
+
+  // const closeModal = () => {
+  //   setShowModal(false);
+  //   setCurrentRow(null);
+  // };
+
+  // const confirmDelete = () => {
+  //   deleteRow(currentRow);
+  //   closeModal();
+  // };
+
+  // const deleteRow = (index) => {
+  //   const newData = productData.filter((_, idx) => idx !== index);
+  //   setProductData(newData);
+  //   try {
+  //     const response = axios.delete(
+  //       `http://localhost:8080/products/${productData[index].id}`
+  //     );
+  //     console.log(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   useEffect(() => {
-    setProductData(data.data);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3003/data');
+        setProducts(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const startEdit = (index, row) => {
@@ -42,34 +131,33 @@ const EditProducts = () => {
     setDraftData({});
   };
 
-  const saveEdit = (index) => {
-    const newData = [...productData];
-    newData[index] = draftData;
-    setProductData(newData);
-    setEditIdx(-1);
-    setDraftData({});
+  const saveEdit = async (index) => {
     try {
-      const response = axios.put(
-        `http://localhost:8080/products/${draftData.id}`,
-        draftData
-      );
-      console.log(response.data);
+      const response = await axios.put(`http://localhost:3003/data/${draftData.id}`, draftData);
+      const updatedProduct = response.data;
+      const newProducts = [...products];
+      newProducts[index] = updatedProduct;
+      setProducts(newProducts);
+      setEditIdx(-1);
+      setDraftData({});
     } catch (error) {
       console.error(error);
+      setError(error.message);
     }
   };
 
   const handleDelete = async (index) => {
-    const newData = [...data];
+    const newData = [...products];
     const itemToDelete = newData.splice(index, 1)[0];
 
-    setData(newData);
+    setProducts(newData);
 
     try {
-      const response = await axios.delete(`http://localhost:8080/${itemToDelete.id}`);
+      const response = await axios.delete(`http://localhost:3003/data/${itemToDelete.id}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);
+      setError(error.message);
     }
   };
 
@@ -92,19 +180,25 @@ const EditProducts = () => {
     closeModal();
   };
 
-  const deleteRow = (index) => {
-    const newData = productData.filter((_, idx) => idx !== index);
-    setProductData(newData);
+  const deleteRow = async (index) => {
+    const newData = products.filter((_, idx) => idx !== index);
+    setProducts(newData);
     try {
-      const response = axios.delete(
-        `http://localhost:8080/products/${productData[index].id}`
-      );
+      const response = await axios.delete(`http://localhost:3003/data/${products[index].id}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);
+      setError(error.message);
     }
   };
 
+  if (loading) {
+    return <div>Cargando...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
     <div className="contenedorBody">
       <div className="containerButton">
@@ -164,7 +258,7 @@ const EditProducts = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {productData.map((row, index) => (
+              {products.map((row, index) => (
                 <TableRow key={index}>
                   <TableCell>
                     {editIdx === index ? (

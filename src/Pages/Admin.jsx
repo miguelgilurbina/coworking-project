@@ -62,18 +62,18 @@ const Admin = () => {
               </div>
               <div className="card-title">Add Product Category</div>
             </Link>
-            <Link to="/categoryList" className="admin-option-card">
+            {/* <Link to="/categoryList" className="admin-option-card">
               <div className="card-icon">
                 <FaList />
               </div>
               <div className="card-title">Category List</div>
-            </Link>
-            <Link to="/producto" className="admin-option-card">
+            </Link> */}
+            {/* <Link to="/producto" className="admin-option-card">
               <div className="card-icon">
                 <FaList />
               </div>
               <div className="card-title">Product List</div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}
