@@ -73,22 +73,6 @@
       "isAdmin": false
     },
     {
-      "id": "181",
-      "first_name": "Juan",
-      "last_name": "Salandro",
-      "email": "juanisalandro@gmail.com",
-      "password": "Password123",
-      "isAdmin": false
-    },
-    {
-      "id": "181",
-      "first_name": "Juan",
-      "last_name": "Salandro",
-      "email": "juanisalandro@gmail.com",
-      "password": "Password123",
-      "isAdmin": true
-    },
-    {
       "id": "16",
       "first_name": "Enzo",
       "last_name": "Fernandez",

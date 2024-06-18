@@ -20,7 +20,7 @@
 }
 
 .cardDetail {
-  padding: 20px 50px 20px;
+  padding: 20px 90px 20px;
   border-radius: 20px;
   background-color: #fff;
   margin: 20px 50px 50px;
@@ -29,18 +29,20 @@
 .containerImg {
   display: flex;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .imgHero {
   width: 45%;
   border-radius: 20px;
+  height: 500px;
 }
 
 .gridDetail {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
+  height: 510px;
 }
 
 .description {
@@ -166,5 +168,34 @@
 @media (max-width: 600px) {
   .features ul {
     display: block;
+  }
+}
+
+.termsContent {
+  border: 2px solid #d8a353;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.termsColumns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.termsColumn {
+  width: 48%;
+}
+
+.termsColumn p {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .termsColumns {
+    flex-direction: column;
+  }
+
+  .termsColumn {
+    width: 100%;
   }
 }

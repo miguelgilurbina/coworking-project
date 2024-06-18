@@ -1,7 +1,7 @@
 {
   "caracteristicas": [
     {
-      "name": "Aire Acondicionado",
+      "name": "Air Conditioning",
       "id": "cd92"
     },
     {
@@ -9,36 +9,28 @@
       "id": "5f4a"
     },
     {
-      "name": "Sillas Ergonomicas",
+      "name": "Ergonomic Chairs",
       "id": "adda"
     },
     {
-      "name": "Aire Libre",
+      "name": "Outdoor",
       "id": "afd4"
     },
     {
-      "name": "Proyector",
+      "name": "Projector",
       "id": "b6c8"
     },
     {
-      "name": "Pizarra",
+      "name": "Whiteboard",
       "id": "b915"
     },
     {
-      "name": "Sala Recreativa",
+      "name": "Recreational Room",
       "id": "eb0c"
     },
     {
-      "name": "Cafeteria",
+      "name": "Coffe Shop",
       "id": "3479"
-    },
-    {
-      "id": "0027",
-      "name": "Lentes grandes"
-    },
-    {
-      "id": "415a",
-      "name": "adsfasdf"
     }
   ]
 }

@@ -5,7 +5,7 @@
       "name": "Destiny",
       "Category": "Meeting Room",
       "id": "1",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Equipped with modern technology. Ideal room for meetings with ample space and comfort for all attendees.",
       "price": 100,
       "people": 10
     },
@@ -14,79 +14,79 @@
       "name": "Happy Work",
       "Category": "Private Office",
       "id": "2",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Private office designed for uninterrupted and focused work sessions. Equipped with ergonomic furniture and high-speed internet.",
       "price": 150,
       "people": 5
     },
     {
-      "srcImg": "/public/images/img_aleatory_3.png",
+      "srcImg": "/public/images/img_aleatory_4.png",
       "name": "Harmony",
       "Category": "Full Time",
       "id": "3",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Full-time space for continuous work, equipped with essential services and ample natural light.",
       "price": 200,
       "people": 8
     },
     {
-      "srcImg": "/public/images/img_aleatory_4.png",
-      "name": "Available to the public",
-      "Category": "Louge",
+      "srcImg": "/public/images/img-category_2.jpg",
+      "name": "Available to the Public",
+      "Category": "Lounge",
       "id": "4",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Accessible lounge area for all users to relax and collaborate. Well-equipped place for productivity",
       "price": 120,
       "people": 15
     },
     {
       "srcImg": "/public/images/img_aleatory_1.png",
-      "name": "Destiny",
+      "name": "Delight",
       "Category": "Meeting Room",
       "id": "5",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Perfect room for creative and collaborative meetings with your team. Equipped with modern technology",
       "price": 100,
       "people": 10
     },
     {
       "srcImg": "/public/images/img_aleatory_2.png",
-      "name": "Happy Work",
+      "name": "Harmony Hub",
       "Category": "Private Office",
       "id": "6",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Private space offering modern amenities for all your work needs. Equipped with ergonomic furniture.",
       "price": 150,
       "people": 5
     },
     {
       "srcImg": "/public/images/img_aleatory_3.png",
-      "name": "Harmony",
+      "name": "Haven",
       "Category": "Full Time",
       "id": "7",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Quiet, well-equipped place for nonstop work and productivity. Features ergonomic furniture and high-speed internet.",
       "price": 200,
       "people": 8
     },
     {
       "srcImg": "/public/images/img_aleatory_4.png",
-      "name": "Destiny",
+      "name": "Diligence",
       "Category": "Meeting Room",
       "id": "8",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Formal meeting space designed for productive discussions and planning. Equipped with high-speed internet",
       "price": 120,
       "people": 15
     },
     {
       "srcImg": "/public/images/img_aleatory_1.png",
-      "name": "Happy Work",
+      "name": "Hustle Haven",
       "Category": "Private Office",
       "id": "9",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Private office ideal for intensive projects requiring focus and quiet. Designed to foster planning.",
       "price": 150,
       "people": 5
     },
     {
-      "srcImg": "/public/images/img_aleatory_2.png",
-      "name": "Harmony",
+      "srcImg": "/public/images/img_aleatory.png",
+      "name": "Horizon",
       "Category": "Full Time",
       "id": "10",
-      "description": "Lorem ipsum dolor sit amet consectetur. Habitasse sit laoreet proin felis mauris vel libero..",
+      "description": "Continuous workspace with high-speed internet and essential amenities. Designed to foster creativity and collaboration.",
       "price": 200,
       "people": 8
     }

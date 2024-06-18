@@ -48,7 +48,7 @@ const Category = () => {
 
   return (
     <div className="container containerRecommend">
-      <h2 className="mb-4">Categories</h2>
+      <h2 className="m-4">Categories</h2>
       <div className="category">
         {recommendData.length === 0 ? (
           <p>No categories available</p>

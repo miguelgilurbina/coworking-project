@@ -9,6 +9,7 @@ import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
 import { FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Gallery = () => {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -45,7 +46,6 @@ const Gallery = () => {
       <li key={index}>{characteristic.name}</li>
     ));
   };
-  
 
   const settings = {
     dots: true,
@@ -84,6 +84,11 @@ const Gallery = () => {
   return (
     <div className="center">
       <div className="containerDetail">
+        <div className="containerButton">
+          <Link to="/home" className="genericButton link-flex">
+            <FaArrowLeft className="iconSpace" /> Go back
+          </Link>
+        </div>
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
           <h3 className="titleCard">Home Office</h3>
           <h5 className="subtitleCard">Harmony</h5>
@@ -100,7 +105,7 @@ const Gallery = () => {
                       alt={`Image of room`}
                       style={{
                         width: "200px",
-                        height: "280px",
+                        height: "250px",
                         borderRadius: "20px",
                       }}
                     />
@@ -108,17 +113,21 @@ const Gallery = () => {
                 </div>
               </div>
               <div>
-                <span>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Blanditiis vel nobis recusandae cupiditate consectetur iste
-                  quaerat explicabo. Eius, quaerat exercitationem placeat,
-                  distinctio doloremque hic sit unde inventore possimus, rem
-                  eos! Perferendis voluptatibus ducimus sed aperiam impedit
-                  officiis, sit suscipit exercitationem ratione, natus ad
-                  adipisci eveniet saepe voluptatum eum provident voluptates,
-                  nemo quaerat iste. Vitae laboriosam, dicta minus nihil
-                  officiis ipsam?
-                </span>
+                <p>
+                  <strong>Description:</strong>
+                </p>
+                <p>
+                  Our co-working space is designed to provide a comfortable and
+                  productive environment for professionals from various
+                  industries. With high-speed internet access, ergonomic chairs,
+                  and well-lit work areas, we offer the ideal setting for you to
+                  focus on your projects. The room also features collaborative
+                  spaces where you can interact with other members, as well as
+                  more private areas for when you need a bit of tranquility.
+                  Additionally, we have state-of-the-art equipment such as
+                  projectors and whiteboards to facilitate your presentations
+                  and meetings.
+                </p>
               </div>
             </>
           )}
@@ -136,7 +145,7 @@ const Gallery = () => {
               {showCarousel ? (
                 <>
                   <FaArrowLeft className="iconSpace" />
-                  &nbsp;Go Back
+                  &nbsp;Go Details
                 </>
               ) : (
                 "More Pictures"
@@ -146,14 +155,21 @@ const Gallery = () => {
 
           {!showCarousel && (
             <div className="features">
-              <h4>Características:</h4>
+              <h4>Characteristics:</h4>
               <ul>{renderCharacteristics()}</ul>
             </div>
           )}
 
           {!showCarousel && (
             <div className="termsOfUse">
-              <button className="button-generic-transition" onClick={toggleTerms}>
+              <button
+                className="button-generic-transition"
+                onClick={toggleTerms}
+                style={{
+                  textDecoration: "underline",
+                  width: "max-content",
+                }}
+              >
                 {termsCollapsed ? (
                   <>
                     <FaChevronDown className="iconSpace" />
@@ -168,54 +184,124 @@ const Gallery = () => {
               </button>
               {!termsCollapsed && (
                 <div className="termsContent">
-                  1. Introducción
-Bienvenido al espacio de coworking [Nombre del Espacio]. Al utilizar nuestras instalaciones y servicios, usted acepta cumplir con los siguientes Términos de Uso. Estos términos están diseñados para asegurar que todos los usuarios puedan disfrutar de un entorno seguro, cómodo y productivo.
-<br />
-2. Registro y Membresía
-Registro: Todos los usuarios deben registrarse y proporcionar información válida y actualizada para poder utilizar nuestras instalaciones.
-Membresía: Los planes de membresía pueden incluir acceso diario, mensual o anual, y están sujetos a los términos especificados en el contrato de membresía.
-<br />
-3. Acceso y Uso del Espacio
-Horario: El espacio de coworking está disponible para su uso durante los horarios establecidos, los cuales son [días de la semana] de [hora de apertura] a [hora de cierre].
-Acceso: Los miembros recibirán una tarjeta de acceso o código de entrada personal e intransferible.
-Uso Aceptable: Los usuarios deben utilizar las instalaciones de manera responsable, respetando a otros miembros y el equipo del espacio de coworking.
-<br />
-4. Conducta del Usuario
-Respeto y Consideración: Todos los usuarios deben comportarse de manera profesional y respetuosa. No se tolerará ninguna forma de acoso, discriminación o comportamiento disruptivo.
-Ruido: Mantener niveles de ruido adecuados para no perturbar a otros usuarios. Se recomienda el uso de auriculares para llamadas telefónicas y videoconferencias.
-Limpieza y Orden: Mantener su área de trabajo limpia y ordenada. Desechar la basura en los contenedores adecuados y no dejar pertenencias personales desatendidas.
-<br />
-5. Seguridad y Responsabilidad
-Seguridad: Los usuarios son responsables de la seguridad de sus pertenencias personales. El espacio de coworking no se hace responsable por pérdidas o daños de artículos personales.
-Emergencias: Familiarizarse con las salidas de emergencia y los procedimientos de evacuación en caso de incendio u otra emergencia.
-Responsabilidad: Los usuarios son responsables de cualquier daño causado al mobiliario, equipo o instalaciones del espacio de coworking.
-<br />
-6. Servicios y Equipos
-Internet: Proporcionamos acceso a internet de alta velocidad. El uso de la red debe ser legal y adecuado, evitando actividades como la descarga de contenido ilegal.
-Equipos Comunes: Los usuarios pueden utilizar equipos comunes (impresoras, fotocopiadoras, etc.) según disponibilidad. Deben seguir las instrucciones de uso y reportar cualquier problema al personal del espacio.
-<br />
-7. Reservas y Uso de Salas
-Reservas: Las salas de reuniones y otros espacios reservables deben ser reservados con antelación a través del sistema de reservas del espacio de coworking.
-Uso: Utilizar las salas de reuniones solo por el tiempo reservado y dejar el espacio limpio y ordenado para el siguiente usuario.
-<br />
-8. Eventos y Actividades
-Eventos Internos: Los usuarios pueden participar en eventos y actividades organizados por el espacio de coworking. Estos eventos están sujetos a sus propios términos y condiciones.
-Eventos Externos: La organización de eventos externos debe ser aprobada previamente por la administración del espacio de coworking.
-<br />
-9. Pago y Facturación
-Pago: Las cuotas de membresía y otros cargos deben ser pagados puntualmente según lo acordado en el contrato de membresía.
-Facturación: Las facturas serán enviadas a la dirección de correo electrónico proporcionada por el usuario y deben ser pagadas dentro del período especificado.
-<br />
-10. Terminación y Cancelación
-Terminación por el Usuario: Los usuarios pueden cancelar su membresía siguiendo el proceso establecido en el contrato de membresía.
-Terminación por el Espacio de Coworking: Nos reservamos el derecho de terminar la membresía de cualquier usuario que infrinja estos Términos de Uso o el contrato de membresía.
-<br />
-11. Modificaciones de los Términos
-Nos reservamos el derecho de modificar estos Términos de Uso en cualquier momento. Las modificaciones se comunicarán a los usuarios a través del correo electrónico registrado o mediante avisos en el espacio de coworking.
-
-<br />
-12. Contacto
-Para cualquier pregunta o comentario sobre estos Términos de Uso, por favor contacte a la administración del espacio de coworking en [correo electrónico o número de teléfono].
+                  <div className="termsColumns">
+                    <div className="termsColumn">
+                      <p>
+                        <strong>1. Introduction</strong>
+                        <br />
+                        Welcome to the <strong>Co-Working</strong> space. By
+                        using our facilities and services, you agree to comply
+                        with the following Terms of Use.
+                      </p>
+                      <p>
+                        <strong>2. Registration and Membership</strong>
+                        <br />
+                        <strong>Registration:</strong> All users must register
+                        and provide valid and updated information to use our
+                        facilities.
+                        <br />
+                        <strong>Membership:</strong> Membership plans may
+                        include daily, monthly, or annual access and are subject
+                        to the terms specified in the membership contract.
+                      </p>
+                      <p>
+                        <strong>3. Access and Use of the Space</strong>
+                        <br />
+                        <strong>Hours:</strong> The coworking space is available
+                        for use during the established hours, which are Monday
+                        to Friday from 9:00 AM to 7:00 PM.
+                        <br />
+                      </p>
+                      <p>
+                        <strong>4. User Conduct</strong>
+                        <br />
+                        <strong>Respect and Consideration:</strong> All users
+                        must behave professionally and respectfully. No form of
+                        harassment, discrimination, or disruptive behavior will
+                        be tolerated.
+                        <br />
+                        <strong>Noise:</strong> Maintain appropriate noise
+                        levels to avoid disturbing other users. The use of
+                        headphones for phone calls and video conferences is
+                        recommended.
+                        <br />
+                        <strong>Cleanliness and Order:</strong> Keep your
+                        workspace clean and orderly. Dispose of trash in the
+                        appropriate containers and do not leave personal
+                        belongings unattended.
+                      </p>
+                      <p>
+                        <strong>5. Security and Responsibility</strong>
+                        <br />
+                        <strong>Security:</strong> Users are responsible for the
+                        security of their personal belongings. The coworking
+                        space is not responsible for loss or damage to personal
+                        items.
+                        <br />
+                        <strong>Responsibility:</strong> Users are responsible
+                        for any damage caused to the furniture, equipment, or
+                        facilities of the coworking space.
+                      </p>
+                    </div>
+                    <div className="termsColumn">
+                      <p>
+                        <strong>6. Services and Equipment</strong>
+                        <br />
+                        <strong>Internet:</strong> We provide high-speed
+                        internet access. The use of the network must be legal
+                        and appropriate, avoiding activities such as downloading
+                        illegal content.
+                        <br />
+                        <strong>Common Equipment:</strong> Users may use common
+                        equipment (printers, copiers, etc.) subject to
+                        availability.
+                      </p>
+                      <p>
+                        <strong>7. Reservations and Use of Rooms</strong>
+                        <br />
+                        <strong>Reservations:</strong> Meeting rooms and other
+                        reservable spaces must be booked in advance through the
+                        coworking space's reservation system.
+                        <br />
+                        <strong>Use:</strong> Use the meeting rooms only for the
+                        reserved time and leave the space clean and orderly for
+                        the next user.
+                      </p>
+                      <p>
+                        <strong>8. Payment</strong>
+                        <br />
+                        <strong>Payment:</strong> Membership fees and other
+                        charges must be paid promptly as agreed in the
+                        membership contract.
+                        <br />
+                      </p>
+                      <p>
+                        <strong>9. Termination and Cancellation</strong>
+                        <br />
+                        <strong>Termination by the User:</strong> Users may
+                        cancel their membership by following the process
+                        established in the membership contract.
+                        <br />
+                        <strong>Termination by the Coworking Space:</strong> We
+                        reserve the right to terminate the membership of any
+                        user who violates these Terms of Use.
+                      </p>
+                      <p>
+                        <strong>10. Modifications to the Terms</strong>
+                        <br />
+                        We reserve the right to modify these Terms of Use at any
+                        time. Modifications will be communicated to users via
+                        the registered email.
+                      </p>
+                      <p>
+                        <strong>11. Contact</strong>
+                        <br />
+                        For any questions or comments about these Terms of Use,
+                        please contact the coworking space administration at
+                        espacios@coworking.cl.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

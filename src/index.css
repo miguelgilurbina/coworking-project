@@ -45,7 +45,7 @@ body {
   cursor: pointer;
   font-size: 15px;
   transition: background-color 0.3s;
-  width: max-content;
+  width: 150px;
   height: 40px;
   font-weight: 500;
 }

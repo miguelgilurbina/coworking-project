@@ -8,7 +8,7 @@ const CategoryCard = ({ title, description, srcImg }) => {
       <div className="card-content">
         <h4 className="card-title text-center">{title}</h4>
         <p className="cardDescription">{description}</p>
-        <button className="button-generic-transition mb-2">Filter By</button>
+        <button className="button-generic-transition mb-3">Filter By</button>
       </div>
     </div>
   );
