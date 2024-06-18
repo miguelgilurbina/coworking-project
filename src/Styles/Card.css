@@ -1,10 +1,8 @@
-
 .card img {
   height: 100%;
-
 }
 
-.cardHome{
+.cardHome {
   width: 100%;
   max-height: 192px;
 }
@@ -36,12 +34,10 @@
 }
 @media (max-width: 600px) {
   .card img {
-    height: auto;
-    width: auto;
+    height: 100%;
   }
 
-  .cardHome{
+  .cardHome {
     max-height: none;
-
   }
 }

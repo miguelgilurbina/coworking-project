@@ -145,9 +145,21 @@ const CharacteristicForm = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>ID</TableCell>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Actions</TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1" fontWeight="bold">
+                        ID
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1" fontWeight="bold">
+                        NAME
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1" fontWeight="bold">
+                        ACTIONS
+                      </Typography>
+                    </TableCell>{" "}
                   </TableRow>
                 </TableHead>
                 <TableBody>

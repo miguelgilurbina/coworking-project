@@ -13,6 +13,7 @@ import {
   TableHead,
   TableRow,
   Button,
+  Typography,
 } from "@mui/material";
 import Modal from "./Modal";
 
@@ -144,9 +145,21 @@ const CategoryForm = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Title</TableCell>
-                    <TableCell>Description</TableCell>
-                    <TableCell>Actions</TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1" fontWeight="bold">
+                        TITLE
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1" fontWeight="bold">
+                        DESCRIPTION
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle1" fontWeight="bold">
+                        ACTIONS
+                      </Typography>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
