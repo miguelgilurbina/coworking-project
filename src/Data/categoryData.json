@@ -13,21 +13,16 @@
       "id": "614e"
     },
     {
-      "title": "Full Time",
-      "description": "Comfortable rooms where you can spend a lot of time without getting overwhelmed",
-      "srcImg": "/public/images/fullTimeCategory.jpg",
-      "id": "4e14"
-    },
-    {
       "title": "Lounge",
       "description": "Large rooms more designed for recreational company events",
       "srcImg": "/public/images/loungeCategory.jpg",
       "id": "0aa2"
     },
     {
-      "id": "1370",
-      "title": "Categoria generica",
-      "description": "Una categoria para ejemplificar"
+      "title": "Full Time",
+      "description": "Office for large periods of work",
+      "srcImg": "/public/images/fullTimeCategory.jpg",
+      "id": "as21"
     }
   ]
 }

@@ -37,6 +37,12 @@ const Header = () => {
       </div>
 
       <div className="right-block">
+        {user && (
+        <Link to={"/favorites"} className="button link-flex">
+          Favorites
+        </Link>
+        )
+        }
         {user ? (
           <div className="logged-in-section">
             {user.isAdmin && ( // Verifica si el usuario es administrador
