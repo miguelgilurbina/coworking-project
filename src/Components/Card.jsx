@@ -8,8 +8,8 @@ import { useAuth } from "../Components/Context/AuthContext";
 import { useFavorites } from "../Components/Context/FavoriteContext";
 
 const Card = ({ data }) => {
-  const { user } = useAuth(); // Obtener el estado de autenticación
-  const { addFavorite, removeFavorite, isFavorite } = useFavorites(); // Obtener las funciones del contexto de favoritos
+  const { user } = useAuth();
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
   const toggleFavorite = () => {
     if (isFavorite(data.id)) {
@@ -19,7 +19,7 @@ const Card = ({ data }) => {
     }
   };
 
-  const iconSize = 30;
+  const iconSize = 25;
 
   return (
     <div className="col-md-6 d-md-inline-block p-3">

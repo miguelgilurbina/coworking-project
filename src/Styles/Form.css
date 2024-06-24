@@ -91,3 +91,43 @@ textarea {
 .zIndex {
   z-index: 100000;
 }
+
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.icon-item {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.icon-item.selected {
+  border-color: #007bff;
+  background-color: #e6f7ff;
+}
+
+.icon-preview {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.icon-preview p {
+  margin: 0;
+}
+
+.seeMore {
+  color: #333c40;
+  font-weight: bold;
+  text-decoration: none;
+}

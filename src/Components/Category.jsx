@@ -3,7 +3,7 @@ import axios from "axios";
 import CategoryCard from "./CategoryCard";
 import "../Styles/Category.css";
 
-const Category = () => {
+const Category = ({ onFilter }) => {
   const [recommendData, setRecommendData] = useState([]);
   const [error, setError] = useState(null);
 
@@ -43,11 +43,11 @@ const Category = () => {
   };
 
   if (error) {
-    return <div className="container containerRecommend">Error: {error}</div>;
+    return <div className="container">Error: {error}</div>;
   }
 
   return (
-    <div className="container containerRecommend">
+    <div className="container">
       <h2 className="m-4">Categories</h2>
       <div className="category">
         {recommendData.length === 0 ? (
@@ -61,6 +61,7 @@ const Category = () => {
                 title={category.title}
                 description={category.description}
                 srcImg={category.srcImg}
+                onFilter={onFilter}
               />
             );
           })

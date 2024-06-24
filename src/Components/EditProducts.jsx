@@ -206,7 +206,7 @@ const EditProducts = () => {
           <FaArrowLeft className="iconSpace" /> Go back
         </Link>
       </div>
-      <h2 className="mb-4">Edit product</h2>
+      <h2 className="mb-4">List & Add Rooms </h2>
 
       {isMobile ? (
         <div className="mobile-message-card">

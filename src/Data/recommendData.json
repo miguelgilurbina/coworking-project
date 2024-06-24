@@ -1,49 +1,69 @@
 {
   "data": [
     {
-      "srcImg": "/public/images/img_aleatory_1.png",
+      "srcImg": "/public/images/img_aleatory_9.png",
       "name": "Destiny",
       "Category": "Meeting Room",
       "id": "1",
       "description": "Equipped with modern technology. Ideal room for meetings with ample space and comfort for all attendees.",
       "price": 100,
-      "people": 10
+      "people": 10,
+      "availability": {
+        "2024-06-18": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img_aleatory_2.png",
+      "srcImg": "/public/images/img_aleatory_5.png",
       "name": "Happy Work",
       "Category": "Private Office",
       "id": "2",
       "description": "Private office designed for uninterrupted and focused work sessions. Equipped with ergonomic furniture and high-speed internet.",
       "price": 150,
-      "people": 5
+      "people": 5,
+      "availability": {
+        "2024-06-22": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img_aleatory_4.png",
+      "srcImg": "/public/images/img_aleatory_6.png",
       "name": "Harmony",
       "Category": "Full Time",
       "id": "3",
       "description": "Full-time space for continuous work, equipped with essential services and ample natural light.",
       "price": 200,
-      "people": 8
+      "people": 8,
+      "availability": {
+        "2024-06-18": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "17:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img-category_2.jpg",
+      "srcImg": "/public/images/img_aleatory_11.png",
       "name": "Available to the Public",
       "Category": "Lounge",
       "id": "4",
       "description": "Accessible lounge area for all users to relax and collaborate. Well-equipped place for productivity",
       "price": 120,
-      "people": 15
+      "people": 12,
+      "availability": {
+        "2024-06-18": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img_aleatory_1.png",
+      "srcImg": "/public/images/img_aleatory_8.png",
       "name": "Delight",
       "Category": "Meeting Room",
       "id": "5",
       "description": "Perfect room for creative and collaborative meetings with your team. Equipped with modern technology",
       "price": 100,
-      "people": 10
+      "people": 10,
+      "availability": {
+        "2024-06-18": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+      }
     },
     {
       "srcImg": "/public/images/img_aleatory_2.png",
@@ -52,43 +72,63 @@
       "id": "6",
       "description": "Private space offering modern amenities for all your work needs. Equipped with ergonomic furniture.",
       "price": 150,
-      "people": 5
+      "people": 5,
+      "availability": {
+        "2024-06-18": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img_aleatory_3.png",
+      "srcImg": "/public/images/img_aleatory_13.jpg",
       "name": "Haven",
       "Category": "Full Time",
       "id": "7",
       "description": "Quiet, well-equipped place for nonstop work and productivity. Features ergonomic furniture and high-speed internet.",
       "price": 200,
-      "people": 8
+      "people": 8,
+      "availability": {
+        "2024-06-18": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img_aleatory_4.png",
+      "srcImg": "/public/images/img_aleatory_7.png",
       "name": "Diligence",
       "Category": "Meeting Room",
       "id": "8",
       "description": "Formal meeting space designed for productive discussions and planning. Equipped with high-speed internet",
       "price": 120,
-      "people": 15
+      "people": 12,
+      "availability": {
+        "2024-06-18": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-21": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img_aleatory_1.png",
+      "srcImg": "/public/images/img_aleatory_3.png",
       "name": "Hustle Haven",
       "Category": "Private Office",
       "id": "9",
       "description": "Private office ideal for intensive projects requiring focus and quiet. Designed to foster planning.",
       "price": 150,
-      "people": 5
+      "people": 5,
+      "availability": {
+        "2024-06-18": ["09:00", "10:00", "13:00", "14:00", "15:00", "16:00", "17:00"],
+        "2024-06-19": ["09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"]
+      }
     },
     {
-      "srcImg": "/public/images/img_aleatory.png",
+      "srcImg": "/public/images/img_aleatory_13.png",
       "name": "Horizon",
       "Category": "Full Time",
       "id": "10",
       "description": "Continuous workspace with high-speed internet and essential amenities. Designed to foster creativity and collaboration.",
       "price": 200,
-      "people": 8
+      "people": 8,
+      "availability": {
+        "2024-06-18": ["09:00",  "11:00", "12:00", "13:00", "14:00", "15:00", "17:00"],
+        "2024-06-20": ["09:00", "10:00", "11:00", "12:00", "13:00", "15:00", "16:00", "17:00"]
+      }
     }
   ]
 }

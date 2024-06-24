@@ -23,12 +23,14 @@ const CategoryForm = () => {
   const [showRemoveSuccess, setShowRemoveSuccess] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [srcImg, setSrcImg] = useState(null);
   const [currentRow, setCurrentRow] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [editIdx, setEditIdx] = useState(-1);
   const [draftData, setDraftData] = useState({
     title: "",
     description: "",
+    srcImg: null,
   });
   const isMobile = IsMobile();
 
@@ -46,9 +48,25 @@ const CategoryForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Convert image to base64
+    const toBase64 = (file) =>
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+      });
+
+    let base64Image = "";
+    if (srcImg) {
+      base64Image = await toBase64(srcImg);
+    }
+
     const formData = {
       title,
       description,
+      srcImg: base64Image,
     };
 
     try {
@@ -60,9 +78,18 @@ const CategoryForm = () => {
       setShowAddSuccess(true);
       setTitle("");
       setDescription("");
+      setSrcImg(null);
+
+      setCategories((prevCategories) => [...prevCategories, response.data]);
+
+      setTimeout(() => setShowAddSuccess(false), 3000);
     } catch (error) {
       console.error("Error adding category:", error);
     }
+  };
+
+  const handleFileChange = (e) => {
+    setSrcImg(e.target.files[0]);
   };
 
   const openModal = (index) => {
@@ -129,7 +156,7 @@ const CategoryForm = () => {
           <FaArrowLeft className="iconSpace" /> Go back
         </Link>
       </div>
-      <h2 className="mb-4">Add new category</h2>
+      <h2 className="mb-4">List & Add Categories</h2>
 
       {isMobile ? (
         <div className="mobile-message-card">
@@ -175,6 +202,7 @@ const CategoryForm = () => {
                                 title: e.target.value,
                               })
                             }
+                            maxLength={22}
                           />
                         ) : (
                           category.title
@@ -190,6 +218,7 @@ const CategoryForm = () => {
                                 description: e.target.value,
                               })
                             }
+                            maxLength={90}
                           />
                         ) : (
                           category.description
@@ -253,7 +282,11 @@ const CategoryForm = () => {
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Title"
                   name="title"
+                  maxLength={22}
                 />
+                <small className="d-flex mb-2">
+                  {22 - title.length} characters{" "}
+                </small>
 
                 <label htmlFor="description">Description</label>
                 <textarea
@@ -261,7 +294,20 @@ const CategoryForm = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Description"
                   name="description"
+                  maxLength={90}
                 />
+                <small className="d-flex mb2">
+                  {90 - description.length} characters{" "}
+                </small>
+
+                <label htmlFor="srcImg">Image</label>
+                <input
+                  className="d-flex mb2"
+                  type="file"
+                  onChange={handleFileChange}
+                  name="srcImg"
+                />
+
                 <div className="containerButton">
                   <button className="genericButton" type="submit">
                     Send
@@ -276,10 +322,17 @@ const CategoryForm = () => {
         <Modal
           title="Confirm Delete"
           body={
-            <p>
-              You are about to delete a category. Are you sure you want to
-              continue?
-            </p>
+            <div>
+              <p>You are about to delete a category.</p>
+              <p>
+                This action will also{" "}
+                <strong>
+                  eliminate the products associated with this category
+                </strong>
+                .
+              </p>
+              <p>Are you sure you want to continue?</p>
+            </div>
           }
           onClose={() => setShowModal(false)}
           onConfirm={confirmDelete}

@@ -15,11 +15,21 @@
 }
 
 .suggestions-container {
+  position: absolute;
+  z-index: 10;
   border: 1px solid #ddd;
   max-height: 200px;
   overflow-y: auto;
   background-color: white;
+  min-width: 248px;
 }
+
+.suggestions-container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .explorer h4 {
   font-family: Poppins;
   text-align: center;

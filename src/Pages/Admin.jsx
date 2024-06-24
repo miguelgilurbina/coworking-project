@@ -36,19 +36,19 @@ const Admin = () => {
               <div className="card-icon">
                 <FaPlus />
               </div>
-              <div className="card-title">Add New Product</div>
+              <div className="card-title">Add New Room</div>
             </Link>
             <Link to="/addCharacteristic" className="admin-option-card">
               <div className="card-icon">
                 <FaList />
               </div>
-              <div className="card-title">Add New Characteristic</div>
+              <div className="card-title">List & Add New Characteristic</div>
             </Link>
             <Link to="/editRoom" className="admin-option-card">
               <div className="card-icon">
                 <FaEdit />
               </div>
-              <div className="card-title">Edit Product</div>
+              <div className="card-title">List & Edit Room</div>
             </Link>
             <Link to="/userList" className="admin-option-card">
               <div className="card-icon">
@@ -60,7 +60,7 @@ const Admin = () => {
               <div className="card-icon">
                 <FaEdit />
               </div>
-              <div className="card-title">Add Product Category</div>
+              <div className="card-title">List & Add New Category</div>
             </Link>
             {/* <Link to="/categoryList" className="admin-option-card">
               <div className="card-icon">

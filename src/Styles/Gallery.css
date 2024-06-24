@@ -11,16 +11,17 @@
 .titleCard {
   padding-top: 10px;
   margin-bottom: 0px;
+  padding-left: 15px;
 }
 
-.subtileCard {
+.subtitleCard {
   color: #9395a0;
-  padding-left: 25px;
+  padding-left: 15px;
   padding-top: 0px;
 }
 
 .cardDetail {
-  padding: 20px 90px 20px;
+  padding: 20px 30px 20px;
   border-radius: 20px;
   background-color: #fff;
   margin: 20px 50px 50px;
@@ -29,7 +30,8 @@
 .containerImg {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin-bottom: 20px;
 }
 
 .imgHero {
@@ -42,9 +44,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-  height: 510px;
+  max-height: 500px;
+  overflow: hidden;
 }
-
 .description {
   text-align: center;
 }
@@ -65,7 +67,6 @@
   font-size: 16px;
   transition: background-color 0.3s;
 }
-
 .buttonG:hover {
   background-color: orange;
 }
@@ -75,12 +76,12 @@
   justify-content: space-between;
   padding-top: 10px;
 }
-
-.slick-current {
-  transform: scale(1.3);
+.gridDetail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 20px;
 }
-
 .carouselContainer {
   margin-top: 20px;
 }
@@ -111,6 +112,7 @@
 .features ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style-type: none;
 }
 
 .icon-space {
@@ -124,78 +126,18 @@
     padding-top: 10px;
   }
 }
-
 @media (max-width: 600px) {
   .gridDetail {
-    display: none;
-  }
-
-  .containerImg {
-    justify-content: center;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .imgHero {
-    width: 90%;
-    padding-bottom: 10px;
-  }
-
-  .cardDetail {
-    padding: 20px 25px 20px;
-  }
-
-  .containerDetail {
-    padding: 0px 10px;
-  }
-
-  .slick-prev:before,
-  .slick-next:before {
-    font-size: 20px;
-    color: #bebebe;
-    padding: 0px 0px 0px 28px;
-  }
-
-  .slick-slider {
-    padding-left: 30px;
-    width: 85%;
-  }
-
-  .titleCard,
-  .subtitleCard {
-    text-align: center;
+    width: 100%;
   }
 }
 
 @media (max-width: 600px) {
   .features ul {
     display: block;
-  }
-}
-
-.termsContent {
-  border: 2px solid #d8a353;
-  padding: 20px;
-  margin: 20px 0;
-}
-
-.termsColumns {
-  display: flex;
-  justify-content: space-between;
-}
-
-.termsColumn {
-  width: 48%;
-}
-
-.termsColumn p {
-  margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-  .termsColumns {
-    flex-direction: column;
-  }
-
-  .termsColumn {
-    width: 100%;
   }
 }

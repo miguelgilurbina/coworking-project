@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../Styles/Explorer.css";
 import DatePicker from "react-datepicker";
-import Autosuggest from "react-autosuggest";
 import "react-datepicker/dist/react-datepicker.css";
+import Autosuggest from "react-autosuggest";
+import { enGB } from "date-fns/locale";
+import "../Styles/Explorer.css";
 
 const Explorer = () => {
   const [query, setQuery] = useState("");
@@ -11,7 +12,7 @@ const Explorer = () => {
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const placeholder = "Number of people...";
+  const placeholder = "Number of people";
 
   useEffect(() => {
     fetchProducts();
@@ -21,18 +22,19 @@ const Explorer = () => {
     try {
       const response = await axios.get("http://localhost:3003/data");
       const data = response.data;
-      console.log("Data received from API:", data); // Agregar un log para verificar los datos recibidos
+      console.log("Data received from API:", data);
       const productNames = data.map((product) => product.name);
       setProducts(productNames);
     } catch (error) {
-      console.error("Error fetching products:", error); // Manejar errores de la solicitud
+      console.error("Error fetching products:", error);
     }
   };
 
   const searchProducts = () => {
     console.log(
-      `Buscando productos con la consulta "${query}" y la fecha "${date}" y la cantidad de personas ${quantity}`
+      `Searching products with query "${query}", date "${date}", and quantity "${quantity}"`
     );
+    // Implementa la lógica de búsqueda aquí
   };
 
   const getSuggestions = (value) => {
@@ -56,7 +58,7 @@ const Explorer = () => {
   };
 
   const inputProps = {
-    placeholder: "Buscar productos...",
+    placeholder: "Search rooms",
     value: query,
     onChange: (_, { newValue }) => setQuery(newValue),
   };
@@ -86,6 +88,7 @@ const Explorer = () => {
           <DatePicker
             selected={date}
             onChange={(date) => setDate(date)}
+            locale={enGB}
             minDate={new Date()}
             dateFormat="dd/MM/yyyy"
           />
@@ -109,7 +112,6 @@ const Explorer = () => {
           Search
         </button>
       </div>
-      {/* Aquí no necesitas mostrar los productos */}
     </div>
   );
 };

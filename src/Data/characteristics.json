@@ -2,35 +2,43 @@
   "caracteristicas": [
     {
       "name": "Air Conditioning",
-      "id": "cd92"
+      "id": "cd92",
+      "icon": "FaAirFreshener"
     },
     {
       "name": "Wifi",
-      "id": "5f4a"
+      "id": "5f4a",
+      "icon": "FaWifi"
     },
     {
       "name": "Ergonomic Chairs",
-      "id": "adda"
+      "id": "adda",
+      "icon": "FaChair" 
     },
     {
       "name": "Outdoor",
-      "id": "afd4"
+      "id": "afd4",
+      "icon": "FaCloudUploadAlt"
     },
     {
       "name": "Projector",
-      "id": "b6c8"
+      "id": "b6c8",
+      "icon": "FaChromecast"
     },
     {
       "name": "Whiteboard",
-      "id": "b915"
+      "id": "b915",
+      "icon": "FaChalkboardTeacher"
     },
     {
       "name": "Recreational Room",
-      "id": "eb0c"
+      "id": "eb0c",
+      "icon": "FaCouch"
     },
     {
-      "name": "Coffe Shop",
-      "id": "3479"
+      "id": "f794",
+      "name": "Bluetooth",
+      "icon": "FaBluetooth"
     }
   ]
 }
