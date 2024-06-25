@@ -98,6 +98,17 @@
       "endTime": 13,
       "paymentMethod": "Tarjeta Credito",
       "totalCost": 400
+    },
+    {
+      "id": "f9bd",
+      "userName": "Enzo Fernandez",
+      "userEmail": "enzitofernandez287@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 14,
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 500
     }
   ]
 }

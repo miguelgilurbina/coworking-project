@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
 import { FaExclamationCircle } from "react-icons/fa";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
+import { PiWarningCircleDuotone } from "react-icons/pi";
+
 
 const LoginForm = () => {
   const { login } = useAuth();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -63,6 +66,13 @@ const LoginForm = () => {
               >
                 Sign into your account
               </h5>
+
+              {location.state?.fromGallery && (
+                <div className="alert alert-warning" role="alert">
+                  <PiWarningCircleDuotone />
+                    You Must Be Logged in to Reserve a Room
+                </div>
+              )}
 
               <div data-mdb-input-init className="form-outline mb-4">
                 <label className="form-label">
