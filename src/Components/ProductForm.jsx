@@ -9,8 +9,8 @@ import Alert from "./Alert";
 const ProductForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1); 
+  const [price, setPrice] = useState(1);
   const [selectedImages, setSelectedImages] = useState([]);
   const [base64Images, setBase64Images] = useState([]);
   const [error, setError] = useState("");
@@ -20,7 +20,7 @@ const ProductForm = () => {
   const isMobile = IsMobile();
   const [characteristics, setCharacteristics] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null); // Estado para la categoría seleccionada
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const [loading, setLoading] = useState(true);
 
@@ -121,7 +121,7 @@ const ProductForm = () => {
         price,
         srcImg: base64Images.length > 0 ? base64Images[0] : "",
         images: base64Images.slice(1),
-        Category: selectedCategory.title, // Incluir la categoría seleccionada en el formData
+        Category: selectedCategory.title,
       };
 
       const response = await axios.post("http://localhost:3003/data", formData);
@@ -132,6 +132,27 @@ const ProductForm = () => {
       setError("An error occurred while submitting the form.");
     }
   };
+
+  const handlePriceChange = (e) => {
+    const value = parseFloat(e.target.value);
+    if (value <= 0 || isNaN(value)) {
+      setPrice(1); 
+    } else {
+      setPrice(value);
+    }
+  };
+
+  const handleQuantityChange = (e) => {
+    let value = parseInt(e.target.value);
+      if (value <= 0 || isNaN(value)) {
+      value = 1; 
+    } else if (value > 12) {
+      value = 12; 
+    }
+
+    setQuantity(value);
+  };
+  
 
   return (
     <>
@@ -177,7 +198,7 @@ const ProductForm = () => {
                   type="number"
                   id="price"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={handlePriceChange} 
                   placeholder="Price"
                   name="price"
                 />
@@ -187,7 +208,7 @@ const ProductForm = () => {
                   type="number"
                   id="quantity"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={handleQuantityChange} 
                   placeholder="Number of people"
                   name="quantity"
                 />
@@ -195,7 +216,7 @@ const ProductForm = () => {
                 <h4>Categories</h4>
                 <div className="containerCheckbox">
                   {categories.map((category) => (
-                    <label key={category.id} >
+                    <label key={category.id}>
                       <input
                         type="radio"
                         name="category"
