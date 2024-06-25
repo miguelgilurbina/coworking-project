@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useBooking } from './Context/BookingContext';
 import "../Styles/Booking.css";
+import { FaArrowLeft } from "react-icons/fa";
+import "../Styles/Form.css";
 
 const Booking = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -45,58 +47,65 @@ const Booking = () => {
     };
 
     return (
-        <div className='d-flex containerForm'>
-            <div className="booking-container">
-                <h2>Selecciona una fecha y un rango horario:</h2>
-                <div className="booking-form-wrapper">
-                    <form onSubmit={handleSubmit} className="booking-form">
-                        <div className="form-group">
-                            <label htmlFor="fecha">Fecha:</label>
-                            <input
-                                type="date"
-                                id="fecha"
-                                name="fecha"
-                                min={getCurrentDate()}
-                                value={selectedDate}
-                                onChange={handleDateChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="horaInicio">Hora de inicio:</label>
-                            <input
-                                type="number"
-                                id="horaInicio"
-                                name="horaInicio"
-                                min={9}
-                                max={booking.endTime - 1}
-                                value={booking.startTime}
-                                onChange={handleHoraInicioChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="horaFin">Hora de fin:</label>
-                            <input
-                                type="number"
-                                id="horaFin"
-                                name="horaFin"
-                                min={booking.startTime + 1}
-                                max={17}
-                                value={booking.endTime}
-                                onChange={handleHoraFinChange}
-                                required
-                            />
-                        </div>
-                        <Link to="/reservarSala">
-                            <button type="submit">Confirmar Rango Horario</button>
-                        </Link>
-                    </form>
-                    <div className="selected-range">
-                        <h2>Rango horario seleccionado:</h2>
-                        <p>{selectedDate ? `Fecha: ${selectedDate},` : ''} Rango horario: {booking.startTime}:00am - {booking.endTime}:00pm</p>
+        <div className="contenedorBody">
+            <div className="containerButton">
+                <Link to="/admin" className="genericButton link-flex">
+                    <FaArrowLeft className="iconSpace" /> Go back
+                </Link>
+            </div>
+            <h2 className="mb-4">Selecciona una fecha y un rango horario</h2>
+            <div className="centerContaniner">
+            <div className="form-column border-custom">
+                <form onSubmit={handleSubmit} className="booking-form">
+                    <div className="form-group">
+                        <label htmlFor="fecha">Fecha:</label>
+                        <input
+                            type="date"
+                            id="fecha"
+                            name="fecha"
+                            min={getCurrentDate()}
+                            value={selectedDate}
+                            onChange={handleDateChange}
+                            required
+                        />
                     </div>
+                    <div className="form-group">
+                        <label htmlFor="horaInicio">Hora de inicio:</label>
+                        <input
+                            type="number"
+                            id="horaInicio"
+                            name="horaInicio"
+                            min={9}
+                            max={booking.endTime - 1}
+                            value={booking.startTime}
+                            onChange={handleHoraInicioChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="horaFin">Hora de fin:</label>
+                        <input
+                            type="number"
+                            id="horaFin"
+                            name="horaFin"
+                            min={booking.startTime + 1}
+                            max={17}
+                            value={booking.endTime}
+                            onChange={handleHoraFinChange}
+                            required
+                        />
+                    </div>
+                    <div className="containerButton centerContainer">
+                        <button type="submit" className="btn-confirm">
+                            Confirmar Rango Horario
+                        </button>
+                    </div>
+                </form>
+                <div className="selected-range">
+                    <strong>Rango horario seleccionado:</strong>
+                    <p>{selectedDate ? `Fecha: ${selectedDate},` : ''} Rango horario: {booking.startTime}:00am - {booking.endTime}:00pm</p>
                 </div>
+            </div>
             </div>
         </div>
     );

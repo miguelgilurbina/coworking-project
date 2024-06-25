@@ -69,8 +69,8 @@ const LoginForm = () => {
 
               {location.state?.fromGallery && (
                 <div className="alert alert-warning" role="alert">
-                  <PiWarningCircleDuotone />
-                    You Must Be Logged in to Reserve a Room
+                  <PiWarningCircleDuotone  className="iconSpace" />
+                    You must be logged in to reserve a room
                 </div>
               )}
 
