@@ -6,13 +6,13 @@ import Autosuggest from "react-autosuggest";
 import { enGB } from "date-fns/locale";
 import "../Styles/Explorer.css";
 
-const Explorer = () => {
+const Explorer = ({ onSearch }) => {
   const [query, setQuery] = useState("");
   const [date, setDate] = useState(new Date());
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const placeholder = "Number of people";
+  const placeholder = "Search rooms";
 
   useEffect(() => {
     fetchProducts();
@@ -31,10 +31,7 @@ const Explorer = () => {
   };
 
   const searchProducts = () => {
-    console.log(
-      `Searching products with query "${query}", date "${date}", and quantity "${quantity}"`
-    );
-    // Implementa la lógica de búsqueda aquí
+    onSearch({ query, date, quantity });
   };
 
   const getSuggestions = (value) => {
@@ -58,7 +55,7 @@ const Explorer = () => {
   };
 
   const inputProps = {
-    placeholder: "Search rooms",
+    placeholder,
     value: query,
     onChange: (_, { newValue }) => setQuery(newValue),
   };
@@ -94,17 +91,16 @@ const Explorer = () => {
           />
         </div>
 
-        <input
-          type="number"
+        <select
           value={quantity}
-          onChange={(e) => {
-            const valorIngresado = e.target.value;
-            if (!isNaN(valorIngresado) && valorIngresado >= 1) {
-              setQuantity(valorIngresado);
-            }
-          }}
-          placeholder={placeholder}
-        />
+          onChange={(e) => setQuantity(e.target.value)}
+        >
+          <option value="">Select number of people</option>
+          <option value="1">Individual</option>
+          <option value="2-5">2 to 5</option>
+          <option value="6-12">6 to 12</option>
+          <option value="all">All</option>
+        </select>
       </form>
 
       <div className="d-flex justify-content-center pt-2">

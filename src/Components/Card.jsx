@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "../Styles/Card.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { FaCoffee } from "react-icons/fa";
+import { FaCoffee, FaUsers } from "react-icons/fa"; // Importa el ícono FaUsers
 import { FiCoffee } from "react-icons/fi";
 import { useAuth } from "../Components/Context/AuthContext";
 import { useFavorites } from "../Components/Context/FavoriteContext";
@@ -53,7 +53,16 @@ const Card = ({ data }) => {
                   </button>
                 )}
               </div>
+              <div className="d-flex align-items-center">
               <h5 className="subtitleCardHome">{data.name}</h5>
+
+                <span className="me-2">
+                  <FaUsers size={iconSize} style={{ color: "orange", marginLeft: "8px" }} />{" "}
+                  {Array.isArray(data.people)
+                    ? `${data.people[0]}-${data.people[1]}`
+                    : data.people}
+                </span>
+              </div>
               <p className="card-text">{data.description}</p>
               <Link
                 to="/detail"
@@ -73,4 +82,5 @@ const Card = ({ data }) => {
 Card.propTypes = {
   data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
 };
+
 export default Card;

@@ -52,6 +52,14 @@
   border-color: #72635d;
 }
 
+.explorer form select {
+  height: 35px;
+  width: 250px;
+  border-radius: 6px;
+  border-style: inset;
+  border-color: #72635d;
+}
+
 .buttonSearchExplorer {
   background-color: #de8a05;
   width: 250px;

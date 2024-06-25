@@ -59,6 +59,10 @@ textarea {
   margin-right: 10px;
 }
 
+.containerCheckbox input[type="radio"] {
+  margin-right: 10px;
+}
+
 .characteristics {
   margin-top: 10px;
 }
