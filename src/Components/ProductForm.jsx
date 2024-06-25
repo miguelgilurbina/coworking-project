@@ -9,7 +9,7 @@ import Alert from "./Alert";
 const ProductForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState(1); 
+  const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(1);
   const [selectedImages, setSelectedImages] = useState([]);
   const [base64Images, setBase64Images] = useState([]);
@@ -64,7 +64,7 @@ const ProductForm = () => {
       reader.onerror = (error) => reject(error);
     });
   };
-  
+
   const handleImageUpload = async (e) => {
     const files = e.target.files;
     const newImages = Array.from(files);
@@ -76,11 +76,16 @@ const ProductForm = () => {
       setImageError("");
     }
 
-    const base64Promises = newImages.map((image) => convertImageToBase64(image));
+    const base64Promises = newImages.map((image) =>
+      convertImageToBase64(image)
+    );
 
     try {
       const base64Results = await Promise.all(base64Promises);
-      setBase64Images((prevBase64Images) => [...prevBase64Images, ...base64Results]);
+      setBase64Images((prevBase64Images) => [
+        ...prevBase64Images,
+        ...base64Results,
+      ]);
       setSelectedImages((prevImages) => [...prevImages, ...newImages]);
     } catch (error) {
       console.error("Error converting images to base64:", error);
@@ -89,8 +94,12 @@ const ProductForm = () => {
   };
 
   const handleImageDelete = (index) => {
-    setSelectedImages((prevImages) => prevImages.filter((image, i) => i !== index));
-    setBase64Images((prevBase64Images) => prevBase64Images.filter((_, i) => i !== index));
+    setSelectedImages((prevImages) =>
+      prevImages.filter((image, i) => i !== index)
+    );
+    setBase64Images((prevBase64Images) =>
+      prevBase64Images.filter((_, i) => i !== index)
+    );
     setImageError("");
   };
 
@@ -136,7 +145,7 @@ const ProductForm = () => {
   const handlePriceChange = (e) => {
     const value = parseFloat(e.target.value);
     if (value <= 0 || isNaN(value)) {
-      setPrice(1); 
+      setPrice(1);
     } else {
       setPrice(value);
     }
@@ -144,15 +153,14 @@ const ProductForm = () => {
 
   const handleQuantityChange = (e) => {
     let value = parseInt(e.target.value);
-      if (value <= 0 || isNaN(value)) {
-      value = 1; 
+    if (value <= 0 || isNaN(value)) {
+      value = 1;
     } else if (value > 12) {
-      value = 12; 
+      value = 12;
     }
 
     setQuantity(value);
   };
-  
 
   return (
     <>
@@ -198,7 +206,7 @@ const ProductForm = () => {
                   type="number"
                   id="price"
                   value={price}
-                  onChange={handlePriceChange} 
+                  onChange={handlePriceChange}
                   placeholder="Price"
                   name="price"
                 />
@@ -208,7 +216,7 @@ const ProductForm = () => {
                   type="number"
                   id="quantity"
                   value={quantity}
-                  onChange={handleQuantityChange} 
+                  onChange={handleQuantityChange}
                   placeholder="Number of people"
                   name="quantity"
                 />
@@ -221,7 +229,10 @@ const ProductForm = () => {
                         type="radio"
                         name="category"
                         value={category.id}
-                        checked={selectedCategory && selectedCategory.id === category.id}
+                        checked={
+                          selectedCategory &&
+                          selectedCategory.id === category.id
+                        }
                         onChange={() => handleCategoryChange(category)}
                       />
                       {category.title}
@@ -243,7 +254,7 @@ const ProductForm = () => {
                   )}
                 </div>
 
-                <div className="containerButton">
+                <div className="containerButton centerContaniner">
                   <button className="genericButton" type="submit">
                     Send
                   </button>

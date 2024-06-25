@@ -301,7 +301,7 @@ const CharacteristicForm = () => {
                     <FaCaretDown className="seeMoreIcon" />
                   </a>
                 )}
-                <div className="containerButton">
+                <div className="containerButton centerContaniner">
                   <button type="submit" className="genericButton">
                     Send
                   </button>

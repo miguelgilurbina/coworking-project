@@ -72,6 +72,11 @@ textarea {
   margin-top: 20px;
 }
 
+.centerContaniner {
+  display: flex;
+  justify-content: center;
+}
+
 .image-upload {
   display: flex;
   flex-direction: column;

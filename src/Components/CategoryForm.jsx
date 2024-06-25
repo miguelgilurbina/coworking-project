@@ -308,7 +308,7 @@ const CategoryForm = () => {
                   name="srcImg"
                 />
 
-                <div className="containerButton">
+                <div className="containerButton centerContaniner">
                   <button className="genericButton" type="submit">
                     Send
                   </button>

@@ -8,6 +8,7 @@
       "description": "Equipped with modern technology. Ideal room for meetings with ample space and comfort for all attendees.",
       "price": 100,
       "people": 10,
+      "images": ["/public/images/img_aleatory_12.png", "/public/images/img_aleatory_4.png", "/public/images/img_aleatory_8.png", "/public/images/img_aleatory_6.png" ],
       "availability": {
         "2024-06-24": [
           "09:00",
@@ -72,6 +73,7 @@
       "description": "Private office designed for uninterrupted and focused work sessions. Equipped with ergonomic furniture and high-speed internet.",
       "price": 150,
       "people": 5,
+      "images": ["/public/images/img_aleatory_1.png", "/public/images/img_aleatory_4.png", "/public/images/img_aleatory_2.png", "/public/images/img_aleatory.png" ],
       "availability": {
         "2024-06-27": [
           "09:00",
@@ -126,6 +128,7 @@
       "description": "Full-time space for continuous work, equipped with essential services and ample natural light.",
       "price": 200,
       "people": 8,
+      "images": ["/public/images/img_aleatory_5.png", "/public/images/img_aleatory_4.png", "/public/images/img_aleatory_3.png", "/public/images/img_aleatory_2.png" ],
       "availability": {
         "2024-06-24": [
           "09:00",
@@ -174,6 +177,7 @@
       "name": "Available to the Public",
       "Category": "Lounge",
       "id": "4",
+      "images": ["/public/images/img_aleatory_10.png", "/public/images/img_aleatory_9.png", "/public/images/img_aleatory_8.png", "/public/images/img_aleatory_7.png" ],
       "description": "Accessible lounge area for all users to relax and collaborate. Well-equipped place for productivity",
       "price": 120,
       "people": [
@@ -231,6 +235,7 @@
       "description": "Perfect room for creative and collaborative meetings with your team. Equipped with modern technology",
       "price": 100,
       "people": 10,
+      "images": ["/public/images/img_aleatory_9.png", "/public/images/img_aleatory_10.png", "/public/images/img_aleatory.png", "/public/images/img_aleatory_1.png" ],
       "availability": {
         "2024-06-26": [
           "09:00",
@@ -282,6 +287,7 @@
       "description": "Private space offering modern amenities for all your work needs. Equipped with ergonomic furniture.",
       "price": 150,
       "people": 1,
+      "images": ["/public/images/img_aleatory_3.png", "/public/images/img_aleatory_4.png", "/public/images/img_aleatory_7.png", "/public/images/img_aleatory_8.png" ],
       "availability": {
         "2024-06-25": [
           "09:00",
@@ -335,6 +341,7 @@
       "description": "Quiet, well-equipped place for nonstop work and productivity. Features ergonomic furniture and high-speed internet.",
       "price": 200,
       "people": 8,
+      "images": ["/public/images/img_aleatory_12.png", "/public/images/img_aleatory_1.png", "/public/images/img_aleatory_2.png", "/public/images/img_aleatory_10.png" ],
       "availability": {
         "2024-06-25": [
           "09:00",
@@ -384,6 +391,7 @@
       "description": "Formal meeting space designed for productive discussions and planning. Equipped with high-speed internet",
       "price": 120,
       "people": 12,
+      "images": ["/public/images/img_aleatory_8.png", "/public/images/img_aleatory_9.png", "/public/images/img_aleatory_10.png", "/public/images/img_aleatory_11.png" ],
       "availability": {
         "2024-06-25": [
           "10:00",
@@ -427,6 +435,7 @@
       "description": "Private office ideal for intensive projects requiring focus and quiet. Designed to foster planning.",
       "price": 150,
       "people": 5,
+      "images": ["/public/images/img_aleatory_7.png", "/public/images/img_aleatory_4.png", "/public/images/img_aleatory_5.png", "/public/images/img_aleatory_6.png" ],
       "availability": {
         "2024-06-24": [
           "09:00",
