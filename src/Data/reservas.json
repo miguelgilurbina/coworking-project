@@ -1,0 +1,103 @@
+{
+  "reservas": [
+    {
+      "id": "3f35",
+      "userName": "Enzo Fernandez",
+      "userEmail": "enzitofernandez287@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 17,
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 800
+    },
+    {
+      "id": "e4b2",
+      "userName": "Enzo Fernandez",
+      "userEmail": "enzitofernandez287@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 17,
+      "paymentMethod": "Tarjeta Debito",
+      "totalCost": 800
+    },
+    {
+      "id": "6e4d",
+      "userName": "Jose Antonio",
+      "userEmail": "josejose@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 14,
+      "paymentMethod": "Efectivo",
+      "totalCost": 500
+    },
+    {
+      "id": "bacd",
+      "userName": "Jose Antonio",
+      "userEmail": "josejose@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 14,
+      "paymentMethod": "Efectivo",
+      "totalCost": 500
+    },
+    {
+      "id": "769b",
+      "userName": "Jose Antonio",
+      "userEmail": "josejose@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 16,
+      "paymentMethod": "Tarjeta Debito",
+      "totalCost": 700
+    },
+    {
+      "id": "35d3",
+      "userName": "Jose Antonio",
+      "userEmail": "josejose@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 17,
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 800
+    },
+    {
+      "id": "3135",
+      "userName": "Enzo Fernandez",
+      "userEmail": "enzitofernandez287@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 17,
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 800
+    },
+    {
+      "id": "b26d",
+      "userName": "Enzo Fernandez",
+      "userEmail": "enzitofernandez287@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 17,
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 800
+    },
+    {
+      "id": "b8b5",
+      "userName": "Enzo Fernandez",
+      "userEmail": "enzitofernandez287@gmail.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": 9,
+      "endTime": 13,
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 400
+    }
+  ]
+}

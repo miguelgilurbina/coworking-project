@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from '../Components/Context/AuthContext';
+import { useHistory } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,6 +24,9 @@ const iconList = Object.keys(Icons).map((icon) => {
 });
 
 const Gallery = () => {
+  const { user } = useAuth();
+  const history = useHistory();
+
   const [showCarousel, setShowCarousel] = useState(false);
   const [imagery, setImagery] = useState([
     image,
@@ -33,22 +38,26 @@ const Gallery = () => {
   const [characteristics, setCharacteristics] = useState([]);
 
   useEffect(() => {
-    const fetchCharacteristics = async () => {
+    const fetchData = async () => {
       try {
-        //TODO: INTEGRAR CON BACK
-        const response = await fetch("http://localhost:3004/caracteristicas");
+        // Obtener detalles del elemento según el id
+        const response = await fetch(`http://localhost:3004/items/${id}`); // Reemplaza con la URL y endpoint correcto
         if (!response.ok) {
           throw new Error("Network response was not ok.");
         }
         const data = await response.json();
-        setCharacteristics(data);
+        setTitle(data.name); // Establecer el título desde la respuesta del API
+        setSubtitle(data.category); // Establecer el subtítulo desde la respuesta del API
+        setDescription(data.description); // Establecer la descripción desde la respuesta del API
+        setImagery([data.image, ...data.additionalImages]); // Actualizar las imágenes desde la respuesta del API
+        setCharacteristics(data.characteristics); // Establecer características desde la respuesta del API
       } catch (error) {
-        console.error("Error fetching characteristics:", error);
+        console.error("Error fetching item details:", error);
       }
     };
 
-    fetchCharacteristics();
-  }, []);
+    fetchData();
+  }, [id]);
 
   const renderCharacteristics = () => {
     return characteristics.map((characteristic, index) => (
@@ -101,6 +110,19 @@ const Gallery = () => {
     setShowCarousel(!showCarousel);
   };
 
+  // const toggleTerms = () => {
+  //   setTermsCollapsed(!termsCollapsed);
+  // };
+
+  const handleBookNowClick = () => {
+    console.log("Usuario actual:", user);
+    if (user) {
+      history.push('/reservar');
+    } else {
+      history.push('/login');
+    }
+  };
+
   return (
     <div className="center">
       <div className="containerDetail">
@@ -112,16 +134,16 @@ const Gallery = () => {
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
           <div className="cardHeader">
             <div className="titleSubtitle">
-              {/* <h3 className="titleCard">Home Office</h3>
-              <h5 className="subtitleCard">Harmony</h5> */}
+              {/* <h3 className="titleCard">{title}</h3>
+              <h5 className="subtitleCard">{subtitle}</h5> */}
             </div>
-            <Shared title="Home Office" subtitle="Harmony" />
+            <Shared title={title} subtitle={subtitle} />
           </div>
 
           {!showCarousel && (
             <>
               <div className="containerImg">
-                <img src={image} alt="Main" className="imgHero" />
+                <img src={imagery[0]} alt="Main" className="imgHero" />
                 <div className="gridDetail">
                   {imagery.slice(1).map((image, index) => (
                     <img
@@ -139,7 +161,7 @@ const Gallery = () => {
               </div>
               <div>
                 <p>
-                  <strong>Description:</strong>
+                  <strong> {description}</strong>
                 </p>
                 <p>
                   Our co-working space is designed to provide a comfortable and
@@ -160,7 +182,9 @@ const Gallery = () => {
           <div className="buttonSeeMore">
             <div className="containerButtonGallery">
               {!showCarousel && (
-                <button className="genericButton">Book Now</button>
+                <button className="genericButton Link-flex" onClick={handleBookNowClick}>
+                  Book Now
+                </button>
               )}
             </div>
             <button
@@ -189,14 +213,19 @@ const Gallery = () => {
         </div>
       </div>
 
-      {showCarousel && (
-        <Slider {...settings}>
-          {imagery.map((img, index) => (
-            <div key={index}>
-              <img src={img} alt={`Room ${index}`} className="carouselImage" />
-            </div>
-          ))}
-        </Slider>
+        {showCarousel && (
+          <div className="carousel">
+            <Slider {...settings}>
+              {imagery.map((image, index) => (
+                <div key={index}>
+                  <img
+                    src={image}
+                    alt={`Slide ${index}`}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </div>
+              ))}
+      </Slider>
       )}
     </div>
   );

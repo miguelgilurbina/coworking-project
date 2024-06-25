@@ -4,6 +4,8 @@ import { AuthProvider } from "./Components/Context/AuthContext";
 
 import { FavoriteProvider } from "./Components/Context/FavoriteContext";
 
+import { BookingProvider } from "./Components/Context/BookingContext";
+
 import Header from "../src/Components/Header";
 import Footer from "./Components/footer";
 import Home from "./Pages/Home";
@@ -26,12 +28,14 @@ import CategoryForm from "./Components/CategoryForm";
 import CategoryList from "./Components/CategoryList";
 import FavoriteList from "./Components/FavoriteList";
 import ProductList from "./Components/ProductList";
-
+import Booking from "./Components/Booking";
+import BookingForm from "./Components/BookingForm";
 function App() {
   return (
     <>
       <AuthProvider>
         <FavoriteProvider>
+          <BookingProvider>
         <div className="d-flex">
           <Header />
           <div className="background-image"></div>
@@ -59,9 +63,12 @@ function App() {
             <Route path={routes.categoryList} element={<CategoryList/>}></Route>
             <Route path={routes.favoriteList} element={<FavoriteList/>}></Route>
             <Route path={routes.productList} element={<ProductList/>}></Route>
+            <Route path={routes.booking} element={<Booking/>}></Route>
+            <Route path={routes.bookingForm} element={<BookingForm/>}></Route>
           </Routes>
         </div>
         <Footer />
+        </BookingProvider>
         </FavoriteProvider>
       </AuthProvider>
     </>
