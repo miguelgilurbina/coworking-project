@@ -1,10 +1,11 @@
 .booking-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Utiliza el 100% del alto de la ventana */
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
   }
+
 .containerForm{
     display: flex;
     width: 100%;
@@ -40,7 +41,7 @@
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #607d8b;
   }
   
   .selected-range {
@@ -59,4 +60,12 @@
   .selected-range p {
     font-size: 1.2rem;
     font-weight: bold;
+  }
+
+  .btn-confirm {
+    background-color: #d8a353;
+    color: white;
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
   }
