@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useAuth } from '../Components/Context/AuthContext';
+import { useHistory } from 'react-router-dom';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,6 +13,9 @@ import image from "../../public/images/img_aleatory.png";
 import { FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const Gallery = () => {
+  const { user } = useAuth();
+  const history = useHistory();
+
   const [showCarousel, setShowCarousel] = useState(false);
   const [imagery, setImagery] = useState([
     image,
@@ -23,29 +28,32 @@ const Gallery = () => {
   const [termsCollapsed, setTermsCollapsed] = useState(true);
 
   useEffect(() => {
-    const fetchCharacteristics = async () => {
+    const fetchData = async () => {
       try {
-        //TODO: INTEGRAR CON BACK
-        const response = await fetch("http://localhost:3004/caracteristicas");
+        // Obtener detalles del elemento según el id
+        const response = await fetch(`http://localhost:3004/items/${id}`); // Reemplaza con la URL y endpoint correcto
         if (!response.ok) {
           throw new Error("Network response was not ok.");
         }
         const data = await response.json();
-        setCharacteristics(data);
+        setTitle(data.name); // Establecer el título desde la respuesta del API
+        setSubtitle(data.category); // Establecer el subtítulo desde la respuesta del API
+        setDescription(data.description); // Establecer la descripción desde la respuesta del API
+        setImagery([data.image, ...data.additionalImages]); // Actualizar las imágenes desde la respuesta del API
+        setCharacteristics(data.characteristics); // Establecer características desde la respuesta del API
       } catch (error) {
-        console.error("Error fetching characteristics:", error);
+        console.error("Error fetching item details:", error);
       }
     };
 
-    fetchCharacteristics();
-  }, []);
+    fetchData();
+  }, [id]);
 
   const renderCharacteristics = () => {
     return characteristics.map((characteristic, index) => (
       <li key={index}>{characteristic.name}</li>
     ));
   };
-  
 
   const settings = {
     dots: true,
@@ -77,21 +85,31 @@ const Gallery = () => {
   const toggleCarousel = () => {
     setShowCarousel(!showCarousel);
   };
+
   const toggleTerms = () => {
     setTermsCollapsed(!termsCollapsed);
+  };
+
+  const handleBookNowClick = () => {
+    console.log("Usuario actual:", user);
+    if (user) {
+      history.push('/reservar');
+    } else {
+      history.push('/login');
+    }
   };
 
   return (
     <div className="center">
       <div className="containerDetail">
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
-          <h3 className="titleCard">Home Office</h3>
-          <h5 className="subtitleCard">Harmony</h5>
+          <h3 className="titleCard">{title}</h3>
+          <h5 className="subtitleCard">{subtitle}</h5>
 
           {!showCarousel && (
             <>
               <div className="containerImg">
-                <img src={image} alt="Main" className="imgHero" />
+                <img src={imagery[0]} alt="Main" className="imgHero" />
                 <div className="gridDetail">
                   {imagery.slice(1).map((image, index) => (
                     <img
@@ -109,15 +127,7 @@ const Gallery = () => {
               </div>
               <div>
                 <span>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Blanditiis vel nobis recusandae cupiditate consectetur iste
-                  quaerat explicabo. Eius, quaerat exercitationem placeat,
-                  distinctio doloremque hic sit unde inventore possimus, rem
-                  eos! Perferendis voluptatibus ducimus sed aperiam impedit
-                  officiis, sit suscipit exercitationem ratione, natus ad
-                  adipisci eveniet saepe voluptatum eum provident voluptates,
-                  nemo quaerat iste. Vitae laboriosam, dicta minus nihil
-                  officiis ipsam?
+                  {description}
                 </span>
               </div>
             </>
@@ -126,7 +136,9 @@ const Gallery = () => {
           <div className="buttonSeeMore">
             <div className="containerButtonGallery">
               {!showCarousel && (
-                <button className="genericButton">Book Now</button>
+                <button className="genericButton Link-flex" onClick={handleBookNowClick}>
+                  Book Now
+                </button>
               )}
             </div>
             <button
@@ -196,53 +208,44 @@ const Gallery = () => {
                 </p>
                 <p>
                   <strong>6. Servicios y Equipos</strong><br />
-                  <strong>Internet:</strong> Proporcionamos acceso a internet de alta velocidad. El uso de la red debe ser legal y adecuado, evitando actividades como la descarga de contenido ilegal.<br />
-                  <strong>Equipos Comunes:</strong> Los usuarios pueden utilizar equipos comunes (impresoras, fotocopiadoras, etc.) según disponibilidad. Deben seguir las instrucciones de uso y reportar cualquier problema al personal del espacio.
+                  <strong>Internet:</strong> Proporcionamos acceso a Internet de alta velocidad. Sin embargo, no somos responsables por interrupciones en el servicio.<br />
+                  <strong>Impresoras y Escáneres:</strong> El uso de impresoras y escáneres está disponible para todos los usuarios. Por favor, sea considerado con el consumo de papel y tinta.
                 </p>
                 <p>
-                  <strong>7. Reservas y Uso de Salas</strong><br />
-                  <strong>Reservas:</strong> Las salas de reuniones y otros espacios reservables deben ser reservados con antelación a través del sistema de reservas del espacio de coworking.<br />
-                  <strong>Uso:</strong> Utilizar las salas de reuniones solo por el tiempo reservado y dejar el espacio limpio y ordenado para el siguiente usuario.
-                </p>
-                {/* <p>
-                  <strong>8. Eventos y Actividades</strong><br />
-                  <strong>Eventos Internos:</strong> Los usuarios pueden participar en eventos y actividades organizados por el espacio de coworking. Estos eventos están sujetos a sus propios términos y condiciones.<br />
-                  <strong>Eventos Externos:</strong> La organización de eventos externos debe ser aprobada previamente por la administración del espacio de coworking.
-                </p> */}
-                <p>
-                  <strong>8. Pago y Facturación</strong><br />
-                  <strong>Pago:</strong> Las cuotas de membresía y otros cargos deben ser pagados puntualmente según lo acordado en el contrato de membresía.<br />
-                  <strong>Facturación:</strong> Las facturas serán enviadas a la dirección de correo electrónico proporcionada por el usuario y deben ser pagadas dentro del período especificado.
+                  <strong>7. Reservas y Espacios Privados</strong><br />
+                  <strong>Reservas:</strong> Algunos espacios privados y salas de reuniones requieren reserva previa. Por favor, utilice el sistema de reservas para asegurar la disponibilidad.<br />
+                  <strong>Cancelaciones:</strong> Las cancelaciones de reservas deben hacerse con al menos 24 horas de antelación para evitar cargos adicionales.
                 </p>
                 <p>
-                  <strong>9. Terminación y Cancelación</strong><br />
-                  <strong>Terminación por el Usuario:</strong> Los usuarios pueden cancelar su membresía siguiendo el proceso establecido en el contrato de membresía.<br />
-                  <strong>Terminación por el Espacio de Coworking:</strong> Nos reservamos el derecho de terminar la membresía de cualquier usuario que infrinja estos Términos de Uso o el contrato de membresía.
+                  <strong>8. Modificaciones de los Términos</strong><br />
+                  Nos reservamos el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios se publicarán en nuestra página web y entrarán en vigor de inmediato.
                 </p>
                 <p>
-                  <strong>10. Modificaciones de los Términos</strong><br />
-                  Nos reservamos el derecho de modificar estos Términos de Uso en cualquier momento. Las modificaciones se comunicarán a los usuarios a través del correo electrónico registrado o mediante avisos en el espacio de coworking.
-                </p>
-                <p>
-                  <strong>11. Contacto</strong><br />
-                  Para cualquier pregunta o comentario sobre estos Términos de Uso, por favor contacte a la administración del espacio de coworking en espacios@coworking.cl.
+                  <strong>9. Contacto</strong><br />
+                  Si tiene alguna pregunta o inquietud acerca de estos Términos de Uso, por favor contáctenos en soporte@coworking.com.
                 </p>
               </div>
               )}
             </div>
           )}
         </div>
-      </div>
 
-      {showCarousel && (
-        <Slider {...settings}>
-          {imagery.map((img, index) => (
-            <div key={index}>
-              <img src={img} alt={`Room ${index}`} className="carouselImage" />
-            </div>
-          ))}
-        </Slider>
-      )}
+        {showCarousel && (
+          <div className="carousel">
+            <Slider {...settings}>
+              {imagery.map((image, index) => (
+                <div key={index}>
+                  <img
+                    src={image}
+                    alt={`Slide ${index}`}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                </div>
+              ))}
+            </Slider>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
