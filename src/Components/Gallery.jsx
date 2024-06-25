@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from '../Components/Context/AuthContext';
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -24,6 +24,7 @@ const iconList = Object.keys(Icons).map((icon) => {
 
 const Gallery = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [redirectTo, setRedirectTo] = useState(null);
 
   const [showCarousel, setShowCarousel] = useState(false);
@@ -106,9 +107,9 @@ const Gallery = () => {
 
   const handleBookNowClick = () => {
     if (user) {
-      setRedirectTo('/reservarSala');
+      navigate('/seleccionarFecha');
     } else {
-      setRedirectTo('/login');
+      navigate('/login', { state: { fromGallery: true } });
     }
   };
 
