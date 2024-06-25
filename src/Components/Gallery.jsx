@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from '../Components/Context/AuthContext';
-import { useHistory } from 'react-router-dom';
+import { Link, Navigate } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -11,10 +11,9 @@ import image3 from "../../public/images/img_aleatory_3.png";
 import image4 from "../../public/images/img_aleatory_4.png";
 import image from "../../public/images/img_aleatory.png";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import * as Icons from "react-icons/fa";
 import TermsOfUse from "./TermsOfUse";
-import Shared from "./Shared"; //
+import Shared from "./Shared";
 
 const iconList = Object.keys(Icons).map((icon) => {
   return {
@@ -25,7 +24,7 @@ const iconList = Object.keys(Icons).map((icon) => {
 
 const Gallery = () => {
   const { user } = useAuth();
-  const history = useHistory();
+  const [redirectTo, setRedirectTo] = useState(null);
 
   const [showCarousel, setShowCarousel] = useState(false);
   const [imagery, setImagery] = useState([
@@ -38,26 +37,21 @@ const Gallery = () => {
   const [characteristics, setCharacteristics] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCharacteristics = async () => {
       try {
-        // Obtener detalles del elemento según el id
-        const response = await fetch(`http://localhost:3004/items/${id}`); // Reemplaza con la URL y endpoint correcto
+        const response = await fetch("http://localhost:3004/caracteristicas");
         if (!response.ok) {
           throw new Error("Network response was not ok.");
         }
         const data = await response.json();
-        setTitle(data.name); // Establecer el título desde la respuesta del API
-        setSubtitle(data.category); // Establecer el subtítulo desde la respuesta del API
-        setDescription(data.description); // Establecer la descripción desde la respuesta del API
-        setImagery([data.image, ...data.additionalImages]); // Actualizar las imágenes desde la respuesta del API
-        setCharacteristics(data.characteristics); // Establecer características desde la respuesta del API
+        setCharacteristics(data);
       } catch (error) {
-        console.error("Error fetching item details:", error);
+        console.error("Error fetching characteristics:", error);
       }
     };
 
-    fetchData();
-  }, [id]);
+    fetchCharacteristics();
+  }, []);
 
   const renderCharacteristics = () => {
     return characteristics.map((characteristic, index) => (
@@ -110,18 +104,17 @@ const Gallery = () => {
     setShowCarousel(!showCarousel);
   };
 
-  // const toggleTerms = () => {
-  //   setTermsCollapsed(!termsCollapsed);
-  // };
-
   const handleBookNowClick = () => {
-    console.log("Usuario actual:", user);
     if (user) {
-      history.push('/reservar');
+      setRedirectTo('/reservarSala');
     } else {
-      history.push('/login');
+      setRedirectTo('/login');
     }
   };
+
+  if (redirectTo) {
+    return <Navigate to={redirectTo} />;
+  }
 
   return (
     <div className="center">
@@ -134,16 +127,16 @@ const Gallery = () => {
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
           <div className="cardHeader">
             <div className="titleSubtitle">
-              {/* <h3 className="titleCard">{title}</h3>
-              <h5 className="subtitleCard">{subtitle}</h5> */}
+              {/* <h3 className="titleCard">Home Office</h3>
+              <h5 className="subtitleCard">Harmony</h5> */}
             </div>
-            <Shared title={title} subtitle={subtitle} />
+            <Shared title="Home Office" subtitle="Harmony" />
           </div>
 
           {!showCarousel && (
             <>
               <div className="containerImg">
-                <img src={imagery[0]} alt="Main" className="imgHero" />
+                <img src={image} alt="Main" className="imgHero" />
                 <div className="gridDetail">
                   {imagery.slice(1).map((image, index) => (
                     <img
@@ -161,7 +154,7 @@ const Gallery = () => {
               </div>
               <div>
                 <p>
-                  <strong> {description}</strong>
+                  <strong>Description:</strong>
                 </p>
                 <p>
                   Our co-working space is designed to provide a comfortable and
@@ -182,11 +175,12 @@ const Gallery = () => {
           <div className="buttonSeeMore">
             <div className="containerButtonGallery">
               {!showCarousel && (
-                <button className="genericButton Link-flex" onClick={handleBookNowClick}>
+                <button onClick={handleBookNowClick} className="genericButton link-flex">
                   Book Now
                 </button>
               )}
             </div>
+
             <button
               className="button-generic-transition"
               onClick={toggleCarousel}
@@ -213,19 +207,14 @@ const Gallery = () => {
         </div>
       </div>
 
-        {showCarousel && (
-          <div className="carousel">
-            <Slider {...settings}>
-              {imagery.map((image, index) => (
-                <div key={index}>
-                  <img
-                    src={image}
-                    alt={`Slide ${index}`}
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                </div>
-              ))}
-      </Slider>
+      {showCarousel && (
+        <Slider {...settings}>
+          {imagery.map((img, index) => (
+            <div key={index}>
+              <img src={img} alt={`Room ${index}`} className="carouselImage" />
+            </div>
+          ))}
+        </Slider>
       )}
     </div>
   );

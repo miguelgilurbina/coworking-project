@@ -12,18 +12,18 @@ const Category = ({ onFilter }) => {
       try {
         //TODO: INTEGRAR CON BACK
         const response = await axios.get("http://localhost:3002/categories");
-        console.log("API Response:", response.data);
+        //console.log("API Response:", response.data);
 
         const categoriesArray = response.data || [];
-        console.log("Categories Array:", categoriesArray);
+       // console.log("Categories Array:", categoriesArray);
 
         const shuffledData = shuffleArray(categoriesArray);
-        console.log("Shuffled Data:", shuffledData);
+       // console.log("Shuffled Data:", shuffledData);
 
         setRecommendData(shuffledData);
       } catch (error) {
         setError(error.message);
-        console.error("Error fetching data:", error);
+      //  console.error("Error fetching data:", error);
       }
     };
 
@@ -54,7 +54,7 @@ const Category = ({ onFilter }) => {
           <p>No categories available</p>
         ) : (
           recommendData.map((category) => {
-            console.log("Rendering CategoryCard with:", category);
+            //console.log("Rendering CategoryCard with:", category);
             return (
               <CategoryCard
                 key={category.id} // Using category.id as key

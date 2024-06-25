@@ -4,7 +4,8 @@ export const routes ={
     admin:'/admin',
     editRoom:'/editRoom',
     home:"/home",
-    detail:"/detail/:id",
+    detail:"/detail",
+    //detail:"/detail/:id",
     productForm: "/form",
     characteristicForm: "/addCharacteristic",
     usersList: "/userList",
@@ -14,5 +15,5 @@ export const routes ={
     favoriteList: "/favorites",
     productList: "/producto",
     booking: "/seleccionarFecha",
-    bookingForm: "reservarSala"
+    bookingForm: "/reservarSala"
 }

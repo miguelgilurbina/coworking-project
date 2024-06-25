@@ -6,30 +6,33 @@ import { FavoriteProvider } from "./Components/Context/FavoriteContext";
 
 import { BookingProvider } from "./Components/Context/BookingContext";
 
-import Header from "../src/Components/Header";
-import Footer from "./Components/footer";
+import { routes } from "./Components/utils/routes";
+
+
 import Home from "./Pages/Home";
 import Admin from "./Pages/Admin";
 import Detail from "./Pages/Detail";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import TableEditRooms from "./Pages/TableEditRooms";
+import Profile from "./Pages/Profile";
 
+import Header from "../src/Components/Header";
+import Footer from "./Components/footer";
 import LoginForm from "./Components/LoginForm";
 import EditProducts from "./Components/EditProducts";
 import CharacteristicForm from "./Components/CharacteristicForm";
 import ProductForm from "./Components/ProductForm";
-import { routes } from "./Components/utils/routes";
-
-import "./App.css";
 import UsersList from "./Components/UsersList";
-import Profile from "./Pages/Profile";
 import CategoryForm from "./Components/CategoryForm";
 import CategoryList from "./Components/CategoryList";
 import FavoriteList from "./Components/FavoriteList";
 import ProductList from "./Components/ProductList";
 import Booking from "./Components/Booking";
 import BookingForm from "./Components/BookingForm";
+
+import "./App.css";
+
 function App() {
   return (
     <>

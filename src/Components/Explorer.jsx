@@ -22,7 +22,7 @@ const Explorer = ({ onSearch }) => {
     try {
       const response = await axios.get("http://localhost:3003/data");
       const data = response.data;
-      console.log("Data received from API:", data);
+      //console.log("Data received from API:", data);
       const productNames = data.map((product) => product.name);
       setProducts(productNames);
     } catch (error) {
