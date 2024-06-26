@@ -42,17 +42,13 @@ const Booking = () => {
   }, [selectedDate, availability]);
 
   const handleHoraInicioChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (value >= 9 && value < booking.endTime) {
-      setBooking((prev) => ({ ...prev, startTime: value }));
-    }
+    const value = e.target.value ? parseInt(e.target.value) : null;
+    setBooking((prev) => ({ ...prev, startTime: value }));
   };
 
   const handleHoraFinChange = (e) => {
-    const value = parseInt(e.target.value);
-    if (value > booking.startTime && value <= 17) {
-      setBooking((prev) => ({ ...prev, endTime: value }));
-    }
+    const value = e.target.value ? parseInt(e.target.value) : null;
+    setBooking((prev) => ({ ...prev, endTime: value }));
   };
 
   const handleDateChange = (e) => {
@@ -106,16 +102,65 @@ const Booking = () => {
     return `${year}-${month}-${day}`;
   };
 
-  const renderTimeOptions = () => {
+  const renderStartTimeOptions = () => {
     const times = [];
+    times.push(
+      <option key="default" value="">
+        Select time
+      </option>
+    );
+
     for (let hour = 9; hour <= 17; hour++) {
       const timeString = `${hour < 10 ? "0" : ""}${hour}:00`;
-      const isDisabled = !availableTimes.includes(timeString);
       times.push(
-        <option key={hour} value={hour} disabled={isDisabled}>
+        <option
+          key={hour}
+          value={hour}
+          disabled={!availableTimes.includes(timeString)}
+        >
           {timeString}
         </option>
       );
+    }
+    return times;
+  };
+
+  const renderEndTimeOptions = () => {
+    const times = [];
+    times.push(
+      <option key="default" value="">
+        Select time
+      </option>
+    );
+
+    if (booking.startTime) {
+      let disableFurther = false;
+      for (let hour = 9; hour <= 17; hour++) {
+        const timeString = `${hour < 10 ? "0" : ""}${hour}:00`;
+
+        if (hour <= booking.startTime) {
+          times.push(
+            <option key={hour} value={hour} disabled>
+              {timeString}
+            </option>
+          );
+        } else {
+          if (!availableTimes.includes(timeString) || disableFurther) {
+            disableFurther = true;
+            times.push(
+              <option key={hour} value={hour} disabled>
+                {timeString}
+              </option>
+            );
+          } else {
+            times.push(
+              <option key={hour} value={hour}>
+                {timeString}
+              </option>
+            );
+          }
+        }
+      }
     }
     return times;
   };
@@ -158,11 +203,11 @@ const Booking = () => {
               <select
                 id="horaInicio"
                 name="horaInicio"
-                value={booking.startTime}
+                value={booking.startTime || ""}
                 onChange={handleHoraInicioChange}
                 required
               >
-                {renderTimeOptions()}
+                {renderStartTimeOptions()}
               </select>
             </div>
             <div className="form-group">
@@ -170,18 +215,18 @@ const Booking = () => {
               <select
                 id="horaFin"
                 name="horaFin"
-                value={booking.endTime}
+                value={booking.endTime || ""}
                 onChange={handleHoraFinChange}
                 required
               >
-                {renderTimeOptions()}
+                {renderEndTimeOptions()}
               </select>
             </div>
             <div className="containerButton centerContainer">
               <button type="submit" className="btn-confirm">
                 Confirm Schedule
               </button>
-              {reservationConfirmed && ( 
+              {reservationConfirmed && (
                 <Link to="/reserveRoom">
                   <button
                     className="btn-confirm"

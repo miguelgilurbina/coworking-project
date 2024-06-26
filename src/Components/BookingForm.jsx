@@ -164,7 +164,7 @@ const BookingForm = () => {
                 <p>
                   <strong>Description:</strong> {room.description}
                 </p>
-                <p>
+                <p  className="mb-0">
                   <strong>Time:</strong> {booking.startTime}:00 am -{" "}
                   {booking.endTime}:00 pm
                 </p>
