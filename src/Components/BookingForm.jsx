@@ -108,7 +108,7 @@ const BookingForm = () => {
       style={{ minHeight: "100vh" }}
     >
       <div className="containerButton">
-        <Link to="/seleccionarFecha" className="genericButton link-flex">
+        <Link to="/selectDate" className="genericButton link-flex">
           <FaArrowLeft className="iconSpace" /> Go back
         </Link>
       </div>

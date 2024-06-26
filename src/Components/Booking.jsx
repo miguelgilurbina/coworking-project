@@ -181,8 +181,8 @@ const Booking = () => {
               <button type="submit" className="btn-confirm">
                 Confirm Schedule
               </button>
-              {reservationConfirmed && (
-                <Link to="/reservarSala">
+              {reservationConfirmed && ( 
+                <Link to="/reserveRoom">
                   <button
                     className="btn-confirm"
                     style={{ marginLeft: "45px", backgroundColor: "#de8a05" }}

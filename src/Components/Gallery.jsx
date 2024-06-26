@@ -107,7 +107,7 @@ const Gallery = () => {
 
   const handleBookNowClick = () => {
     if (user) {
-      navigate('/seleccionarFecha');
+      navigate('/selectDate');
     } else {
       navigate('/login', { state: { fromGallery: true } });
     }

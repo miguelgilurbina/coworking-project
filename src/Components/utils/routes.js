@@ -14,6 +14,6 @@ export const routes ={
     categoryList: "/categoryList",
     favoriteList: "/favorites",
     productList: "/producto",
-    booking: "/seleccionarFecha",
-    bookingForm: "/reservarSala"
+    booking: "/selectDate",
+    bookingForm: "/reserveRoom"
 }
