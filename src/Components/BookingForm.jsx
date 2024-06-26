@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "./Context/AuthContext";
 import { useBooking } from "./Context/BookingContext";
 import Modal from "./Modal";
+import Alert from "./Alert";
 import "../Styles/Booking.css";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -13,6 +14,7 @@ const BookingForm = () => {
   const [paymentMethod, setPaymentMethod] = useState("Tarjeta Credito");
   const [modalVisible, setModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState({ title: "", body: "" });
+  const [showAlert, setShowAlert] = useState(false);
   const { user } = useAuth();
   const { booking } = useBooking();
 
@@ -31,7 +33,7 @@ const BookingForm = () => {
           setRoom(null);
         }
       } catch (error) {
-        setError(error.message);
+        setError("Error fetching data");
         console.error("Error fetching data:", error);
       }
     };
@@ -79,42 +81,44 @@ const BookingForm = () => {
       );
       console.log("Reserva realizada:", response.data);
       setModalContent({
-        title: "Éxito",
-        body: "Reserva realizada con éxito",
+        title: "Reservation confirm",
+        body: "You are about to confirm your reservation and payment method. Do you wish to continue?",
       });
       setModalVisible(true);
     } catch (error) {
       console.error("Error realizando la reserva:", error);
       setModalContent({
         title: "Error",
-        body: "Error realizando la reserva",
+        body: "Error making reservation",
       });
       setModalVisible(true);
     }
   };
 
-  const closeModal = () => {
+  const closeModal = (confirmed) => {
     setModalVisible(false);
+    if (confirmed) {
+      setShowAlert(true);
+    }
   };
 
   return (
-    
     <div
       className="contenedorBody d-flex flex-column justify-content-center"
       style={{ minHeight: "100vh" }}
     >
       <div className="containerButton">
-        <Link to="/detail" className="genericButton link-flex">
+        <Link to="/seleccionarFecha" className="genericButton link-flex">
           <FaArrowLeft className="iconSpace" /> Go back
         </Link>
       </div>
-      <h2 className="mb-4">List & Add Characteristics</h2>
+      <h2 className="mb-4">Reservation details</h2>
       {modalVisible && (
         <Modal
           title={modalContent.title}
           body={modalContent.body}
-          onClose={closeModal}
-          onConfirm={closeModal}
+          onClose={() => closeModal(false)}
+          onConfirm={() => closeModal(true)}
         />
       )}
       <div className="row mb-4 w-100">
@@ -123,18 +127,18 @@ const BookingForm = () => {
             className="card p-3 shadow-sm border-warning"
             style={{ borderColor: "#de8a05" }}
           >
-            <h2 className="card-title text-center">Datos del Usuario</h2>
+            <h2 className="card-title text-center">User data</h2>
             {user ? (
               <div>
                 <p className="pb-0 mb-1">
-                  <strong>Nombre:</strong> {user.first_name} {user.last_name}
+                  <strong>Name:</strong> {user.first_name} {user.last_name}
                 </p>
                 <p className="pb-0 mb-2">
-                  <strong>Correo electrónico:</strong> {user.email}
+                  <strong>Email:</strong> {user.email}
                 </p>
               </div>
             ) : (
-              <p className="text-center">No hay usuario logueado.</p>
+              <p className="text-center">No logged in user found.</p>
             )}
           </div>
         </div>
@@ -145,28 +149,28 @@ const BookingForm = () => {
             className="card p-4 shadow-sm border-warning"
             style={{ borderColor: "#de8a05" }}
           >
-            <h2 className="card-title text-center">Datos de la Sala</h2>
+            <h2 className="card-title text-center">Room Data</h2>
             {room ? (
               <div className="card-body">
                 <p>
-                  <strong>Nombre de la Sala:</strong> {room.name}
+                  <strong>Room Name:</strong> {room.name}
                 </p>
                 <p>
-                  <strong>Precio Por Hora:</strong> {room.price}
+                  <strong>Price Per Hour:</strong> {room.price}
                 </p>
                 <p>
-                  <strong>Capacidad:</strong> {room.people}
+                  <strong>Capacity:</strong> {room.people}
                 </p>
                 <p>
-                  <strong>Detalle:</strong> {room.description}
+                  <strong>Description:</strong> {room.description}
                 </p>
                 <p>
-                  <strong>Rango horario:</strong> {booking.startTime}:00 am -{" "}
+                  <strong>Time:</strong> {booking.startTime}:00 am -{" "}
                   {booking.endTime}:00 pm
                 </p>
               </div>
             ) : (
-              <p className="text-center">No hay datos de la sala.</p>
+              <p className="text-center">There is no room information.</p>
             )}
           </div>
         </div>
@@ -175,14 +179,14 @@ const BookingForm = () => {
             className="card p-4 shadow-sm border-warning"
             style={{ borderColor: "#de8a05" }}
           >
-            <h2 className="card-title text-center">Datos de la Reserva</h2>
+            <h2 className="card-title text-center">Reservation data</h2>
             <div className="card-body">
               <p>
                 <strong>Total:</strong> ${calculateTotalCost()}
               </p>
               <div className="form-group">
                 <label htmlFor="paymentMethod">
-                  <p>Método de Pago:</p>
+                  <p className="mb-0">Payment method:</p>
                 </label>
                 <select
                   id="paymentMethod"
@@ -190,23 +194,30 @@ const BookingForm = () => {
                   value={paymentMethod}
                   onChange={handlePaymentMethodChange}
                 >
-                  <option value="Tarjeta Credito">Tarjeta de Crédito</option>
-                  <option value="Tarjeta Debito">Tarjeta de Débito</option>
-                  <option value="Efectivo">Efectivo</option>
+                  <option value="Tarjeta Credito">Credit card</option>
+                  <option value="Tarjeta Debito">Debit card</option>
+                  <option value="Efectivo">Cash</option>
                 </select>
                 <p className="mt-3">
                   <strong>
-                    El Total de la reserva será abonado al ingresar a la Sala!
+                    The total of the reservation will be paid upon entering the
+                    room!{" "}
                   </strong>
                 </p>
                 <button onClick={handleSubmit} className="btn-confirm">
-                  Confirmar Reserva
+                  Confirm reservation{" "}
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      {showAlert && (
+        <Alert
+          type="success"
+          message="Confirmed reservation. Thank you for your reservation!"
+        />
+      )}
     </div>
   );
 };
