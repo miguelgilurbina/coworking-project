@@ -1,40 +1,60 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Verificar si hay un token almacenado al cargar la aplicación
+    const token = localStorage.getItem('token');
+    if (token) {
+      // Verificar la validez del token con el backend
+      verifyToken(token);
+    } else {
+      setLoading(false);
+    }
+  }, []);
+
+  const verifyToken = async (token) => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/auth/verify', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setUser(response.data);
+    } catch (error) {
+      console.error("Error verifying token:", error);
+      localStorage.removeItem('token');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const login = async (formData) => {
     try {
-      console.log("Datos del formulario:", formData);
-      //TODO: INTEGRAR CON BACK
-      const response = await axios.get("http://localhost:3001/usuarios", {
-        params: formData, // Envía el formulario como parámetros de consulta
-      });
-
-      console.log("Respuesta de la API:", response.data);
-
-      // Busca un usuario que coincida con el correo electrónico
-      const foundUser = response.data.find((u) => u.email === formData.email);
-
-      console.log("Usuario encontrado:", foundUser);
-
-      if (foundUser && foundUser.password === formData.password) {
-        setUser(foundUser); // Establece el usuario encontrado como usuario actual
-      } else {
-        throw new Error("Invalid email or password");
-      }
+      const response = await axios.post("http://localhost:8080/api/auth/login", formData);
+      const { token, user } = response.data;
+      localStorage.setItem('token', token);
+      setUser(user);
+      // Configura el token para futuras solicitudes
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } catch (error) {
       console.error("Error during login:", error);
-      throw error; // Propaga el error para que pueda ser manejado por el componente de inicio de sesión
+      throw error;
     }
   };
 
   const logout = () => {
+    localStorage.removeItem('token');
     setUser(null);
+    delete axios.defaults.headers.common['Authorization'];
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // O cualquier componente de carga que prefieras
+  }
 
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

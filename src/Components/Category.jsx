@@ -11,7 +11,7 @@ const Category = () => {
     const fetchData = async () => {
       try {
         //TODO: INTEGRAR CON BACK
-        const response = await axios.get("http://localhost:3002/categories");
+        const response = await axios.get("http://localhost:8080/categorias/listar");
         console.log("API Response:", response.data);
 
         const categoriesArray = response.data || [];

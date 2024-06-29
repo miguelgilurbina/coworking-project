@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "./Context/AuthContext";
+import axios from "axios";
 import { FaExclamationCircle } from "react-icons/fa";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 
 const LoginForm = () => {
-  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,13 +24,24 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
     try {
-      // Llamar a la función de inicio de sesión del contexto de autenticación
-      await login(formData);
-      // Redirigir al usuario después de iniciar sesión
+      const response = await axios.post("http://localhost:8080/api/auth/login", {
+        username: formData.email,
+        password: formData.password,
+      });
+
+      console.log("Response from server:", response.data);
+      const token = response.data.token;
+
+      // Guardar el token JWT en localStorage
+      localStorage.setItem("jwt", token);
+
+      // Configurar el token JWT para todas las solicitudes futuras
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
       navigate("/home");
     } catch (error) {
-      // Manejar errores de inicio de sesión
-      setError("Invalid email or password.");
+      console.error("Error during login:", error);
+      setError(error.response?.data?.message || "Invalid email or password.");
     }
   };
 

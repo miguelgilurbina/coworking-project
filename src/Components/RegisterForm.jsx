@@ -1,4 +1,4 @@
-import axios from "axios";
+import { useAuth} from "./Context/AuthContext";
 import React, { useState } from "react";
 import { FaExclamationCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -9,19 +9,21 @@ import "../Styles/RegisterForm.css";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    nombre: "",
+    apellido: "",
     email: "",
     password: "",
+    rol: "usuario"
   });
 
   const [errors, setErrors] = useState({
-    firstName: [],
-    lastName: [],
+    nombre: [],
+    apellido: [],
     email: [],
     password: [],
   });
 
+  const { login } = useAuth();
   const navigate = useNavigate(); // Hook para la redirección
 
   const handleChange = (e) => {
@@ -32,17 +34,17 @@ const RegisterForm = () => {
       [name]: value,
     });
 
-    if (name === "firstName") {
-      const errorMessage = validateName(value, "First");
+    if (name === "nombre") {
+      const errorMessage = validateName(value, "Nombre");
       setErrors({
         ...errors,
-        firstName: errorMessage ? [errorMessage] : [],
+        nombre: errorMessage ? [errorMessage] : [],
       });
-    } else if (name === "lastName") {
-      const errorMessage = validateName(value, "Last");
+    } else if (name === "apellido") {
+      const errorMessage = validateName(value, "Apellido");
       setErrors({
         ...errors,
-        lastName: errorMessage ? [errorMessage] : [],
+        apellido: errorMessage ? [errorMessage] : [],
       });
     } else if (name === "email") {
       const errorMessage = validateEmail(value);
@@ -106,42 +108,17 @@ const RegisterForm = () => {
     validatePassword(formData.password);
     if (Object.keys(errors).every((key) => errors[key].length === 0)) {
       try {
-        console.log("Submitting Form Data:", formData); // Log the form data
+        console.log("Submitting Form Data:", formData);
+        const response = await api.post("/usuarios/registrar", formData);
+        console.log("Response from Server:", response.data);
 
-        // Fetch the last user ID from the database or server
-        const lastUserIdResponse = await axios.get(
-          "http://localhost:3001/usuarios"
-        );
-        const lastUserId =
-          lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
-
-        // Generate a new ID by incrementing the last ID
-        const newUserId = lastUserId + 1;
-
-        // Send the user data with the new ID
-        const response = await axios.post("http://localhost:3001/usuarios", {
-          id: newUserId,
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          email: formData.email,
-          password: formData.password,
-          isAdmin: false,
-        });
-        console.log("Response from Server:", response.data); // Log the server response
-
-        // Redirigir a la página de inicio
+        await login({ username: formData.email, password: formData.password });
         navigate("/home");
       } catch (error) {
-        console.error(error);
+        console.error("Error during submission:", error);
       }
     } else {
-      console.log("Form submission halted due to errors.");
-      setErrors({
-        firstName: errors.firstName,
-        lastName: errors.lastName,
-        email: errors.email ? [errors.email] : [],
-        password: errors.password,
-      });
+      console.log("Form submission halted due to errors:", errors);
     }
   };
 
@@ -196,10 +173,10 @@ const RegisterForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="firstName"
-                  id="formFirstName"
+                  name="nombre"
+                  id="formnombre"
                   className="form-control form-control-lg"
-                  value={formData.firstName}
+                  value={formData.nombre}
                   onChange={handleChange}
                   placeholder="Ex: Juan"
                   required
@@ -207,10 +184,10 @@ const RegisterForm = () => {
               </div>
 
               <div className="error-container">
-                {errors.firstName.length > 0 && (
+                {errors.nombre.length > 0 && (
                   <div>
                     <strong>First Name Errors:</strong>
-                    {renderErrors(errors.firstName)}
+                    {renderErrors(errors.nombre)}
                   </div>
                 )}
               </div>
@@ -221,10 +198,10 @@ const RegisterForm = () => {
                 </label>
                 <input
                   type="text"
-                  name="lastName"
-                  id="formLastName"
+                  name="apellido"
+                  id="formapellido"
                   className="form-control form-control-lg"
-                  value={formData.lastName}
+                  value={formData.apellido}
                   onChange={handleChange}
                   placeholder="Ex: Perez"
                   required
@@ -232,10 +209,10 @@ const RegisterForm = () => {
               </div>
 
               <div className="error-container">
-                {errors.lastName.length > 0 && (
+                {errors.apellido.length > 0 && (
                   <div>
                     <strong>Last Name Errors:</strong>
-                    {renderErrors(errors.lastName)}
+                    {renderErrors(errors.apellido)}
                   </div>
                 )}
               </div>

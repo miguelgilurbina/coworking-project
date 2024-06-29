@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import data from "../Data/recommendData.json";
 import Card from "./Card.jsx";
 import Pagination from "./Pagination";
 import "../Styles/Recommend.css";
+import axios from "axios";
 
 const Recommend = () => {
   const getItemsPerPage = (width) => {
@@ -17,11 +17,38 @@ const Recommend = () => {
   const [itemsPerPage, setItemsPerPage] = useState(
     getItemsPerPage(window.innerWidth)
   );
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const dataArray = Object.values(data.data);
-    const shuffledData = shuffleArray(dataArray);
-    setRecommendData(shuffledData);
+    const fetchSalas = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get('http://localhost:8080/salas/listar');
+        const shuffledData = shuffleArray(response.data);
+        setRecommendData(shuffledData);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching salas:', err);
+        if (err.response) {
+          // El servidor respondió con un código de estado fuera del rango 2xx
+          console.error('Error data:', err.response.data);
+          console.error('Error status:', err.response.status);
+          console.error('Error headers:', err.response.headers);
+        } else if (err.request) {
+          // La solicitud se hizo pero no se recibió respuesta
+          console.error('Error request:', err.request);
+        } else {
+          // Algo sucedió en la configuración de la solicitud que provocó el error
+          console.error('Error message:', err.message);
+        }
+        setError('Error al cargar las salas. Por favor, intente de nuevo más tarde.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchSalas();
 
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
