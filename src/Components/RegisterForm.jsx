@@ -74,17 +74,26 @@ const RegisterForm = () => {
       try {
         await api.post("/usuarios/registrar", formData);
         await login({ username: formData.email, password: formData.password });
-        navigate("/welcome");
+        navigate("/home");
       } catch (error) {
         console.error("Error during registration:", error);
+         let errorMessage = "An error occurred during registration.";
+         if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          errorMessage = error.response.data.message || errorMessage;
+        } else if (error.request) {
+          errorMessage = "No response received from server."
+        } else {
+          errorMessage = error.message;
+        }
         setErrors((prev) => ({
           ...prev,
-          server: [error.response?.data?.message || "An error occurred during registration."],
+          server: [errorMessage],
         }));
       }
-      console.log(data);
     }
-  };
+  }
 
   const renderErrors = (errorMessages) => {
     return errorMessages.map((message, index) => (
