@@ -12,13 +12,11 @@ import Detail from "./Pages/Detail";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import TableEditRooms from "./Pages/TableEditRooms";
-
 import LoginForm from "./Components/LoginForm";
 import EditProducts from "./Components/EditProducts";
 import CharacteristicForm from "./Components/CharacteristicForm";
 import ProductForm from "./Components/ProductForm";
 import { routes } from "./Components/utils/routes";
-
 import "./App.css";
 import UsersList from "./Components/UsersList";
 import Profile from "./Pages/Profile";
@@ -26,6 +24,7 @@ import CategoryForm from "./Components/CategoryForm";
 import CategoryList from "./Components/CategoryList";
 import FavoriteList from "./Components/FavoriteList";
 import ProductList from "./Components/ProductList";
+import PrivateRoute from "./Components/utils/PrivateRoute";
 
 function App() {
   return (
@@ -43,14 +42,9 @@ function App() {
             <Route path={routes.login} element={<LoginForm></LoginForm>} />
             <Route path={routes.register} element={<Register></Register>} />
             <Route path={routes.editRoom} element={<EditProducts />} />
-            <Route
-              path={routes.characteristicForm}
-              element={<CharacteristicForm />}
-            />
-            <Route
-              path={routes.productForm}
-              element={<ProductForm></ProductForm>}
-            ></Route>
+            <Route path={routes.home}element={<PrivateRoute element={Home} />}/>
+            <Route path={routes.characteristicForm} element={<CharacteristicForm />}/>
+            <Route path={routes.productForm} element={<ProductForm></ProductForm>}/>
             <Route path={routes.editRoom} element={<TableEditRooms />} />
             <Route path={routes.usersList} element={<UsersList />} />
             <Route path="*" element={<Navigate to={routes.home} />} />

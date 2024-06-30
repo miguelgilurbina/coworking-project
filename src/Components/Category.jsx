@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CategoryCard from "./CategoryCard";
 import "../Styles/Category.css";
+import api from "../api/axiosconfig";
 
 const Category = () => {
   const [recommendData, setRecommendData] = useState([]);
@@ -11,7 +12,7 @@ const Category = () => {
     const fetchData = async () => {
       try {
         //TODO: INTEGRAR CON BACK
-        const response = await axios.get("http://localhost:8080/categorias/listar");
+        const response = await api.get("http://localhost:8080/categorias/listar");
         console.log("API Response:", response.data);
 
         const categoriesArray = response.data || [];

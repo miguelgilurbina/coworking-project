@@ -1,11 +1,12 @@
-import { useAuth} from "./Context/AuthContext";
 import React, { useState } from "react";
-import { FaExclamationCircle } from "react-icons/fa";
+import { useAuth } from "./Context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { FaExclamationCircle } from "react-icons/fa";
 import user_icon from "../Assets/person.png";
 import email_icon from "../Assets/email.png";
 import password_icon from "../Assets/password.png";
 import "../Styles/RegisterForm.css";
+import api from "../api/axiosconfig";
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ const RegisterForm = () => {
     apellido: "",
     email: "",
     password: "",
-    rol: "usuario"
+    rol: "usuario",
   });
 
   const [errors, setErrors] = useState({
@@ -21,122 +22,80 @@ const RegisterForm = () => {
     apellido: [],
     email: [],
     password: [],
+    server: [],
   });
 
   const { login } = useAuth();
-  const navigate = useNavigate(); // Hook para la redirección
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-
-    if (name === "nombre") {
-      const errorMessage = validateName(value, "Nombre");
-      setErrors({
-        ...errors,
-        nombre: errorMessage ? [errorMessage] : [],
-      });
-    } else if (name === "apellido") {
-      const errorMessage = validateName(value, "Apellido");
-      setErrors({
-        ...errors,
-        apellido: errorMessage ? [errorMessage] : [],
-      });
-    } else if (name === "email") {
-      const errorMessage = validateEmail(value);
-      setErrors({
-        ...errors,
-        email: errorMessage ? [errorMessage] : [],
-      });
-    } else if (name === "password") {
-      validatePassword(value);
-    }
+    setFormData({ ...formData, [name]: value });
+    validateField(name, value);
   };
 
-  const validateName = (name, fieldName) => {
-    const nameRegex = /^[a-zA-Z]+$/;
-
-    if (name.length < 2) {
-      return `${fieldName} name must have at least 2 characters.`;
+  const validateField = (name, value) => {
+    let fieldErrors = [];
+    switch (name) {
+      case "nombre":
+      case "apellido":
+        if (value.length < 2) {
+          fieldErrors.push(`${name} must have at least 2 characters.`);
+        }
+        if (!/^[a-zA-Z]+$/.test(value)) {
+          fieldErrors.push(`${name} can only contain letters.`);
+        }
+        break;
+      case "email":
+        if (!/^[^@]+@[^@]+\.[a-zA-Z]{2,}$/.test(value)) {
+          fieldErrors.push("Invalid email format.");
+        }
+        break;
+      case "password":
+        if (!/[A-Z]/.test(value)) {
+          fieldErrors.push("Password must have at least one uppercase letter.");
+        }
+        if (!/[a-z]/.test(value)) {
+          fieldErrors.push("Password must have at least one lowercase letter.");
+        }
+        if (!/\d/.test(value)) {
+          fieldErrors.push("Password must have at least one number.");
+        }
+        break;
+      default:
+        break;
     }
-    if (!nameRegex.test(name)) {
-      return `${fieldName} name can only contain letters.`;
-    }
-
-    return null;
-  };
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
-
-    if (!emailRegex.test(email)) {
-      return "Invalid email format.";
-    }
-
-    return null;
-  };
-
-  const validatePassword = (password) => {
-    const validationCriteria = [
-      {
-        condition: /[A-Z]/,
-        message: "Password must have at least one uppercase letter.",
-      },
-      {
-        condition: /[a-z]/,
-        message: "Password must have at least one lowercase letter.",
-      },
-      { condition: /\d/, message: "Password must have at least one number." },
-    ];
-
-    const errorMessages = validationCriteria
-      .filter(({ condition }) => !condition.test(password))
-      .map(({ message }) => message);
-
-    setErrors({
-      ...errors,
-      password: errorMessages,
-    });
+    setErrors((prev) => ({ ...prev, [name]: fieldErrors }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    validatePassword(formData.password);
-    if (Object.keys(errors).every((key) => errors[key].length === 0)) {
+    if (Object.values(errors).every((arr) => arr.length === 0)) {
       try {
-        console.log("Submitting Form Data:", formData);
-        const response = await api.post("/usuarios/registrar", formData);
-        console.log("Response from Server:", response.data);
-
+        await api.post("/usuarios/registrar", formData);
         await login({ username: formData.email, password: formData.password });
-        navigate("/home");
+        navigate("/welcome");
       } catch (error) {
-        console.error("Error during submission:", error);
+        console.error("Error during registration:", error);
+        setErrors((prev) => ({
+          ...prev,
+          server: [error.response?.data?.message || "An error occurred during registration."],
+        }));
       }
-    } else {
-      console.log("Form submission halted due to errors:", errors);
+      console.log(data);
     }
   };
 
   const renderErrors = (errorMessages) => {
     return errorMessages.map((message, index) => (
       <div key={index} className="error">
-        <FaExclamationCircle
-          size={16}
-          style={{ marginRight: "5px", color: "red" }}
-        />
+        <FaExclamationCircle size={16} style={{ marginRight: "5px", color: "red" }} />
         {message}
       </div>
     ));
   };
 
-  const hasErrors = Object.values(errors).some(
-    (errorArray) => errorArray.length > 0
-  );
+  const hasErrors = Object.values(errors).some((arr) => arr.length > 0);
 
   return (
     <div className="card" style={{ borderRadius: "1rem" }}>
@@ -151,7 +110,7 @@ const RegisterForm = () => {
         </div>
         <div className="p-3 container">
           <div className="mt-5">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="reg">
               <div className="d-flex align-items-center mb-3 pb-1">
                 <img
                   src="../../public/icons/cw_logo_app.png"
@@ -164,7 +123,7 @@ const RegisterForm = () => {
                 className="fw-normal mb-3 pb-3"
                 style={{ letterSpacing: "1px" }}
               >
-                The Co-Working experience start here
+                The Co-Working experience starts here
               </h5>
 
               <div data-mdb-input-init className="form-outline mb-3">
