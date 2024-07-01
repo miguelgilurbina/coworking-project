@@ -111,9 +111,9 @@
       "totalCost": 500
     },
     {
-      "id": "f496",
-      "userName": "Enzo Fernandez",
-      "userEmail": "enzitofernandez287@gmail.com",
+      "id": "9d8a",
+      "userName": "Karina Lopez",
+      "userEmail": "example@email.com",
       "roomId": "1",
       "roomName": "Destiny",
       "startTime": 9,
@@ -122,26 +122,15 @@
       "totalCost": 800
     },
     {
-      "id": "dd60",
-      "userName": "Enzo Fernandez",
-      "userEmail": "enzitofernandez287@gmail.com",
+      "id": "0594",
+      "userName": "Karina Lopez",
+      "userEmail": "example@email.com",
       "roomId": "1",
       "roomName": "Destiny",
-      "startTime": 9,
-      "endTime": 17,
-      "paymentMethod": "Tarjeta Debito",
-      "totalCost": 800
-    },
-    {
-      "id": "a873",
-      "userName": "Enzo Fernandez",
-      "userEmail": "enzitofernandez287@gmail.com",
-      "roomId": "1",
-      "roomName": "Destiny",
-      "startTime": 9,
-      "endTime": 12,
-      "paymentMethod": "Tarjeta Debito",
-      "totalCost": 300
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 200
     }
   ]
 }

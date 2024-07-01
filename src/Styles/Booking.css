@@ -1,62 +1,70 @@
 .booking-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Utiliza el 100% del alto de la ventana */
-  }
-.containerForm{
-    display: flex;
-    width: 100%;
-    justify-content: center;
+  padding: 20px;
+  background-color: #fff;
+  border: 2px solid #d8a353;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
 }
-  .booking-form {
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-  
-  .form-group input[type="number"] {
-    width: calc(100% - 20px);
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .form-group span {
-    margin-left: 5px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .selected-range {
-    width: max-content;
-    height: max-content;
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-  
-  .selected-range h2 {
-    margin-bottom: 10px;
-  }
-  
-  .selected-range p {
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+
+.booking-form .form-group {
+  margin-bottom: 15px;
+}
+
+.booking-form label {
+  display: block;
+  font-weight: bold;
+}
+
+.booking-form input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.selected-range {
+  margin-top: 20px;
+}
+
+.selected-range h2 {
+  font-size: 18px;
+}
+
+.selected-range p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.btn-confirm {
+  background-color: #d8a353;
+  color: white;
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.border-custom {
+  border: 2px solid #d8a353;
+  max-width: 600px;
+}
+
+.form-group select {
+  height: 35px;
+  width: 100%;
+  border-radius: 6px;
+  border-style: inset;
+  border-color: #72635d;
+}
+
+.form-group select option:disabled {
+  color: #999;
+  background-color: #f5f5f5;
+}
+
+.form-group select option:disabled:hover {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}

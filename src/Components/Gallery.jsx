@@ -107,7 +107,7 @@ const Gallery = () => {
 
   const handleBookNowClick = () => {
     if (user) {
-      navigate('/seleccionarFecha');
+      navigate('/selectDate');
     } else {
       navigate('/login', { state: { fromGallery: true } });
     }
@@ -176,7 +176,7 @@ const Gallery = () => {
           <div className="buttonSeeMore">
             <div className="containerButtonGallery">
               {!showCarousel && (
-                <button onClick={handleBookNowClick} className="genericButton link-flex">
+                <button onClick={handleBookNowClick} className="genericButton">
                   Book Now
                 </button>
               )}
