@@ -25,8 +25,8 @@ const BookingForm = () => {
         console.log("API Response:", response.data);
 
         const dataArray = response.data || [];
-
         const roomData = dataArray.find((item) => item.id === "1");
+
         if (roomData) {
           setRoom(roomData);
         } else {
@@ -53,6 +53,10 @@ const BookingForm = () => {
     setPaymentMethod(e.target.value);
   };
 
+  const formatTime = (time) => {
+    return time < 10 ? `0${time}:00` : `${time}:00`;
+  };
+
   const handleSubmit = async () => {
     if (!user || !room) {
       setModalContent({
@@ -68,25 +72,41 @@ const BookingForm = () => {
       userEmail: user.email,
       roomId: room.id,
       roomName: room.name,
-      startTime: booking.startTime,
-      endTime: booking.endTime,
+      startTime: formatTime(booking.startTime),
+      endTime: formatTime(booking.endTime),
       paymentMethod,
       totalCost: calculateTotalCost(),
     };
+    console.log("Reservation Data:", reservationData);
 
     try {
-      const response = await axios.post(
-        "http://localhost:3005/reservas",
-        reservationData
-      );
-      console.log("Reserva realizada:", response.data);
+      // Hacer POST en reservas
+      await axios.post("http://localhost:3005/reservas", reservationData);
+
+      const selectedDate = booking.date;
+
+      // Filtra las nuevas horas disponibles
+      const newAvailability = room.availability[selectedDate].filter((time) => {
+        const hour = parseInt(time.split(":")[0]);
+        return (
+          hour < booking.startTime ||
+          (hour >= booking.endTime && time !== formatTime(booking.endTime))
+        );
+      });
+
+      await axios.patch(`http://localhost:3003/data/${room.id}`, {
+        availability: {
+          ...room.availability,
+          [selectedDate]: newAvailability,
+        },
+      });
+
       setModalContent({
         title: "Reservation confirm",
         body: "You are about to confirm your reservation and payment method. Do you wish to continue?",
       });
       setModalVisible(true);
     } catch (error) {
-      console.error("Error realizando la reserva:", error);
       setModalContent({
         title: "Error",
         body: "Error making reservation",
@@ -164,9 +184,9 @@ const BookingForm = () => {
                 <p>
                   <strong>Description:</strong> {room.description}
                 </p>
-                <p  className="mb-0">
-                  <strong>Time:</strong> {booking.startTime}:00 am -{" "}
-                  {booking.endTime}:00 pm
+                <p className="mb-0">
+                  <strong>Time:</strong> {formatTime(booking.startTime)} -{" "}
+                  {formatTime(booking.endTime)}
                 </p>
               </div>
             ) : (

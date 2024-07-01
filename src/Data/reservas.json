@@ -120,6 +120,17 @@
       "endTime": 17,
       "paymentMethod": "Tarjeta Credito",
       "totalCost": 800
+    },
+    {
+      "id": "0594",
+      "userName": "Karina Lopez",
+      "userEmail": "example@email.com",
+      "roomId": "1",
+      "roomName": "Destiny",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "paymentMethod": "Tarjeta Credito",
+      "totalCost": 200
     }
   ]
 }

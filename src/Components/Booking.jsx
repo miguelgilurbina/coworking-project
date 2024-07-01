@@ -5,7 +5,7 @@ import { useBooking } from "./Context/BookingContext";
 import Modal from "./Modal";
 import Alert from "./Alert";
 import "../Styles/Booking.css";
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft, FaCalendarCheck } from "react-icons/fa";
 import "../Styles/Form.css";
 
 const Booking = () => {
@@ -92,6 +92,19 @@ const Booking = () => {
 
   const getCurrentDate = () => {
     const date = new Date();
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    return `${year}-${month}-${day}`;
+  };
+
+  const getMaxDate = () => {
+    const date = new Date();
+    date.setMonth(date.getMonth() + 1);
     const year = date.getFullYear();
     let month = date.getMonth() + 1;
     let day = date.getDate();
@@ -193,11 +206,17 @@ const Booking = () => {
                 id="fecha"
                 name="fecha"
                 min={getCurrentDate()}
+                max={getMaxDate()}
                 value={selectedDate}
                 onChange={handleDateChange}
                 required
               />
             </div>
+            <p>
+              {" "}
+              <FaCalendarCheck className="icon-space" /> You can only schedule a
+              room 1 month in advance.
+            </p>
             <div className="form-group">
               <label htmlFor="horaInicio">Start time:</label>
               <select
