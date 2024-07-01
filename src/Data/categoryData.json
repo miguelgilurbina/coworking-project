@@ -7,7 +7,7 @@
       "id": "6af8"
     },
     {
-      "title": "Meet Room",
+      "title": "Meeting Room",
       "description": "Rooms designed for large groups of people",
       "srcImg": "/public/images/meetingRoomCategory.jpg",
       "id": "614e"
@@ -20,7 +20,7 @@
     },
     {
       "title": "Full Time",
-      "description": "Office for large periods of work",
+      "description": "Office for teams that require long periods of work",
       "srcImg": "/public/images/fullTimeCategory.jpg",
       "id": "as21"
     }

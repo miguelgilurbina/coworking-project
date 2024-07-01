@@ -1,44 +1,44 @@
 {
   "caracteristicas": [
     {
-      "name": "Aire Acondicionado",
-      "id": "cd92"
+      "name": "Air Conditioning",
+      "id": "cd92",
+      "icon": "FaAirFreshener"
     },
     {
       "name": "Wifi",
-      "id": "5f4a"
+      "id": "5f4a",
+      "icon": "FaWifi"
     },
     {
-      "name": "Sillas Ergonomicas",
-      "id": "adda"
+      "name": "Ergonomic Chairs",
+      "id": "adda",
+      "icon": "FaChair" 
     },
     {
-      "name": "Aire Libre",
-      "id": "afd4"
+      "name": "Outdoor",
+      "id": "afd4",
+      "icon": "FaCloudUploadAlt"
     },
     {
-      "name": "Proyector",
-      "id": "b6c8"
+      "name": "Projector",
+      "id": "b6c8",
+      "icon": "FaChromecast"
     },
     {
-      "name": "Pizarra",
-      "id": "b915"
+      "name": "Whiteboard",
+      "id": "b915",
+      "icon": "FaChalkboardTeacher"
     },
     {
-      "name": "Sala Recreativa",
-      "id": "eb0c"
+      "name": "Recreational Room",
+      "id": "eb0c",
+      "icon": "FaCouch"
     },
     {
-      "name": "Cafeteria",
-      "id": "3479"
-    },
-    {
-      "id": "0027",
-      "name": "Lentes grandes"
-    },
-    {
-      "id": "415a",
-      "name": "adsfasdf"
+      "id": "f794",
+      "name": "Bluetooth",
+      "icon": "FaBluetooth"
     }
   ]
 }

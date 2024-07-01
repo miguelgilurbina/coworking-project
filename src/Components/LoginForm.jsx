@@ -4,6 +4,8 @@ import axios from "axios";
 import { FaExclamationCircle } from "react-icons/fa";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
+import { PiWarningCircleDuotone } from "react-icons/pi";
+
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +40,7 @@ const LoginForm = () => {
       // Configurar el token JWT para todas las solicitudes futuras
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      // navigate("/home");
+      navigate("/home");
     } catch (error) {
       console.error("Error during login:", error);
       setError(error.response?.data?.message || "Invalid email or password.");
@@ -73,6 +75,13 @@ const LoginForm = () => {
               >
                 Sign into your account
               </h5>
+
+              {location.state?.fromGallery && (
+                <div className="alert alert-warning" role="alert">
+                  <PiWarningCircleDuotone  className="iconSpace" />
+                    You must be logged in to reserve a room
+                </div>
+              )}
 
               <div data-mdb-input-init className="form-outline mb-4">
                 <label className="form-label">

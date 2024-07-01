@@ -1,39 +1,37 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../Styles/Explorer.css";
 import DatePicker from "react-datepicker";
-import Autosuggest from "react-autosuggest";
 import "react-datepicker/dist/react-datepicker.css";
+import Autosuggest from "react-autosuggest";
+import { enGB } from "date-fns/locale";
+import "../Styles/Explorer.css";
 
-const Explorer = () => {
+const Explorer = ({ onSearch }) => {
   const [query, setQuery] = useState("");
   const [date, setDate] = useState(new Date());
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const placeholder = "Number of people...";
+  const placeholder = "Search rooms";
 
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
-  try {
-    const response = await axios.get("http://localhost:3003/data");
-    const data = response.data;
-    console.log("Data received from API:", data); // Agregar un log para verificar los datos recibidos
-    const productNames = data.map((product) => product.name);
-    setProducts(productNames);
-  } catch (error) {
-    console.error("Error fetching products:", error); // Manejar errores de la solicitud
-  }
-};
-
+    try {
+      const response = await axios.get("http://localhost:3003/data");
+      const data = response.data;
+      //console.log("Data received from API:", data);
+      const productNames = data.map((product) => product.name);
+      setProducts(productNames);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   const searchProducts = () => {
-    console.log(
-      `Buscando productos con la consulta "${query}" y la fecha "${date}" y la cantidad de personas ${quantity}`
-    );
+    onSearch({ query, date, quantity });
   };
 
   const getSuggestions = (value) => {
@@ -43,7 +41,8 @@ const Explorer = () => {
     return inputLength === 0
       ? []
       : products.filter(
-          (product) => product.toLowerCase().slice(0, inputLength) === inputValue
+          (product) =>
+            product.toLowerCase().slice(0, inputLength) === inputValue
         );
   };
 
@@ -56,7 +55,7 @@ const Explorer = () => {
   };
 
   const inputProps = {
-    placeholder: "Buscar productos...",
+    placeholder,
     value: query,
     onChange: (_, { newValue }) => setQuery(newValue),
   };
@@ -82,23 +81,26 @@ const Explorer = () => {
           }}
         />
 
-        <DatePicker
-          selected={date}
-          onChange={(date) => setDate(date)}
-          minDate={new Date()}
-        />
+        <div className="date-picker-wrapper">
+          <DatePicker
+            selected={date}
+            onChange={(date) => setDate(date)}
+            locale={enGB}
+            minDate={new Date()}
+            dateFormat="dd/MM/yyyy"
+          />
+        </div>
 
-        <input
-          type="number"
+        <select
           value={quantity}
-          onChange={(e) => {
-            const valorIngresado = e.target.value;
-            if (!isNaN(valorIngresado) && valorIngresado >= 1) {
-              setQuantity(valorIngresado);
-            }
-          }}
-          placeholder={placeholder}
-        />
+          onChange={(e) => setQuantity(e.target.value)}
+        >
+          <option value="">Select number of people</option>
+          <option value="1">Individual</option>
+          <option value="2-5">2 to 5</option>
+          <option value="6-12">6 to 12</option>
+          <option value="all">All</option>
+        </select>
       </form>
 
       <div className="d-flex justify-content-center pt-2">
@@ -106,7 +108,6 @@ const Explorer = () => {
           Search
         </button>
       </div>
-      {/* Aquí no necesitas mostrar los productos */}
     </div>
   );
 };

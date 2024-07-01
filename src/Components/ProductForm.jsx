@@ -1,254 +1,4 @@
-/* import { useState } from "react";
-import "../Styles/Form.css";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
-import IsMobile from "./IsMobile";
-
-const ProductForm = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [selectedImages, setSelectedImages] = useState([]);
-  const [error, setError] = useState("");
-  const [imageError, setImageError] = useState("");
-
-  const isMobile = IsMobile();
-
-  const handleImageUpload = (e) => {
-    const files = e.target.files;
-    const newImages = Array.from(files);
-
-    if (selectedImages.length + newImages.length > 5) {
-      setImageError("You can upload a maximum of 5 images.");
-      return;
-    } else {
-      setImageError("");
-    }
-
-    setSelectedImages((prevImages) => [...prevImages, ...newImages]);
-  };
-
-  const handleImageDelete = (index) => {
-    setSelectedImages((prevImages) =>
-      prevImages.filter((image, i) => i !== index)
-    );
-    setImageError("");
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("description", description);
-      formData.append("quantity", quantity);
-      formData.append("price", price);
-      selectedImages.forEach((image, index) => {
-        formData.append(`image${index}`, image);
-      });
-
-      const response = await axios.post(
-        "http://localhost:3003/data",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-      setError("An error occurred while submitting the form.");
-    }
-  };  return (
-    <>
-      <div className="contenedorBody">
-        <div className="containerButton">
-          <Link to="/admin" className="genericButton link-flex">
-            <FaArrowLeft className="iconSpace" /> Go back
-          </Link>
-        </div>
-        <h2 className="mb-4">Add new product</h2>
-
-        {isMobile ? (
-          <div className="mobile-message-card">
-            <div className="mobile-message-icon">
-              <FaExclamationTriangle />
-            </div>
-            <h2>This view is not available on mobile devices.</h2>
-          </div>
-        ) : (
-          <div className="containerForm">
-            <form className="formProduct" onSubmit={handleSubmit}>
-              <div className="form-column">
-                <h4>Enter the details of the new product</h4>
-                <label htmlFor="name">Name</label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Name"
-                  name="name"
-                  required
-                />
-
-                <label htmlFor="description">Description</label>
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Description maximum of 250 characters"
-                  name="description"
-                  maxLength="250"
-                  required
-                />
-
-                <label htmlFor="price">Price</label>
-                <input
-                  type="number"
-                  id="price"
-                  value={price}
-                  onChange={(e) => setPrice(Math.max(0, e.target.value))}
-                  placeholder="Price"
-                  name="price"
-                  min="0"
-                  required
-                />
-
-                <label htmlFor="quantity">Number of people</label>
-                <input
-                  type="number"
-                  id="quantity"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Math.max(0, e.target.value))}
-                  placeholder="Number of people"
-                  name="quantity"
-                  min="0"
-                  required
-                />
-
-                <h4>Categories</h4>
-                <div className="containerCheckbox">
-                  <label>
-                    <input type="checkBox" />
-                    Private Office
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Meeting Room
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Full Time
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Lounge
-                  </label>
-                </div>
-
-                <h4>Characteristics</h4>
-                <div className="containerCheckbox characteristics">
-                  <label>
-                    <input type="checkBox" />
-                    Wi-Fi
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Sillas Ergonómicas
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Aire Libre
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Aire Acondicionado
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Proyector
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Pizarra
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Sala Recreativa
-                  </label>
-                  <label>
-                    <input type="checkBox" />
-                    Cafetería
-                  </label>
-                </div>
-
-                <div className="containerButton">
-                  <button className="genericButton" type="submit">
-                    Send
-                  </button>
-                </div>
-              </div>
-
-              <div className="form-column">
-                <div className="image-upload">
-                  <label htmlFor="images">Upload images</label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    multiple
-                    onChange={handleImageUpload}
-                    id="images"
-                  />
-                  {imageError && (
-                    <div className="error-message">
-                      <FaExclamationTriangle style={{ marginRight: "8px" }} />
-                      {imageError}
-                    </div>
-                  )}
-                  {selectedImages.length > 0 && (
-                    <div>
-                      <p>Selected images: {selectedImages.length}/5</p>
-                      {selectedImages.map((image, index) => (
-                        <div key={index} className="image-preview-container">
-                          <img
-                            src={URL.createObjectURL(image)}
-                            alt={`Image ${index + 1}`}
-                            className="preview-image"
-                          />
-                          <button
-                            onClick={() => handleImageDelete(index)}
-                            className="btn btn-danger"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </form>
-            {error && (
-              <div className="error-message">
-                <FaExclamationTriangle style={{ marginRight: "8px" }} />
-                {error}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </>
-  );
-};
-
-export default ProductForm;
- */
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/Form.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -259,9 +9,10 @@ import Alert from "./Alert";
 const ProductForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [quantity, setQuantity] = useState(0);
-  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(1);
   const [selectedImages, setSelectedImages] = useState([]);
+  const [base64Images, setBase64Images] = useState([]);
   const [error, setError] = useState("");
   const [imageError, setImageError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -269,12 +20,13 @@ const ProductForm = () => {
   const isMobile = IsMobile();
   const [characteristics, setCharacteristics] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        //TODO: INTEGRAR CON BACK
         const response = await axios.get("http://localhost:3002/categories");
         setCategories(response.data);
       } catch (error) {
@@ -288,7 +40,6 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
-        //TODO: INTEGRAR CON BACK
         const response = await fetch("http://localhost:3004/caracteristicas");
         if (!response.ok) {
           throw new Error("Failed to fetch characteristics");
@@ -305,7 +56,16 @@ const ProductForm = () => {
     fetchCharacteristics();
   }, []);
 
-  const handleImageUpload = (e) => {
+  const convertImageToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
+  const handleImageUpload = async (e) => {
     const files = e.target.files;
     const newImages = Array.from(files);
 
@@ -316,14 +76,35 @@ const ProductForm = () => {
       setImageError("");
     }
 
-    setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    const base64Promises = newImages.map((image) =>
+      convertImageToBase64(image)
+    );
+
+    try {
+      const base64Results = await Promise.all(base64Promises);
+      setBase64Images((prevBase64Images) => [
+        ...prevBase64Images,
+        ...base64Results,
+      ]);
+      setSelectedImages((prevImages) => [...prevImages, ...newImages]);
+    } catch (error) {
+      console.error("Error converting images to base64:", error);
+      setImageError("Failed to convert one or more images.");
+    }
   };
 
   const handleImageDelete = (index) => {
     setSelectedImages((prevImages) =>
       prevImages.filter((image, i) => i !== index)
     );
+    setBase64Images((prevBase64Images) =>
+      prevBase64Images.filter((_, i) => i !== index)
+    );
     setImageError("");
+  };
+
+  const handleCategoryChange = (categoryId) => {
+    setSelectedCategory(categoryId);
   };
 
   const handleSubmit = async (e) => {
@@ -331,51 +112,54 @@ const ProductForm = () => {
     setError("");
     setSuccessMessage("");
 
-    // Check if the product name already exists
-    /* try {
-      const existingProductResponse = await axios.get(
-        //TODO: INTEGRAR CON BACK
-        `http://localhost:8080/products?name=${name}`
-      );
-      if (existingProductResponse.data.length > 0) {
-        setError("Product with this name already exists.");
+    try {
+      if (base64Images.length === 0) {
+        setImageError("Please upload at least one image.");
         return;
       }
-    } catch (err) {
-      console.error(err);
-      setError("An error occurred while checking for existing products.");
-      return;
-    } */
 
-    try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("description", description);
-      formData.append("quantity", quantity);
-      formData.append("price", price);
-      selectedImages.forEach((image, index) => {
-        formData.append(`image${index}`, image);
-      });
-      for (const pair of formData.entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`);
+      if (!selectedCategory) {
+        setError("Please select a category.");
+        return;
       }
 
-      const response = await axios.post(
-        //TODO: INTEGRAR CON BACK
-        "http://localhost:3003/data",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const formData = {
+        name,
+        description,
+        quantity,
+        price,
+        srcImg: base64Images.length > 0 ? base64Images[0] : "",
+        images: base64Images.slice(1),
+        Category: selectedCategory.title,
+      };
+
+      const response = await axios.post("http://localhost:3003/data", formData);
       console.log(response.data);
-      setSuccessMessage("Product successfully added!");
+      setSuccessMessage("Room successfully added!");
     } catch (error) {
-      console.error(error);
+      console.error("Error submitting form:", error);
       setError("An error occurred while submitting the form.");
     }
+  };
+
+  const handlePriceChange = (e) => {
+    const value = parseFloat(e.target.value);
+    if (value <= 0 || isNaN(value)) {
+      setPrice(1);
+    } else {
+      setPrice(value);
+    }
+  };
+
+  const handleQuantityChange = (e) => {
+    let value = parseInt(e.target.value);
+    if (value <= 0 || isNaN(value)) {
+      value = 1;
+    } else if (value > 12) {
+      value = 12;
+    }
+
+    setQuantity(value);
   };
 
   return (
@@ -386,7 +170,7 @@ const ProductForm = () => {
             <FaArrowLeft className="iconSpace" /> Go back
           </Link>
         </div>
-        <h2 className="mb-4">Add new product</h2>
+        <h2 className="mb-4">Add new room</h2>
 
         {isMobile ? (
           <div className="mobile-message-card">
@@ -399,7 +183,7 @@ const ProductForm = () => {
           <div className="containerForm">
             <form className="formProduct" onSubmit={handleSubmit}>
               <div className="form-column">
-                <h4>Enter the details of the new salon</h4>
+                <h4>Enter the details of the new room</h4>
                 <label htmlFor="name">Name</label>
                 <input
                   type="text"
@@ -422,7 +206,7 @@ const ProductForm = () => {
                   type="number"
                   id="price"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={handlePriceChange}
                   placeholder="Price"
                   name="price"
                 />
@@ -432,7 +216,7 @@ const ProductForm = () => {
                   type="number"
                   id="quantity"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={handleQuantityChange}
                   placeholder="Number of people"
                   name="quantity"
                 />
@@ -441,7 +225,16 @@ const ProductForm = () => {
                 <div className="containerCheckbox">
                   {categories.map((category) => (
                     <label key={category.id}>
-                      <input type="checkbox" />
+                      <input
+                        type="radio"
+                        name="category"
+                        value={category.id}
+                        checked={
+                          selectedCategory &&
+                          selectedCategory.id === category.id
+                        }
+                        onChange={() => handleCategoryChange(category)}
+                      />
                       {category.title}
                     </label>
                   ))}
@@ -461,7 +254,7 @@ const ProductForm = () => {
                   )}
                 </div>
 
-                <div className="containerButton">
+                <div className="containerButton centerContaniner">
                   <button className="genericButton" type="submit">
                     Send
                   </button>
@@ -488,7 +281,7 @@ const ProductForm = () => {
                         <div key={index} className="image-preview-container">
                           <img
                             src={URL.createObjectURL(image)}
-                            alt={`Imagen ${index + 1}`}
+                            alt={`Image ${index + 1}`}
                             className="preview-image"
                           />
                           <button
@@ -515,7 +308,7 @@ const ProductForm = () => {
         )}
       </div>
       {error && <Alert type="error" message={error} />}
-      {successMessage && <Alert type="success" message={successMessage} />}{" "}
+      {successMessage && <Alert type="success" message={successMessage} />}
     </>
   );
 };

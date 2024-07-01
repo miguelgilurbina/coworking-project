@@ -126,12 +126,12 @@
 .user-initials-container {
   width: 30px;
   height: 30px;
-  border-radius: 50%; 
-  background-color: #d8a353; 
+  border-radius: 50%;
+  background-color: #d8a353;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white; 
+  color: white;
   font-size: 18px;
   margin-left: 10px;
 }
@@ -148,4 +148,8 @@
   display: flex;
   justify-content: center;
   padding: 0 10px;
+}
+
+.user-profile-link {
+  text-decoration: none;
 }
