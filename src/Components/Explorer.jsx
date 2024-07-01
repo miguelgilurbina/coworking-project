@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Autosuggest from "react-autosuggest";
@@ -20,10 +20,10 @@ const Explorer = ({ onSearch }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3003/data");
+      const response = await api.get("http://localhost:8080/salas/listar");
       const data = response.data;
       //console.log("Data received from API:", data);
-      const productNames = data.map((product) => product.name);
+      const productNames = data.map((product) => product.nombre);
       setProducts(productNames);
     } catch (error) {
       console.error("Error fetching products:", error);

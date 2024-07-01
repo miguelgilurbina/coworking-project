@@ -46,7 +46,7 @@ function App() {
           <Routes>
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.admin} element={<Admin />} />
-            <Route path={routes.detail} element={<Detail />} />
+            <Route path={routes.detail} element={<Detail/>} />
             <Route path={routes.login} element={<Login></Login>} />
             <Route path={routes.login} element={<LoginForm></LoginForm>} />
             <Route path={routes.register} element={<Register></Register>} />

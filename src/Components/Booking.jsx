@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import { useBooking } from "./Context/BookingContext";
 import Modal from "./Modal";
 import Alert from "./Alert";
@@ -17,12 +17,13 @@ const Booking = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [reservationConfirmed, setReservationConfirmed] = useState(false);
   const { booking, setBooking } = useBooking();
-  const roomId = "1"; // ID por default, se tiene que modificar cuando se implemente el ir a detalle por ID
+  const {roomId, setRoomId} = useState(0);
+  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/data");
+        const response = await api.get("http://localhost:8080/salas/listar");
         const room = response.data.find((room) => room.id === roomId);
         setAvailability(room.availability);
       } catch (error) {

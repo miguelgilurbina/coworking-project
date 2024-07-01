@@ -25,7 +25,7 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
     try {
-      const response = await api.post("/api/auth/login", {
+      const response = await api.post("http://localhost:8080/api/auth/login", {
         username: formData.email,
         password: formData.password,
       });
@@ -37,7 +37,7 @@ const LoginForm = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("refreshToken", refreshToken);
 
-      // navigate("/home");
+      navigate("/home");
     } catch (error) {
       console.error("Error during login:", error);
 

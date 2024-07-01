@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import axios from 'axios'
+import api from '../api/axiosconfig';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -8,7 +8,7 @@ const ProductList = () => {
     useEffect (() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3003/data");
+                const response = await api.get("`http://localhost:8080/salas/listar");
                 console.log(response.data);
                 setProducts(response.data);
                 console.log(setProducts);
@@ -23,7 +23,7 @@ const ProductList = () => {
     }, []);
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3003/data/${id}`);
+            await axios.delete(`http://localhost:8080/salas/eliminar/${id}`);
             setProducts(products.filter(product => product.id !== id));
         } catch (error) {
             setError(error.message);   

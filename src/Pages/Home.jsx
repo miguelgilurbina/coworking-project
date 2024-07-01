@@ -14,19 +14,14 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
-        const token = localStorage.getItem("token")
-
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-        const response = await api.get("http://localhost:8080/data");
+        const response = await api.get("http://localhost:8080/salas/listar");
         const data = response.data || [];
 
         let filtered = data;
 
         if (filteredCategory) {
           filtered = filtered.filter(
-            (item) => item.Category === filteredCategory
+            (item) => item.categoria_id === filteredCategory
           );
         }
 

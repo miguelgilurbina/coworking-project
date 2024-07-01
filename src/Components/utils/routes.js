@@ -1,11 +1,10 @@
-export const routes ={
-    login : '/login',
-    register:'/register',
-    admin:'/admin',
-    editRoom:'/editRoom',
-    home:"/home",
-    detail:"/detail",
-    //detail:"/detail/:id",
+export const routes = {
+    login: '/login',
+    register: '/register',
+    admin: '/admin',
+    editRoom: '/editRoom',
+    home: "/home",
+    detail: "/detail/:id",
     productForm: "/form",
     characteristicForm: "/addCharacteristic",
     usersList: "/userList",

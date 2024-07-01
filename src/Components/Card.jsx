@@ -69,7 +69,7 @@ const Card = ({ data }) => {
               </div>
               <p className="card-text">{data.description}</p>
               <Link
-                to="/detail"
+                to="/detail/: +${}"
                 className="genericButton link-flex"
                 style={{ width: "100px" }}
               >

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/Form.css";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
@@ -27,7 +27,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/categories");
+        const response = await api.get("http://localhost:8080/categorias/listar");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -40,7 +40,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
-        const response = await fetch("http://localhost:3004/caracteristicas");
+        const response = await api.get("http://localhost:8080/caracteristicas/listar");
         if (!response.ok) {
           throw new Error("Failed to fetch characteristics");
         }
@@ -133,7 +133,7 @@ const ProductForm = () => {
         Category: selectedCategory.title,
       };
 
-      const response = await axios.post("http://localhost:3003/data", formData);
+      const response = await axios.post("http://localhost:8080/salas/registrar", formData);
       console.log(response.data);
       setSuccessMessage("Room successfully added!");
     } catch (error) {

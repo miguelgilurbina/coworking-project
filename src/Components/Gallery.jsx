@@ -14,6 +14,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import * as Icons from "react-icons/fa";
 import TermsOfUse from "./TermsOfUse";
 import Shared from "./Shared";
+import api from "../api/axiosconfig";
 
 const iconList = Object.keys(Icons).map((icon) => {
   return {
@@ -40,11 +41,12 @@ const Gallery = () => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
-        const response = await fetch("http://localhost:3004/caracteristicas");
+        const response = await api.get("http://localhost:8080/caracteristicas/listar");
+        //deberían listarse las características específicas de la sala
         if (!response.ok) {
           throw new Error("Network response was not ok.");
         }
-        const data = await response.json();
+        const data = await response.data
         setCharacteristics(data);
       } catch (error) {
         console.error("Error fetching characteristics:", error);
@@ -60,7 +62,7 @@ const Gallery = () => {
         {characteristic.icon && (
           <span className="icon-space">{renderIcon(characteristic.icon)}</span>
         )}
-        <span>{characteristic.name}</span>
+        <span>{characteristic.caracteristica}</span>
       </li>
     ));
   };

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../Styles/Form.css";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
@@ -37,7 +37,7 @@ const CategoryForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/categories");
+        const response = await api.get("http://localhost:8080/categorias/listar");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -70,8 +70,8 @@ const CategoryForm = () => {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3002/categories",
+      const response = await api.post(
+        "http://localhost:8080/categorias/registrar",
         formData
       );
       console.log(response.data);
@@ -105,8 +105,8 @@ const CategoryForm = () => {
   const confirmDelete = async () => {
     const categoryId = categories[currentRow].id;
     try {
-      const response = await axios.delete(
-        `http://localhost:3002/categories/${categoryId}`
+      const response = await api.delete(
+        `http://localhost:8080/categorias/eliminar/${categoryId}`
       );
       console.log(response.data);
       const updatedCategories = categories.filter(
@@ -134,8 +134,8 @@ const CategoryForm = () => {
   const saveEdit = async (index) => {
     const updatedCategory = { ...categories[index], ...draftData };
     try {
-      const response = await axios.put(
-        `http://localhost:3002/categories/${updatedCategory.id}`,
+      const response = await api.put(
+        `http://localhost:8080/categorias/actualizar/${updatedCategory.id}`,
         updatedCategory
       );
       console.log(response.data);

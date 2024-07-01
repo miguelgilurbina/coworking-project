@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import { Link } from "react-router-dom";
 import "../Styles/Form.css";
 
@@ -15,8 +15,8 @@ const UsersList = () => {
 
   useEffect(() => {
     //TODO: INTEGRAR CON EL BACK
-    axios
-      .get("http://localhost:3001/usuarios")
+    api
+      .get("/usuarios/listar")
       .then((response) => {
         setUsers(response.data);
       })
@@ -28,7 +28,7 @@ const UsersList = () => {
   const toggleAdminStatus = async (userId, isAdmin) => {
     try {
       //TODO: INTEGRAR CON EL BACK
-      await axios.delete(`http://localhost:3001/usuarios/${userId}`);
+      await api.delete(`/usuarios/eliminar/${userId}`);
 
       const newUser = {
         ...users.find((user) => user.id === userId),
@@ -37,7 +37,7 @@ const UsersList = () => {
       setShowRemoveSuccess(isAdmin);
 
       //TODO: INTEGRAR CON EL BACK
-      const response = await axios.post(
+      const response = await api.post(
         "http://localhost:3001/usuarios",
         newUser,
         {

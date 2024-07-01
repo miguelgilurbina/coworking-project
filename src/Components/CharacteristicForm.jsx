@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import {
   FaArrowLeft,
   FaExclamationTriangle,
@@ -68,8 +68,8 @@ const CharacteristicForm = () => {
     setDraftData({});
     try {
       // Integrar con el backend
-      const response = await axios.put(
-        `http://localhost:3004/caracteristicas/${draftData.id}`,
+      const response = await api.put(
+        `http://localhost:8080/caracteristicas/update/${draftData.id}`,
         draftData
       );
       console.log(response.data);
@@ -104,8 +104,8 @@ const CharacteristicForm = () => {
     setCharacteristicData(newData);
     try {
       // Integrar con el backend
-      const response = await axios.delete(
-        `http://localhost:3004/caracteristicas/${characteristicData[index].id}`
+      const response = await api.delete(
+        `http://localhost:8080/caracteristicas/eliminar/${characteristicData[index].id}`
       );
       console.log(response.data);
     } catch (error) {
@@ -115,30 +115,26 @@ const CharacteristicForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-
+    setError('');
+  
     try {
-      //TODO: INTEGRAR CON BACK
-      const response = await fetch("http://localhost:3004/caracteristicas", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, icon }),
+      const response = await api.post('http://localhost:8080/caracteristicas/registrar', {
+        name,
+        icon
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to add characteristic");
+  
+      if (!response.data) {
+        throw new Error('Failed to add characteristic');
       }
-
-      const newCharacteristic = await response.json();
+  
+      const newCharacteristic = response.data;
       setCharacteristicData([...characteristicData, newCharacteristic]);
       setShowAddSuccess(true);
-
-      console.log("Characteristic added successfully");
+  
+      console.log('Characteristic added successfully');
     } catch (error) {
       console.error(error);
-      setError("An error occurred while submitting the form.");
+      setError('An error occurred while submitting the form.');
     }
   };
 
