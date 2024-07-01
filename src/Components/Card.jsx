@@ -1,15 +1,15 @@
-import React, {useState} from "react";
+import React from "react";
 import "../Styles/Card.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { FaCoffee } from "react-icons/fa";
+import { FaCoffee, FaUsers } from "react-icons/fa";
 import { FiCoffee } from "react-icons/fi";
-import { useAuth} from "../Components/Context/AuthContext"
+import { useAuth } from "../Components/Context/AuthContext";
 import { useFavorites } from "../Components/Context/FavoriteContext";
 
 const Card = ({ data }) => {
-  const { user } = useAuth(); // Obtener el estado de autenticación
-  const { addFavorite, removeFavorite, isFavorite } = useFavorites(); // Obtener las funciones del contexto de favoritos
+  const { user } = useAuth();
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
 
   const toggleFavorite = () => {
     if (isFavorite(data.id)) {
@@ -19,7 +19,7 @@ const Card = ({ data }) => {
     }
   };
 
-  const iconSize = 30; // Define el tamaño del ícono aquí
+  const iconSize = 25;
 
   return (
     <div className="col-md-6 d-md-inline-block p-3">
@@ -29,7 +29,7 @@ const Card = ({ data }) => {
             <img
               src={data.srcImg}
               alt="Imagen del Espacio"
-              className="img-fluid rounded-start cardHome"
+              className="rounded-start cardHome"
             />
           </div>
           <div className="col-md-8">
@@ -37,16 +37,36 @@ const Card = ({ data }) => {
               <div className="d-flex justify-content-between align-items-center">
                 <h5 className="card-title">{data.Category}</h5>
                 {user && (
-                  <button 
-                    className="btn btn-link p-0 m-0" 
+                  <button
+                    className="btn btn-link p-0 m-0"
                     onClick={toggleFavorite}
-                    style={{ color: isFavorite(data.id) ? 'gold' : 'gray', fontSize: `${iconSize}px` }}
+                    style={{
+                      color: isFavorite(data.id) ? "gold" : "gray",
+                      fontSize: `${iconSize}px`,
+                    }}
                   >
-                    {isFavorite(data.id) ? <FaCoffee size={iconSize} /> : <FiCoffee size={iconSize} />}
+                    {isFavorite(data.id) ? (
+                      <FaCoffee size={iconSize} />
+                    ) : (
+                      <FiCoffee size={iconSize} />
+                    )}
                   </button>
                 )}
               </div>
-              <h5 className="subtitleCardHome">{data.name}</h5>
+              <div className="d-flex align-items-center">
+                <h5 className="subtitleCardHome">{data.name}</h5>
+
+                <span className="me-2">
+                  <FaUsers
+                    size={iconSize}
+                    style={{ color: "orange", marginLeft: "8px" }}
+                  />{" "}
+                  {Array.isArray(data.people)
+                    ? `${data.people[0]}-${data.people[1]}`
+                    : data.people}{" "}
+                  people{" "}
+                </span>
+              </div>
               <p className="card-text">{data.description}</p>
               <Link
                 to="/detail"
@@ -66,4 +86,5 @@ const Card = ({ data }) => {
 Card.propTypes = {
   data: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
 };
+
 export default Card;

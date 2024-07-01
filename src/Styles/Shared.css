@@ -1,0 +1,106 @@
+.shareComponent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shareButton {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.shareButton:hover {
+  background-color: #e0e0e0;
+}
+
+.shareOptions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.shareOptions div {
+  display: flex;
+  align-items: center;
+}
+
+.shareOptions span {
+  margin-left: 10px;
+}
+
+.shareOptions button {
+  background-color: #d8a353;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 8px;
+  margin-left: 5px;
+  transition: background-color 0.3s;
+}
+
+.shareOptions button:hover {
+  background-color: #607d8b;
+}
+
+.shareMessage {
+  margin-top: 10px;
+  display: contents;
+}
+
+.shareMessage textarea {
+  width: 45%;
+  height: 80px;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.shareMessage div {
+  display: grid;
+}
+
+.shareMessage button {
+  background-color: #607d8b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.3s;
+}
+
+.shareMessage button:last-child {
+  margin-right: 0;
+}
+
+.shareMessage button:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 600px) {
+  .shareComponent {
+    display: block;
+  }
+  .shareMessage textarea {
+    width: 100%;
+  }
+
+  .shareMessage button {
+    width: 50%;
+    margin-right: 5px;
+  }
+
+  .shareMessage div {
+    display: flex;
+  }
+}

@@ -1,0 +1,28 @@
+.termsContent {
+  border: 2px solid #d8a353;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.termsColumns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.termsColumn {
+  width: 48%;
+}
+
+.termsColumn p {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .termsColumns {
+    flex-direction: column;
+  }
+
+  .termsColumn {
+    width: 100%;
+  }
+}

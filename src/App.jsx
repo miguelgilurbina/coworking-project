@@ -4,34 +4,41 @@ import { AuthProvider } from "./Components/Context/AuthContext";
 
 import { FavoriteProvider } from "./Components/Context/FavoriteContext";
 
-import Header from "../src/Components/Header";
-import Footer from "./Components/footer";
+import { BookingProvider } from "./Components/Context/BookingContext";
+
+import { routes } from "./Components/utils/routes";
+
+
 import Home from "./Pages/Home";
 import Admin from "./Pages/Admin";
 import Detail from "./Pages/Detail";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import TableEditRooms from "./Pages/TableEditRooms";
+import Profile from "./Pages/Profile";
 
+import Header from "../src/Components/Header";
+import Footer from "./Components/footer";
 import LoginForm from "./Components/LoginForm";
 import EditProducts from "./Components/EditProducts";
 import CharacteristicForm from "./Components/CharacteristicForm";
 import ProductForm from "./Components/ProductForm";
-import { routes } from "./Components/utils/routes";
-
-import "./App.css";
 import UsersList from "./Components/UsersList";
-import Profile from "./Pages/Profile";
 import CategoryForm from "./Components/CategoryForm";
 import CategoryList from "./Components/CategoryList";
 import FavoriteList from "./Components/FavoriteList";
 import ProductList from "./Components/ProductList";
+import Booking from "./Components/Booking";
+import BookingForm from "./Components/BookingForm";
+
+import "./App.css";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <FavoriteProvider>
+          <BookingProvider>
         <div className="d-flex">
           <Header />
           <div className="background-image"></div>
@@ -59,9 +66,12 @@ function App() {
             <Route path={routes.categoryList} element={<CategoryList/>}></Route>
             <Route path={routes.favoriteList} element={<FavoriteList/>}></Route>
             <Route path={routes.productList} element={<ProductList/>}></Route>
+            <Route path={routes.booking} element={<Booking/>}></Route>
+            <Route path={routes.bookingForm} element={<BookingForm/>}></Route>
           </Routes>
         </div>
         <Footer />
+        </BookingProvider>
         </FavoriteProvider>
       </AuthProvider>
     </>
