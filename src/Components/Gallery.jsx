@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from '../Components/Context/AuthContext';
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import axios from "axios";
 import "../Styles/Gallery.css";
 import image1 from "../../public/images/img_aleatory_1.png";
 import image2 from "../../public/images/img_aleatory_2.png";
@@ -22,10 +21,9 @@ const iconList = Object.keys(Icons).map((icon) => {
   };
 });
 
-const Gallery = () => {
+const Gallery = ({ roomId }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [redirectTo, setRedirectTo] = useState(null);
 
   const [showCarousel, setShowCarousel] = useState(false);
   const [imagery, setImagery] = useState([
@@ -36,6 +34,8 @@ const Gallery = () => {
     image4,
   ]);
   const [characteristics, setCharacteristics] = useState([]);
+  const [roomName, setRoomName] = useState("");
+  const [roomDescription, setRoomDescription] = useState("");
 
   useEffect(() => {
     const fetchCharacteristics = async () => {
@@ -53,6 +53,23 @@ const Gallery = () => {
 
     fetchCharacteristics();
   }, []);
+
+  useEffect(() => {
+    const fetchRoomData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3003/data/${roomId}`);
+        if (!response.data) {
+          throw new Error("Room not found.");
+        }
+        setRoomName(response.data.name);
+        setRoomDescription(response.data.description);
+      } catch (error) {
+        console.error("Error fetching room data:", error);
+      }
+    };
+
+    fetchRoomData();
+  }, [roomId]);
 
   const renderCharacteristics = () => {
     return characteristics.map((characteristic, index) => (
@@ -107,15 +124,11 @@ const Gallery = () => {
 
   const handleBookNowClick = () => {
     if (user) {
-      navigate('/selectDate');
+      navigate(`/selectDate/${roomId}`); // Navegar dinámicamente a /selectDate con el roomId
     } else {
       navigate('/login', { state: { fromGallery: true } });
     }
   };
-
-  if (redirectTo) {
-    return <Navigate to={redirectTo} />;
-  }
 
   return (
     <div className="center">
@@ -128,10 +141,8 @@ const Gallery = () => {
         <div className={`${showCarousel ? "hideContent" : "cardDetail"}`}>
           <div className="cardHeader">
             <div className="titleSubtitle">
-              {/* <h3 className="titleCard">Home Office</h3>
-              <h5 className="subtitleCard">Harmony</h5> */}
+              <Shared title={`Room Name: ${roomName}`} subtitle="Harmony" />
             </div>
-            <Shared title="Home Office" subtitle="Harmony" />
           </div>
 
           {!showCarousel && (
@@ -155,19 +166,7 @@ const Gallery = () => {
               </div>
               <div>
                 <p>
-                  <strong>Description:</strong>
-                </p>
-                <p>
-                  Our co-working space is designed to provide a comfortable and
-                  productive environment for professionals from various
-                  industries. With high-speed internet access, ergonomic chairs,
-                  and well-lit work areas, we offer the ideal setting for you to
-                  focus on your projects. The room also features collaborative
-                  spaces where you can interact with other members, as well as
-                  more private areas for when you need a bit of tranquility.
-                  Additionally, we have state-of-the-art equipment such as
-                  projectors and whiteboards to facilitate your presentations
-                  and meetings.
+                  <strong>Description:</strong> {roomDescription}
                 </p>
               </div>
             </>

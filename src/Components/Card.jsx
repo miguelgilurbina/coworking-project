@@ -6,6 +6,7 @@ import { FaCoffee, FaUsers } from "react-icons/fa";
 import { FiCoffee } from "react-icons/fi";
 import { useAuth } from "../Components/Context/AuthContext";
 import { useFavorites } from "../Components/Context/FavoriteContext";
+import { routes } from "./utils/routes";
 
 const Card = ({ data }) => {
   const { user } = useAuth();
@@ -54,7 +55,7 @@ const Card = ({ data }) => {
                 )}
               </div>
               <div className="d-flex align-items-center">
-                <h5 className="subtitleCardHome">{data.name}</h5>
+                <h5 className="subtitleCardHome">{data.name} - {data.id}</h5>
 
                 <span className="me-2">
                   <FaUsers
@@ -69,7 +70,7 @@ const Card = ({ data }) => {
               </div>
               <p className="card-text">{data.description}</p>
               <Link
-                to="/detail"
+                to={`${routes.detail}/${data.id}`} // Usar la ruta dinámica con el ID
                 className="genericButton link-flex"
                 style={{ width: "100px" }}
               >

@@ -45,7 +45,7 @@ function App() {
           <Routes>
             <Route path={routes.home} element={<Home />} />
             <Route path={routes.admin} element={<Admin />} />
-            <Route path={routes.detail} element={<Detail />} />
+            <Route path={`${routes.detail}/:id`} element={<Detail />} />
             <Route path={routes.login} element={<Login></Login>} />
             <Route path={routes.login} element={<LoginForm></LoginForm>} />
             <Route path={routes.register} element={<Register></Register>} />
@@ -66,7 +66,7 @@ function App() {
             <Route path={routes.categoryList} element={<CategoryList/>}></Route>
             <Route path={routes.favoriteList} element={<FavoriteList/>}></Route>
             <Route path={routes.productList} element={<ProductList/>}></Route>
-            <Route path={routes.booking} element={<Booking/>}></Route>
+            <Route path={`${routes.booking}/:id`} element={<Booking />} />
             <Route path={routes.bookingForm} element={<BookingForm/>}></Route>
           </Routes>
         </div>
