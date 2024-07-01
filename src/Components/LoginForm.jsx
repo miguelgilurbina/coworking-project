@@ -38,7 +38,7 @@ const LoginForm = () => {
       // Configurar el token JWT para todas las solicitudes futuras
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-      navigate("/home");
+      // navigate("/home");
     } catch (error) {
       console.error("Error during login:", error);
       setError(error.response?.data?.message || "Invalid email or password.");
