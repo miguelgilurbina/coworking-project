@@ -22,7 +22,6 @@ import LoginForm from "./Components/LoginForm";
 import EditProducts from "./Components/EditProducts";
 import CharacteristicForm from "./Components/CharacteristicForm";
 import ProductForm from "./Components/ProductForm";
-import { routes } from "./Components/utils/routes";
 import "./App.css";
 import UsersList from "./Components/UsersList";
 import CategoryForm from "./Components/CategoryForm";
