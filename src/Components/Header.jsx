@@ -1,7 +1,7 @@
 import React from "react";
 import "../Styles/header.css";
 import { Link } from "react-router-dom";
-import { useAuth } from "./Context/AuthContext";
+import { useAuth } from "../Components/Context/AuthContext";
 import Avatar from "./Avatar";
 import { useState } from "react";
 
