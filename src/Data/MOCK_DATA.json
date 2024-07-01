@@ -111,6 +111,14 @@
       "email": "miguegil@gmail.com",
       "password": "Password1234",
       "isAdmin": true
+    },
+    {
+      "id": "181",
+      "first_name": "Pablo",
+      "last_name": "Alvarez",
+      "email": "pipualvarez@gmail.com",
+      "password": "Contraseña123",
+      "isAdmin": true
     }
   ]
 }
