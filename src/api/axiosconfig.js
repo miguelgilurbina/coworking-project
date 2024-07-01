@@ -32,9 +32,9 @@ api.interceptors.response.use(
             originalRequest._retry = true;
 
             try {
-                //implementar la lógica para refrescar el token
-
-                const res = await api.post('/api/auth/refresh');
+                // Implementar la lógica para refrescar el token
+                const refreshToken = localStorage.getItem('refreshToken');
+                const res = await api.post('/api/auth/refresh', { token: refreshToken });
                 const newToken = res.data.token;
                 localStorage.setItem('token', newToken);
 
@@ -44,7 +44,9 @@ api.interceptors.response.use(
             } catch (refreshError) {
                 // Si no se puede refrescar el token, limpiar el almacenamiento y redirigir al login
                 localStorage.removeItem('token');
+                localStorage.removeItem('refreshToken');
                 // Aquí puedes agregar lógica para redirigir al usuario a la página de login
+                window.location.href = '/login';
                 return Promise.reject(refreshError);
             }
         }

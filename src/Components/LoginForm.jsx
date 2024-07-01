@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import { FaExclamationCircle } from "react-icons/fa";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 import { PiWarningCircleDuotone } from "react-icons/pi";
-
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -26,24 +25,27 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
     try {
-      const response = await axios.post("http://localhost:8080/api/auth/login", {
+      const response = await api.post("/api/auth/login", {
         username: formData.email,
         password: formData.password,
       });
 
       console.log("Response from server:", response.data);
-      const token = response.data.token;
+      const { token, refreshToken } = response.data;
 
-      // Guardar el token JWT en localStorage
-      localStorage.setItem("jwt", token);
+      // Guardar el token JWT y el token de actualización en localStorage
+      localStorage.setItem("token", token);
+      localStorage.setItem("refreshToken", refreshToken);
 
-      // Configurar el token JWT para todas las solicitudes futuras
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-      navigate("/home");
+      // navigate("/home");
     } catch (error) {
       console.error("Error during login:", error);
-      setError(error.response?.data?.message || "Invalid email or password.");
+
+      if (error.response?.data?.message === "Token expirado o incorrecto") {
+        setError("Your session has expired or the token is invalid. Please login again.");
+      } else {
+        setError(error.response?.data?.message || "Invalid email or password.");
+      }
     }
   };
 
@@ -78,8 +80,8 @@ const LoginForm = () => {
 
               {location.state?.fromGallery && (
                 <div className="alert alert-warning" role="alert">
-                  <PiWarningCircleDuotone  className="iconSpace" />
-                    You must be logged in to reserve a room
+                  <PiWarningCircleDuotone className="iconSpace" />
+                  You must be logged in to reserve a room
                 </div>
               )}
 

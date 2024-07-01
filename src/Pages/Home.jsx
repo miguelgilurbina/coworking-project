@@ -3,7 +3,7 @@ import Explorer from "../Components/Explorer";
 import Category from "../Components/Category";
 import Recommend from "../Components/Recommend";
 import FilteredResults from "../Components/FilteredResults";
-import axios from "axios";
+import api from "../api/axiosconfig";
 import "../Styles/Home.css";
 
 const Home = () => {
@@ -14,7 +14,12 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/data");
+
+        const token = localStorage.getItem("token")
+
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+        const response = await api.get("http://localhost:8080/data");
         const data = response.data || [];
 
         let filtered = data;
