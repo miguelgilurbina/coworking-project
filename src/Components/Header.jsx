@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Styles/header.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../Components/Context/AuthContext";
 import Avatar from "./Avatar";
-import { useState } from "react";
 
 const Header = () => {
   const { user, logout } = useAuth(); // Obtén la función logout del contexto de autenticación
@@ -14,9 +13,9 @@ const Header = () => {
   };
 
   const getInitials = (user) => {
-    if (!user || !user.first_name || !user.last_name) return "";
-    const firstInitial = user.first_name[0];
-    const lastInitial = user.last_name[0];
+    if (!user || !user.nombre || !user.apellido) return "";
+    const firstInitial = user.nombre[0];
+    const lastInitial = user.apellido[0];
     return (firstInitial + lastInitial).toUpperCase();
   };
 
@@ -38,14 +37,13 @@ const Header = () => {
 
       <div className="right-block">
         {user && (
-        <Link to={"/favorites"} className="button link-flex">
-          Favorites
-        </Link>
-        )
-        }
+          <Link to={"/favorites"} className="button link-flex">
+            Favorites
+          </Link>
+        )}
         {user ? (
           <div className="logged-in-section">
-            {user.isAdmin && ( // Verifica si el usuario es administrador
+            {user.rol === "admin" && (
               <Link to="/admin" className="button link-flex">
                 Admin
               </Link>

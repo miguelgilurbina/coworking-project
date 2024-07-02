@@ -1,5 +1,6 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
-import axios from "axios";
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import * as jwt_decode from 'jwt-decode';
 
 const AuthContext = createContext();
 
@@ -8,10 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Verificar si hay un token almacenado al cargar la aplicación
     const token = localStorage.getItem('token');
     if (token) {
-      // Verificar la validez del token con el backend
       verifyToken(token);
     } else {
       setLoading(false);
@@ -20,13 +19,15 @@ export const AuthProvider = ({ children }) => {
 
   const verifyToken = async (token) => {
     try {
-      const response = await api.get('http://localhost:8080/api/auth/verify', {
+      const response = await axios.get('http://localhost:8080/api/auth/verify', {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setUser(response.data);
+      const { usuario } = response.data;
+      setUser(usuario);
     } catch (error) {
       console.error("Error verifying token:", error);
       localStorage.removeItem('token');
+      localStorage.removeItem('role');
     } finally {
       setLoading(false);
     }
@@ -35,10 +36,12 @@ export const AuthProvider = ({ children }) => {
   const login = async (formData) => {
     try {
       const response = await axios.post("http://localhost:8080/api/auth/login", formData);
-      const { token, user } = response.data;
+      const { token, usuario } = response.data;
+
       localStorage.setItem('token', token);
-      setUser(user);
-      // Configura el token para futuras solicitudes
+      localStorage.setItem('role', usuario.rol);
+
+      setUser(usuario);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } catch (error) {
       console.error("Error during login:", error);
@@ -48,12 +51,13 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     setUser(null);
     delete axios.defaults.headers.common['Authorization'];
   };
 
   if (loading) {
-    return <div>Loading...</div>; // O cualquier componente de carga que prefieras
+    return <div>Loading...</div>;
   }
 
   return (

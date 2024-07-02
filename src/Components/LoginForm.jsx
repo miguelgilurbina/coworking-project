@@ -25,29 +25,32 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
     try {
-      const response = await api.post("http://localhost:8080/api/auth/login", {
-        username: formData.email,
-        password: formData.password,
-      });
+        const response = await api.post("http://localhost:8080/api/auth/login", {
+            username: formData.email,
+            password: formData.password,
+        });
 
-      console.log("Response from server:", response.data);
-      const { token, refreshToken } = response.data;
+        console.log("Response from server:", response.data);
+        const { token, refreshToken, roles } = response.data; // Asegúrate de que `roles` venga del backend
 
-      // Guardar el token JWT y el token de actualización en localStorage
-      localStorage.setItem("token", token);
-      localStorage.setItem("refreshToken", refreshToken);
+        // Guardar el token JWT, el token de actualización y los roles en localStorage
+        localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("roles", JSON.stringify(roles)); // Guarda los roles en formato JSON
 
-      navigate("/home");
+        console.log("Roles almacenados en localStorage:", roles);
+
+        navigate("/home");
     } catch (error) {
-      console.error("Error during login:", error);
+        console.error("Error during login:", error);
 
-      if (error.response?.data?.message === "Token expirado o incorrecto") {
-        setError("Your session has expired or the token is invalid. Please login again.");
-      } else {
-        setError(error.response?.data?.message || "Invalid email or password.");
-      }
+        if (error.response?.data?.message === "Token expirado o incorrecto") {
+            setError("Your session has expired or the token is invalid. Please login again.");
+        } else {
+            setError(error.response?.data?.message || "Invalid email or password.");
+        }
     }
-  };
+};
 
   return (
     <div className="card" style={{ borderRadius: "1rem" }}>
