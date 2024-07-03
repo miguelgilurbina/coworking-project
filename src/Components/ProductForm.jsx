@@ -133,7 +133,7 @@ const ProductForm = () => {
         Category: selectedCategory.title,
       };
 
-      const response = await axios.post("http://localhost:8080/salas/registrar", formData);
+      const response = await api.post("http://localhost:8080/salas/registrar", formData);
       console.log(response.data);
       setSuccessMessage("Room successfully added!");
     } catch (error) {
