@@ -1,18 +1,25 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "./Context/AuthContext";
 import api from "../api/axiosconfig";
 import { FaExclamationCircle } from "react-icons/fa";
+import { PiWarningCircleDuotone } from "react-icons/pi";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
-import { PiWarningCircleDuotone } from "react-icons/pi";
+
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const {login} = useAuth();
+
 
   const handleChange = (e) => {
     setFormData({
@@ -25,19 +32,15 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
     try {
-        const response = await api.post("http://localhost:8080/api/auth/login", {
+        const response = await api.post("/api/auth/login", {
             username: formData.email,
             password: formData.password,
         });
 
         console.log("Response from server:", response.data);
-        const { token, usuario} = response.data; // Asegúrate de que `roles` venga del backend
+        const { token, usuario, refreshToken} = response.data; // Asegúrate de que `roles` venga del backend
 
-        // Guardar el token JWT, el token de actualización y los roles en localStorage
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(usuario)); // Guarda los roles en formato JSON
-
-        console.log("Usuario almacenado en localStorage:", usuario);
+        await login(token, refreshToken, usuario); 
 
         navigate("/home");
     } catch (error) {

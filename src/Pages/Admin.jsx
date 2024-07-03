@@ -7,7 +7,7 @@ import { useAuth } from "../Components/Context/AuthContext";
 const Admin = () => {
   const isMobile = window.innerWidth <= 950;
   // TODO: implementar cuando este logueado
-  const { user } = useAuth();
+  const { usuario } = useAuth();
 
   return (
     <div className="contenedorBody contenedorMobile">
@@ -20,9 +20,9 @@ const Admin = () => {
         </div>
       ) : (
         <div className="AdminPage">
-          {user ? (
+          {usuario ? (
             <>
-              <h2>Hi {user.first_name}!</h2>
+              <h2>Hi {usuario.first_name}!</h2>
               <h4>What do you want to do today?</h4>
             </>
           ) : (

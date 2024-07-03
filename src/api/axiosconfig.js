@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const api = axios.create({
     baseURL: 'http://localhost:8080', // Ajusta esto a la URL de tu backend
     withCredentials: true, // Esto es importante para enviar y recibir cookies
@@ -33,10 +34,9 @@ api.interceptors.response.use(
 
             try {
                 // Implementar la lógica para refrescar el token
-                const refreshToken = localStorage.getItem('refreshToken');
-                const res = await api.post('/api/auth/refresh', { token: refreshToken });
-                const newToken = res.data.token;
-                localStorage.setItem('token', newToken);
+                const { refreshToken } = require('../Components/Context/AuthContext');
+                const newToken = await refreshToken();
+
 
                 // Vuelve a intentar la solicitud original con el nuevo token
                 originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
