@@ -5,21 +5,25 @@ import { useAuth } from "../Components/Context/AuthContext";
 import Avatar from "./Avatar";
 
 const Header = () => {
-  const { user, logout } = useAuth(); // Obtén la función logout del contexto de autenticación
+  const { usuario, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+ 
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  const getInitials = (user) => {
-    if (!user || !user.nombre || !user.apellido) return "";
-    const firstInitial = user.nombre[0];
-    const lastInitial = user.apellido[0];
+  const getInitials = (usuario) => {
+    if (!usuario || !usuario.nombre || !usuario.apellido) return "";
+    const firstInitial = usuario.nombre[0];
+    const lastInitial = usuario.apellido[0];
     return (firstInitial + lastInitial).toUpperCase();
   };
 
   return (
+
+    //Parte Izquierda del Header
     <header className="header">
       <div className="d-flex p-2">
         <Link to="/home" className="logo">
@@ -36,14 +40,14 @@ const Header = () => {
       </div>
 
       <div className="right-block">
-        {user && (
+        {usuario && (
           <Link to={"/favorites"} className="button link-flex">
             Favorites
           </Link>
         )}
-        {user ? (
+        {usuario ? (
           <div className="logged-in-section">
-            {user.rol === "admin" && (
+            {usuario.rol === "admin" && (
               <Link to="/admin" className="button link-flex">
                 Admin
               </Link>
@@ -55,7 +59,7 @@ const Header = () => {
                   onClick={toggleSidebar}
                   style={{ cursor: "pointer" }}
                 >
-                  {getInitials(user)}
+                  {getInitials(usuario)}
                 </div>
               </Link>
               <Link to="/" className="logout-link" onClick={logout}>

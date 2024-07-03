@@ -31,14 +31,13 @@ const LoginForm = () => {
         });
 
         console.log("Response from server:", response.data);
-        const { token, refreshToken, roles } = response.data; // Asegúrate de que `roles` venga del backend
+        const { token, usuario} = response.data; // Asegúrate de que `roles` venga del backend
 
         // Guardar el token JWT, el token de actualización y los roles en localStorage
         localStorage.setItem("token", token);
-        localStorage.setItem("refreshToken", refreshToken);
-        localStorage.setItem("roles", JSON.stringify(roles)); // Guarda los roles en formato JSON
+        localStorage.setItem("user", JSON.stringify(usuario)); // Guarda los roles en formato JSON
 
-        console.log("Roles almacenados en localStorage:", roles);
+        console.log("Usuario almacenado en localStorage:", usuario);
 
         navigate("/home");
     } catch (error) {
@@ -152,21 +151,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-// const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:8080/api/login",
-  //       formData
-  //     );
-  //     login(response.data.user);
-  //     navigate("/home");
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     setError("Incorrect email or password. Please try again");
-  //     console.error(error);
-  //   }
-  // };
-
-  // TODO: codigo temporal para probar el login

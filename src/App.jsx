@@ -13,7 +13,6 @@ import TableEditRooms from './Pages/TableEditRooms';
 import Profile from './Pages/Profile';
 import Header from './Components/Header';
 import Footer from './Components/footer';
-import LoginForm from './Components/LoginForm';
 import EditProducts from './Components/EditProducts';
 import CharacteristicForm from './Components/CharacteristicForm';
 import ProductForm from './Components/ProductForm';

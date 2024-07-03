@@ -12,11 +12,11 @@ const Home = () => {
   const [filteredCategory, setFilteredCategory] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
   const [searchCriteria, setSearchCriteria] = useState(null);
-  const { user } = useAuth(); // Obtiene el contexto de autenticación
+  const { usuario } = useAuth(); // Obtiene el contexto de autenticación
 
   useEffect(() => {
-    const logUserRoles = () => {
-      if (user) {
+    const logUsuarioRoles = () => {
+      if (usuario) {
         console.log("Rol del usuario:", usuario.rol);
       }
     };
@@ -77,10 +77,10 @@ const Home = () => {
       }
     };
 
-    logUserRoles(); // Llama a la función para loguear el rol del usuario
+    logUsuarioRoles(); // Llama a la función para loguear el rol del usuario
     fetchData(); // Llama a la función para cargar datos al cargar el componente
 
-  }, [filteredCategory, searchCriteria, user]); // Agrega user como dependencia
+  }, [filteredCategory, searchCriteria, usuario]); // Agrega user como dependencia
 
   const handleFilter = (category) => {
     setFilteredCategory(category);

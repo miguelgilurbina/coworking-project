@@ -1,17 +1,20 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import * as jwt_decode from 'jwt-decode';
+
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [usuario, setUsuario] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedUsuario = localStorage.getItem('usuario');
+    if (token && storedUsuario) {
+      setUsuario(JSON.parse(storedUsuario)); 
       verifyToken(token);
+      
     } else {
       setLoading(false);
     }
@@ -23,11 +26,13 @@ export const AuthProvider = ({ children }) => {
         headers: { Authorization: `Bearer ${token}` }
       });
       const { usuario } = response.data;
-      setUser(usuario);
+      setUsuario(usuario);
+      localStorage.setItem('usuario', JSON.stringify(usuario));
     } catch (error) {
       console.error("Error verifying token:", error);
       localStorage.removeItem('token');
-      localStorage.removeItem('role');
+      localStorage.removeItem('usuario');
+      
     } finally {
       setLoading(false);
     }
@@ -39,9 +44,9 @@ export const AuthProvider = ({ children }) => {
       const { token, usuario } = response.data;
 
       localStorage.setItem('token', token);
-      localStorage.setItem('role', usuario.rol);
+      localStorage.setItem('usuario', JSON.stringify(usuario));
 
-      setUser(usuario);
+      setUsuario(usuario);
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     } catch (error) {
       console.error("Error during login:", error);
@@ -51,8 +56,9 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    setUser(null);
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('rol');
+    setUsuario(null);
     delete axios.defaults.headers.common['Authorization'];
   };
 
@@ -61,7 +67,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ usuario, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
