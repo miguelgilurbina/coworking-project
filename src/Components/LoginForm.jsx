@@ -1,18 +1,25 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "./Context/AuthContext";
 import api from "../api/axiosconfig";
 import { FaExclamationCircle } from "react-icons/fa";
+import { PiWarningCircleDuotone } from "react-icons/pi";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
-import { PiWarningCircleDuotone } from "react-icons/pi";
+
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+  const {login} = useAuth();
+
 
   const handleChange = (e) => {
     setFormData({
@@ -25,29 +32,27 @@ const LoginForm = () => {
     e.preventDefault();
     setError("");
     try {
-      const response = await api.post("http://localhost:8080/api/auth/login", {
-        username: formData.email,
-        password: formData.password,
-      });
+        const response = await api.post("/api/auth/login", {
+            username: formData.email,
+            password: formData.password,
+        });
 
-      console.log("Response from server:", response.data);
-      const { token, refreshToken } = response.data;
+        console.log("Response from server:", response.data);
+        const { token, usuario, refreshToken} = response.data; // Asegúrate de que `roles` venga del backend
 
-      // Guardar el token JWT y el token de actualización en localStorage
-      localStorage.setItem("token", token);
-      localStorage.setItem("refreshToken", refreshToken);
+        await login(token, refreshToken, usuario); 
 
-      navigate("/home");
+        navigate("/home");
     } catch (error) {
-      console.error("Error during login:", error);
+        console.error("Error during login:", error);
 
-      if (error.response?.data?.message === "Token expirado o incorrecto") {
-        setError("Your session has expired or the token is invalid. Please login again.");
-      } else {
-        setError(error.response?.data?.message || "Invalid email or password.");
-      }
+        if (error.response?.data?.message === "Token expirado o incorrecto") {
+            setError("Your session has expired or the token is invalid. Please login again.");
+        } else {
+            setError(error.response?.data?.message || "Invalid email or password.");
+        }
     }
-  };
+};
 
   return (
     <div className="card" style={{ borderRadius: "1rem" }}>
@@ -149,21 +154,3 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-// const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:8080/api/login",
-  //       formData
-  //     );
-  //     login(response.data.user);
-  //     navigate("/home");
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     setError("Incorrect email or password. Please try again");
-  //     console.error(error);
-  //   }
-  // };
-
-  // TODO: codigo temporal para probar el login

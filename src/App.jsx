@@ -1,38 +1,29 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-
-import { AuthProvider } from "./Components/Context/AuthContext";
-
-import { FavoriteProvider } from "./Components/Context/FavoriteContext";
-
-import { BookingProvider } from "./Components/Context/BookingContext";
-
-import { routes } from "./Components/utils/routes";
-
-
-import Home from "./Pages/Home";
-import Admin from "./Pages/Admin";
-import Detail from "./Pages/Detail";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
-import TableEditRooms from "./Pages/TableEditRooms";
-import Profile from "./Pages/Profile";
-import Header from "../src/Components/Header";
-import Footer from "./Components/footer";
-import LoginForm from "./Components/LoginForm";
-import EditProducts from "./Components/EditProducts";
-import CharacteristicForm from "./Components/CharacteristicForm";
-import ProductForm from "./Components/ProductForm";
-import "./App.css";
-import UsersList from "./Components/UsersList";
-import CategoryForm from "./Components/CategoryForm";
-import CategoryList from "./Components/CategoryList";
-import FavoriteList from "./Components/FavoriteList";
-import ProductList from "./Components/ProductList";
-import PrivateRoute from "./Components/utils/PrivateRoute";
-import Booking from "./Components/Booking";
-import BookingForm from "./Components/BookingForm";
-
-import "./App.css";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './Components/Context';
+import { FavoriteProvider } from './Components/Context/FavoriteContext';
+import { BookingProvider } from './Components/Context/BookingContext';
+import { routes } from './Components/utils/routes';
+import Home from './Pages/Home';
+import Admin from './Pages/Admin';
+import Detail from './Pages/Detail';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import TableEditRooms from './Pages/TableEditRooms';
+import Profile from './Pages/Profile';
+import Header from './Components/Header';
+import Footer from './Components/footer';
+import EditProducts from './Components/EditProducts';
+import CharacteristicForm from './Components/CharacteristicForm';
+import ProductForm from './Components/ProductForm';
+import UsersList from './Components/UsersList';
+import CategoryForm from './Components/CategoryForm';
+import CategoryList from './Components/CategoryList';
+import FavoriteList from './Components/FavoriteList';
+import ProductList from './Components/ProductList';
+import PrivateRoute from './Components/utils/PrivateRoute';
+import Booking from './Components/Booking';
+import BookingForm from './Components/BookingForm';
 
 function App() {
   return (
@@ -40,34 +31,31 @@ function App() {
       <AuthProvider>
         <FavoriteProvider>
           <BookingProvider>
-        <div className="d-flex">
-          <Header />
-          <div className="background-image"></div>
-          <Routes>
-            <Route path={routes.home} element={<Home />} />
-            <Route path={routes.admin} element={<Admin />} />
-            <Route path={routes.detail} element={<Detail/>} />
-            <Route path={routes.login} element={<Login></Login>} />
-            <Route path={routes.login} element={<LoginForm></LoginForm>} />
-            <Route path={routes.register} element={<Register></Register>} />
-            <Route path={routes.editRoom} element={<EditProducts />} />
-            <Route path={routes.home}element={<PrivateRoute element={Home} />}/>
-            <Route path={routes.characteristicForm} element={<CharacteristicForm />}/>
-            <Route path={routes.productForm} element={<ProductForm></ProductForm>}/>
-            <Route path={routes.editRoom} element={<TableEditRooms />} />
-            <Route path={routes.usersList} element={<UsersList />} />
-            <Route path="*" element={<Navigate to={routes.home} />} />
-            <Route path={routes.profile} element={<Profile />} />
-            <Route path={routes.addCategory} element={<CategoryForm />}></Route>
-            <Route path={routes.categoryList} element={<CategoryList/>}></Route>
-            <Route path={routes.favoriteList} element={<FavoriteList/>}></Route>
-            <Route path={routes.productList} element={<ProductList/>}></Route>
-            <Route path={routes.booking} element={<Booking/>}></Route>
-            <Route path={routes.bookingForm} element={<BookingForm/>}></Route>
-          </Routes>
-        </div>
-        <Footer />
-        </BookingProvider>
+            <div className="d-flex">
+              <Header />
+              <div className="background-image"></div>
+              <Routes>
+                <Route path={routes.home} element={<Home />} />
+                <Route path={routes.admin} element={<PrivateRoute element={Admin} isAdminRoute />} />
+                <Route path={routes.detail} element={<Detail />} />
+                <Route path={routes.login} element={<Login />} />
+                <Route path={routes.register} element={<Register />} />
+                <Route path={routes.editRoom} element={<EditProducts />} />
+                <Route path={routes.characteristicForm} element={<CharacteristicForm />} />
+                <Route path={routes.productForm} element={<ProductForm />} />
+                <Route path={routes.usersList} element={<PrivateRoute element={UsersList} />} />
+                <Route path={routes.profile} element={<PrivateRoute element={Profile} />} />
+                <Route path={routes.addCategory} element={<PrivateRoute element={CategoryForm} />} />
+                <Route path={routes.categoryList} element={<PrivateRoute element={CategoryList} />} />
+                <Route path={routes.favoriteList} element={<PrivateRoute element={FavoriteList} />} />
+                <Route path={routes.productList} element={<PrivateRoute element={ProductList} />} />
+                <Route path={routes.booking} element={<PrivateRoute element={Booking} />} />
+                <Route path={routes.bookingForm} element={<PrivateRoute element={BookingForm} />} />
+                <Route path="*" element={<Navigate to={routes.home} />} />
+              </Routes>
+            </div>
+            <Footer />
+          </BookingProvider>
         </FavoriteProvider>
       </AuthProvider>
     </>

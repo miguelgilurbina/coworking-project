@@ -1,4 +1,4 @@
-import api from '../api/axiosconfig';
+import api from './axiosconfig';
 
 export const login = async (username, password) => {
     try {
