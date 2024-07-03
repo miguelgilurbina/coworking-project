@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './Components/Context/AuthContext';
+import { AuthProvider } from './Components/Context';
 import { FavoriteProvider } from './Components/Context/FavoriteContext';
 import { BookingProvider } from './Components/Context/BookingContext';
 import { routes } from './Components/utils/routes';
