@@ -11,7 +11,7 @@ const Category = ({ onFilter }) => {
     const fetchData = async () => {
       try {
         //TODO: INTEGRAR CON BACK
-        const response = await axios.get("http://localhost:3002/categories");
+        const response = await axios.get("https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET");
         //console.log("API Response:", response.data);
 
         const categoriesArray = response.data || [];

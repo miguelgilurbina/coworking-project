@@ -110,7 +110,7 @@ const RegisterForm = () => {
 
         // Fetch the last user ID from the database or server
         const lastUserIdResponse = await axios.get(
-          "http://localhost:3001/usuarios"
+          "	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAGET"
         );
         const lastUserId =
           lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
@@ -119,7 +119,7 @@ const RegisterForm = () => {
         const newUserId = lastUserId + 1;
 
         // Send the user data with the new ID
-        const response = await axios.post("http://localhost:3001/usuarios", {
+        const response = await axios.post("	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAPOST", {
           id: newUserId,
           first_name: formData.firstName,
           last_name: formData.lastName,

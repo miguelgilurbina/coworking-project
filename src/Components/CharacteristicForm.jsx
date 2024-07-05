@@ -69,7 +69,7 @@ const CharacteristicForm = () => {
     try {
       // Integrar con el backend
       const response = await axios.put(
-        `http://localhost:3004/caracteristicas/${draftData.id}`,
+        `https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsPUT${draftData.id}`,
         draftData
       );
       console.log(response.data);
@@ -105,7 +105,7 @@ const CharacteristicForm = () => {
     try {
       // Integrar con el backend
       const response = await axios.delete(
-        `http://localhost:3004/caracteristicas/${characteristicData[index].id}`
+        `https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsDEKETE${characteristicData[index].id}`
       );
       console.log(response.data);
     } catch (error) {
@@ -119,7 +119,7 @@ const CharacteristicForm = () => {
 
     try {
       //TODO: INTEGRAR CON BACK
-      const response = await fetch("http://localhost:3004/caracteristicas", {
+      const response = await fetch("https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsPOST", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

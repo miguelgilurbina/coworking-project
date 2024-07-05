@@ -16,7 +16,7 @@ const UsersList = () => {
   useEffect(() => {
     //TODO: INTEGRAR CON EL BACK
     axios
-      .get("http://localhost:3001/usuarios")
+      .get("	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAGET")
       .then((response) => {
         setUsers(response.data);
       })
@@ -28,7 +28,7 @@ const UsersList = () => {
   const toggleAdminStatus = async (userId, isAdmin) => {
     try {
       //TODO: INTEGRAR CON EL BACK
-      await axios.delete(`http://localhost:3001/usuarios/${userId}`);
+      await axios.delete(`/MOCK_DATADELETE${userId}`);
 
       const newUser = {
         ...users.find((user) => user.id === userId),
@@ -38,7 +38,7 @@ const UsersList = () => {
 
       //TODO: INTEGRAR CON EL BACK
       const response = await axios.post(
-        "http://localhost:3001/usuarios",
+        "	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAPOST",
         newUser,
         {
           headers: {

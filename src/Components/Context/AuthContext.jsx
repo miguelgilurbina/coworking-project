@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("Datos del formulario:", formData);
       //TODO: INTEGRAR CON BACK
-      const response = await axios.get("http://localhost:3001/usuarios", {
+      const response = await axios.get("https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAGET", {
         params: formData, // Envía el formulario como parámetros de consulta
       });
 

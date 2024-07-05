@@ -8,7 +8,7 @@ const ProductList = () => {
     useEffect (() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://localhost:3003/data");
+                const response = await axios.get("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET");
                 console.log(response.data);
                 setProducts(response.data);
                 console.log(setProducts);
@@ -23,7 +23,7 @@ const ProductList = () => {
     }, []);
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:3003/data/${id}`);
+            await axios.delete(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataDELETE${id}`);
             setProducts(products.filter(product => product.id !== id));
         } catch (error) {
             setError(error.message);   

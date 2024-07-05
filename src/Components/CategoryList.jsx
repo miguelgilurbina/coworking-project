@@ -10,7 +10,7 @@ const CategoryList = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:3002/categories');
+        const response = await axios.get('https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET');
         setCategories(response.data);
         setLoading(false);
       } catch (error) {
@@ -24,7 +24,7 @@ const CategoryList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3002/categories/${id}`);
+      await axios.delete(`https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataDELETE`);
       // Actualizar el estado eliminando la categoría borrada
       setCategories(categories.filter(category => category.id !== id));
     } catch (error) {

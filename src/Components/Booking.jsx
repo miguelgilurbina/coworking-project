@@ -22,7 +22,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/data");
+        const response = await axios.get("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET");
         const room = response.data.find((room) => room.id === roomId);
         setAvailability(room.availability);
       } catch (error) {

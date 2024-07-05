@@ -21,7 +21,7 @@ const BookingForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3003/data");
+        const response = await axios.get("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET");
         console.log("API Response:", response.data);
 
         const dataArray = response.data || [];
@@ -81,7 +81,7 @@ const BookingForm = () => {
 
     try {
       // Hacer POST en reservas
-      await axios.post("http://localhost:3005/reservas", reservationData);
+      await axios.post("https://gs7aw1cml0.execute-api.us-east-2.amazonaws.com/reservasPOST", reservationData);
 
       const selectedDate = booking.date;
 
@@ -94,7 +94,7 @@ const BookingForm = () => {
         );
       });
 
-      await axios.patch(`http://localhost:3003/data/${room.id}`, {
+      await axios.patch(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataPATCH${room.id}`, {
         availability: {
           ...room.availability,
           [selectedDate]: newAvailability,

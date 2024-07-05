@@ -20,7 +20,7 @@ const Explorer = ({ onSearch }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3003/data");
+      const response = await axios.get("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET");
       const data = response.data;
       //console.log("Data received from API:", data);
       const productNames = data.map((product) => product.name);

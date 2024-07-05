@@ -40,7 +40,7 @@ const Gallery = ({ roomId }) => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
-        const response = await fetch("http://localhost:3004/caracteristicas");
+        const response = await fetch("https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsGET");
         if (!response.ok) {
           throw new Error("Network response was not ok.");
         }
@@ -57,7 +57,7 @@ const Gallery = ({ roomId }) => {
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3003/data/${roomId}`);
+        const response = await axios.get(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET${roomId}`);
         if (!response.data) {
           throw new Error("Room not found.");
         }

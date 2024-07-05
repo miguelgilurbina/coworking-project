@@ -37,7 +37,7 @@ const CategoryForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/categories");
+        const response = await axios.get("https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -71,7 +71,7 @@ const CategoryForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3002/categories",
+        "https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataPOST",
         formData
       );
       console.log(response.data);
@@ -106,7 +106,7 @@ const CategoryForm = () => {
     const categoryId = categories[currentRow].id;
     try {
       const response = await axios.delete(
-        `http://localhost:3002/categories/${categoryId}`
+        `https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataDELETE${categoryId}`
       );
       console.log(response.data);
       const updatedCategories = categories.filter(
@@ -135,7 +135,7 @@ const CategoryForm = () => {
     const updatedCategory = { ...categories[index], ...draftData };
     try {
       const response = await axios.put(
-        `http://localhost:3002/categories/${updatedCategory.id}`,
+        `https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataPUT${updatedCategory.id}`,
         updatedCategory
       );
       console.log(response.data);

@@ -27,7 +27,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3002/categories");
+        const response = await axios.get("https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -40,7 +40,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
-        const response = await fetch("http://localhost:3004/caracteristicas");
+        const response = await fetch("https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsGET");
         if (!response.ok) {
           throw new Error("Failed to fetch characteristics");
         }
@@ -133,7 +133,7 @@ const ProductForm = () => {
         Category: selectedCategory.title,
       };
 
-      const response = await axios.post("http://localhost:3003/data", formData);
+      const response = await axios.post("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataPOST", formData);
       console.log(response.data);
       setSuccessMessage("Room successfully added!");
     } catch (error) {
