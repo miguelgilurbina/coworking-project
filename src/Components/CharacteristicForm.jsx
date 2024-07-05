@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import {apiCaracteristica} from "../Data/axiosConfig";
 import {
   FaArrowLeft,
   FaExclamationTriangle,
@@ -68,8 +68,8 @@ const CharacteristicForm = () => {
     setDraftData({});
     try {
       // Integrar con el backend
-      const response = await axios.put(
-        `https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsPUT${draftData.id}`,
+      const response = await apiCaracteristica.put(
+        `/characteristicsPUT${draftData.id}`,
         draftData
       );
       console.log(response.data);
@@ -104,8 +104,8 @@ const CharacteristicForm = () => {
     setCharacteristicData(newData);
     try {
       // Integrar con el backend
-      const response = await axios.delete(
-        `https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsDEKETE${characteristicData[index].id}`
+      const response = await apiCaracteristica.delete(
+        `/characteristicsDEKETE${characteristicData[index].id}`
       );
       console.log(response.data);
     } catch (error) {
@@ -119,7 +119,7 @@ const CharacteristicForm = () => {
 
     try {
       //TODO: INTEGRAR CON BACK
-      const response = await fetch("https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsPOST", {
+      const response = await apiCaracteristica.post("/characteristicsPOST", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

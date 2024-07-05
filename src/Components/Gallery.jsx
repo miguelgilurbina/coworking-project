@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from '../Components/Context/AuthContext';
 import { Link, useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import axios from "axios";
+import {apiSala, apiCaracteristica} from "../Data/axiosConfig";
 import "../Styles/Gallery.css";
 import image1 from "../../public/images/img_aleatory_1.png";
 import image2 from "../../public/images/img_aleatory_2.png";
@@ -40,7 +40,7 @@ const Gallery = ({ roomId }) => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
-        const response = await fetch("https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsGET");
+        const response = await apiCaracteristica.get("/characteristicsGET");
         if (!response.ok) {
           throw new Error("Network response was not ok.");
         }
@@ -57,7 +57,7 @@ const Gallery = ({ roomId }) => {
   useEffect(() => {
     const fetchRoomData = async () => {
       try {
-        const response = await axios.get(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET${roomId}`);
+        const response = await apiSala.get(`/recommendDataGET${roomId}`);
         if (!response.data) {
           throw new Error("Room not found.");
         }

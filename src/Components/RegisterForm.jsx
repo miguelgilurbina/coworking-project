@@ -1,4 +1,4 @@
-import axios from "axios";
+import {apiUsuario} from "../Data/axiosConfig";
 import React, { useState } from "react";
 import { FaExclamationCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -109,8 +109,8 @@ const RegisterForm = () => {
         console.log("Submitting Form Data:", formData); // Log the form data
 
         // Fetch the last user ID from the database or server
-        const lastUserIdResponse = await axios.get(
-          "	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAGET"
+        const lastUserIdResponse = await apiUsuario.get(
+          "/MOCK_DATAGET"
         );
         const lastUserId =
           lastUserIdResponse.data[lastUserIdResponse.data.length - 1].id;
@@ -119,7 +119,7 @@ const RegisterForm = () => {
         const newUserId = lastUserId + 1;
 
         // Send the user data with the new ID
-        const response = await axios.post("	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAPOST", {
+        const response = await apiUsuario.post("/MOCK_DATAPOST", {
           id: newUserId,
           first_name: formData.firstName,
           last_name: formData.lastName,

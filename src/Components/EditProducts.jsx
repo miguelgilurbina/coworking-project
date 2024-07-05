@@ -1,7 +1,7 @@
 // EditProducts.jsx
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import {apiSala} from "../Data/axiosConfig";
 import {
   Table,
   TableBody,
@@ -109,7 +109,7 @@ const EditProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET');
+        const response = await apiSala.get('/recommendDataGET');
         setProducts(response.data);
         setLoading(false);
       } catch (error) {
@@ -133,7 +133,7 @@ const EditProducts = () => {
 
   const saveEdit = async (index) => {
     try {
-      const response = await axios.put(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataPUT`, draftData);
+      const response = await apiSala.put(`/recommendDataPUT`, draftData);
       const updatedProduct = response.data;
       const newProducts = [...products];
       newProducts[index] = updatedProduct;
@@ -153,7 +153,7 @@ const EditProducts = () => {
     setProducts(newData);
 
     try {
-      const response = await axios.delete(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataDELETE${itemToDelete.id}`);
+      const response = await apiSala.delete(`/recommendDataDELETE${itemToDelete.id}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);
@@ -184,7 +184,7 @@ const EditProducts = () => {
     const newData = products.filter((_, idx) => idx !== index);
     setProducts(newData);
     try {
-      const response = await axios.delete(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataDELETE${products[index].id}`);
+      const response = await apiSala.delete(`/recommendDataDELETE${products[index].id}`);
       console.log(response.data);
     } catch (error) {
       console.error(error);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { apiCategoria } from '../Data/axiosConfig';
 import CategoryCard from "./CategoryCard";
 import "../Styles/Category.css";
 
@@ -11,7 +11,7 @@ const Category = ({ onFilter }) => {
     const fetchData = async () => {
       try {
         //TODO: INTEGRAR CON BACK
-        const response = await axios.get("https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET");
+        const response = await apiCategoria.get("/categoryDataGET");
         //console.log("API Response:", response.data);
 
         const categoriesArray = response.data || [];

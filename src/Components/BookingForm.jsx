@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import {apiReserva, apiSala} from "../Data/axiosConfig";
 import { useAuth } from "./Context/AuthContext";
 import { useBooking } from "./Context/BookingContext";
 import Modal from "./Modal";
@@ -21,7 +21,7 @@ const BookingForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET");
+        const response = await apiSala.get("/recommendDataGET");
         console.log("API Response:", response.data);
 
         const dataArray = response.data || [];
@@ -81,7 +81,7 @@ const BookingForm = () => {
 
     try {
       // Hacer POST en reservas
-      await axios.post("https://gs7aw1cml0.execute-api.us-east-2.amazonaws.com/reservasPOST", reservationData);
+      await apiReserva.post("/reservasPOST", reservationData);
 
       const selectedDate = booking.date;
 
@@ -94,7 +94,7 @@ const BookingForm = () => {
         );
       });
 
-      await axios.patch(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataPATCH${room.id}`, {
+      await apiSala.patch(`/recommendDataPATCH${room.id}`, {
         availability: {
           ...room.availability,
           [selectedDate]: newAvailability,

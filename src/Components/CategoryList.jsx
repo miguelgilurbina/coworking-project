@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import {apiCategoria} from '../Data/axiosConfig';
 import { Link } from 'react-router-dom';
 
 const CategoryList = () => {
@@ -10,7 +10,7 @@ const CategoryList = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET');
+        const response = await apiCategoria.get('/categoryDataGET');
         setCategories(response.data);
         setLoading(false);
       } catch (error) {
@@ -24,7 +24,7 @@ const CategoryList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataDELETE`);
+      await apiCategoria.delete(`/categoryDataDELETE`);
       // Actualizar el estado eliminando la categoría borrada
       setCategories(categories.filter(category => category.id !== id));
     } catch (error) {

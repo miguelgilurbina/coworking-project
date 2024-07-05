@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import {apiSala} from "../Data/axiosConfig";
 import { useBooking } from "./Context/BookingContext";
 import Modal from "./Modal";
 import Alert from "./Alert";
@@ -22,7 +22,7 @@ const Booking = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET");
+        const response = await apiSala.get("/recommendDataGET");
         const room = response.data.find((room) => room.id === roomId);
         setAvailability(room.availability);
       } catch (error) {

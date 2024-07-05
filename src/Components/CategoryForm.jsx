@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "../Styles/Form.css";
-import axios from "axios";
+import {apiCategoria} from "../Data/axiosConfig";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
@@ -37,7 +37,7 @@ const CategoryForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET");
+        const response = await apiCategoria.get("/categoryDataGET");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -70,8 +70,8 @@ const CategoryForm = () => {
     };
 
     try {
-      const response = await axios.post(
-        "https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataPOST",
+      const response = await apiCategoria.post(
+        "/categoryDataPOST",
         formData
       );
       console.log(response.data);
@@ -105,8 +105,8 @@ const CategoryForm = () => {
   const confirmDelete = async () => {
     const categoryId = categories[currentRow].id;
     try {
-      const response = await axios.delete(
-        `https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataDELETE${categoryId}`
+      const response = await apiCategoria.delete(
+        `/categoryDataDELETE${categoryId}`
       );
       console.log(response.data);
       const updatedCategories = categories.filter(
@@ -134,8 +134,8 @@ const CategoryForm = () => {
   const saveEdit = async (index) => {
     const updatedCategory = { ...categories[index], ...draftData };
     try {
-      const response = await axios.put(
-        `https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataPUT${updatedCategory.id}`,
+      const response = await apiCategoria.put(
+        `/categoryDataPUT${updatedCategory.id}`,
         updatedCategory
       );
       console.log(response.data);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from 'react'
-import axios from 'axios'
+import {apiSala} from '../Data/axiosConfig'
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -8,7 +8,7 @@ const ProductList = () => {
     useEffect (() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataGET");
+                const response = await apiSala.get("/recommendDataGET");
                 console.log(response.data);
                 setProducts(response.data);
                 console.log(setProducts);
@@ -23,7 +23,7 @@ const ProductList = () => {
     }, []);
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataDELETE${id}`);
+            await apiSala.delete(`/recommendDataDELETE${id}`);
             setProducts(products.filter(product => product.id !== id));
         } catch (error) {
             setError(error.message);   

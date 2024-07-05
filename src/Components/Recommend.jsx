@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import data from "../Data/recommendData.json";
+import {apiUsuario} from "../Data/axiosConfig.js";
 import Card from "./Card.jsx";
 import Pagination from "./Pagination";
 import "../Styles/Recommend.css";
@@ -19,9 +19,19 @@ const Recommend = () => {
   );
 
   useEffect(() => {
-    const dataArray = Object.values(data.data);
-    const shuffledData = shuffleArray(dataArray);
-    setRecommendData(shuffledData);
+    const fetchData = async () => {
+      try {
+        const response = await apiUsuario.get("/recommendDataGET");
+        const dataArray = Object.values(response.data.data);
+        const shuffledData = shuffleArray(dataArray);
+        setRecommendData(shuffledData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+
 
     const handleResize = () => {
       setWindowWidth(window.innerWidth);

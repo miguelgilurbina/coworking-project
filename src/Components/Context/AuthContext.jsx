@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from "react";
-import axios from "axios";
+import {apiUsuario} from "../../Data/axiosConfig";
 
 const AuthContext = createContext();
 
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log("Datos del formulario:", formData);
       //TODO: INTEGRAR CON BACK
-      const response = await axios.get("https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAGET", {
+      const response = await apiUsuario.get("/MOCK_DATAGET", {
         params: formData, // Envía el formulario como parámetros de consulta
       });
 

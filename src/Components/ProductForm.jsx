@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/Form.css";
-import axios from "axios";
+import {apiSala, apiCaracteristica, apiCategoria} from "../Data/axiosConfig";
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import IsMobile from "./IsMobile";
@@ -27,7 +27,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://sxay9vvf7e.execute-api.us-east-2.amazonaws.com/categoryDataGET");
+        const response = await apiCategoria.get("/categoryDataGET");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -40,7 +40,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCharacteristics = async () => {
       try {
-        const response = await fetch("https://vxiflfscqh.execute-api.us-east-2.amazonaws.com/characteristicsGET");
+        const response = await apiCaracteristica.get("/characteristicsGET");
         if (!response.ok) {
           throw new Error("Failed to fetch characteristics");
         }
@@ -133,7 +133,7 @@ const ProductForm = () => {
         Category: selectedCategory.title,
       };
 
-      const response = await axios.post("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataPOST", formData);
+      const response = await apiSala.post("https://f3fvcy350l.execute-api.us-east-2.amazonaws.com/recommendDataPOST", formData);
       console.log(response.data);
       setSuccessMessage("Room successfully added!");
     } catch (error) {

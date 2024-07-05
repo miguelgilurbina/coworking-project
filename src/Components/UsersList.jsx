@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import {apiUsuario} from "../Data/axiosConfig";
 import { Link } from "react-router-dom";
 import "../Styles/Form.css";
 
@@ -15,8 +15,8 @@ const UsersList = () => {
 
   useEffect(() => {
     //TODO: INTEGRAR CON EL BACK
-    axios
-      .get("	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAGET")
+    apiUsuario
+      .get("/MOCK_DATAGET")
       .then((response) => {
         setUsers(response.data);
       })
@@ -28,7 +28,7 @@ const UsersList = () => {
   const toggleAdminStatus = async (userId, isAdmin) => {
     try {
       //TODO: INTEGRAR CON EL BACK
-      await axios.delete(`/MOCK_DATADELETE${userId}`);
+      await apiUsuario.delete(`/MOCK_DATADELETE${userId}`);
 
       const newUser = {
         ...users.find((user) => user.id === userId),
@@ -37,8 +37,8 @@ const UsersList = () => {
       setShowRemoveSuccess(isAdmin);
 
       //TODO: INTEGRAR CON EL BACK
-      const response = await axios.post(
-        "	https://kdi932j6jd.execute-api.us-east-2.amazonaws.com/MOCK_DATAPOST",
+      const response = await apiUsuarios.post(
+        "/MOCK_DATAPOST",
         newUser,
         {
           headers: {
