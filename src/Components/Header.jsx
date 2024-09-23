@@ -2,6 +2,7 @@ import React from "react";
 import "../Styles/header.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
+import cwLogo from "../../public/icons/cw_logo_app.png"
 import Avatar from "./Avatar";
 import { useState } from "react";
 
@@ -25,7 +26,7 @@ const Header = () => {
       <div className="d-flex p-2">
         <Link to="/home" className="logo">
           <img
-            src="../../public/icons/cw_logo_app.png"
+            src={cwLogo}
             alt="Logo de la empresa"
             className="logo-img"
           />
