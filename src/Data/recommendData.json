@@ -1,7 +1,8 @@
+
 {
   "data": [
     {
-      "srcImg": "/public/images/img_aleatory_9.png",
+      "srcImg": "../../public/images/img_aleatory_9.png",
       "name": "Destiny",
       "Category": "Meeting Room",
       "id": "1",
@@ -9,10 +10,10 @@
       "price": 100,
       "people": 10,
       "images": [
-        "/public/images/img_aleatory_12.png",
-        "/public/images/img_aleatory_4.png",
-        "/public/images/img_aleatory_8.png",
-        "/public/images/img_aleatory_6.png"
+        "../../public/images/img_aleatory_12.png",
+        "../../public/images/img_aleatory_4.png",
+        "../../public/images/img_aleatory_8.png",
+        "../../public/images/img_aleatory_6.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -236,7 +237,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_5.png",
+      "srcImg": "../../public/images/img_aleatory_5.png",
       "name": "Happy Work",
       "Category": "Private Office",
       "id": "2",
@@ -244,10 +245,10 @@
       "price": 150,
       "people": 5,
       "images": [
-        "/public/images/img_aleatory_1.png",
-        "/public/images/img_aleatory_4.png",
-        "/public/images/img_aleatory_2.png",
-        "/public/images/img_aleatory.png"
+        "../../public/images/img_aleatory_1.png",
+        "../../public/images/img_aleatory_4.png",
+        "../../public/images/img_aleatory_2.png",
+        "../../public/images/img_aleatory.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -466,7 +467,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_6.png",
+      "srcImg": "../../public/images/img_aleatory_6.png",
       "name": "Harmony",
       "Category": "Full Time",
       "id": "3",
@@ -474,10 +475,10 @@
       "price": 200,
       "people": 8,
       "images": [
-        "/public/images/img_aleatory_5.png",
-        "/public/images/img_aleatory_4.png",
-        "/public/images/img_aleatory_3.png",
-        "/public/images/img_aleatory_2.png"
+        "../../public/images/img_aleatory_5.png",
+        "../../public/images/img_aleatory_4.png",
+        "../../public/images/img_aleatory_3.png",
+        "../../public/images/img_aleatory_2.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -702,15 +703,15 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_11.png",
+      "srcImg": "../../public/images/img_aleatory_11.png",
       "name": "Available to the Public",
       "Category": "Lounge",
       "id": "4",
       "images": [
-        "/public/images/img_aleatory_10.png",
-        "/public/images/img_aleatory_9.png",
-        "/public/images/img_aleatory_8.png",
-        "/public/images/img_aleatory_7.png"
+        "../../public/images/img_aleatory_10.png",
+        "../../public/images/img_aleatory_9.png",
+        "../../public/images/img_aleatory_8.png",
+        "../../public/images/img_aleatory_7.png"
       ],
       "description": "Accessible lounge area for all users to relax and collaborate. Well-equipped place for productivity",
       "price": 120,
@@ -941,7 +942,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_8.png",
+      "srcImg": "../../public/images/img_aleatory_8.png",
       "name": "Delight",
       "Category": "Meeting Room",
       "id": "5",
@@ -949,10 +950,10 @@
       "price": 100,
       "people": 10,
       "images": [
-        "/public/images/img_aleatory_9.png",
-        "/public/images/img_aleatory_10.png",
-        "/public/images/img_aleatory.png",
-        "/public/images/img_aleatory_1.png"
+        "../../public/images/img_aleatory_9.png",
+        "../../public/images/img_aleatory_10.png",
+        "../../public/images/img_aleatory.png",
+        "../../public/images/img_aleatory_1.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -1177,7 +1178,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_2.png",
+      "srcImg": "../../public/images/img_aleatory_2.png",
       "name": "Harmony Hub",
       "Category": "Private Office",
       "id": "6",
@@ -1185,10 +1186,10 @@
       "price": 150,
       "people": 1,
       "images": [
-        "/public/images/img_aleatory_3.png",
-        "/public/images/img_aleatory_4.png",
-        "/public/images/img_aleatory_7.png",
-        "/public/images/img_aleatory_8.png"
+        "../../public/images/img_aleatory_3.png",
+        "../../public/images/img_aleatory_4.png",
+        "../../public/images/img_aleatory_7.png",
+        "../../public/images/img_aleatory_8.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -1397,7 +1398,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_13.jpg",
+      "srcImg": "../../public/images/img_aleatory_13.jpg",
       "name": "Haven",
       "Category": "Full Time",
       "id": "7",
@@ -1405,10 +1406,10 @@
       "price": 200,
       "people": 8,
       "images": [
-        "/public/images/img_aleatory_12.png",
-        "/public/images/img_aleatory_1.png",
-        "/public/images/img_aleatory_2.png",
-        "/public/images/img_aleatory_10.png"
+        "../../public/images/img_aleatory_12.png",
+        "../../public/images/img_aleatory_1.png",
+        "../../public/images/img_aleatory_2.png",
+        "../../public/images/img_aleatory_10.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -1631,7 +1632,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_7.png",
+      "srcImg": "../../public/images/img_aleatory_7.png",
       "name": "Diligence",
       "Category": "Meeting Room",
       "id": "8",
@@ -1639,10 +1640,10 @@
       "price": 120,
       "people": 12,
       "images": [
-        "/public/images/img_aleatory_8.png",
-        "/public/images/img_aleatory_9.png",
-        "/public/images/img_aleatory_10.png",
-        "/public/images/img_aleatory_11.png"
+        "../../public/images/img_aleatory_8.png",
+        "../../public/images/img_aleatory_9.png",
+        "../../public/images/img_aleatory_10.png",
+        "../../public/images/img_aleatory_11.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -1865,7 +1866,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_3.png",
+      "srcImg": "../../public/images/img_aleatory_3.png",
       "name": "Hustle Haven",
       "Category": "Private Office",
       "id": "9",
@@ -1873,10 +1874,10 @@
       "price": 150,
       "people": 5,
       "images": [
-        "/public/images/img_aleatory_7.png",
-        "/public/images/img_aleatory_4.png",
-        "/public/images/img_aleatory_5.png",
-        "/public/images/img_aleatory_6.png"
+        "../../public/images/img_aleatory_7.png",
+        "../../public/images/img_aleatory_4.png",
+        "../../public/images/img_aleatory_5.png",
+        "../../public/images/img_aleatory_6.png"
       ],
       "availability": {
         "2024-07-01": [
@@ -2101,7 +2102,7 @@
       }
     },
     {
-      "srcImg": "/public/images/img_aleatory_13.png",
+      "srcImg": "../../public/images/img_aleatory_13.png",
       "name": "Horizon",
       "Category": "Full Time",
       "id": "10",
